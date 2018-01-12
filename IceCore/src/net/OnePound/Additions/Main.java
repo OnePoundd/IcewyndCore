@@ -30,6 +30,7 @@ public class Main extends JavaPlugin implements Listener{
 	
 	public static Main instance;
 	//public static List<NPC> npcs;
+	//test
 	
 	public void onEnable(){
 		instance = this;
