@@ -29,6 +29,7 @@ import net.OnePound.WebConnection.Uploader;
 public class Main extends JavaPlugin implements Listener{
 	
 	public static Main instance;
+	//fuck
 	//public static List<NPC> npcs;
 	
 	public void onEnable(){
