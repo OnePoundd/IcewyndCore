@@ -1,6 +1,6 @@
- name: Additions
+ name: IceCore
  version: 1.0
- description: Additions for the Icewynd Server!
+ description: Icewynd Core
  author: OnePoundd
  main: net.OnePound.Additions.Main
  commands:
