@@ -1,0 +1,30 @@
+ name: Additions
+ version: 1.0
+ description: Additions for the Icewynd Server!
+ author: OnePoundd
+ main: net.OnePound.Additions.Main
+ commands:
+   crategive:
+     description: gives the user a crate!
+     usage: /command <name> <legendary/exotic>
+   librarian:
+     description: opens librarian anvil
+     usage: /command <name>
+   enchanter:
+     description: opens enchanter inventory
+     usage: /command <name>
+   spawnergive: 
+     description: gives a spawner
+     usage: /command <name> <spawnertype>
+   sandstone:
+     description: converts sand biome to sandstone
+     usage: /command
+   npc:
+     description: creates npc entities
+     usage: /command
+   xp:
+     description: shows your experience
+     usage: /command
+   xpgive:
+     description: gives a player experience
+     usage: /command
