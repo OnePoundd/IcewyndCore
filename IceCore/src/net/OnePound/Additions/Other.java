@@ -14,49 +14,51 @@ import com.massivecraft.factions.cmd.CmdFactionsTop;
 import com.massivecraft.factions.cmd.CmdFactionsWealth;
 
 public class Other implements Listener {
-	
+
 	@EventHandler
-	// makes a timer appear above the creepers head when ignited with flint and steel
+	// makes a timer appear above the creepers head when ignited with flint and
+	// steel
 	public void onCreeperIgniteEvent(PlayerInteractEntityEvent event) {
-		if(event.getRightClicked() instanceof Creeper) {
+		if (event.getRightClicked() instanceof Creeper) {
 			Creeper creeper = (Creeper) event.getRightClicked();
-			if(event.getPlayer().getItemInHand().getType().equals(Material.FLINT_AND_STEEL)) {
+			if (event.getPlayer().getItemInHand().getType().equals(Material.FLINT_AND_STEEL)) {
 				String name = creeper.getName();
-				if(name.equals("Creeper")) {
+				if (name.equals("Creeper")) {
 					event.setCancelled(true);
 					creeper.setCustomName("§a§l***§b§l3.0§a§l***");
 					final int task;
-					task = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable(){
+					task = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
 						double timer = 3.0;
+
 						@Override
 						public void run() {
 							timer = timer - 0.1;
 							String timerString = Double.toString(timer).substring(0, 3);
-							if(timer >= 2.1) {
+							if (timer >= 2.1) {
 								creeper.setCustomName("§a§l***§b§l " + timerString + " §a§l***");
-							}else if(timer >= 1.1) {
+							} else if (timer >= 1.1) {
 								creeper.setCustomName("§6§l***§b§l " + timerString + " §6§l***");
-							}else if(timer >= 0.1) {
+							} else if (timer >= 0.1) {
 								creeper.setCustomName("§c§l***§b§l " + timerString + " §c§l***");
-							}else {
-								if(!creeper.isDead()) {
+							} else {
+								if (!creeper.isDead()) {
 									creeper.setCustomName("§4§l***§b§l 0.0 §4§l***");
 									creeper.damage(1000);
 									creeper.getLocation().getWorld().createExplosion(creeper.getLocation(), 3F);
 								}
 							}
 						}
-			        }, 0L, 2);
-					
+					}, 0L, 2);
+
 					Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 						public void run() {
 							Bukkit.getScheduler().cancelTask(task);
 						}
 					}, 58);
-				}else if(name.contains("§l***")) {
+				} else if (name.contains("§l***")) {
 					event.setCancelled(true);
 				}
 			}
 		}
-	}	
+	}
 }

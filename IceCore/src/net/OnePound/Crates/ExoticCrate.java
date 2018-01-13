@@ -19,85 +19,89 @@ import org.bukkit.inventory.meta.ItemMeta;
 import net.OnePound.Additions.Main;
 
 public class ExoticCrate {
-	
+
 	static ItemStack ExoticCrateItem;
 	static List<ItemStack> items = new ArrayList<ItemStack>();
-	
-	public static void give(Player player){
-		if(player.getInventory().firstEmpty() == -1){
+
+	public static void give(Player player) {
+		if (player.getInventory().firstEmpty() == -1) {
 			player.sendMessage("§b§l(!)§7 Your inventory is full, dropping crate at your feet!");
 			player.getWorld().dropItem(player.getLocation(), ExoticCrateItem);
-		}else{
+		} else {
 			player.sendMessage("§b§l(!)§7 A crate has been added to your inventory!");
 			player.getInventory().addItem(ExoticCrateItem);
 		}
 	}
-	
-	public static void open(Player player){
-		//CANCELS EVENT IF PLAYER DOES NOT HAVE 3 OPEN INVENTORY SLOTS
+
+	public static void open(Player player) {
+		// CANCELS EVENT IF PLAYER DOES NOT HAVE 3 OPEN INVENTORY SLOTS
 		int count = 0;
-		for(ItemStack currentItem : player.getInventory().getStorageContents()){
-			if(currentItem == null){
+		for (ItemStack currentItem : player.getInventory().getStorageContents()) {
+			if (currentItem == null) {
 				count = count + 1;
 			}
 		}
-		if(count >= 3){
-			//REMOVES ONE FROM THE ITEMSTACK
+		if (count >= 3) {
+			// REMOVES ONE FROM THE ITEMSTACK
 			ItemStack clicked = player.getItemInHand();
 			clicked.setAmount(clicked.getAmount() - 1);
-			//OPENS AN INVENTORY SHOWING ALL POSSIBLE ITEMS
+			// OPENS AN INVENTORY SHOWING ALL POSSIBLE ITEMS
 			player.openInventory(newInventory(false));
-			//AFTER 3 SECONDS, THE INVENTORY WILL "SHUFFLE"
+			// AFTER 3 SECONDS, THE INVENTORY WILL "SHUFFLE"
 			Inventory ExoticCrateShuffle = Bukkit.createInventory(null, 27, "§eShuffling");
 			Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 				public void run() {
-					for(int i = 0; i < 27; i++){
+					for (int i = 0; i < 27; i++) {
 						ExoticCrateShuffle.setItem(i, getRandomGlass());
 					}
 					player.openInventory(ExoticCrateShuffle);
 					Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 						public void run() {
-							for(int i = 0; i < 27; i++){
+							for (int i = 0; i < 27; i++) {
 								ExoticCrateShuffle.setItem(i, getRandomGlass());
 							}
 							player.openInventory(ExoticCrateShuffle);
 							Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 								public void run() {
-									for(int i = 0; i < 27; i++){
+									for (int i = 0; i < 27; i++) {
 										ExoticCrateShuffle.setItem(i, getRandomGlass());
 									}
 									player.openInventory(ExoticCrateShuffle);
 									Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 										public void run() {
-											for(int i = 0; i < 27; i++){
+											for (int i = 0; i < 27; i++) {
 												ExoticCrateShuffle.setItem(i, getRandomGlass());
 											}
 											player.openInventory(ExoticCrateShuffle);
 											Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 												public void run() {
-													for(int i = 0; i < 27; i++){
+													for (int i = 0; i < 27; i++) {
 														ExoticCrateShuffle.setItem(i, getRandomGlass());
 													}
 													player.openInventory(ExoticCrateShuffle);
 													Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 														public void run() {
-															for(int i = 0; i < 27; i++){
+															for (int i = 0; i < 27; i++) {
 																ExoticCrateShuffle.setItem(i, getRandomGlass());
 															}
 															player.openInventory(ExoticCrateShuffle);
-															Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
-																public void run() {
-																	for(int i = 0; i < 27; i++){
-																		ExoticCrateShuffle.setItem(i, getRandomGlass());
-																	}
-																	player.openInventory(ExoticCrateShuffle);
-																	Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+															Bukkit.getScheduler().runTaskLater(Main.instance,
+																	new Runnable() {
 																		public void run() {
-																			player.openInventory(newInventory(true));
+																			for (int i = 0; i < 27; i++) {
+																				ExoticCrateShuffle.setItem(i,
+																						getRandomGlass());
+																			}
+																			player.openInventory(ExoticCrateShuffle);
+																			Bukkit.getScheduler().runTaskLater(
+																					Main.instance, new Runnable() {
+																						public void run() {
+																							player.openInventory(
+																									newInventory(true));
+																						}
+																					}, 4);
 																		}
 																	}, 4);
-																}
-															}, 4);
 														}
 													}, 4);
 												}
@@ -109,63 +113,63 @@ public class ExoticCrate {
 						}
 					}, 4);
 				}
-			}, 3*20);
-		}else{
+			}, 3 * 20);
+		} else {
 			player.sendMessage("§c§l(!)§7 You must have 3 open inventory slots to open that!");
 		}
 	}
-	
-	private static Inventory newInventory(boolean end){
-		if(end){
+
+	private static Inventory newInventory(boolean end) {
+		if (end) {
 			Inventory ExoticCrate = Bukkit.createInventory(null, 27, "§eChoose 3");
 			Collections.shuffle(items);
-			for(int i = 0; i < 27; i++){
+			for (int i = 0; i < 27; i++) {
 				ExoticCrate.setItem(i, getRandomGlass());
 			}
 			return ExoticCrate;
-		}else{
+		} else {
 			Inventory ExoticCrate = Bukkit.createInventory(null, 27, "§ePotential Items");
 			Collections.shuffle(items);
-			for(int i = 0; i < 27; i++){
+			for (int i = 0; i < 27; i++) {
 				ExoticCrate.setItem(i, items.get(i));
 			}
 			return ExoticCrate;
 		}
 	}
-	
-	private static ItemStack getRandomGlass(){
+
+	private static ItemStack getRandomGlass() {
 		Random rand = new Random();
-		//(max index) + minindex
+		// (max index) + minindex
 		int index = rand.nextInt(8) + 1;
-		if(index == 1){
+		if (index == 1) {
 			return new ItemStack(Material.WOOL, 1, (byte) 1);
-		}else if(index == 2){
+		} else if (index == 2) {
 			return new ItemStack(Material.WOOL, 1, (byte) 2);
-		}else if(index == 3){
+		} else if (index == 3) {
 			return new ItemStack(Material.WOOL, 1, (byte) 3);
-		}else if(index == 4){
+		} else if (index == 4) {
 			return new ItemStack(Material.WOOL, 1, (byte) 4);
-		}else if(index == 5){
+		} else if (index == 5) {
 			return new ItemStack(Material.WOOL, 1, (byte) 5);
-		}else if(index == 6){
+		} else if (index == 6) {
 			return new ItemStack(Material.WOOL, 1, (byte) 6);
-		}else if(index == 7){
+		} else if (index == 7) {
 			return new ItemStack(Material.WOOL, 1, (byte) 7);
-		}else if(index == 8){
+		} else if (index == 8) {
 			return new ItemStack(Material.WOOL, 1, (byte) 8);
-		}else{
+		} else {
 			return new ItemStack(Material.AIR);
 		}
 	}
-	
-	public static ItemStack getRandomItem(){
+
+	public static ItemStack getRandomItem() {
 		Random rand = new Random();
 		int index = rand.nextInt(26);
 		return items.get(index);
 	}
-	
-	public static void load(){
-		//THIS IS JUST THE CRATE, NOT THE CONTENTS OF THE CRATE
+
+	public static void load() {
+		// THIS IS JUST THE CRATE, NOT THE CONTENTS OF THE CRATE
 		ExoticCrateItem = new ItemStack(Material.CHEST);
 		ItemMeta ExoticCrateMeta = ExoticCrateItem.getItemMeta();
 		ExoticCrateMeta.setDisplayName("§eExotic Crate");
@@ -173,8 +177,8 @@ public class ExoticCrate {
 		ExoticCrateLore.add("§7Right click to open!");
 		ExoticCrateMeta.setLore(ExoticCrateLore);
 		ExoticCrateItem.setItemMeta(ExoticCrateMeta);
-		
-		// 4 x Cash Prizes	
+
+		// 4 x Cash Prizes
 		ItemStack Item1 = new ItemStack(Material.PAPER);
 		ItemMeta Item1Meta = Item1.getItemMeta();
 		Item1Meta.setDisplayName("§6$250,000 Cash");
@@ -183,7 +187,7 @@ public class ExoticCrate {
 		Item1Meta.setLore(Item1Lore);
 		Item1.setItemMeta(Item1Meta);
 		items.add(Item1);
-		
+
 		ItemStack Item2 = new ItemStack(Material.PAPER);
 		ItemMeta Item2Meta = Item2.getItemMeta();
 		Item2Meta.setDisplayName("§6$250,000 Cash");
@@ -192,7 +196,7 @@ public class ExoticCrate {
 		Item2Meta.setLore(Item2Lore);
 		Item2.setItemMeta(Item2Meta);
 		items.add(Item2);
-		
+
 		ItemStack Item3 = new ItemStack(Material.PAPER);
 		ItemMeta Item3Meta = Item3.getItemMeta();
 		Item3Meta.setDisplayName("§6$150,000 Cash");
@@ -201,7 +205,7 @@ public class ExoticCrate {
 		Item3Meta.setLore(Item3Lore);
 		Item3.setItemMeta(Item3Meta);
 		items.add(Item3);
-		
+
 		ItemStack Item4 = new ItemStack(Material.PAPER);
 		ItemMeta Item4Meta = Item4.getItemMeta();
 		Item4Meta.setDisplayName("§6$150,000 Cash");
@@ -210,7 +214,7 @@ public class ExoticCrate {
 		Item4Meta.setLore(Item4Lore);
 		Item4.setItemMeta(Item4Meta);
 		items.add(Item4);
-		
+
 		// 3 x McMMO Prizes
 		ItemStack Item5 = new ItemStack(Material.PAPER);
 		ItemMeta Item5Meta = Item5.getItemMeta();
@@ -220,7 +224,7 @@ public class ExoticCrate {
 		Item5Meta.setLore(Item5Lore);
 		Item5.setItemMeta(Item5Meta);
 		items.add(Item5);
-		
+
 		ItemStack Item6 = new ItemStack(Material.PAPER);
 		ItemMeta Item6Meta = Item6.getItemMeta();
 		Item6Meta.setDisplayName("§6100 McMMO Credits");
@@ -229,7 +233,7 @@ public class ExoticCrate {
 		Item6Meta.setLore(Item6Lore);
 		Item6.setItemMeta(Item6Meta);
 		items.add(Item6);
-		
+
 		ItemStack Item7 = new ItemStack(Material.PAPER);
 		ItemMeta Item7Meta = Item7.getItemMeta();
 		Item7Meta.setDisplayName("§6100 McMMO Credits");
@@ -238,7 +242,7 @@ public class ExoticCrate {
 		Item7Meta.setLore(Item7Lore);
 		Item7.setItemMeta(Item7Meta);
 		items.add(Item7);
-		
+
 		// 2 x Sell Wand
 		ItemStack Item8 = new ItemStack(Material.DIAMOND_HOE);
 		ItemMeta Item8Meta = Item8.getItemMeta();
@@ -249,7 +253,7 @@ public class ExoticCrate {
 		Item8Meta.setLore(Item8Lore);
 		Item8.setItemMeta(Item8Meta);
 		items.add(Item8);
-		
+
 		ItemStack Item9 = new ItemStack(Material.DIAMOND_HOE);
 		ItemMeta Item9Meta = Item9.getItemMeta();
 		Item9Meta.setDisplayName("§c§lSell Wand");
@@ -259,180 +263,180 @@ public class ExoticCrate {
 		Item9Meta.setLore(Item9Lore);
 		Item9.setItemMeta(Item9Meta);
 		items.add(Item9);
-		
+
 		// 6 x High Tier Spawners
-	    ItemStack Item10 = new ItemStack(Material.MOB_SPAWNER);
-	    ItemMeta Item10Meta = Item10.getItemMeta();
-	    Item10Meta.setDisplayName("§eCREEPER §fSpawner");
-	    Item10.setItemMeta(Item10Meta);
-	    items.add(Item10);
-	    
-	    ItemStack Item11 = new ItemStack(Material.MOB_SPAWNER);
-	    ItemMeta Item11Meta = Item11.getItemMeta();
-	    Item11Meta.setDisplayName("§eZOMBIE PIGMAN §fSpawner");
-	    Item11.setItemMeta(Item11Meta);
-	    items.add(Item11);
-	    
-	    ItemStack Item12 = new ItemStack(Material.MOB_SPAWNER);
-	    ItemMeta Item12Meta = Item12.getItemMeta();
-	    Item12Meta.setDisplayName("§eWITCH §fSpawner");
-	    Item12.setItemMeta(Item12Meta);
-	    items.add(Item12);
-	    
-	    ItemStack Item13 = new ItemStack(Material.MOB_SPAWNER);
-	    ItemMeta Item13Meta = Item13.getItemMeta();
-	    Item13Meta.setDisplayName("§eENDERMAN §fSpawner");
-	    Item13.setItemMeta(Item13Meta);
-	    items.add(Item13);
-	    
-	    ItemStack Item14 = new ItemStack(Material.MOB_SPAWNER);
-	    ItemMeta Item14Meta = Item14.getItemMeta();
-	    Item14Meta.setDisplayName("§eBLAZE §fSpawner");
-	    Item14.setItemMeta(Item14Meta);
-	    items.add(Item14);
-	    
-	    ItemStack Item15 = new ItemStack(Material.MOB_SPAWNER);
-	    ItemMeta Item15Meta = Item15.getItemMeta();
-	    Item15Meta.setDisplayName("§eVILLAGER §fSpawner");
-	    Item15.setItemMeta(Item15Meta);
-	    items.add(Item15);
-	    
-	    // 2 x Disguises
-	    ItemStack Item16 = new ItemStack(Material.MONSTER_EGG);
-	    ItemMeta Item16Meta = Item16.getItemMeta();
-	    Item16.setDurability(EntityType.VILLAGER.getTypeId());
-	    Item16Meta.setDisplayName("§6Villager Disguise");
-	    ArrayList<String> Item16Lore = new ArrayList();
-	    Item16Lore.add("§7Right click this to gain access to the Villager Disguise!");
-	    Item16Meta.setLore(Item16Lore);
-	    Item16.setItemMeta(Item16Meta);
-	    items.add(Item16);
-	    
-	    ItemStack Item17 = new ItemStack(Material.MONSTER_EGG);
-	    ItemMeta Item17Meta = Item17.getItemMeta();
-	    Item17.setDurability(EntityType.CREEPER.getTypeId());
-	    Item17Meta.setDisplayName("§6Creeper Disguise");
-	    ArrayList<String> Item17Lore = new ArrayList();
-	    Item17Lore.add("§7Right click this to gain access to the Creeper Disguise!");
-	    Item17Meta.setLore(Item17Lore);
-	    Item17.setItemMeta(Item17Meta);
-	    items.add(Item17);
-	    
-	    // 4 x Book Stacks
-	    ItemStack Item18 = new ItemStack(Material.BOOK, 2);
-	    ItemMeta Item18Meta = Item18.getItemMeta();
-	    Item18Meta.setDisplayName("§eExotic Book");
-	    ArrayList<String> Item18Lore = new ArrayList();
-	    Item18Lore.add("§7Right click to open the book!");
-	    Item18Meta.setLore(Item18Lore);
-	    Item18.setItemMeta(Item18Meta);
-	    items.add(Item18);
-	    
-	    ItemStack Item19 = new ItemStack(Material.BOOK, 1);
-	    ItemMeta Item19Meta = Item19.getItemMeta();
-	    Item19Meta.setDisplayName("§eExotic Book");
-	    ArrayList<String> Item19Lore = new ArrayList();
-	    Item19Lore.add("§7Right click to open the book!");
-	    Item19Meta.setLore(Item19Lore);
-	    Item19.setItemMeta(Item19Meta);
-	    items.add(Item19);
-	    
-	    ItemStack Item20 = new ItemStack(Material.BOOK, 1);
-	    ItemMeta Item20Meta = Item20.getItemMeta();
-	    Item20Meta.setDisplayName("§eExotic Book");
-	    ArrayList<String> Item20Lore = new ArrayList();
-	    Item20Lore.add("§7Right click to open the book!");
-	    Item20Meta.setLore(Item20Lore);
-	    Item20.setItemMeta(Item20Meta);
-	    items.add(Item20);
-	    
-	    ItemStack Item21 = new ItemStack(Material.BOOK, 2);
-	    ItemMeta Item21Meta = Item21.getItemMeta();
-	    Item21Meta.setDisplayName("§5Legendary Book");
-	    ArrayList<String> Item21Lore = new ArrayList();
-	    Item21Lore.add("§7Right click to open the book!");
-	    Item21Meta.setLore(Item21Lore);
-	    Item21.setItemMeta(Item21Meta);
-	    items.add(Item21);
-	    
-	    // 1 God Set
-	    ItemStack Item22 = new ItemStack(Material.DIAMOND_SWORD, 1);
-	    ItemMeta Item22Meta = Item22.getItemMeta();
-	    Item22Meta.setDisplayName("§e§lExotic Sword");
-	    ArrayList<String> Item22Lore = new ArrayList();
-	    Item22Lore.add("§eOverride");
-	    Item22Lore.add("§eShadowstep");
-	    Item22Lore.add("§5Cannibal");
-	    Item22Lore.add("§5Thor");
-	    Item22Meta.setLore(Item22Lore);
-	    Item22.setItemMeta(Item22Meta);
-	    Item22.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 6);
-	    Item22.addEnchantment(Enchantment.FIRE_ASPECT, 1);
-	    Item22.addEnchantment(Enchantment.DURABILITY, 3);
-	    items.add(Item22);
-	    
-	    ItemStack Item23 = new ItemStack(Material.DIAMOND_HELMET, 1);
-	    ItemMeta Item23Meta = Item23.getItemMeta();
-	    Item23Meta.setDisplayName("§e§lExotic Helmet");
-	    ArrayList<String> Item23Lore = new ArrayList();
-	    Item23Lore.add("§eInsight");
-	    Item23Lore.add("§5Vision");
-	    Item23Meta.setLore(Item23Lore);
-	    Item23.setItemMeta(Item23Meta);
-	    Item23.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
-	    Item23.addEnchantment(Enchantment.DURABILITY, 3);
-	    items.add(Item23);
-	    
-	    ItemStack Item24 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
-	    ItemMeta Item24Meta = Item24.getItemMeta();
-	    Item24Meta.setDisplayName("§e§lExotic Chestplate");
-	    ArrayList<String> Item24Lore = new ArrayList();
-	    Item24Lore.add("§eReflection");
-	    Item24Lore.add("§5Regenerator");
-	    Item24Meta.setLore(Item24Lore);
-	    Item24.setItemMeta(Item24Meta);
-	    Item24.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
-	    Item24.addEnchantment(Enchantment.DURABILITY, 3);
-	    items.add(Item24);
-	    
-	    ItemStack Item25 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
-	    ItemMeta Item25Meta = Item25.getItemMeta();
-	    Item25Meta.setDisplayName("§e§lExotic Leggings");
-	    ArrayList<String> Item25Lore = new ArrayList();
-	    Item25Lore.add("§eInferno");
-	    Item25Lore.add("§5Fireborne");
-	    Item25Meta.setLore(Item25Lore);
-	    Item25.setItemMeta(Item25Meta);
-	    Item25.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
-	    Item25.addEnchantment(Enchantment.DURABILITY, 3);
-	    items.add(Item25);
-	    
-	    ItemStack Item26 = new ItemStack(Material.DIAMOND_BOOTS, 1);
-	    ItemMeta Item26Meta = Item26.getItemMeta();
-	    Item26Meta.setDisplayName("§e§lExotic Boots");
-	    ArrayList<String> Item26Lore = new ArrayList();
-	    Item26Lore.add("§eRunner");
-	    Item26Lore.add("§5Jumper");
-	    Item26Meta.setLore(Item26Lore);
-	    Item26.setItemMeta(Item26Meta);
-	    Item26.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
-	    Item26.addEnchantment(Enchantment.DURABILITY, 3);
-	    Item26.addEnchantment(Enchantment.DEPTH_STRIDER, 3);
-	    items.add(Item26);
-	    
-	    ItemStack Item27 = new ItemStack(Material.DIAMOND_PICKAXE, 1);
-	    ItemMeta Item27Meta = Item27.getItemMeta();
-	    Item27Meta.setDisplayName("§e§lExotic Pickaxe");
-	    ArrayList<String> Item27Lore = new ArrayList();
-	    Item27Lore.add("§eShockwave");
-	    Item27Lore.add("§eSilk Feet");
-	    Item27Lore.add("§5Extractor");
-	    Item27Meta.setLore(Item27Lore);
-	    Item27.setItemMeta(Item27Meta);
-	    Item27.addUnsafeEnchantment(Enchantment.DIG_SPEED, 6);
-	    Item27.addEnchantment(Enchantment.DURABILITY, 3);
-	    items.add(Item27);
-	    
+		ItemStack Item10 = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta Item10Meta = Item10.getItemMeta();
+		Item10Meta.setDisplayName("§eCREEPER §fSpawner");
+		Item10.setItemMeta(Item10Meta);
+		items.add(Item10);
+
+		ItemStack Item11 = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta Item11Meta = Item11.getItemMeta();
+		Item11Meta.setDisplayName("§eZOMBIE PIGMAN §fSpawner");
+		Item11.setItemMeta(Item11Meta);
+		items.add(Item11);
+
+		ItemStack Item12 = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta Item12Meta = Item12.getItemMeta();
+		Item12Meta.setDisplayName("§eWITCH §fSpawner");
+		Item12.setItemMeta(Item12Meta);
+		items.add(Item12);
+
+		ItemStack Item13 = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta Item13Meta = Item13.getItemMeta();
+		Item13Meta.setDisplayName("§eENDERMAN §fSpawner");
+		Item13.setItemMeta(Item13Meta);
+		items.add(Item13);
+
+		ItemStack Item14 = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta Item14Meta = Item14.getItemMeta();
+		Item14Meta.setDisplayName("§eBLAZE §fSpawner");
+		Item14.setItemMeta(Item14Meta);
+		items.add(Item14);
+
+		ItemStack Item15 = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta Item15Meta = Item15.getItemMeta();
+		Item15Meta.setDisplayName("§eVILLAGER §fSpawner");
+		Item15.setItemMeta(Item15Meta);
+		items.add(Item15);
+
+		// 2 x Disguises
+		ItemStack Item16 = new ItemStack(Material.MONSTER_EGG);
+		ItemMeta Item16Meta = Item16.getItemMeta();
+		Item16.setDurability(EntityType.VILLAGER.getTypeId());
+		Item16Meta.setDisplayName("§6Villager Disguise");
+		ArrayList<String> Item16Lore = new ArrayList();
+		Item16Lore.add("§7Right click this to gain access to the Villager Disguise!");
+		Item16Meta.setLore(Item16Lore);
+		Item16.setItemMeta(Item16Meta);
+		items.add(Item16);
+
+		ItemStack Item17 = new ItemStack(Material.MONSTER_EGG);
+		ItemMeta Item17Meta = Item17.getItemMeta();
+		Item17.setDurability(EntityType.CREEPER.getTypeId());
+		Item17Meta.setDisplayName("§6Creeper Disguise");
+		ArrayList<String> Item17Lore = new ArrayList();
+		Item17Lore.add("§7Right click this to gain access to the Creeper Disguise!");
+		Item17Meta.setLore(Item17Lore);
+		Item17.setItemMeta(Item17Meta);
+		items.add(Item17);
+
+		// 4 x Book Stacks
+		ItemStack Item18 = new ItemStack(Material.BOOK, 2);
+		ItemMeta Item18Meta = Item18.getItemMeta();
+		Item18Meta.setDisplayName("§eExotic Book");
+		ArrayList<String> Item18Lore = new ArrayList();
+		Item18Lore.add("§7Right click to open the book!");
+		Item18Meta.setLore(Item18Lore);
+		Item18.setItemMeta(Item18Meta);
+		items.add(Item18);
+
+		ItemStack Item19 = new ItemStack(Material.BOOK, 1);
+		ItemMeta Item19Meta = Item19.getItemMeta();
+		Item19Meta.setDisplayName("§eExotic Book");
+		ArrayList<String> Item19Lore = new ArrayList();
+		Item19Lore.add("§7Right click to open the book!");
+		Item19Meta.setLore(Item19Lore);
+		Item19.setItemMeta(Item19Meta);
+		items.add(Item19);
+
+		ItemStack Item20 = new ItemStack(Material.BOOK, 1);
+		ItemMeta Item20Meta = Item20.getItemMeta();
+		Item20Meta.setDisplayName("§eExotic Book");
+		ArrayList<String> Item20Lore = new ArrayList();
+		Item20Lore.add("§7Right click to open the book!");
+		Item20Meta.setLore(Item20Lore);
+		Item20.setItemMeta(Item20Meta);
+		items.add(Item20);
+
+		ItemStack Item21 = new ItemStack(Material.BOOK, 2);
+		ItemMeta Item21Meta = Item21.getItemMeta();
+		Item21Meta.setDisplayName("§5Legendary Book");
+		ArrayList<String> Item21Lore = new ArrayList();
+		Item21Lore.add("§7Right click to open the book!");
+		Item21Meta.setLore(Item21Lore);
+		Item21.setItemMeta(Item21Meta);
+		items.add(Item21);
+
+		// 1 God Set
+		ItemStack Item22 = new ItemStack(Material.DIAMOND_SWORD, 1);
+		ItemMeta Item22Meta = Item22.getItemMeta();
+		Item22Meta.setDisplayName("§e§lExotic Sword");
+		ArrayList<String> Item22Lore = new ArrayList();
+		Item22Lore.add("§eOverride");
+		Item22Lore.add("§eShadowstep");
+		Item22Lore.add("§5Cannibal");
+		Item22Lore.add("§5Thor");
+		Item22Meta.setLore(Item22Lore);
+		Item22.setItemMeta(Item22Meta);
+		Item22.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 6);
+		Item22.addEnchantment(Enchantment.FIRE_ASPECT, 1);
+		Item22.addEnchantment(Enchantment.DURABILITY, 3);
+		items.add(Item22);
+
+		ItemStack Item23 = new ItemStack(Material.DIAMOND_HELMET, 1);
+		ItemMeta Item23Meta = Item23.getItemMeta();
+		Item23Meta.setDisplayName("§e§lExotic Helmet");
+		ArrayList<String> Item23Lore = new ArrayList();
+		Item23Lore.add("§eInsight");
+		Item23Lore.add("§5Vision");
+		Item23Meta.setLore(Item23Lore);
+		Item23.setItemMeta(Item23Meta);
+		Item23.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
+		Item23.addEnchantment(Enchantment.DURABILITY, 3);
+		items.add(Item23);
+
+		ItemStack Item24 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+		ItemMeta Item24Meta = Item24.getItemMeta();
+		Item24Meta.setDisplayName("§e§lExotic Chestplate");
+		ArrayList<String> Item24Lore = new ArrayList();
+		Item24Lore.add("§eReflection");
+		Item24Lore.add("§5Regenerator");
+		Item24Meta.setLore(Item24Lore);
+		Item24.setItemMeta(Item24Meta);
+		Item24.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
+		Item24.addEnchantment(Enchantment.DURABILITY, 3);
+		items.add(Item24);
+
+		ItemStack Item25 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+		ItemMeta Item25Meta = Item25.getItemMeta();
+		Item25Meta.setDisplayName("§e§lExotic Leggings");
+		ArrayList<String> Item25Lore = new ArrayList();
+		Item25Lore.add("§eInferno");
+		Item25Lore.add("§5Fireborne");
+		Item25Meta.setLore(Item25Lore);
+		Item25.setItemMeta(Item25Meta);
+		Item25.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
+		Item25.addEnchantment(Enchantment.DURABILITY, 3);
+		items.add(Item25);
+
+		ItemStack Item26 = new ItemStack(Material.DIAMOND_BOOTS, 1);
+		ItemMeta Item26Meta = Item26.getItemMeta();
+		Item26Meta.setDisplayName("§e§lExotic Boots");
+		ArrayList<String> Item26Lore = new ArrayList();
+		Item26Lore.add("§eRunner");
+		Item26Lore.add("§5Jumper");
+		Item26Meta.setLore(Item26Lore);
+		Item26.setItemMeta(Item26Meta);
+		Item26.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
+		Item26.addEnchantment(Enchantment.DURABILITY, 3);
+		Item26.addEnchantment(Enchantment.DEPTH_STRIDER, 3);
+		items.add(Item26);
+
+		ItemStack Item27 = new ItemStack(Material.DIAMOND_PICKAXE, 1);
+		ItemMeta Item27Meta = Item27.getItemMeta();
+		Item27Meta.setDisplayName("§e§lExotic Pickaxe");
+		ArrayList<String> Item27Lore = new ArrayList();
+		Item27Lore.add("§eShockwave");
+		Item27Lore.add("§eSilk Feet");
+		Item27Lore.add("§5Extractor");
+		Item27Meta.setLore(Item27Lore);
+		Item27.setItemMeta(Item27Meta);
+		Item27.addUnsafeEnchantment(Enchantment.DIG_SPEED, 6);
+		Item27.addEnchantment(Enchantment.DURABILITY, 3);
+		items.add(Item27);
+
 	}
 
 }

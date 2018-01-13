@@ -16,17 +16,17 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Enchanter implements Listener{
-	
-	public static void openInventory(Player player) { 
+public class Enchanter implements Listener {
+
+	public static void openInventory(Player player) {
 		Inventory anvil = Bukkit.createInventory(null, 27, "§c§l>> §8Enchanter §c§l<<");
-		
+
 		ItemStack empty = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 7);
 		ItemMeta emptyMeta = empty.getItemMeta();
 		emptyMeta.setDisplayName(" ");
 		empty.setItemMeta(emptyMeta);
 		ItemStack slot = new ItemStack(Material.AIR);
-		
+
 		ItemStack legendary = new ItemStack(Material.BOOK);
 		ItemMeta legendaryMeta = legendary.getItemMeta();
 		legendaryMeta.setDisplayName("§f§l>> §5Legendary Book §f§l<<");
@@ -36,7 +36,7 @@ public class Enchanter implements Listener{
 		legendaryLore.add("§3Cost: §7800XP!");
 		legendaryMeta.setLore(legendaryLore);
 		legendary.setItemMeta(legendaryMeta);
-		
+
 		ItemStack exotic = new ItemStack(Material.BOOK);
 		ItemMeta exoticMeta = exotic.getItemMeta();
 		exoticMeta.setDisplayName("§f§l>> §eExotic Book §f§l<<");
@@ -46,77 +46,76 @@ public class Enchanter implements Listener{
 		exoticLore.add("§3Cost: §71000XP!");
 		exoticMeta.setLore(exoticLore);
 		exotic.setItemMeta(exoticMeta);
-		
-		ItemStack[] items = {
-		empty, empty, empty, empty, empty, empty, empty, empty, empty,
-		empty, empty, empty, legendary, empty, exotic, empty, empty, empty,
-		empty, empty, empty, empty, empty, empty, empty, empty, empty};
+
+		ItemStack[] items = { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty,
+				legendary, empty, exotic, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty,
+				empty };
 		anvil.setContents(items);
 		player.openInventory(anvil);
 	}
-	
+
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
-		if(event.getClickedInventory() != null) {
-			if(event.getClickedInventory().getName().equals("§c§l>> §8Enchanter §c§l<<")) {
+		if (event.getClickedInventory() != null) {
+			if (event.getClickedInventory().getName().equals("§c§l>> §8Enchanter §c§l<<")) {
 				event.setCancelled(true);
 				ItemStack item = event.getCurrentItem();
-				if(item != null && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
+				if (item != null && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
 					String name = item.getItemMeta().getDisplayName();
-					if(name == "§f§l>> §eExotic Book §f§l<<") {
-						if(event.isRightClick()) {
+					if (name == "§f§l>> §eExotic Book §f§l<<") {
+						if (event.isRightClick()) {
 							openExoticInventory((Player) event.getWhoClicked());
-						}else {
+						} else {
 							Player player = (Player) event.getWhoClicked();
-							if(player.getLevel() >= 50) {
+							if (player.getLevel() >= 50) {
 								player.setLevel(player.getLevel() - 50);
-								if(player.getInventory().firstEmpty() == -1){
+								if (player.getInventory().firstEmpty() == -1) {
 									player.sendMessage("§b§l(!)§7 Your inventory is full, dropping item at your feet!");
 									player.getWorld().dropItem(player.getLocation(), ExoticBook());
-								}else{
+								} else {
 									player.sendMessage("§b§l(!)§7 Your new item has been added to your inventory!");
 									player.getInventory().addItem(ExoticBook());
 								}
-							}else {
+							} else {
 								player.sendMessage("§c§l(!)§7 You cannot afford to buy that!");
 							}
 						}
-					}else if(name == "§f§l>> §5Legendary Book §f§l<<") {
-						if(event.isRightClick()) {
+					} else if (name == "§f§l>> §5Legendary Book §f§l<<") {
+						if (event.isRightClick()) {
 							openLegendaryInventory((Player) event.getWhoClicked());
-						}else {
+						} else {
 							Player player = (Player) event.getWhoClicked();
-							if(player.getLevel() >= 30) {
+							if (player.getLevel() >= 30) {
 								player.setLevel(player.getLevel() - 30);
-								if(player.getInventory().firstEmpty() == -1){
+								if (player.getInventory().firstEmpty() == -1) {
 									player.sendMessage("§b§l(!)§7 Your inventory is full, dropping item at your feet!");
 									player.getWorld().dropItem(player.getLocation(), LegendaryBook());
-								}else{
+								} else {
 									player.sendMessage("§b§l(!)§7 Your new item has been added to your inventory!");
 									player.getInventory().addItem(LegendaryBook());
 								}
-							}else {
+							} else {
 								player.sendMessage("§c§l(!)§7 You cannot afford to buy that!");
 							}
 						}
 					}
 				}
-			}else if(event.getClickedInventory().getName().equals("§f§l>> §5Legendary §f§l<<")) {
+			} else if (event.getClickedInventory().getName().equals("§f§l>> §5Legendary §f§l<<")) {
 				event.setCancelled(true);
-				if(event.getCurrentItem().hasItemMeta() && event.getCurrentItem().getItemMeta().hasDisplayName()
-				&& event.getCurrentItem().getItemMeta().getDisplayName().equals("§c§l>> §fBack §c§l<<")) {
+				if (event.getCurrentItem().hasItemMeta() && event.getCurrentItem().getItemMeta().hasDisplayName()
+						&& event.getCurrentItem().getItemMeta().getDisplayName().equals("§c§l>> §fBack §c§l<<")) {
 					openInventory((Player) event.getWhoClicked());
 				}
-			}else if(event.getClickedInventory().getName().equals("§f§l>> §eExotic §f§l<<")) {
+			} else if (event.getClickedInventory().getName().equals("§f§l>> §eExotic §f§l<<")) {
 				event.setCancelled(true);
-				if(event.getCurrentItem().hasItemMeta() && event.getCurrentItem().getItemMeta().hasDisplayName()
-				&& event.getCurrentItem().getItemMeta().getDisplayName().equals("§c§l>> §fBack §c§l<<")) {
+				if (event.getCurrentItem().hasItemMeta() && event.getCurrentItem().getItemMeta().hasDisplayName()
+						&& event.getCurrentItem().getItemMeta().getDisplayName().equals("§c§l>> §fBack §c§l<<")) {
 					openInventory((Player) event.getWhoClicked());
 				}
 			}
 		}
 	}
-	
+
 	public ItemStack ExoticBook() {
 		ItemStack item = new ItemStack(Material.BOOK);
 		ItemMeta meta = item.getItemMeta();
@@ -127,6 +126,7 @@ public class Enchanter implements Listener{
 		item.setItemMeta(meta);
 		return item;
 	}
+
 	public ItemStack LegendaryBook() {
 		ItemStack item = new ItemStack(Material.BOOK);
 		ItemMeta meta = item.getItemMeta();
@@ -137,25 +137,25 @@ public class Enchanter implements Listener{
 		item.setItemMeta(meta);
 		return item;
 	}
-	
+
 	@EventHandler
 	public void onPlayerInterract(PlayerInteractEvent event) {
-		if(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+		if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			ItemStack item = event.getPlayer().getItemInHand();
-			if(item.getType().equals(Material.BOOK) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
-				if(item.getItemMeta().getDisplayName().equals("§5Legendary Book")) {
+			if (item.getType().equals(Material.BOOK) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
+				if (item.getItemMeta().getDisplayName().equals("§5Legendary Book")) {
 					Player player = event.getPlayer();
-					if(player.getInventory().firstEmpty() == -1){
+					if (player.getInventory().firstEmpty() == -1) {
 						player.getWorld().dropItem(player.getLocation(), getRandomEnchant("legendary"));
-					}else{
+					} else {
 						player.getInventory().addItem(getRandomEnchant("legendary"));
 					}
 					player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
-				}else if(item.getItemMeta().getDisplayName().equals("§eExotic Book")) {
+				} else if (item.getItemMeta().getDisplayName().equals("§eExotic Book")) {
 					Player player = event.getPlayer();
-					if(player.getInventory().firstEmpty() == -1){
+					if (player.getInventory().firstEmpty() == -1) {
 						player.getWorld().dropItem(player.getLocation(), getRandomEnchant("exotic"));
-					}else{
+					} else {
 						player.getInventory().addItem(getRandomEnchant("exotic"));
 					}
 					player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
@@ -163,11 +163,11 @@ public class Enchanter implements Listener{
 			}
 		}
 	}
-	
+
 	public ItemStack getRandomEnchant(String type) {
-		if(type == "exotic") {
+		if (type == "exotic") {
 			List<ItemStack> items = new ArrayList<ItemStack>();
-			
+
 			ItemStack Item1 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item1Meta = Item1.getItemMeta();
 			ArrayList<String> Item1Lore = new ArrayList<String>();
@@ -178,7 +178,7 @@ public class Enchanter implements Listener{
 			Item1Meta.setLore(Item1Lore);
 			Item1.setItemMeta(Item1Meta);
 			items.add(Item1);
-			
+
 			ItemStack Item2 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item2Meta = Item2.getItemMeta();
 			ArrayList<String> Item2Lore = new ArrayList<String>();
@@ -189,7 +189,7 @@ public class Enchanter implements Listener{
 			Item2Meta.setLore(Item2Lore);
 			Item2.setItemMeta(Item2Meta);
 			items.add(Item2);
-			
+
 			ItemStack Item3 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item3Meta = Item3.getItemMeta();
 			ArrayList<String> Item3Lore = new ArrayList<String>();
@@ -199,7 +199,7 @@ public class Enchanter implements Listener{
 			Item3Meta.setLore(Item3Lore);
 			Item3.setItemMeta(Item3Meta);
 			items.add(Item3);
-			
+
 			ItemStack Item4 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item4Meta = Item4.getItemMeta();
 			ArrayList<String> Item4Lore = new ArrayList<String>();
@@ -209,7 +209,7 @@ public class Enchanter implements Listener{
 			Item4Meta.setLore(Item4Lore);
 			Item4.setItemMeta(Item4Meta);
 			items.add(Item4);
-			
+
 			ItemStack Item5 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item5Meta = Item5.getItemMeta();
 			ArrayList<String> Item5Lore = new ArrayList<String>();
@@ -219,7 +219,7 @@ public class Enchanter implements Listener{
 			Item5Meta.setLore(Item5Lore);
 			Item5.setItemMeta(Item5Meta);
 			items.add(Item5);
-			
+
 			ItemStack Item6 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item6Meta = Item6.getItemMeta();
 			ArrayList<String> Item6Lore = new ArrayList<String>();
@@ -230,7 +230,7 @@ public class Enchanter implements Listener{
 			Item6Meta.setLore(Item6Lore);
 			Item6.setItemMeta(Item6Meta);
 			items.add(Item6);
-			
+
 			ItemStack Item7 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item7Meta = Item7.getItemMeta();
 			ArrayList<String> Item7Lore = new ArrayList<String>();
@@ -240,7 +240,7 @@ public class Enchanter implements Listener{
 			Item7Meta.setLore(Item7Lore);
 			Item7.setItemMeta(Item7Meta);
 			items.add(Item7);
-			
+
 			ItemStack Item8 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item8Meta = Item8.getItemMeta();
 			ArrayList<String> Item8Lore = new ArrayList<String>();
@@ -251,7 +251,7 @@ public class Enchanter implements Listener{
 			Item8Meta.setLore(Item8Lore);
 			Item8.setItemMeta(Item8Meta);
 			items.add(Item8);
-			
+
 			ItemStack Item9 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item9Meta = Item9.getItemMeta();
 			ArrayList<String> Item9Lore = new ArrayList<String>();
@@ -261,14 +261,14 @@ public class Enchanter implements Listener{
 			Item9Meta.setLore(Item9Lore);
 			Item9.setItemMeta(Item9Meta);
 			items.add(Item9);
-			
+
 			Random rand = new Random();
 			int index = rand.nextInt(9) + 0;
 			return items.get(index);
-			
-		}else if(type == "legendary") {
+
+		} else if (type == "legendary") {
 			List<ItemStack> items = new ArrayList<ItemStack>();
-			
+
 			ItemStack Item1 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item1Meta = Item1.getItemMeta();
 			ArrayList<String> Item1Lore = new ArrayList<String>();
@@ -278,7 +278,7 @@ public class Enchanter implements Listener{
 			Item1Meta.setLore(Item1Lore);
 			Item1.setItemMeta(Item1Meta);
 			items.add(Item1);
-			
+
 			ItemStack Item2 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item2Meta = Item2.getItemMeta();
 			ArrayList<String> Item2Lore = new ArrayList<String>();
@@ -288,7 +288,7 @@ public class Enchanter implements Listener{
 			Item2Meta.setLore(Item2Lore);
 			Item2.setItemMeta(Item2Meta);
 			items.add(Item2);
-			
+
 			ItemStack Item3 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item3Meta = Item3.getItemMeta();
 			ArrayList<String> Item3Lore = new ArrayList<String>();
@@ -299,7 +299,7 @@ public class Enchanter implements Listener{
 			Item3Meta.setLore(Item3Lore);
 			Item3.setItemMeta(Item3Meta);
 			items.add(Item3);
-			
+
 			ItemStack Item4 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item4Meta = Item4.getItemMeta();
 			ArrayList<String> Item4Lore = new ArrayList<String>();
@@ -309,7 +309,7 @@ public class Enchanter implements Listener{
 			Item4Meta.setLore(Item4Lore);
 			Item4.setItemMeta(Item4Meta);
 			items.add(Item4);
-			
+
 			ItemStack Item5 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item5Meta = Item5.getItemMeta();
 			ArrayList<String> Item5Lore = new ArrayList<String>();
@@ -319,7 +319,7 @@ public class Enchanter implements Listener{
 			Item5Meta.setLore(Item5Lore);
 			Item5.setItemMeta(Item5Meta);
 			items.add(Item5);
-			
+
 			ItemStack Item6 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item6Meta = Item6.getItemMeta();
 			ArrayList<String> Item6Lore = new ArrayList<String>();
@@ -329,7 +329,7 @@ public class Enchanter implements Listener{
 			Item6Meta.setLore(Item6Lore);
 			Item6.setItemMeta(Item6Meta);
 			items.add(Item6);
-			
+
 			ItemStack Item7 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item7Meta = Item7.getItemMeta();
 			ArrayList<String> Item7Lore = new ArrayList<String>();
@@ -340,7 +340,7 @@ public class Enchanter implements Listener{
 			Item7Meta.setLore(Item7Lore);
 			Item7.setItemMeta(Item7Meta);
 			items.add(Item7);
-			
+
 			ItemStack Item8 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item8Meta = Item8.getItemMeta();
 			ArrayList<String> Item8Lore = new ArrayList<String>();
@@ -350,7 +350,7 @@ public class Enchanter implements Listener{
 			Item8Meta.setLore(Item8Lore);
 			Item8.setItemMeta(Item8Meta);
 			items.add(Item8);
-			
+
 			ItemStack Item9 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item9Meta = Item9.getItemMeta();
 			ArrayList<String> Item9Lore = new ArrayList<String>();
@@ -361,7 +361,7 @@ public class Enchanter implements Listener{
 			Item9Meta.setLore(Item9Lore);
 			Item9.setItemMeta(Item9Meta);
 			items.add(Item9);
-			
+
 			ItemStack Item10 = new ItemStack(Material.ENCHANTED_BOOK);
 			ItemMeta Item10Meta = Item10.getItemMeta();
 			ArrayList<String> Item10Lore = new ArrayList<String>();
@@ -372,19 +372,19 @@ public class Enchanter implements Listener{
 			Item10Meta.setLore(Item10Lore);
 			Item10.setItemMeta(Item10Meta);
 			items.add(Item10);
-			
+
 			Random rand = new Random();
 			int index = rand.nextInt(10) + 0;
 			return items.get(index);
-		}else {
+		} else {
 			return new ItemStack(Material.AIR);
 		}
 	}
 
 	public void openLegendaryInventory(Player player) {
-		
+
 		Inventory inv = Bukkit.createInventory(null, 18, "§f§l>> §5Legendary §f§l<<");
-		
+
 		ItemStack Item1 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item1Meta = Item1.getItemMeta();
 		ArrayList<String> Item1Lore = new ArrayList<String>();
@@ -394,7 +394,7 @@ public class Enchanter implements Listener{
 		Item1Meta.setLore(Item1Lore);
 		Item1.setItemMeta(Item1Meta);
 		inv.setItem(0, Item1);
-		
+
 		ItemStack Item2 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item2Meta = Item2.getItemMeta();
 		ArrayList<String> Item2Lore = new ArrayList<String>();
@@ -404,7 +404,7 @@ public class Enchanter implements Listener{
 		Item2Meta.setLore(Item2Lore);
 		Item2.setItemMeta(Item2Meta);
 		inv.setItem(1, Item2);
-		
+
 		ItemStack Item3 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item3Meta = Item3.getItemMeta();
 		ArrayList<String> Item3Lore = new ArrayList<String>();
@@ -415,7 +415,7 @@ public class Enchanter implements Listener{
 		Item3Meta.setLore(Item3Lore);
 		Item3.setItemMeta(Item3Meta);
 		inv.setItem(2, Item3);
-		
+
 		ItemStack Item4 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item4Meta = Item4.getItemMeta();
 		ArrayList<String> Item4Lore = new ArrayList<String>();
@@ -425,7 +425,7 @@ public class Enchanter implements Listener{
 		Item4Meta.setLore(Item4Lore);
 		Item4.setItemMeta(Item4Meta);
 		inv.setItem(3, Item4);
-		
+
 		ItemStack Item5 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item5Meta = Item5.getItemMeta();
 		ArrayList<String> Item5Lore = new ArrayList<String>();
@@ -435,7 +435,7 @@ public class Enchanter implements Listener{
 		Item5Meta.setLore(Item5Lore);
 		Item5.setItemMeta(Item5Meta);
 		inv.setItem(4, Item5);
-		
+
 		ItemStack Item6 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item6Meta = Item6.getItemMeta();
 		ArrayList<String> Item6Lore = new ArrayList<String>();
@@ -445,7 +445,7 @@ public class Enchanter implements Listener{
 		Item6Meta.setLore(Item6Lore);
 		Item6.setItemMeta(Item6Meta);
 		inv.setItem(5, Item6);
-		
+
 		ItemStack Item7 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item7Meta = Item7.getItemMeta();
 		ArrayList<String> Item7Lore = new ArrayList<String>();
@@ -456,7 +456,7 @@ public class Enchanter implements Listener{
 		Item7Meta.setLore(Item7Lore);
 		Item7.setItemMeta(Item7Meta);
 		inv.setItem(6, Item7);
-		
+
 		ItemStack Item8 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item8Meta = Item8.getItemMeta();
 		ArrayList<String> Item8Lore = new ArrayList<String>();
@@ -466,7 +466,7 @@ public class Enchanter implements Listener{
 		Item8Meta.setLore(Item8Lore);
 		Item8.setItemMeta(Item8Meta);
 		inv.setItem(7, Item8);
-		
+
 		ItemStack Item9 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item9Meta = Item9.getItemMeta();
 		ArrayList<String> Item9Lore = new ArrayList<String>();
@@ -477,7 +477,7 @@ public class Enchanter implements Listener{
 		Item9Meta.setLore(Item9Lore);
 		Item9.setItemMeta(Item9Meta);
 		inv.setItem(8, Item9);
-		
+
 		ItemStack Item10 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item10Meta = Item10.getItemMeta();
 		ArrayList<String> Item10Lore = new ArrayList<String>();
@@ -488,7 +488,7 @@ public class Enchanter implements Listener{
 		Item10Meta.setLore(Item10Lore);
 		Item10.setItemMeta(Item10Meta);
 		inv.setItem(9, Item10);
-		
+
 		ItemStack Back = new ItemStack(Material.REDSTONE_BLOCK);
 		ItemMeta BackMeta = Back.getItemMeta();
 		BackMeta.setDisplayName("§c§l>> §fBack §c§l<<");
@@ -497,14 +497,14 @@ public class Enchanter implements Listener{
 		BackMeta.setLore(BackLore);
 		Back.setItemMeta(BackMeta);
 		inv.setItem(17, Back);
-		
+
 		player.openInventory(inv);
 	}
-	
+
 	public void openExoticInventory(Player player) {
-		
+
 		Inventory inv = Bukkit.createInventory(null, 18, "§f§l>> §eExotic §f§l<<");
-		
+
 		ItemStack Item1 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item1Meta = Item1.getItemMeta();
 		ArrayList<String> Item1Lore = new ArrayList<String>();
@@ -515,7 +515,7 @@ public class Enchanter implements Listener{
 		Item1Meta.setLore(Item1Lore);
 		Item1.setItemMeta(Item1Meta);
 		inv.setItem(0, Item1);
-		
+
 		ItemStack Item2 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item2Meta = Item2.getItemMeta();
 		ArrayList<String> Item2Lore = new ArrayList<String>();
@@ -526,7 +526,7 @@ public class Enchanter implements Listener{
 		Item2Meta.setLore(Item2Lore);
 		Item2.setItemMeta(Item2Meta);
 		inv.setItem(1, Item2);
-		
+
 		ItemStack Item3 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item3Meta = Item3.getItemMeta();
 		ArrayList<String> Item3Lore = new ArrayList<String>();
@@ -536,7 +536,7 @@ public class Enchanter implements Listener{
 		Item3Meta.setLore(Item3Lore);
 		Item3.setItemMeta(Item3Meta);
 		inv.setItem(2, Item3);
-		
+
 		ItemStack Item4 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item4Meta = Item4.getItemMeta();
 		ArrayList<String> Item4Lore = new ArrayList<String>();
@@ -546,7 +546,7 @@ public class Enchanter implements Listener{
 		Item4Meta.setLore(Item4Lore);
 		Item4.setItemMeta(Item4Meta);
 		inv.setItem(3, Item4);
-		
+
 		ItemStack Item5 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item5Meta = Item5.getItemMeta();
 		ArrayList<String> Item5Lore = new ArrayList<String>();
@@ -556,7 +556,7 @@ public class Enchanter implements Listener{
 		Item5Meta.setLore(Item5Lore);
 		Item5.setItemMeta(Item5Meta);
 		inv.setItem(4, Item5);
-		
+
 		ItemStack Item6 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item6Meta = Item6.getItemMeta();
 		ArrayList<String> Item6Lore = new ArrayList<String>();
@@ -567,7 +567,7 @@ public class Enchanter implements Listener{
 		Item6Meta.setLore(Item6Lore);
 		Item6.setItemMeta(Item6Meta);
 		inv.setItem(5, Item6);
-		
+
 		ItemStack Item7 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item7Meta = Item7.getItemMeta();
 		ArrayList<String> Item7Lore = new ArrayList<String>();
@@ -577,7 +577,7 @@ public class Enchanter implements Listener{
 		Item7Meta.setLore(Item7Lore);
 		Item7.setItemMeta(Item7Meta);
 		inv.setItem(6, Item7);
-		
+
 		ItemStack Item8 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item8Meta = Item8.getItemMeta();
 		ArrayList<String> Item8Lore = new ArrayList<String>();
@@ -588,7 +588,7 @@ public class Enchanter implements Listener{
 		Item8Meta.setLore(Item8Lore);
 		Item8.setItemMeta(Item8Meta);
 		inv.setItem(7, Item8);
-		
+
 		ItemStack Item9 = new ItemStack(Material.ENCHANTED_BOOK);
 		ItemMeta Item9Meta = Item9.getItemMeta();
 		ArrayList<String> Item9Lore = new ArrayList<String>();
@@ -598,7 +598,7 @@ public class Enchanter implements Listener{
 		Item9Meta.setLore(Item9Lore);
 		Item9.setItemMeta(Item9Meta);
 		inv.setItem(8, Item9);
-		
+
 		ItemStack Back = new ItemStack(Material.REDSTONE_BLOCK);
 		ItemMeta BackMeta = Back.getItemMeta();
 		BackMeta.setDisplayName("§c§l>> §fBack §c§l<<");
@@ -607,8 +607,8 @@ public class Enchanter implements Listener{
 		BackMeta.setLore(BackLore);
 		Back.setItemMeta(BackMeta);
 		inv.setItem(17, Back);
-		
+
 		player.openInventory(inv);
 	}
-	
+
 }
