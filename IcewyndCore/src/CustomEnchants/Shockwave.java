@@ -18,6 +18,7 @@ import com.massivecraft.massivecore.ps.PS;
 
 public class Shockwave {
 
+	@SuppressWarnings("deprecation")
 	public static void minePickaxe(Player player, Block block) {
 
 		if (BoardColl.get().getFactionAt(PS.valueOf(block.getLocation())).getName().equals("Castle")) {

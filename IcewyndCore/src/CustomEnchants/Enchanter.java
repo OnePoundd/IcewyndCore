@@ -24,6 +24,7 @@ public class Enchanter implements Listener {
 		ItemMeta emptyMeta = empty.getItemMeta();
 		emptyMeta.setDisplayName(" ");
 		empty.setItemMeta(emptyMeta);
+		@SuppressWarnings("unused")
 		ItemStack slot = new ItemStack(Material.AIR);
 
 		ItemStack legendary = new ItemStack(Material.BOOK);
