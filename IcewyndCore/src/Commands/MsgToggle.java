@@ -13,7 +13,7 @@ import com.massivecraft.factions.entity.MPlayer;
 
 import Main.Main;
 
-public class MsgToggle implements CommandExecutor, Listener{
+public class MsgToggle implements CommandExecutor{
 	
 	Main plugin = Main.getPlugin(Main.class);
 
