@@ -9,14 +9,30 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+
+import core.Cancels;
+import core.ChatFormat;
+import core.Commands;
+import core.CustomMobs;
+import core.FastPots;
+import core.InventoryClick;
+import core.LuckyDrops;
+import core.Main;
+import core.Misc;
+import core.QuarterMaster;
+import core.RightClickEvent;
 import net.OnePound.Crates.CrateEventListener;
 import net.OnePound.Crates.EventCrate;
 import net.OnePound.Crates.ExoticCrate;
@@ -27,13 +43,24 @@ import net.OnePound.CustomEnchants.Enchantments;
 import net.OnePound.WebConnection.Uploader;
 
 public class Main extends JavaPlugin implements Listener {
+	FileConfiguration config = getConfig();
 
+	public static Plugin instance;
+	private ProtocolManager protocolManager;
+	
 	public static Main instance;
 	// public static List<NPC> npcs;
+	
+	public static Main getPlugin() {
+		return Main.getPlugin(Main.class);
+	}
+	public Main plugin;
 
 	public void onEnable() {
 		instance = this;
+		saveDefaultConfig();
 		PluginManager manager = Bukkit.getServer().getPluginManager();
+		this.protocolManager = ProtocolLibrary.getProtocolManager();
 		manager.registerEvents(this, this);
 		manager.registerEvents(new CrateEventListener(), this);
 		manager.registerEvents(new Enchantments(), this); // OTHER ENCHANTS
@@ -41,6 +68,26 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Enchanter(), this);
 		manager.registerEvents(new SilkSpawners(), this);
 		manager.registerEvents(new Other(), this);
+		
+		manager.registerEvents(new Commands(), this);
+		manager.registerEvents(new Cancels(), this);
+		manager.registerEvents(new ChatFormat(), this);
+		manager.registerEvents(new CustomMobs(), this);
+		manager.registerEvents(new FastPots(), this);
+		manager.registerEvents(new Misc(), this);
+		manager.registerEvents(new InventoryClick(), this);
+		manager.registerEvents(new RightClickEvent(), this);
+		manager.registerEvents(new LuckyDrops(), this);
+		
+		getCommand("ci").setExecutor(new Commands());
+		getCommand("rules").setExecutor(new Commands());
+		getCommand("patchnotes").setExecutor(new Commands());
+		getCommand("ping").setExecutor(new Commands());
+		getCommand("clearchat").setExecutor(new Commands());
+		getCommand("ow").setExecutor(new Commands());
+		getCommand("q").setExecutor(new QuarterMaster());
+		getCommand("msg").setExecutor(new Commands());
+		getCommand("pinfo").setExecutor(new Commands());
 
 		manager.addPermission(new Permission("spawner.give"));
 		manager.addPermission(new Permission("crate.give"));
