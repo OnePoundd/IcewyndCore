@@ -14,7 +14,7 @@ Main plugin = Main.getPlugin(Main.class);
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("ow")) {
 			Player player = (Player) sender;
-			if (plugin.getConfig().getString(player.getUniqueId() + ".Coins") == null);
+			if (plugin.getConfig().getString(player.getUniqueId() + ".Coins") == "0");
 				Bukkit.broadcastMessage("none");
 			}else {
 				Bukkit.broadcastMessage("found");

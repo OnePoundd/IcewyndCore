@@ -19,9 +19,6 @@ Main plugin = Main.getPlugin(Main.class);
 				player.getInventory().setArmorContents(armorContents);
 				player.updateInventory();
 				player.sendMessage("§eYour inventory has been cleared");
-				plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
-				plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
-				plugin.saveConfig();
 				}
 			}
 		return false;

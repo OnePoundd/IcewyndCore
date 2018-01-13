@@ -93,6 +93,9 @@ public class Misc implements Listener {
 		if (player.hasPlayedBefore()) {
 		} else {
 			Bukkit.broadcastMessage("§b§lWelcome to IcyWynd, §f§l" + player.getName() + "§b§l!");
+			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
+			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
+			plugin.saveConfig();
 		}
 	}
 
