@@ -22,17 +22,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 
-import core.Cancels;
-import core.ChatFormat;
-import core.Commands;
-import core.CustomMobs;
-import core.FastPots;
-import core.InventoryClick;
-import core.LuckyDrops;
-import core.Main;
-import core.Misc;
-import core.QuarterMaster;
-import core.RightClickEvent;
 import net.OnePound.Crates.CrateEventListener;
 import net.OnePound.Crates.EventCrate;
 import net.OnePound.Crates.ExoticCrate;
