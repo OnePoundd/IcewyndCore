@@ -95,6 +95,7 @@ Main plugin = Main.getPlugin(Main.class);
 			Bukkit.broadcastMessage("§b§lWelcome to IcyWynd, §f§l" + player.getName() + "§b§l!");
 			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
 			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
 			plugin.saveConfig();
 		}
 	}

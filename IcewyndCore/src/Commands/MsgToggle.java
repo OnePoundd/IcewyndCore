@@ -5,20 +5,43 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+
+import com.massivecraft.factions.entity.MPlayer;
 
 import Main.Main;
 
-public class MsgToggle implements CommandExecutor{
-Main plugin = Main.getPlugin(Main.class);
+public class MsgToggle implements CommandExecutor, Listener{
+	
+	Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("ow")) {
+		if (cmd.getName().equalsIgnoreCase("msgtoggle")) {
 			Player player = (Player) sender;
-			if (plugin.getConfig().getString(player.getUniqueId() + ".Coins") == "0");
-				Bukkit.broadcastMessage("none");
+			if (plugin.getConfig().getBoolean(player.getUniqueId() + ".MsgToggle") == true) {
+				plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
+				player.sendMessage("§c§l(!)§7 You will now receive messages from other players!");
 			}else {
-				Bukkit.broadcastMessage("found");
+				plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", true);
+				player.sendMessage("§c§l(!)§7 You will no longer receive messages from other players!");
 			}
-		return false;
 		}
+		return false;
+	}
+	
+	@EventHandler
+	public void onMessageReceiveEvent(AsyncPlayerChatEvent event) {
+		Player sender = event.getPlayer();
+		if(!sender.hasPermission("server.admin")) { // admins should bypass msgtoggle
+			for(Player receiver : event.getRecipients()) {
+				if (plugin.getConfig().getBoolean(receiver.getUniqueId() + ".MsgToggle") == true) {
+					if(!MPlayer.get(receiver).getFaction().equals(MPlayer.get(sender).getFaction())) { // faction members should bypass msgtoggle
+						event.getRecipients().remove(receiver);
+					}
+				}
+			}
+		}
+	}
 }
