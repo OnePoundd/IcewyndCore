@@ -1,5 +1,6 @@
 package Main;
 
+import java.util.ArrayList;
 import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -66,9 +67,18 @@ public class RightClickEvent implements Listener {
 							"spawnergive " + player.getName() + " witch");
 				}
 				player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+			} else if (player.getItemInHand().getType().equals(Material.EYE_OF_ENDER)) {
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§lRandom TP"));
+					event.setCancelled(true);
+				    ArrayList<Player> players = new ArrayList<Player>();
+				    for (Player e : Bukkit.getOnlinePlayers()) players.add(e);
+				    Player randomPlayer = players.get(new Random().nextInt(players.size()));
+				    player.teleport(randomPlayer.getLocation());
+		         }
+					
 			}
 		}
-	}
+	
 	//Quartermaster Item
 	@SuppressWarnings("deprecation")
 	@EventHandler

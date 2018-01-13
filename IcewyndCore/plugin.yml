@@ -39,3 +39,5 @@
     msg:
     pinfo:
     msgtoggle:
+    nightvision:
+      aliases: [nv]

@@ -21,6 +21,7 @@ import Commands.ClearChat;
 import Commands.ClearInventory;
 import Commands.Message;
 import Commands.MsgToggle;
+import Commands.NightVision;
 import Commands.Overwatch;
 import Commands.PInfo;
 import Commands.PatchNotes;
@@ -79,10 +80,11 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("ci").setExecutor(new ClearInventory());
 		getCommand("clearchat").setExecutor(new ClearChat());
 		getCommand("msgtoggle").setExecutor(new MsgToggle());
+		getCommand("nightvision").setExecutor(new NightVision());
 
-		manager.addPermission(new Permission("spawner.give"));
-		manager.addPermission(new Permission("crate.give"));
-		manager.addPermission(new Permission("npc.use"));
+		//manager.addPermission(new Permission("spawner.give"));
+		//manager.addPermission(new Permission("crate.give"));
+		//manager.addPermission(new Permission("npc.use"));
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
