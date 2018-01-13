@@ -1,4 +1,4 @@
-package net.OnePound.CustomEnchants;
+package CustomEnchants;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,7 +18,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import net.OnePound.Additions.Main;
+import Main.Main;
 
 public class Librarian implements Listener {
 

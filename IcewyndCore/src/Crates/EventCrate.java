@@ -1,4 +1,4 @@
-package net.OnePound.Crates;
+package Crates;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,20 +16,20 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import net.OnePound.Additions.Main;
+import Main.Main;
 
-public class ExoticCrate {
+public class EventCrate {
 
-	static ItemStack ExoticCrateItem;
+	static ItemStack EventCrateItem;
 	static List<ItemStack> items = new ArrayList<ItemStack>();
 
 	public static void give(Player player) {
 		if (player.getInventory().firstEmpty() == -1) {
 			player.sendMessage("§b§l(!)§7 Your inventory is full, dropping crate at your feet!");
-			player.getWorld().dropItem(player.getLocation(), ExoticCrateItem);
+			player.getWorld().dropItem(player.getLocation(), EventCrateItem);
 		} else {
 			player.sendMessage("§b§l(!)§7 A crate has been added to your inventory!");
-			player.getInventory().addItem(ExoticCrateItem);
+			player.getInventory().addItem(EventCrateItem);
 		}
 	}
 
@@ -48,51 +48,51 @@ public class ExoticCrate {
 			// OPENS AN INVENTORY SHOWING ALL POSSIBLE ITEMS
 			player.openInventory(newInventory(false));
 			// AFTER 3 SECONDS, THE INVENTORY WILL "SHUFFLE"
-			Inventory ExoticCrateShuffle = Bukkit.createInventory(null, 27, "§eShuffling");
+			Inventory EventCrateShuffle = Bukkit.createInventory(null, 27, "§3Shuffling");
 			Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 				public void run() {
 					for (int i = 0; i < 27; i++) {
-						ExoticCrateShuffle.setItem(i, getRandomGlass());
+						EventCrateShuffle.setItem(i, getRandomGlass());
 					}
-					player.openInventory(ExoticCrateShuffle);
+					player.openInventory(EventCrateShuffle);
 					Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 						public void run() {
 							for (int i = 0; i < 27; i++) {
-								ExoticCrateShuffle.setItem(i, getRandomGlass());
+								EventCrateShuffle.setItem(i, getRandomGlass());
 							}
-							player.openInventory(ExoticCrateShuffle);
+							player.openInventory(EventCrateShuffle);
 							Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 								public void run() {
 									for (int i = 0; i < 27; i++) {
-										ExoticCrateShuffle.setItem(i, getRandomGlass());
+										EventCrateShuffle.setItem(i, getRandomGlass());
 									}
-									player.openInventory(ExoticCrateShuffle);
+									player.openInventory(EventCrateShuffle);
 									Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 										public void run() {
 											for (int i = 0; i < 27; i++) {
-												ExoticCrateShuffle.setItem(i, getRandomGlass());
+												EventCrateShuffle.setItem(i, getRandomGlass());
 											}
-											player.openInventory(ExoticCrateShuffle);
+											player.openInventory(EventCrateShuffle);
 											Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 												public void run() {
 													for (int i = 0; i < 27; i++) {
-														ExoticCrateShuffle.setItem(i, getRandomGlass());
+														EventCrateShuffle.setItem(i, getRandomGlass());
 													}
-													player.openInventory(ExoticCrateShuffle);
+													player.openInventory(EventCrateShuffle);
 													Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
 														public void run() {
 															for (int i = 0; i < 27; i++) {
-																ExoticCrateShuffle.setItem(i, getRandomGlass());
+																EventCrateShuffle.setItem(i, getRandomGlass());
 															}
-															player.openInventory(ExoticCrateShuffle);
+															player.openInventory(EventCrateShuffle);
 															Bukkit.getScheduler().runTaskLater(Main.instance,
 																	new Runnable() {
 																		public void run() {
 																			for (int i = 0; i < 27; i++) {
-																				ExoticCrateShuffle.setItem(i,
+																				EventCrateShuffle.setItem(i,
 																						getRandomGlass());
 																			}
-																			player.openInventory(ExoticCrateShuffle);
+																			player.openInventory(EventCrateShuffle);
 																			Bukkit.getScheduler().runTaskLater(
 																					Main.instance, new Runnable() {
 																						public void run() {
@@ -121,19 +121,19 @@ public class ExoticCrate {
 
 	private static Inventory newInventory(boolean end) {
 		if (end) {
-			Inventory ExoticCrate = Bukkit.createInventory(null, 27, "§eChoose 3");
+			Inventory EventCrate = Bukkit.createInventory(null, 27, "§3Choose 3");
 			Collections.shuffle(items);
 			for (int i = 0; i < 27; i++) {
-				ExoticCrate.setItem(i, getRandomGlass());
+				EventCrate.setItem(i, getRandomGlass());
 			}
-			return ExoticCrate;
+			return EventCrate;
 		} else {
-			Inventory ExoticCrate = Bukkit.createInventory(null, 27, "§ePotential Items");
+			Inventory EventCrate = Bukkit.createInventory(null, 27, "§3Potential Items");
 			Collections.shuffle(items);
 			for (int i = 0; i < 27; i++) {
-				ExoticCrate.setItem(i, items.get(i));
+				EventCrate.setItem(i, items.get(i));
 			}
-			return ExoticCrate;
+			return EventCrate;
 		}
 	}
 
@@ -170,75 +170,82 @@ public class ExoticCrate {
 
 	public static void load() {
 		// THIS IS JUST THE CRATE, NOT THE CONTENTS OF THE CRATE
-		ExoticCrateItem = new ItemStack(Material.CHEST);
-		ItemMeta ExoticCrateMeta = ExoticCrateItem.getItemMeta();
-		ExoticCrateMeta.setDisplayName("§eExotic Crate");
-		ArrayList<String> ExoticCrateLore = new ArrayList<String>();
-		ExoticCrateLore.add("§7Right click to open!");
-		ExoticCrateMeta.setLore(ExoticCrateLore);
-		ExoticCrateItem.setItemMeta(ExoticCrateMeta);
+		EventCrateItem = new ItemStack(Material.CHEST);
+		ItemMeta EventCrateMeta = EventCrateItem.getItemMeta();
+		EventCrateMeta.setDisplayName("§3Event Crate");
+		ArrayList<String> EventCrateLore = new ArrayList<String>();
+		EventCrateLore.add("§7Right click to open!");
+		EventCrateMeta.setLore(EventCrateLore);
+		EventCrateItem.setItemMeta(EventCrateMeta);
 
-		// 4 x Cash Prizes
-		ItemStack Item1 = new ItemStack(Material.PAPER);
+		// 4 x Virtual TNT Storage
+		ItemStack Item1 = new ItemStack(Material.CHEST);
 		ItemMeta Item1Meta = Item1.getItemMeta();
-		Item1Meta.setDisplayName("§6$250,000 Cash");
+		Item1Meta.setDisplayName("§cTNT Chest");
 		ArrayList<String> Item1Lore = new ArrayList<String>();
-		Item1Lore.add("§7Right click this ticket for $250,000!");
+		Item1Lore.add("§7All tnt fed to this chest via a hopper will automatically be");
+		Item1Lore.add("§7sent to your factions virtual tnt storage if there is space!");
 		Item1Meta.setLore(Item1Lore);
 		Item1.setItemMeta(Item1Meta);
 		items.add(Item1);
 
-		ItemStack Item2 = new ItemStack(Material.PAPER);
+		ItemStack Item2 = new ItemStack(Material.CHEST);
 		ItemMeta Item2Meta = Item2.getItemMeta();
-		Item2Meta.setDisplayName("§6$250,000 Cash");
+		Item2Meta.setDisplayName("§cTNT Chest");
 		ArrayList<String> Item2Lore = new ArrayList<String>();
-		Item2Lore.add("§7Right click this ticket for $250,000!");
+		Item2Lore.add("§7All tnt fed to this chest via a hopper will automatically be");
+		Item2Lore.add("§7sent to your factions virtual tnt storage if there is space!");
 		Item2Meta.setLore(Item2Lore);
 		Item2.setItemMeta(Item2Meta);
 		items.add(Item2);
 
-		ItemStack Item3 = new ItemStack(Material.PAPER);
+		ItemStack Item3 = new ItemStack(Material.CHEST);
 		ItemMeta Item3Meta = Item3.getItemMeta();
-		Item3Meta.setDisplayName("§6$150,000 Cash");
+		Item3Meta.setDisplayName("§cTNT Chest");
 		ArrayList<String> Item3Lore = new ArrayList<String>();
-		Item3Lore.add("§7Right click this ticket for $150,000!");
+		Item3Lore.add("§7All tnt fed to this chest via a hopper will automatically be");
+		Item3Lore.add("§7sent to your factions virtual tnt storage if there is space!");
 		Item3Meta.setLore(Item3Lore);
 		Item3.setItemMeta(Item3Meta);
 		items.add(Item3);
 
-		ItemStack Item4 = new ItemStack(Material.PAPER);
+		ItemStack Item4 = new ItemStack(Material.CHEST);
 		ItemMeta Item4Meta = Item4.getItemMeta();
-		Item4Meta.setDisplayName("§6$150,000 Cash");
+		Item4Meta.setDisplayName("§cTNT Chest");
 		ArrayList<String> Item4Lore = new ArrayList<String>();
-		Item4Lore.add("§7Right click this ticket for $150,000!");
+		Item4Lore.add("§7All tnt fed to this chest via a hopper will automatically be");
+		Item4Lore.add("§7sent to your factions virtual tnt storage if there is space!");
 		Item4Meta.setLore(Item4Lore);
 		Item4.setItemMeta(Item4Meta);
 		items.add(Item4);
 
-		// 3 x McMMO Prizes
-		ItemStack Item5 = new ItemStack(Material.PAPER);
+		// 3 x McMMO Boosters
+		ItemStack Item5 = new ItemStack(Material.EXP_BOTTLE);
 		ItemMeta Item5Meta = Item5.getItemMeta();
-		Item5Meta.setDisplayName("§6150 McMMO Credits");
+		Item5Meta.setDisplayName("§66 Hour Faction McMMO Booster (100%)");
 		ArrayList<String> Item5Lore = new ArrayList<String>();
-		Item5Lore.add("§5Right click this ticket for 150 mcmmo credits!");
+		Item5Lore.add("§5Right click this ticket to grant all faction");
+		Item5Lore.add("§5members with a 100% increase in McMMO gains!");
 		Item5Meta.setLore(Item5Lore);
 		Item5.setItemMeta(Item5Meta);
 		items.add(Item5);
 
-		ItemStack Item6 = new ItemStack(Material.PAPER);
+		ItemStack Item6 = new ItemStack(Material.EXP_BOTTLE);
 		ItemMeta Item6Meta = Item6.getItemMeta();
-		Item6Meta.setDisplayName("§6100 McMMO Credits");
+		Item6Meta.setDisplayName("§66 Hour Faction McMMO Booster (50%)");
 		ArrayList<String> Item6Lore = new ArrayList<String>();
-		Item6Lore.add("§7Right click this ticket for 100 mcmmo credits!");
+		Item6Lore.add("§6Right click this ticket to grant all faction");
+		Item6Lore.add("§6members with a 50% increase in McMMO gains!");
 		Item6Meta.setLore(Item6Lore);
 		Item6.setItemMeta(Item6Meta);
 		items.add(Item6);
 
-		ItemStack Item7 = new ItemStack(Material.PAPER);
+		ItemStack Item7 = new ItemStack(Material.EXP_BOTTLE);
 		ItemMeta Item7Meta = Item7.getItemMeta();
-		Item7Meta.setDisplayName("§6100 McMMO Credits");
+		Item7Meta.setDisplayName("§66 Hour Faction McMMO Booster (50%)");
 		ArrayList<String> Item7Lore = new ArrayList<String>();
-		Item7Lore.add("§7Right click this ticket for 100 mcmmo credits!");
+		Item7Lore.add("§7Right click this ticket to grant all faction");
+		Item7Lore.add("§7members with a 50% increase in McMMO gains!");
 		Item7Meta.setLore(Item7Lore);
 		Item7.setItemMeta(Item7Meta);
 		items.add(Item7);
@@ -323,7 +330,7 @@ public class ExoticCrate {
 		items.add(Item17);
 
 		// 4 x Book Stacks
-		ItemStack Item18 = new ItemStack(Material.BOOK, 2);
+		ItemStack Item18 = new ItemStack(Material.BOOK, 10);
 		ItemMeta Item18Meta = Item18.getItemMeta();
 		Item18Meta.setDisplayName("§eExotic Book");
 		ArrayList<String> Item18Lore = new ArrayList();
@@ -332,7 +339,7 @@ public class ExoticCrate {
 		Item18.setItemMeta(Item18Meta);
 		items.add(Item18);
 
-		ItemStack Item19 = new ItemStack(Material.BOOK, 1);
+		ItemStack Item19 = new ItemStack(Material.BOOK, 10);
 		ItemMeta Item19Meta = Item19.getItemMeta();
 		Item19Meta.setDisplayName("§eExotic Book");
 		ArrayList<String> Item19Lore = new ArrayList();
@@ -341,7 +348,7 @@ public class ExoticCrate {
 		Item19.setItemMeta(Item19Meta);
 		items.add(Item19);
 
-		ItemStack Item20 = new ItemStack(Material.BOOK, 1);
+		ItemStack Item20 = new ItemStack(Material.BOOK, 5);
 		ItemMeta Item20Meta = Item20.getItemMeta();
 		Item20Meta.setDisplayName("§eExotic Book");
 		ArrayList<String> Item20Lore = new ArrayList();
@@ -350,7 +357,7 @@ public class ExoticCrate {
 		Item20.setItemMeta(Item20Meta);
 		items.add(Item20);
 
-		ItemStack Item21 = new ItemStack(Material.BOOK, 2);
+		ItemStack Item21 = new ItemStack(Material.BOOK, 5);
 		ItemMeta Item21Meta = Item21.getItemMeta();
 		Item21Meta.setDisplayName("§5Legendary Book");
 		ArrayList<String> Item21Lore = new ArrayList();
@@ -362,7 +369,7 @@ public class ExoticCrate {
 		// 1 God Set
 		ItemStack Item22 = new ItemStack(Material.DIAMOND_SWORD, 1);
 		ItemMeta Item22Meta = Item22.getItemMeta();
-		Item22Meta.setDisplayName("§e§lExotic Sword");
+		Item22Meta.setDisplayName("§e§lEvent Sword");
 		ArrayList<String> Item22Lore = new ArrayList();
 		Item22Lore.add("§eOverride");
 		Item22Lore.add("§eShadowstep");
@@ -377,7 +384,7 @@ public class ExoticCrate {
 
 		ItemStack Item23 = new ItemStack(Material.DIAMOND_HELMET, 1);
 		ItemMeta Item23Meta = Item23.getItemMeta();
-		Item23Meta.setDisplayName("§e§lExotic Helmet");
+		Item23Meta.setDisplayName("§e§lEvent Helmet");
 		ArrayList<String> Item23Lore = new ArrayList();
 		Item23Lore.add("§eInsight");
 		Item23Lore.add("§5Vision");
@@ -389,7 +396,7 @@ public class ExoticCrate {
 
 		ItemStack Item24 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 		ItemMeta Item24Meta = Item24.getItemMeta();
-		Item24Meta.setDisplayName("§e§lExotic Chestplate");
+		Item24Meta.setDisplayName("§e§lEvent Chestplate");
 		ArrayList<String> Item24Lore = new ArrayList();
 		Item24Lore.add("§eReflection");
 		Item24Lore.add("§5Regenerator");
@@ -401,7 +408,7 @@ public class ExoticCrate {
 
 		ItemStack Item25 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 		ItemMeta Item25Meta = Item25.getItemMeta();
-		Item25Meta.setDisplayName("§e§lExotic Leggings");
+		Item25Meta.setDisplayName("§e§lEvent Leggings");
 		ArrayList<String> Item25Lore = new ArrayList();
 		Item25Lore.add("§eInferno");
 		Item25Lore.add("§5Fireborne");
@@ -413,7 +420,7 @@ public class ExoticCrate {
 
 		ItemStack Item26 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 		ItemMeta Item26Meta = Item26.getItemMeta();
-		Item26Meta.setDisplayName("§e§lExotic Boots");
+		Item26Meta.setDisplayName("§e§lEvent Boots");
 		ArrayList<String> Item26Lore = new ArrayList();
 		Item26Lore.add("§eRunner");
 		Item26Lore.add("§5Jumper");
@@ -426,7 +433,7 @@ public class ExoticCrate {
 
 		ItemStack Item27 = new ItemStack(Material.DIAMOND_PICKAXE, 1);
 		ItemMeta Item27Meta = Item27.getItemMeta();
-		Item27Meta.setDisplayName("§e§lExotic Pickaxe");
+		Item27Meta.setDisplayName("§e§lEvent Pickaxe");
 		ArrayList<String> Item27Lore = new ArrayList();
 		Item27Lore.add("§eShockwave");
 		Item27Lore.add("§eSilk Feet");

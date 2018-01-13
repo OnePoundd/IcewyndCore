@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import com.massivecraft.factions.Rel;
@@ -12,7 +13,7 @@ import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.FactionColl;
 import com.massivecraft.factions.entity.MPlayer;
 
-import net.OnePound.Additions.Main;
+import Main.Main;
 
 public class Uploader {
 
@@ -21,7 +22,7 @@ public class Uploader {
 	 * This data will include the updated information for factions and players.
 	 */
 	
-	private static Main plugin = Main.instance;
+	private static Plugin plugin = Main.instance;
 	
 	public static void triggerDatabaseAutoUpdate() {
         BukkitScheduler scheduler = plugin.getServer().getScheduler();

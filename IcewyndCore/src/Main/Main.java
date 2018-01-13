@@ -1,4 +1,4 @@
-package net.OnePound.Additions;
+package Main;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -22,13 +22,23 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 
-import net.OnePound.Crates.CrateEventListener;
-import net.OnePound.Crates.EventCrate;
-import net.OnePound.Crates.ExoticCrate;
-import net.OnePound.Crates.LegendaryCrate;
-import net.OnePound.CustomEnchants.Enchanter;
-import net.OnePound.CustomEnchants.Librarian;
-import net.OnePound.CustomEnchants.Enchantments;
+import Crates.CrateEventListener;
+import Crates.EventCrate;
+import Crates.ExoticCrate;
+import Crates.LegendaryCrate;
+import CustomEnchants.Enchanter;
+import CustomEnchants.Enchantments;
+import CustomEnchants.Librarian;
+import Temp.Cancels;
+import Temp.ChatFormat;
+import Temp.Commands;
+import Temp.CustomMobs;
+import Temp.FastPots;
+import Temp.InventoryClick;
+import Temp.LuckyDrops;
+import Temp.Misc;
+import Temp.QuarterMaster;
+import Temp.RightClickEvent;
 import net.OnePound.WebConnection.Uploader;
 
 public class Main extends JavaPlugin implements Listener {
@@ -42,7 +52,6 @@ public class Main extends JavaPlugin implements Listener {
 	public static Plugin instance;
 	private ProtocolManager protocolManager;
 	
-	public static Main instance;
 	// public static List<NPC> npcs;
 
 	public void onEnable() {

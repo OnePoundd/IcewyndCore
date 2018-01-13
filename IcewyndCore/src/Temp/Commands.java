@@ -14,6 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import com.massivecraft.factions.entity.MPlayer;
 
+import Main.Main;
+
 public class Commands implements Listener, CommandExecutor {
 	Main plugin = Main.getPlugin(Main.class);
 

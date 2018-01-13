@@ -1,4 +1,4 @@
-package net.OnePound.Additions;
+package Main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -16,8 +16,7 @@ import com.massivecraft.factions.cmd.CmdFactionsWealth;
 public class Other implements Listener {
 
 	@EventHandler
-	// makes a timer appear above the creepers head when ignited with flint and
-	// steel
+	// makes a timer appear above the creepers head when ignited with flint and steel
 	public void onCreeperIgniteEvent(PlayerInteractEntityEvent event) {
 		if (event.getRightClicked() instanceof Creeper) {
 			Creeper creeper = (Creeper) event.getRightClicked();

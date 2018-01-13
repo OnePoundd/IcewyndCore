@@ -1,4 +1,4 @@
-package net.OnePound.Additions;
+package Main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -14,7 +14,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import net.OnePound.CustomEnchants.Shockwave;
+import CustomEnchants.Shockwave;
 import net.md_5.bungee.api.ChatColor;
 
 public class SilkSpawners implements Listener {

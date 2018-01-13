@@ -1,4 +1,4 @@
-package net.OnePound.CustomEnchants;
+package CustomEnchants;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -55,7 +55,7 @@ import com.massivecraft.factions.entity.MPerm;
 import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.ps.PS;
 
-import net.OnePound.Additions.Main;
+import Main.Main;
 
 public class Enchantments implements Listener {
 

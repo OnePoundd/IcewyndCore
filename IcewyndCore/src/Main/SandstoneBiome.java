@@ -1,4 +1,4 @@
-package net.OnePound.Additions;
+package Main;
 
 import org.bukkit.Chunk;
 import org.bukkit.Material;

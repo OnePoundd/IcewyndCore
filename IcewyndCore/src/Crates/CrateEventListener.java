@@ -1,4 +1,4 @@
-package net.OnePound.Crates;
+package Crates;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -16,7 +16,7 @@ import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.factions.integration.Econ;
 
-import net.OnePound.Additions.Main;
+import Main.Main;
 
 public class CrateEventListener implements Listener {
 
