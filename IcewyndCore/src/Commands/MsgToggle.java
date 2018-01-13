@@ -30,18 +30,4 @@ public class MsgToggle implements CommandExecutor, Listener{
 		}
 		return false;
 	}
-	
-	@EventHandler
-	public void onMessageReceiveEvent(AsyncPlayerChatEvent event) {
-		Player sender = event.getPlayer();
-		if(!sender.hasPermission("server.admin")) { // admins should bypass msgtoggle
-			for(Player receiver : event.getRecipients()) {
-				if (plugin.getConfig().getBoolean(receiver.getUniqueId() + ".MsgToggle") == true) {
-					if(!MPlayer.get(receiver).getFaction().equals(MPlayer.get(sender).getFaction())) { // faction members should bypass msgtoggle
-						event.getRecipients().remove(receiver);
-					}
-				}
-			}
-		}
-	}
 }
