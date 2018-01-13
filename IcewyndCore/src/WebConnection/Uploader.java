@@ -1,4 +1,4 @@
-package net.OnePound.WebConnection;
+package WebConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

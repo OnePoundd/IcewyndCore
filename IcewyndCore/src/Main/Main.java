@@ -39,7 +39,7 @@ import Temp.LuckyDrops;
 import Temp.Misc;
 import Temp.QuarterMaster;
 import Temp.RightClickEvent;
-import net.OnePound.WebConnection.Uploader;
+import WebConnection.Uploader;
 
 public class Main extends JavaPlugin implements Listener {
 	FileConfiguration config = getConfig();

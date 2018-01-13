@@ -1,4 +1,4 @@
-package net.OnePound.WebConnection;
+package WebConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
