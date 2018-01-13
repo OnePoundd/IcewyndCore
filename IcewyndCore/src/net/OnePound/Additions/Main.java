@@ -33,21 +33,21 @@ import net.OnePound.WebConnection.Uploader;
 
 public class Main extends JavaPlugin implements Listener {
 	FileConfiguration config = getConfig();
+	public Main plugin;
+	
+	public static Main getPlugin() {
+		return Main.getPlugin(Main.class);
+	}
 
 	public static Plugin instance;
 	private ProtocolManager protocolManager;
 	
 	public static Main instance;
 	// public static List<NPC> npcs;
-	
-	public static Main getPlugin() {
-		return Main.getPlugin(Main.class);
-	}
-	public Main plugin;
 
 	public void onEnable() {
-		instance = this;
 		saveDefaultConfig();
+		instance = this;
 		PluginManager manager = Bukkit.getServer().getPluginManager();
 		this.protocolManager = ProtocolLibrary.getProtocolManager();
 		manager.registerEvents(this, this);
