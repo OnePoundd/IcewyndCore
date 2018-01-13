@@ -22,6 +22,7 @@ import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.massivecraft.factions.entity.MPlayer;
 
 public class Misc implements Listener {
+Main plugin = Main.getPlugin(Main.class);
 
 	@EventHandler
 	// GetBucketPickup
