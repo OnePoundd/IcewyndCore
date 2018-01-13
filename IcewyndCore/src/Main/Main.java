@@ -10,15 +10,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
-
 import Commands.ClearChat;
 import Commands.ClearInventory;
+import Commands.Invsee;
 import Commands.Message;
 import Commands.MsgToggle;
 import Commands.NightVision;
@@ -81,6 +80,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("clearchat").setExecutor(new ClearChat());
 		getCommand("msgtoggle").setExecutor(new MsgToggle());
 		getCommand("nightvision").setExecutor(new NightVision());
+		getCommand("invsee").setExecutor(new Invsee());
 
 		//manager.addPermission(new Permission("spawner.give"));
 		//manager.addPermission(new Permission("crate.give"));

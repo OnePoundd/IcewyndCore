@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
@@ -91,6 +92,16 @@ public class RightClickEvent implements Listener {
 			e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 3600, 1));
 			e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 9570, 1));
 			player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+		}
+	}
+	@EventHandler
+	public void onClick(PlayerInteractEntityEvent event) {
+		String IPlayer = event.getRightClicked().getName();
+		if (event.getPlayer().hasPermission("server.admin")) {
+			if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.BLAZE_ROD) 
+				event.getPlayer().chat("/invsee " + IPlayer);
+			if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.BOOK) 
+				event.getPlayer().chat("/pinfo " + IPlayer);
 		}
 	}
 }

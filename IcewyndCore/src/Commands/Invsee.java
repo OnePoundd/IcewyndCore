@@ -1,0 +1,32 @@
+package Commands;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+
+import Main.Main;
+
+public class Invsee implements CommandExecutor{
+Main plugin = Main.getPlugin(Main.class);
+
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if (cmd.getName().equalsIgnoreCase("invsee")) {
+			Player player = (Player) sender;
+			if (sender instanceof Player) {
+				if (args.length == 1) {
+					Player tplayer = player.getServer().getPlayer(args[0]);
+		            Inventory tinv = tplayer.getInventory();
+		            player.openInventory(tinv);
+				} else if (args.length == 2) {
+					if (args[1].equalsIgnoreCase("enderchest"));
+						Player tplayer = player.getServer().getPlayer(args[0]);
+						Inventory tinv = tplayer.getEnderChest();
+						player.openInventory(tinv);
+				}
+			}
+		}
+		return false;
+	}
+}
