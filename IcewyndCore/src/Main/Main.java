@@ -16,6 +16,16 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
+
+import Commands.ClearChat;
+import Commands.ClearInventory;
+import Commands.Message;
+import Commands.Overwatch;
+import Commands.PInfo;
+import Commands.PatchNotes;
+import Commands.Ping;
+import Commands.QuarterMaster;
+import Commands.Rules;
 import Crates.CrateEventListener;
 import Crates.EventCrate;
 import Crates.ExoticCrate;
@@ -49,7 +59,6 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Enchanter(), this);
 		manager.registerEvents(new SilkSpawners(), this);
 		manager.registerEvents(new CreeperCountdown(), this);
-		manager.registerEvents(new Commands(), this);
 		manager.registerEvents(new Cancels(), this);
 		manager.registerEvents(new ChatFormat(), this);
 		manager.registerEvents(new CustomMobDrops(), this);
@@ -59,15 +68,15 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new RightClickEvent(), this);
 		manager.registerEvents(new LuckyDrops(), this);
 		
-		getCommand("ci").setExecutor(new Commands());
-		getCommand("rules").setExecutor(new Commands());
-		getCommand("patchnotes").setExecutor(new Commands());
-		getCommand("ping").setExecutor(new Commands());
-		getCommand("clearchat").setExecutor(new Commands());
-		getCommand("ow").setExecutor(new Commands());
+		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
-		getCommand("msg").setExecutor(new Commands());
-		getCommand("pinfo").setExecutor(new Commands());
+		getCommand("ping").setExecutor(new Ping());
+		getCommand("pinfo").setExecutor(new PInfo());
+		getCommand("patchnotes").setExecutor(new PatchNotes());
+		getCommand("ow").setExecutor(new Overwatch());
+		getCommand("msg").setExecutor(new Message());
+		getCommand("ci").setExecutor(new ClearInventory());
+		getCommand("clearchat").setExecutor(new ClearChat());
 
 		manager.addPermission(new Permission("spawner.give"));
 		manager.addPermission(new Permission("crate.give"));

@@ -1,5 +1,5 @@
 //Item0Meta.addEnchant(Enchantment.ARROW_FIRE, 10, true);
-package Main;
+package Commands;
 
 import java.util.ArrayList;
 import java.util.List;
