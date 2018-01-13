@@ -1,14 +1,11 @@
 package Crates;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.block.CreatureSpawner;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -33,6 +30,7 @@ public class LegendaryCrate {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void open(Player player) {
 		// CANCELS EVENT IF PLAYER DOES NOT HAVE 3 OPEN INVENTORY SLOTS
 		int count = 0;

@@ -1,4 +1,4 @@
-package Temp;
+package Main;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -79,7 +79,7 @@ public class Misc implements Listener {
 		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
 		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
 		// TabList foot/header
-		PacketContainer packetContainer = Main.Main.protocolManager
+		PacketContainer packetContainer = Main.protocolManager
 				.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
 		packetContainer.getChatComponents()
 				.write(0,

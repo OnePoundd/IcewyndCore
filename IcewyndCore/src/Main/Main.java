@@ -1,9 +1,5 @@
 package Main;
 
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -18,10 +14,8 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
-
 import Crates.CrateEventListener;
 import Crates.EventCrate;
 import Crates.ExoticCrate;
@@ -29,17 +23,6 @@ import Crates.LegendaryCrate;
 import CustomEnchants.Enchanter;
 import CustomEnchants.Enchantments;
 import CustomEnchants.Librarian;
-import Temp.Cancels;
-import Temp.ChatFormat;
-import Temp.Commands;
-import Temp.CustomMobs;
-import Temp.FastPots;
-import Temp.InventoryClick;
-import Temp.LuckyDrops;
-import Temp.Misc;
-import Temp.QuarterMaster;
-import Temp.RightClickEvent;
-import WebConnection.Uploader;
 
 public class Main extends JavaPlugin implements Listener {
 	FileConfiguration config = getConfig();
@@ -58,19 +41,18 @@ public class Main extends JavaPlugin implements Listener {
 		saveDefaultConfig();
 		instance = this;
 		PluginManager manager = Bukkit.getServer().getPluginManager();
-		this.protocolManager = ProtocolLibrary.getProtocolManager();
+		Main.protocolManager = ProtocolLibrary.getProtocolManager();
 		manager.registerEvents(this, this);
 		manager.registerEvents(new CrateEventListener(), this);
 		manager.registerEvents(new Enchantments(), this); // OTHER ENCHANTS
 		manager.registerEvents(new Librarian(), this);
 		manager.registerEvents(new Enchanter(), this);
 		manager.registerEvents(new SilkSpawners(), this);
-		manager.registerEvents(new Other(), this);
-		
+		manager.registerEvents(new CreeperCountdown(), this);
 		manager.registerEvents(new Commands(), this);
 		manager.registerEvents(new Cancels(), this);
 		manager.registerEvents(new ChatFormat(), this);
-		manager.registerEvents(new CustomMobs(), this);
+		manager.registerEvents(new CustomMobDrops(), this);
 		manager.registerEvents(new FastPots(), this);
 		manager.registerEvents(new Misc(), this);
 		manager.registerEvents(new InventoryClick(), this);

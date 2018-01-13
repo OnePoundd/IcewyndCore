@@ -1,4 +1,4 @@
-package Temp;
+package Main;
 
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -8,7 +8,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class CustomMobs implements Listener {
+public class CustomMobDrops implements Listener {
 
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent e) {

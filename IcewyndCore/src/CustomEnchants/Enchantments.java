@@ -11,14 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -31,12 +29,10 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -44,14 +40,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.util.Vector;
-
 import com.google.common.collect.Lists;
 import com.massivecraft.factions.Rel;
-import com.massivecraft.factions.cmd.CmdFactionsTop;
-import com.massivecraft.factions.cmd.CmdFactionsWealth;
 import com.massivecraft.factions.entity.BoardColl;
-import com.massivecraft.factions.entity.Faction;
-import com.massivecraft.factions.entity.MPerm;
 import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.ps.PS;
 
@@ -60,6 +51,7 @@ import Main.Main;
 public class Enchantments implements Listener {
 
 	// Shockwave, Extractor
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onBlockBreakEvent(BlockBreakEvent event) {
 		try {
@@ -156,6 +148,7 @@ public class Enchantments implements Listener {
 	}
 
 	// Override, Shadowstep, Cannibal, Reflection, Firefly
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onEntityDamageEntity(EntityDamageByEntityEvent event) {
 		if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
@@ -263,6 +256,7 @@ public class Enchantments implements Listener {
 	}
 
 	// Thor
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		if (event.getEntity().getKiller() instanceof Player) {
@@ -354,6 +348,7 @@ public class Enchantments implements Listener {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInterract(PlayerInteractEvent event) {
 		if (event.getAction().equals(Action.RIGHT_CLICK_AIR)

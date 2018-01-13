@@ -13,8 +13,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import CustomEnchants.Shockwave;
 import net.md_5.bungee.api.ChatColor;
 
 public class SilkSpawners implements Listener {
@@ -83,6 +81,7 @@ public class SilkSpawners implements Listener {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onBlockBreakEvent(BlockBreakEvent event) {
 		if (event.getBlock().getType().equals(Material.MOB_SPAWNER)) {

@@ -3,18 +3,13 @@ package Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Creeper;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.scheduler.BukkitScheduler;
 
-import com.massivecraft.factions.cmd.CmdFactionsTop;
-import com.massivecraft.factions.cmd.CmdFactionsWealth;
+public class CreeperCountdown implements Listener {
 
-public class Other implements Listener {
-
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	// makes a timer appear above the creepers head when ignited with flint and steel
 	public void onCreeperIgniteEvent(PlayerInteractEntityEvent event) {

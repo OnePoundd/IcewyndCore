@@ -1,4 +1,4 @@
-package Temp;
+package Main;
 
 import java.util.Arrays;
 import org.bukkit.Bukkit;
@@ -13,8 +13,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import com.massivecraft.factions.entity.MPlayer;
-
-import Main.Main;
 
 public class Commands implements Listener, CommandExecutor {
 	Main plugin = Main.getPlugin(Main.class);

@@ -3,7 +3,6 @@ package CustomEnchants;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -138,6 +137,7 @@ public class Enchanter implements Listener {
 		return item;
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInterract(PlayerInteractEvent event) {
 		if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {

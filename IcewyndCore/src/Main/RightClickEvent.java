@@ -1,4 +1,4 @@
-package Temp;
+package Main;
 
 import java.util.Random;
 import org.bukkit.Bukkit;

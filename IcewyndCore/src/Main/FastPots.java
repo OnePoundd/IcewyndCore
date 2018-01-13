@@ -1,4 +1,4 @@
-package Temp;
+package Main;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;

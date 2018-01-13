@@ -2,13 +2,9 @@ package WebConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitScheduler;
-
 import com.massivecraft.factions.Rel;
-import com.massivecraft.factions.entity.BoardColl;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.FactionColl;
 import com.massivecraft.factions.entity.MPlayer;
