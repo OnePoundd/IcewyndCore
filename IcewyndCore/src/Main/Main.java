@@ -20,6 +20,7 @@ import com.comphenix.protocol.ProtocolManager;
 import Commands.ClearChat;
 import Commands.ClearInventory;
 import Commands.Message;
+import Commands.MsgToggle;
 import Commands.Overwatch;
 import Commands.PInfo;
 import Commands.PatchNotes;
@@ -77,6 +78,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("msg").setExecutor(new Message());
 		getCommand("ci").setExecutor(new ClearInventory());
 		getCommand("clearchat").setExecutor(new ClearChat());
+		getCommand("msgtoggle").setExecutor(new MsgToggle());
 
 		manager.addPermission(new Permission("spawner.give"));
 		manager.addPermission(new Permission("crate.give"));
