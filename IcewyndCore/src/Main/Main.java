@@ -50,7 +50,7 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public static Plugin instance;
-	private ProtocolManager protocolManager;
+	public static ProtocolManager protocolManager;
 	
 	// public static List<NPC> npcs;
 
