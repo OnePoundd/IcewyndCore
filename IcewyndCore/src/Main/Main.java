@@ -17,6 +17,7 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import Commands.ClearChat;
 import Commands.ClearInventory;
+import Commands.Enderchest;
 import Commands.Invsee;
 import Commands.Message;
 import Commands.MsgToggle;
@@ -81,6 +82,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("msgtoggle").setExecutor(new MsgToggle());
 		getCommand("nightvision").setExecutor(new NightVision());
 		getCommand("invsee").setExecutor(new Invsee());
+		getCommand("enderchest").setExecutor(new Enderchest());
 
 		//manager.addPermission(new Permission("spawner.give"));
 		//manager.addPermission(new Permission("crate.give"));
