@@ -18,20 +18,21 @@ import org.bukkit.potion.PotionEffectType;
 
 public class RightClickEvent implements Listener {
 
+	//Quartermaster Items
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerUse(PlayerInteractEvent event) {
 		if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			Player player = event.getPlayer();
 			if (player.getItemInHand().getType().equals(Material.TRAPPED_CHEST)) {
-				if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§cÂ§lÂ§nCrate of TNT"))
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nCrate of TNT"))
 					player.getPlayer().getInventory().setItemInHand(new ItemStack(Material.AIR, 1));
 				player.getInventory().addItem(new ItemStack(Material.TNT, 2304));
 				event.setCancelled(true);
 
 				// Charged Creeper
 			} else if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
-				if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§aÂ§lÂ§nCharged Creeper Egg"))
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§a§l§nCharged Creeper Egg"))
 					player.getInventory().getItemInHand()
 							.setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 				player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0), EntityType.CREEPER);
@@ -41,7 +42,7 @@ public class RightClickEvent implements Listener {
 
 				// Mystery Spawner
 			} else if (player.getItemInHand().getType().equals(Material.MOB_SPAWNER)) {
-				if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§dÂ§lÂ§nMystery Spawner"))
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§l§nMystery Spawner"))
 					player.getInventory().getItemInHand()
 							.setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 				Random rand = new Random();
@@ -49,8 +50,8 @@ public class RightClickEvent implements Listener {
 				if (index == 1) {
 					Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 							"spawnergive " + player.getName() + " villager");
-					Bukkit.broadcastMessage("Â§dÂ§lâœ¦Â§bÂ§l " + player.getName()
-							+ " was lucky and recieved a Â§dÂ§lVillager spawnerÂ§bÂ§l from a Mystery Spawner!" + " Â§dÂ§lâœ¦");
+					Bukkit.broadcastMessage("§d§lœ¦§b§l " + player.getName()
+							+ " was lucky and recieved a §d§lVillager spawner§b§l from a Mystery Spawner!" + " §d§lœ¦");
 				} else if (index == 2) {
 					Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 							"spawnergive " + player.getName() + " creeper");
@@ -68,13 +69,13 @@ public class RightClickEvent implements Listener {
 			}
 		}
 	}
-
+	//Quartermaster Item
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onDrink(PlayerItemConsumeEvent e) {
 		Player player = e.getPlayer();
 		if (player.getItemInHand().getType().equals(Material.POTION)) {
-			if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§4Â§lÂ§nElixir of Fury"))
+			if (player.getItemInHand().getItemMeta().getDisplayName().equals("§4§l§nElixir of Fury"))
 				;
 			e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3600, 1));
 			e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 3600, 1));
