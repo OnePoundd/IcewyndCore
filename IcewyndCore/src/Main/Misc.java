@@ -91,8 +91,7 @@ Main plugin = Main.getPlugin(Main.class);
 		String faction = mplayer.getFactionName();
 		event.getPlayer().setPlayerListName("§c" + faction + " §f" + event.getPlayer().getName());
 		// New Player Announce
-		if (player.hasPlayedBefore()) {
-		} else {
+		if (!player.hasPlayedBefore()) {
 			Bukkit.broadcastMessage("§b§lWelcome to IcyWynd, §f§l" + player.getName() + "§b§l!");
 			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
 			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
