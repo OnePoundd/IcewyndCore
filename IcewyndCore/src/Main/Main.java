@@ -15,6 +15,8 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
+
+import Commands.Book;
 import Commands.ClearChat;
 import Commands.ClearInventory;
 import Commands.Enderchest;
@@ -83,6 +85,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("nightvision").setExecutor(new NightVision());
 		getCommand("invsee").setExecutor(new Invsee());
 		getCommand("enderchest").setExecutor(new Enderchest());
+		getCommand("book").setExecutor(new Book());
 
 		//manager.addPermission(new Permission("spawner.give"));
 		//manager.addPermission(new Permission("crate.give"));
