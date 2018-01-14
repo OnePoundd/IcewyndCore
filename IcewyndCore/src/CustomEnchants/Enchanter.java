@@ -67,8 +67,8 @@ public class Enchanter implements Listener {
 							openExoticInventory((Player) event.getWhoClicked());
 						} else {
 							Player player = (Player) event.getWhoClicked();
-							if (player.getLevel() >= 50) {
-								player.setLevel(player.getLevel() - 50);
+							if (player.getExp() - 1000 >= 0) {
+								player.setExp(player.getExp() - 1000);
 								if (player.getInventory().firstEmpty() == -1) {
 									player.sendMessage("§b§l(!)§7 Your inventory is full, dropping item at your feet!");
 									player.getWorld().dropItem(player.getLocation(), ExoticBook());
@@ -85,8 +85,8 @@ public class Enchanter implements Listener {
 							openLegendaryInventory((Player) event.getWhoClicked());
 						} else {
 							Player player = (Player) event.getWhoClicked();
-							if (player.getLevel() >= 30) {
-								player.setLevel(player.getLevel() - 30);
+							if (player.getExp() - 800 >= 0) {
+								player.setExp(player.getExp() - 800);
 								if (player.getInventory().firstEmpty() == -1) {
 									player.sendMessage("§b§l(!)§7 Your inventory is full, dropping item at your feet!");
 									player.getWorld().dropItem(player.getLocation(), LegendaryBook());
