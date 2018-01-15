@@ -13,9 +13,9 @@ Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("pinfo")) {
-			if (sender instanceof Player) {
+			Player p = (Player) sender;
+			if (p.hasPermission("server.admin"));
 				if (args.length == 2) {
-					Player p = (Player) sender;
 					MPlayer mplayer = MPlayer.get(p);
 					String faction = mplayer.getFactionName();
 					int ping = ((CraftPlayer) p).getHandle().ping;
@@ -30,7 +30,6 @@ Main plugin = Main.getPlugin(Main.class);
 					p.sendMessage("§cGamemode:§f " + p.getGameMode());
 				}
 			}
-		}
 		return false;
 	}
 }
