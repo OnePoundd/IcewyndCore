@@ -1,5 +1,6 @@
 package Commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,19 +16,21 @@ Main plugin = Main.getPlugin(Main.class);
 		if (cmd.getName().equalsIgnoreCase("pinfo")) {
 			Player p = (Player) sender;
 			if (p.hasPermission("server.admin"));
-				if (args.length == 2) {
+				if (args.length == 1) {
 					MPlayer mplayer = MPlayer.get(p);
 					String faction = mplayer.getFactionName();
-					int ping = ((CraftPlayer) p).getHandle().ping;
+					Player target = Bukkit.getPlayer(args[0]);
+					int targetPing = ((CraftPlayer) target).getHandle().ping;
 					p.sendMessage("§8§l§m-------§r§8§l[ §a§l" + args[0] + " §r§8§l]§8§l§m-------");
-					p.sendMessage("§cIP:§f " + p.getAddress().getHostName());
-					p.sendMessage("§cPing:§f " + ping);
-					p.sendMessage("§cFirst Seen:§f " + p.getFirstPlayed());
-					p.sendMessage("§cLast Seen:§f " + p.getLastPlayed());
+					p.sendMessage("§cIP:§f ");
+					//target.getAddress().getHostName()); (DISABLED FOR NOW, dont remove)
+					p.sendMessage("§cPing:§f " + targetPing);
+					p.sendMessage("§cFirst Seen:§f " + target.getFirstPlayed());
+					p.sendMessage("§cLast Seen:§f " + target.getLastPlayed());
 					p.sendMessage("§cTimes Seen:§f " + "");
 					p.sendMessage("§cFaction:§f " + faction);
-					p.sendMessage("§cXP Level:§f " + p.getExpToLevel());
-					p.sendMessage("§cGamemode:§f " + p.getGameMode());
+					p.sendMessage("§cXP Level:§f " + target.getExpToLevel());
+					p.sendMessage("§cGamemode:§f " + target.getGameMode());
 				}
 			}
 		return false;
