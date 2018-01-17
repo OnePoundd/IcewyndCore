@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +20,8 @@ public class LuckyDrops implements Listener {
 	@EventHandler
 	public void onBreak(BlockBreakEvent event) {
 		if (event.getBlock().getType().equals(Material.STONE)) {
-			Player player = event.getPlayer();
+			event.getPlayer().getWorld().playEffect(event.getBlock().getLocation(), Effect.STEP_SOUND, Material.GOLD_BLOCK);
+			event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_FIREWORK_LARGE_BLAST, 1f, 1f);
 			Random rand = new Random();
 			int index = rand.nextInt(13) + 1;
 			if (index == 1) {
@@ -89,7 +92,7 @@ public class LuckyDrops implements Listener {
 				lore1.add("§7Empty your inventory then right click!");
 				Item1Meta.setLore(lore1);
 				Item1.setItemMeta(Item1Meta);
-				player.getInventory().addItem(new ItemStack(Item1));
+				event.getPlayer().getInventory().addItem(new ItemStack(Item1));
 			}
 		}
 	}
