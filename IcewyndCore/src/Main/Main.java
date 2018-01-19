@@ -71,6 +71,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new InventoryClick(), this);
 		manager.registerEvents(new RightClickEvent(), this);
 		manager.registerEvents(new LuckyDrops(), this);
+		manager.registerEvents(new SellWands(), this);
 		
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
