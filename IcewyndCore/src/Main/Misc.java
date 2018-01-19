@@ -9,6 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryPickupItemEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.server.ServerListPingEvent;
@@ -106,4 +108,14 @@ Main plugin = Main.getPlugin(Main.class);
 				"         §8§l§m-§7§l§m-§f§l[§f §lICEWYND §b§lNETWORK §f§l- §a1.7 - 1.12 §f§l]§7§l§m-§8§l§m-§r                      §c§lFACTIONS MAP 1 LIVE!§7 / §9§l25% OFF SALE");
 		s.setMaxPlayers(0);
 	}
+	
+	
+	@EventHandler
+	public void onHopperPickupItemEvent(InventoryPickupItemEvent event) {
+		if ((event.getInventory().getType().equals(InventoryType.HOPPER))
+				&& (event.getItem().getItemStack().getType().equals(Material.MOB_SPAWNER))) {
+			event.setCancelled(true);
+		}
+	}
+	
 }
