@@ -9,8 +9,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.server.ServerListPingEvent;
@@ -109,12 +111,32 @@ Main plugin = Main.getPlugin(Main.class);
 		s.setMaxPlayers(0);
 	}
 	
-	
+	// prevents hoppers picking up spawners
 	@EventHandler
 	public void onHopperPickupItemEvent(InventoryPickupItemEvent event) {
 		if ((event.getInventory().getType().equals(InventoryType.HOPPER))
 				&& (event.getItem().getItemStack().getType().equals(Material.MOB_SPAWNER))) {
 			event.setCancelled(true);
+		}
+	}
+	
+	// prevents players brewing invisibility potions
+	@EventHandler
+	public void onBrewEvent(BrewEvent event) {
+		if (event.getContents().contains(Material.FERMENTED_SPIDER_EYE)) {
+			event.setCancelled(true);
+		}
+	}
+
+	// prevents players crafting hoppers
+	@EventHandler
+	public void onCraftEvent(PrepareItemCraftEvent event) {
+		try {
+			Material toCraft = event.getRecipe().getResult().getType();
+			if (toCraft.equals(Material.HOPPER)) {
+				event.getInventory().setResult(new ItemStack(Material.AIR));
+			}
+		} catch (NullPointerException localNullPointerException) {
 		}
 	}
 	
