@@ -27,9 +27,9 @@ Main plugin = Main.getPlugin(Main.class);
 					p.sendMessage("§cPing:§f " + targetPing);
 					p.sendMessage("§cFirst Seen:§f " + target.getFirstPlayed());
 					p.sendMessage("§cLast Seen:§f " + target.getLastPlayed());
-					p.sendMessage("§cTimes Seen:§f " + "");
 					p.sendMessage("§cFaction:§f " + faction);
 					p.sendMessage("§cXP Level:§f " + target.getExpToLevel());
+					p.sendMessage("§cServer Level:§f " + MPlayer.get(target).getLevel());
 					p.sendMessage("§cGamemode:§f " + target.getGameMode());
 				}
 			}
