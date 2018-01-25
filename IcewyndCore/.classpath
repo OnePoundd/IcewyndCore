@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="C:/Jars/[Dependency] ProtocolLib.jar"/>
 	<classpathentry kind="lib" path="C:/Jars/Factions.jar"/>
 	<classpathentry kind="lib" path="C:/Jars/Spigot.jar"/>
+	<classpathentry kind="lib" path="C:/Jars/mcMMO.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
