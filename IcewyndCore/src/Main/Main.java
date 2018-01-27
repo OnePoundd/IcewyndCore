@@ -21,6 +21,7 @@ import BanSystem.BanCommand;
 import Commands.Book;
 import Commands.ClearChat;
 import Commands.ClearInventory;
+import Commands.Disposal;
 import Commands.Enderchest;
 import Commands.Invsee;
 import Commands.Message;
@@ -94,6 +95,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("enderchest").setExecutor(new Enderchest());
 		getCommand("book").setExecutor(new Book());
 		getCommand("ban").setExecutor(new BanCommand());
+		getCommand("disposal").setExecutor(new Disposal());
 
 		//manager.addPermission(new Permission("spawner.give"));
 		//manager.addPermission(new Permission("crate.give"));

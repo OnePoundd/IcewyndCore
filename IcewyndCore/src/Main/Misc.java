@@ -6,8 +6,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
@@ -34,8 +36,8 @@ Main plugin = Main.getPlugin(Main.class);
 		if (e.getPlayer().getWorld().getName().equals("world_nether")) {
 			ItemStack GenBucket = new ItemStack(Material.LAVA_BUCKET, 1);
 			ItemMeta meta = GenBucket.getItemMeta();
-			meta.setDisplayName("§c§lGen Bucket");
-			meta.setLore(Arrays.asList("§7Automatically generates cobblestone walls."));
+			meta.setDisplayName("Â§cÂ§lGen Bucket");
+			meta.setLore(Arrays.asList("Â§7Automatically generates cobblestone walls."));
 			GenBucket.setItemMeta(meta);
 			e.getItemStack().setType(Material.AIR);
 			e.getPlayer().getInventory().addItem(GenBucket);
@@ -50,12 +52,12 @@ Main plugin = Main.getPlugin(Main.class);
 		if ((event.getEntity().getKiller() instanceof Player)) {
 			ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
 			SkullMeta sm = (SkullMeta) skull.getItemMeta();
-			sm.setDisplayName("§c§lSkull of §7§l" + event.getEntity().getPlayer().getName());
+			sm.setDisplayName("Â§cÂ§lSkull of Â§7Â§l" + event.getEntity().getPlayer().getName());
 			sm.setOwner(event.getEntity().getPlayer().getName());
 			skull.setItemMeta(sm);
 			event.getDrops().add(skull);
 			event.getEntity().sendMessage(
-					"§4You were killed by " + event.getEntity().getKiller() + " §4and you lost your head!");
+					"Â§4You were killed by " + event.getEntity().getKiller() + " Â§4and you lost your head!");
 		}
 	}
 
@@ -73,30 +75,30 @@ Main plugin = Main.getPlugin(Main.class);
 	public void onJoin(PlayerJoinEvent event) throws InvocationTargetException {
 		Player player = event.getPlayer();
 		// MOTD
-		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
-		player.sendMessage("        §f§lCONNECTED TO §b§lICEWYND §b§lFACTIONS");
-		player.sendMessage("                         §f(§b1.7.10 §f- §b1.12§f)");
+		player.sendMessage("Â§fÂ§lÂ§m-----------Â§bÂ§lÂ§m-----------Â§fÂ§lÂ§m-----------");
+		player.sendMessage("        Â§fÂ§lCONNECTED TO Â§bÂ§lICEWYND Â§bÂ§lFACTIONS");
+		player.sendMessage("                         Â§f(Â§b1.7.10 Â§f- Â§b1.12Â§f)");
 		player.sendMessage("");
-		player.sendMessage("§b§lFORUMS: §fIcewynd.net");
-		player.sendMessage("§b§lDISCORD: §fIcewynd.net/Discord");
-		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
-		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
+		player.sendMessage("Â§bÂ§lFORUMS: Â§fIcewynd.net");
+		player.sendMessage("Â§bÂ§lDISCORD: Â§fIcewynd.net/Discord");
+		player.sendMessage("Â§bÂ§lSTORE: Â§fIcewynd.net/Store");
+		player.sendMessage("Â§fÂ§lÂ§m-----------Â§bÂ§lÂ§m-----------Â§fÂ§lÂ§m-----------");
 		// TabList foot/header
 		PacketContainer packetContainer = Main.protocolManager
 				.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
 		packetContainer.getChatComponents()
 				.write(0,
 						WrappedChatComponent
-								.fromText(" §8§l§m-§7§l§m-§f§l[§f §lICEWYND §b§lNETWORK§f§l ]§7§l§m-§8§l§m-§r "))
-				.write(1, WrappedChatComponent.fromText("§c§lSITE:\n§c§lDISCORD:\nSTORE:"));
+								.fromText(" Â§8Â§lÂ§m-Â§7Â§lÂ§m-Â§fÂ§l[Â§f Â§lICEWYND Â§bÂ§lNETWORKÂ§fÂ§l ]Â§7Â§lÂ§m-Â§8Â§lÂ§m-Â§r "))
+				.write(1, WrappedChatComponent.fromText("Â§cÂ§lSITE:\nÂ§cÂ§lDISCORD:\nSTORE:"));
 		ProtocolLibrary.getProtocolManager().sendServerPacket(player, packetContainer);
 		// Faction next to player name on Tablist
 		MPlayer mplayer = MPlayer.get(player);
 		String faction = mplayer.getFactionName();
-		event.getPlayer().setPlayerListName("§c" + faction + " §f" + event.getPlayer().getName());
+		event.getPlayer().setPlayerListName("Â§c" + faction + " Â§f" + event.getPlayer().getName());
 		// New Player Announce
 		if (!player.hasPlayedBefore()) {
-			Bukkit.broadcastMessage("§b§lWelcome to IcyWynd, §f§l" + player.getName() + "§b§l!");
+			Bukkit.broadcastMessage("Â§bÂ§lWelcome to IcyWynd, Â§fÂ§l" + player.getName() + "Â§bÂ§l!");
 			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
 			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
 			plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
@@ -111,7 +113,7 @@ Main plugin = Main.getPlugin(Main.class);
 	@EventHandler
 	public void onServerListPing(ServerListPingEvent s) {
 		s.setMotd(
-				"         §8§l§m-§7§l§m-§f§l[§f §lICEWYND §b§lNETWORK §f§l- §a1.7 - 1.12 §f§l]§7§l§m-§8§l§m-§r                      §c§lFACTIONS MAP 1 LIVE!§7 / §9§l25% OFF SALE");
+				"         Â§8Â§lÂ§m-Â§7Â§lÂ§m-Â§fÂ§l[Â§f Â§lICEWYND Â§bÂ§lNETWORK Â§fÂ§l- Â§a1.7 - 1.12 Â§fÂ§l]Â§7Â§lÂ§m-Â§8Â§lÂ§m-Â§r                      Â§cÂ§lFACTIONS MAP 1 LIVE!Â§7 / Â§9Â§l25% OFF SALE");
 		s.setMaxPlayers(0);
 	}
 	
@@ -143,5 +145,24 @@ Main plugin = Main.getPlugin(Main.class);
 		} catch (NullPointerException localNullPointerException) {
 		}
 	}
-	
-}
+	//Sign exploit fix
+	@EventHandler(priority=EventPriority.HIGHEST, ignoreCancelled=true)
+	  public void onSignChange(SignChangeEvent e)
+	  {
+	    for (int i = 0; i < 4; i++) {
+	      if (e.getLine(i).matches("^[a-zA-Z0-9_]*$"))
+	      {
+	        if (e.getLine(i).length() > 20)
+	        {
+	          e.setCancelled(true);
+	          e.getPlayer().sendMessage("ï¿½4Invalid amount of characters");
+	        }
+	      }
+	      else if (e.getLine(i).length() > 50)
+	      {
+	        e.setCancelled(true);
+	        e.getPlayer().sendMessage("ï¿½4Invalid amount of characters");
+	      }
+	    }
+	  }
+	}
