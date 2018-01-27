@@ -17,6 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 
+import BanSystem.BanCommand;
 import Commands.Book;
 import Commands.ClearChat;
 import Commands.ClearInventory;
@@ -92,6 +93,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("invsee").setExecutor(new Invsee());
 		getCommand("enderchest").setExecutor(new Enderchest());
 		getCommand("book").setExecutor(new Book());
+		getCommand("ban").setExecutor(new BanCommand());
 
 		//manager.addPermission(new Permission("spawner.give"));
 		//manager.addPermission(new Permission("crate.give"));

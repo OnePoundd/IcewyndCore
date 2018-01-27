@@ -100,7 +100,11 @@ Main plugin = Main.getPlugin(Main.class);
 			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
 			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
 			plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
+			plugin.getConfig().set(player.getUniqueId() + ".Banned", false);
 			plugin.saveConfig();
+		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
+			player.kickPlayer("BANNED PLAYER MESSAGE HERE");
+		}
 		}
 	}
 
