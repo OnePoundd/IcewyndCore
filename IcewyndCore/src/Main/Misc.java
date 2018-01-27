@@ -155,13 +155,13 @@ Main plugin = Main.getPlugin(Main.class);
 	        if (e.getLine(i).length() > 20)
 	        {
 	          e.setCancelled(true);
-	          e.getPlayer().sendMessage("�4Invalid amount of characters");
+	          e.getPlayer().sendMessage("Invalid amount of characters");
 	        }
 	      }
 	      else if (e.getLine(i).length() > 50)
 	      {
 	        e.setCancelled(true);
-	        e.getPlayer().sendMessage("�4Invalid amount of characters");
+	        e.getPlayer().sendMessage("Invalid amount of characters");
 	      }
 	    }
 	  }
