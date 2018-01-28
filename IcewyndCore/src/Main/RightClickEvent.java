@@ -44,30 +44,22 @@ public class RightClickEvent implements Listener {
 
 				// Mystery Spawner
 			} else if (player.getItemInHand().getType().equals(Material.MOB_SPAWNER)) {
-				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§l§nMystery Spawner"))
-					player.getInventory().getItemInHand()
-							.setAmount(player.getInventory().getItemInHand().getAmount() - 1);
-				Random rand = new Random();
-				int index = rand.nextInt(5) + 1;
-				if (index == 1) {
-					Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-							"spawnergive " + player.getName() + " villager");
-					Bukkit.broadcastMessage("§d§lœ¦§b§l " + player.getName()
-							+ " was lucky and recieved a §d§lVillager spawner§b§l from a Mystery Spawner!" + " §d§lœ¦");
-				} else if (index == 2) {
-					Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-							"spawnergive " + player.getName() + " creeper");
-				} else if (index == 3) {
-					Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-							"spawnergive " + player.getName() + " enderman");
-				} else if (index == 4) {
-					Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-							"spawnergive " + player.getName() + " blaze");
-				} else if (index == 5) {
-					Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-							"spawnergive " + player.getName() + " witch");
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§l§nMystery Spawner")) {
+					player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+					Random rand = new Random();
+					int index5 = rand.nextInt(5) + 1;
+					if (index5 == 1) {
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " villager");
+						Bukkit.broadcastMessage("§d§lœ¦§b§l " + player.getName() + " was lucky and recieved a §d§lVillager spawner§b§l from a Mystery Spawner!" + " §d§lœ¦");
+					} else if (index5 == 2) {
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " creeper");
+					} else if (index5 == 3) {
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " enderman");
+					} else if (index5 == 4) {
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " blaze");
+					} else if (index5 == 5) {
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " witch");
 				}
-				player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 			} else if (player.getItemInHand().getType().equals(Material.EYE_OF_ENDER)) {
 				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§lRandom TP"));
 					event.setCancelled(true);
@@ -75,10 +67,10 @@ public class RightClickEvent implements Listener {
 				    for (Player e : Bukkit.getOnlinePlayers()) players.add(e);
 				    Player randomPlayer = players.get(new Random().nextInt(players.size()));
 				    player.teleport(randomPlayer.getLocation());
-		         }
-					
+				}
 			}
 		}
+	}
 	
 	//Quartermaster Item
 	@SuppressWarnings("deprecation")
