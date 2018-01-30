@@ -18,11 +18,15 @@ Main plugin = Main.getPlugin(Main.class);
 			Player player = (Player) sender;
 			if (player.hasPermission("server.twitch")) {
 				String link = args[0];
-				TextComponent message = new TextComponent( "§5§lTWITCH§8§l » §b§l" + player.getName() + " has started streaming! Click here §b§lto check it out." );
-				message.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "" + link ) );
-				Bukkit.broadcast( message );
+				if (link.contains("twitch.tv")) {
+					TextComponent message = new TextComponent( "§5§lTWITCH§8§l » §b§l" + player.getName() + " has started streaming! Click here §b§lto check it out." );
+					message.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "" + link ) );
+					Bukkit.broadcast( message );
+				}else {
+					player.sendMessage("§cYour message must contain a Twitch link!");
 			}
 		}
-		return false;
 	}
+		return false;
+}
 }
