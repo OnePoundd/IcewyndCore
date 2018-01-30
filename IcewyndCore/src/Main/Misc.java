@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.BrewEvent;
@@ -134,6 +135,12 @@ Main plugin = Main.getPlugin(Main.class);
 		}
 	}
 
+	@EventHandler
+	public void onExtend(BlockPistonExtendEvent event) {
+		if (event.getBlock().getLocation().getY() == 1) {
+			event.setCancelled(true);
+		}
+	}
 	// prevents players crafting hoppers
 	@EventHandler
 	public void onCraftEvent(PrepareItemCraftEvent event) {
