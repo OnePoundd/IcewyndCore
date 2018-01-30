@@ -14,7 +14,7 @@ Main plugin = Main.getPlugin(Main.class);
 			for (int i = 0; i < 150; i++) {
 				Bukkit.broadcastMessage("§1");
 			}
-			Bukkit.broadcastMessage("§f§l[§b§lIcyWynd§f§l]§a§l Chat has been cleared!");
+			Bukkit.broadcastMessage("§f§l[§b§lIcewynd§f§l]§a§l Chat has been cleared!");
 			}
 		return false;
 	}
