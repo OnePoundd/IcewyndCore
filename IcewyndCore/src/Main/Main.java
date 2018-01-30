@@ -19,6 +19,7 @@ import BanSystem.BanCommand;
 import Commands.Book;
 import Commands.ClearChat;
 import Commands.ClearInventory;
+import Commands.ContentBroadcast;
 import Commands.Disposal;
 import Commands.Enderchest;
 import Commands.Invsee;
@@ -31,6 +32,8 @@ import Commands.PatchNotes;
 import Commands.Ping;
 import Commands.QuarterMaster;
 import Commands.Rules;
+import Commands.TwitchBroadcast;
+import Commands.YoutubeBroadcast;
 import Crates.CrateEventListener;
 import Crates.EventCrate;
 import Crates.ExoticCrate;
@@ -94,6 +97,8 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("book").setExecutor(new Book());
 		getCommand("ban").setExecutor(new BanCommand());
 		getCommand("disposal").setExecutor(new Disposal());
+		getCommand("youtube").setExecutor(new YoutubeBroadcast());
+		getCommand("twitch").setExecutor(new TwitchBroadcast());
 
 		//manager.addPermission(new Permission("spawner.give"));
 		//manager.addPermission(new Permission("crate.give"));
