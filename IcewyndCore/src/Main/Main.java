@@ -13,10 +13,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
-
 import BanSystem.BanCommand;
 import Commands.Book;
 import Commands.ClearChat;
@@ -79,7 +77,6 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new SellWands(), this);
 		manager.registerEvents(new Repair(), this);
 		manager.registerEvents(new Milestones(), this);
-		manager.registerEvents(new PlacementCancels(), this);
 		
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
