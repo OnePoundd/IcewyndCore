@@ -9,6 +9,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.massivecraft.factions.entity.MConf;
+
 import Main.Main;
 
 public class BanCommand implements CommandExecutor {
@@ -25,7 +27,11 @@ public class BanCommand implements CommandExecutor {
 					BannedPlayer.sendMessage("§cYou've been banned for: " + args[2] + ". §bBans are handled differently here. Please read the holograms for more information.");
 					BannedPlayer.getInventory().clear();
 					BannedPlayer.setLevel(0);
-					// teleport to /warp banned
+					if(MConf.get().getWarp("jail") != null) {
+						BannedPlayer.teleport(MConf.get().getWarp("jail"));
+					}else {
+						System.out.println("[Factions] ERROR: You must set /warp jail.");
+					}
 				}
 				
 			}
