@@ -22,6 +22,7 @@ import net.minecraft.server.v1_12_R1.IChatBaseComponent.ChatSerializer;
 public class Book implements CommandExecutor{
 Main plugin = Main.getPlugin(Main.class);
 
+	@SuppressWarnings("unchecked")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("book")) {
 			if (sender instanceof Player) {
