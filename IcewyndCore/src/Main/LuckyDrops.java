@@ -16,75 +16,68 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class LuckyDrops implements Listener {
+	Main plugin = Main.getPlugin(Main.class);
 
 	@EventHandler
 	public void onBreak(BlockBreakEvent event) {
 		if (event.getBlock().getType().equals(Material.STONE)) {
 			event.getPlayer().getWorld().playEffect(event.getBlock().getLocation(), Effect.STEP_SOUND, Material.GOLD_BLOCK);
 			event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_FIREWORK_LARGE_BLAST, 1f, 1f);
+			Player p = event.getPlayer();
 			Random rand = new Random();
 			int index = rand.nextInt(13) + 1;
+			int luckydrops = plugin.getConfig().getInt(p.getUniqueId() + ".LuckyDrops");
 			if (index == 1) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved a §5Witch Spawner §b§lfrom Mining!");
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-						"spawnergive " + event.getPlayer().getName() + " witch");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved a §5Witch Spawner §b§lfrom Mining!");
+				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spawnergive " + event.getPlayer().getName() + " witch");
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 2) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved a §cBlaze Spawner §b§lfrom Mining!");
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-						"spawnergive " + event.getPlayer().getName() + " Blaze");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved a §cBlaze Spawner §b§lfrom Mining!");
+				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spawnergive " + event.getPlayer().getName() + " Blaze");
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 3) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved a §aCreeper Spawner §b§lfrom Mining!");
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-						"spawnergive " + event.getPlayer().getName() + " Creeper");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved a §aCreeper Spawner §b§lfrom Mining!");
+				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spawnergive " + event.getPlayer().getName() + " Creeper");
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 4) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved a §6Villager Spawner §b§lfrom Mining!");
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-						"spawnergive " + event.getPlayer().getName() + " Villager");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved a §6Villager Spawner §b§lfrom Mining!");
+				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spawnergive " + event.getPlayer().getName() + " Villager");
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 5) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved a §5Enderman Spawner §b§lfrom Mining!");
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-						"spawnergive " + event.getPlayer().getName() + " enderman");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved a §5Enderman Spawner §b§lfrom Mining!");
+				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spawnergive " + event.getPlayer().getName() + " enderman");
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 6) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved a §eZombie pigman Spawner §b§lfrom Mining!");
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-						"spawnergive " + event.getPlayer().getName() + " zombie_pigman");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved a §eZombie pigman Spawner §b§lfrom Mining!");
+				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spawnergive " + event.getPlayer().getName() + " zombie_pigman");
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 7) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved a §dBeacon §b§lfrom Mining!");
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-						"give " + event.getPlayer().getName() + " beacon 1");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved a §dBeacon §b§lfrom Mining!");
+				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "give " + event.getPlayer().getName() + " beacon 1");
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 8) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved §710 Hoppers §b§lfrom Mining!");
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-						"give " + event.getPlayer().getName() + " hopper 10");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved §710 Hoppers §b§lfrom Mining!");
+				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "give " + event.getPlayer().getName() + " hopper 10");
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 9) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved §e$250,000 §b§lfrom Mining!");
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-						"ecoadmin give " + event.getPlayer().getName() + " 250000");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved §e$250,000 §b§lfrom Mining!");
+				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ecoadmin give " + event.getPlayer().getName() + " 250000");
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 10) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved §e150 Coins §b§lfrom Mining!");
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-						"coins " + event.getPlayer().getName() + " 2500");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved §e150 Coins §b§lfrom Mining!");
+				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "coins " + event.getPlayer().getName() + " 2500");
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 11) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved an  §eExotic Crate §b§lfrom Mining!");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved an  §eExotic Crate §b§lfrom Mining!");
 				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "exotic " + event.getPlayer().getName());
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 12) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved a §eLegendary Crate §b§lfrom Mining!");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved a §eLegendary Crate §b§lfrom Mining!");
 				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "legendary " + event.getPlayer().getName());
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 			} else if (index == 13) {
-				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName()
-						+ " §b§lwas lucky and recieved a §cCrate of TNT §b§lfrom Mining!");
+				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved a §cCrate of TNT §b§lfrom Mining!");
+				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
 				ItemStack Item1 = new ItemStack(Material.TRAPPED_CHEST, 1);
 				ItemMeta Item1Meta = Item1.getItemMeta();
 				List<String> lore1 = new ArrayList<String>();
