@@ -166,6 +166,7 @@ public class EventCrate {
 		return items.get(index);
 	}
 
+	@SuppressWarnings({ "deprecation", "rawtypes", "unchecked" })
 	public static void load() {
 		// THIS IS JUST THE CRATE, NOT THE CONTENTS OF THE CRATE
 		EventCrateItem = new ItemStack(Material.CHEST);
