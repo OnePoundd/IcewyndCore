@@ -13,17 +13,17 @@ public class UnbanCommand implements CommandExecutor {
 
 	//Banning a player
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		Player BannedPlayer = Bukkit.getPlayer(args[0]);
-		if(BannedPlayer != null) {
-			if (cmd.getName().equalsIgnoreCase("unban")) {
-				if (args.length == 1) {
-					Bukkit.broadcastMessage("§c§l[Ban] §a" + args[0] + " has been unbanned! ");
-					plugin.getConfig().set(BannedPlayer.getUniqueId() + ".Banned", false);
-				}
-				
+		if (cmd.getName().equalsIgnoreCase("unban")) {
+			if(Bukkit.getPlayer(args[0]) != null) {
+				Player BannedPlayer = Bukkit.getPlayer(args[0]);
+					if (args.length == 1) {
+						Bukkit.broadcastMessage("§c§l[Ban] §a" + args[0] + " has been unbanned! ");
+						plugin.getConfig().set(BannedPlayer.getUniqueId() + ".Banned", false);
+						BannedPlayer.teleport(BannedPlayer.getWorld().getSpawnLocation());
+					}
+			}else {
+				sender.sendMessage("§c§l(!)§7 The player cannot be found!");
 			}
-		}else {
-			sender.sendMessage("§c§l(!)§7 The player cannot be found!");
 		}
 		return false;
 	}
