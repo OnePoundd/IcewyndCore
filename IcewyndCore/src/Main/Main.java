@@ -31,6 +31,7 @@ import Commands.PatchNotes;
 import Commands.Ping;
 import Commands.QuarterMaster;
 import Commands.Rules;
+import Commands.Stats;
 import Commands.TwitchBroadcast;
 import Commands.YoutubeBroadcast;
 import Crates.CrateEventListener;
@@ -98,6 +99,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("disposal").setExecutor(new Disposal());
 		getCommand("youtube").setExecutor(new YoutubeBroadcast());
 		getCommand("twitch").setExecutor(new TwitchBroadcast());
+		getCommand("fstats").setExecutor(new Stats());
 
 		//manager.addPermission(new Permission("spawner.give"));
 		//manager.addPermission(new Permission("crate.give"));

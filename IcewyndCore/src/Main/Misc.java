@@ -64,9 +64,15 @@ Main plugin = Main.getPlugin(Main.class);
 
 	@EventHandler
 	// SpongePatch
+	//Also tracks blocks placed for stats
 	public void onBlockBreakEvent(BlockBreakEvent event) {
-		if (event.getBlock().getType().equals(Material.SPONGE)) {
-			Player player = event.getPlayer();
+		Player player = event.getPlayer();
+		int blocksmined = plugin.getConfig().getInt(player.getUniqueId() + ".BlocksMined");
+		plugin.getConfig().set(player.getUniqueId() + ".BlocksMined", blocksmined + 1);
+		if (event.getBlock().getType().equals(Material.SUGAR_CANE_BLOCK)) {
+			int sugarcanemined = plugin.getConfig().getInt(player.getUniqueId() + ".SugarcaneMined");
+			plugin.getConfig().set(player.getUniqueId() + ".SugarcaneMined", sugarcanemined + 1);
+		}else if (event.getBlock().getType().equals(Material.SPONGE)) {
 			ItemStack Sponge = new ItemStack(Material.SPONGE, 1);
 			event.getBlock().setType(Material.AIR);
 			player.getInventory().addItem(Sponge);
@@ -104,6 +110,9 @@ Main plugin = Main.getPlugin(Main.class);
 			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
 			plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
 			plugin.getConfig().set(player.getUniqueId() + ".Banned", false);
+			plugin.getConfig().set(player.getUniqueId() + ".BlocksMined", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".SugarcaneMined", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
 			plugin.saveConfig();
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 			player.kickPlayer("BANNED PLAYER MESSAGE HERE");
