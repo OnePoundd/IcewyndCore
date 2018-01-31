@@ -39,6 +39,7 @@ public class ChatFormat implements Listener {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerDeathEvent(PlayerDeathEvent event) { // player death messages with faction relation color formatting
 		event.setDeathMessage("");
