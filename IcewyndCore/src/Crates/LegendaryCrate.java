@@ -166,6 +166,7 @@ public class LegendaryCrate {
 		return items.get(index);
 	}
 
+	@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
 	public static void load() {
 		// THIS IS JUST THE CRATE, NOT THE CONTENTS OF THE CRATE
 		LegendaryCrateItem = new ItemStack(Material.CHEST);

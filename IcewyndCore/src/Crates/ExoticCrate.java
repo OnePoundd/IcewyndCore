@@ -30,6 +30,7 @@ public class ExoticCrate {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void open(Player player) {
 		// CANCELS EVENT IF PLAYER DOES NOT HAVE 3 OPEN INVENTORY SLOTS
 		int count = 0;
@@ -165,6 +166,7 @@ public class ExoticCrate {
 		return items.get(index);
 	}
 
+	@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
 	public static void load() {
 		// THIS IS JUST THE CRATE, NOT THE CONTENTS OF THE CRATE
 		ExoticCrateItem = new ItemStack(Material.CHEST);
