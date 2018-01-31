@@ -24,6 +24,7 @@ public class Repair implements Listener {
 	}
 
 	// adds our own way of gaining repair xp
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public static void onAnvilRepair(InventoryClickEvent e) {
 		if (!e.isCancelled()) {
