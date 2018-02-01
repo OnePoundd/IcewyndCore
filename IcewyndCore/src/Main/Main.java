@@ -21,6 +21,7 @@ import Commands.ClearChat;
 import Commands.ClearInventory;
 import Commands.Disposal;
 import Commands.Enderchest;
+import Commands.Freecam;
 import Commands.Invsee;
 import Commands.Message;
 import Commands.MsgToggle;
@@ -100,6 +101,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("youtube").setExecutor(new YoutubeBroadcast());
 		getCommand("twitch").setExecutor(new TwitchBroadcast());
 		getCommand("fstats").setExecutor(new Stats());
+		getCommand("freecam").setExecutor(new Freecam());
 
 		//manager.addPermission(new Permission("spawner.give"));
 		//manager.addPermission(new Permission("crate.give"));
