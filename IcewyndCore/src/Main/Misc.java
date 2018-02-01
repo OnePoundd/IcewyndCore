@@ -31,16 +31,17 @@ import com.massivecraft.factions.entity.MPlayer;
 public class Misc implements Listener {
 Main plugin = Main.getPlugin(Main.class);
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	// GetBucketPickup
 	public void onBucketFill(PlayerBucketFillEvent e) {
-		if (e.getPlayer().getWorld().getName().equals("world_nether")) {
+		if (e.getPlayer().getWorld().getName().equals("world")) {
 			ItemStack GenBucket = new ItemStack(Material.LAVA_BUCKET, 1);
 			ItemMeta meta = GenBucket.getItemMeta();
 			meta.setDisplayName("§c§lGen Bucket");
 			meta.setLore(Arrays.asList("§7Automatically generates cobblestone walls."));
 			GenBucket.setItemMeta(meta);
-			e.getItemStack().setType(Material.AIR);
+			e.getPlayer().getInventory().getItemInHand().setAmount(e.getPlayer().getInventory().getItemInHand().getAmount() - 1);
 			e.getPlayer().getInventory().addItem(GenBucket);
 		}
 		e.setCancelled(true);
@@ -64,7 +65,7 @@ Main plugin = Main.getPlugin(Main.class);
 
 	@EventHandler
 	// SpongePatch
-	//Also tracks blocks placed for stats
+	// Also tracks blocks mined for stats
 	public void onBlockBreakEvent(BlockBreakEvent event) {
 		Player player = event.getPlayer();
 		int blocksmined = plugin.getConfig().getInt(player.getUniqueId() + ".BlocksMined");
@@ -113,6 +114,15 @@ Main plugin = Main.getPlugin(Main.class);
 			plugin.getConfig().set(player.getUniqueId() + ".BlocksMined", 0);
 			plugin.getConfig().set(player.getUniqueId() + ".SugarcaneMined", 0);
 			plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".BlocksPlaced", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".MCMMOLevelsGained", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".SkillsObtained", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".LuckyDropsFound", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".ChallengesCompleted", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".BooksEnchanted", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".CastleCaptures", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".SupplyDropsCaptured", 0);
 			plugin.saveConfig();
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 			player.kickPlayer("BANNED PLAYER MESSAGE HERE");

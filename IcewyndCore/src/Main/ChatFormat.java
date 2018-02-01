@@ -9,7 +9,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
-
 import com.massivecraft.factions.entity.MPlayer;
 
 public class ChatFormat implements Listener {

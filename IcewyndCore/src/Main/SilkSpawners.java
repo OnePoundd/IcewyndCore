@@ -16,9 +16,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 import net.md_5.bungee.api.ChatColor;
 
 public class SilkSpawners implements Listener {
+	Main plugin = Main.getPlugin(Main.class);
 
 	@EventHandler
 	public void onBlockPlaceEvent(BlockPlaceEvent event) {
+		Player player = event.getPlayer();
+		int blocksplaced = plugin.getConfig().getInt(player.getUniqueId() + ".BlocksPlaced");
+		plugin.getConfig().set(player.getUniqueId() + ".BlocksPlaced", blocksplaced + 1);
 		if (!event.isCancelled()) {
 			if (event.getBlock().getType().equals(Material.MOB_SPAWNER)) {
 				ItemStack item = event.getItemInHand();
