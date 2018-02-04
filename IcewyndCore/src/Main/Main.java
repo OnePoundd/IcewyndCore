@@ -1,5 +1,7 @@
 package Main;
 
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -13,6 +15,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
+
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import BanSystem.BanCommand;
@@ -118,7 +122,55 @@ public class Main extends JavaPlugin implements Listener {
 
 		// Uploader.triggerDatabaseAutoUpdate(); //Triggers the auto-updater for the
 		// factions web-database. Every 5 mins player and faction data will be updated.
-	}
+	
+	BukkitScheduler scheduler = getServer().getScheduler();
+	scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
+		@Override
+		public void run() {
+			Random rand = new Random();
+			int index = rand.nextInt(19) + 1;
+			if (index == 1) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Join our community Discord to chat with others and get suppport by clicking this message");
+			} else if (index == 2) {
+				Bukkit.broadcastMessage("§a§lINFO §7» There are many ways to gamble but Jackpot is the most fun! Participate using §a/jackpot§7.");
+			} else if (index == 3) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Need a faction? Type §a/f list§7 to see if any factions are recruiting.");
+			} else if (index == 4) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Need support? Send in a support ticket on the forums or join Discord for help.");
+			} else if (index == 5) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Upgrade your faction using §a/f upgrade§7 to gain perks and progress faster!");
+			} else if (index == 6) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Secure your account using §a/auth§7 and prevent hackers from accessing your account.");
+			} else if (index == 7) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Fishing is fun and fast! mcMMO is doubled in SafeZone and you may catch something valuable!");
+			} else if (index == 8) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Practice and war other factions and players by visiting the duel NPCs at spawn.");
+			} else if (index == 9) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Complete achievements to gain rewards and show off using §a/achievements§7.");
+			} else if (index == 10) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Quickly mine out your base using Shockwave pickaxes & Mining Drones!");
+			} else if (index == 11) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Spend coins at the Quartermaster in Safezone and buy kits, disguises, ranks and other goodies!");
+			} else if (index == 12) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Found a bug? Submit it on our forums for a potential reward.");
+			} else if (index == 13) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Summon bosses using Boss Eggs, battle them and be rewarded!");
+			} else if (index == 14) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Protect your faction from betrayal using faction regions and trusted permissions.");
+			} else if (index == 15) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Prestige your mcMMO once reaching 1000 in all skills. Use &a/prestige&7 for more info.");
+			} else if (index == 16) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Capture Castle for increased spawner rates, better sell prices and other rewards!");
+			} else if (index == 17) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Looking to test your cannons or need a place to build? Checkout our cannon server in the hub.");
+			} else if (index == 18) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Turn gunpowder into TNT using furnaces! Speed up this process using §a/f upgrade§7.");
+			} else if (index == 19) {
+				Bukkit.broadcastMessage("§a§lINFO §7» Fill cannons quickly and store virtual TNT using §a/f tnt§7.");
+			}
+		}
+	}, 0L, 2000L);
+}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (label.equalsIgnoreCase("crategive")) {
