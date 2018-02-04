@@ -159,7 +159,7 @@ public class Main extends JavaPlugin implements Listener {
 			} else if (index == 14) {
 				Bukkit.broadcastMessage("§a§lINFO §7» Protect your faction from betrayal using faction regions and trusted permissions.");
 			} else if (index == 15) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Prestige your mcMMO once reaching 1000 in all skills. Use &a/prestige&7 for more info.");
+				Bukkit.broadcastMessage("§a§lINFO §7» Prestige your mcMMO once reaching 1000 in all skills. Use §a/prestige§7 for more info.");
 			} else if (index == 16) {
 				Bukkit.broadcastMessage("§a§lINFO §7» Capture Castle for increased spawner rates, better sell prices and other rewards!");
 			} else if (index == 17) {
