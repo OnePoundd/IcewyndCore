@@ -17,7 +17,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Freecam") == true) {
 			plugin.getConfig().set(player.getUniqueId() + ".Freecam", false);
 			player.sendMessage("§e§l(!)§7 Freecam has been disabled!");
-			player.setGameMode(GameMode.SPECTATOR);
+			player.setGameMode(GameMode.SURVIVAL);
 		}else {
 			plugin.getConfig().set(player.getUniqueId() + ".Freecam", true);
 			player.sendMessage("§e§l(!)§7 Freecam has been enabled!");
