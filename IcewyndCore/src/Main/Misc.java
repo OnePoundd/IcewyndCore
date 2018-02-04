@@ -58,8 +58,6 @@ Main plugin = Main.getPlugin(Main.class);
 			sm.setOwner(event.getEntity().getPlayer().getName());
 			skull.setItemMeta(sm);
 			event.getDrops().add(skull);
-			event.getEntity().sendMessage(
-					"§4You were killed by " + event.getEntity().getKiller() + " §4and you lost your head!");
 		}
 	}
 
@@ -110,6 +108,7 @@ Main plugin = Main.getPlugin(Main.class);
 			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
 			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
 			plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
+			plugin.getConfig().set(player.getUniqueId() + ".Freecam", false);
 			plugin.getConfig().set(player.getUniqueId() + ".Banned", false);
 			plugin.getConfig().set(player.getUniqueId() + ".BlocksMined", 0);
 			plugin.getConfig().set(player.getUniqueId() + ".SugarcaneMined", 0);

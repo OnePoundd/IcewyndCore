@@ -23,6 +23,7 @@ import Commands.Disposal;
 import Commands.Enderchest;
 import Commands.Freecam;
 import Commands.Invsee;
+import Commands.Kits;
 import Commands.Message;
 import Commands.MsgToggle;
 import Commands.NightVision;
@@ -81,6 +82,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new SellWands(), this);
 		manager.registerEvents(new Repair(), this);
 		manager.registerEvents(new Milestones(), this);
+		manager.registerEvents(new Kits(), this);
 		
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -102,6 +104,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("twitch").setExecutor(new TwitchBroadcast());
 		getCommand("fstats").setExecutor(new Stats());
 		getCommand("freecam").setExecutor(new Freecam());
+		getCommand("kit").setExecutor(new Kits());
 
 		//manager.addPermission(new Permission("spawner.give"));
 		//manager.addPermission(new Permission("crate.give"));
