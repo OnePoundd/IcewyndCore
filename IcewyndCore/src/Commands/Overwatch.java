@@ -43,13 +43,13 @@ Main plugin = Main.getPlugin(Main.class);
 								player.getInventory().setItem(0, RandomTP);
 								player.getInventory().setItem(2, OpenInv);
 								player.getInventory().setItem(4, PInfo);
-								player.sendMessage("§5§l(!) §a§lOverwatch Enabled!");
+								player.sendMessage("§d§l(!) §a§lOverwatch Enabled!");
 						} else if (args[0].equalsIgnoreCase("off")) {
 							if (player.hasPermission("server.admin")) {
 								player.getInventory().clear();
 								Location spawn = player.getWorld().getSpawnLocation();
 								player.teleport(spawn);
-								player.sendMessage("§5§l(!) §c§lOverwatch Disabled!");
+								player.sendMessage("§d§l(!) §c§lOverwatch Disabled!");
 						
 							
 							}
