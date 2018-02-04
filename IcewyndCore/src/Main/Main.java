@@ -87,6 +87,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Repair(), this);
 		manager.registerEvents(new Milestones(), this);
 		manager.registerEvents(new Kits(), this);
+		manager.registerEvents(new Freecam(), this);
 		
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
