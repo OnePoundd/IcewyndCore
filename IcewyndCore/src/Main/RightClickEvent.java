@@ -27,14 +27,14 @@ public class RightClickEvent implements Listener {
 		if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			Player player = event.getPlayer();
 			if (player.getItemInHand().getType().equals(Material.TRAPPED_CHEST)) {
-				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nCrate of TNT"))
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nCrate of TNT")) {
 					player.getPlayer().getInventory().setItemInHand(new ItemStack(Material.AIR, 1));
 				player.getInventory().addItem(new ItemStack(Material.TNT, 2304));
 				event.setCancelled(true);
 
 				// Charged Creeper
 			} else if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
-				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§a§l§nCharged Creeper Egg"))
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§a§l§nCharged Creeper Egg")) {
 					player.getInventory().getItemInHand()
 							.setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 				player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0), EntityType.CREEPER);
@@ -61,39 +61,44 @@ public class RightClickEvent implements Listener {
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " witch");
 				}
 			} else if (player.getItemInHand().getType().equals(Material.EYE_OF_ENDER)) {
-				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§lRandom TP"));
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§lRandom TP")) {
 					event.setCancelled(true);
 				    ArrayList<Player> players = new ArrayList<Player>();
 				    for (Player e : Bukkit.getOnlinePlayers()) players.add(e);
 				    Player randomPlayer = players.get(new Random().nextInt(players.size()));
 				    player.teleport(randomPlayer.getLocation());
+							}
+						}
+					}
 				}
 			}
 		}
 	}
-	
 	//Quartermaster Item
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onDrink(PlayerItemConsumeEvent e) {
 		Player player = e.getPlayer();
 		if (player.getItemInHand().getType().equals(Material.POTION)) {
-			if (player.getItemInHand().getItemMeta().getDisplayName().equals("§4§l§nElixir of Fury"))
+			if (player.getItemInHand().getItemMeta().getDisplayName().equals("§4§l§nElixir of Fury")) {
 				;
 			e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3600, 1));
 			e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 3600, 1));
 			e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 9570, 1));
 			player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+			}
 		}
 	}
 	@EventHandler
 	public void onClick(PlayerInteractEntityEvent event) {
 		String IPlayer = event.getRightClicked().getName();
 		if (event.getPlayer().hasPermission("server.admin")) {
-			if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.BLAZE_ROD) 
+			if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.BLAZE_ROD) {
 				event.getPlayer().chat("/invsee " + IPlayer);
-			if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.BOOK) 
+			if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.BOOK) {
 				event.getPlayer().chat("/pinfo " + IPlayer);
+				}
+			}
 		}
 	}
 }
