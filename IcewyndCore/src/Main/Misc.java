@@ -136,7 +136,7 @@ Main plugin = Main.getPlugin(Main.class);
 		s.setMaxPlayers(0);
 	}
 	
-	// prevents hoppers picking up spawners
+	//Prevents hoppers picking up spawners
 	@EventHandler
 	public void onHopperPickupItemEvent(InventoryPickupItemEvent event) {
 		if ((event.getInventory().getType().equals(InventoryType.HOPPER))
@@ -145,21 +145,22 @@ Main plugin = Main.getPlugin(Main.class);
 		}
 	}
 	
-	// prevents players brewing invisibility potions
+	//Prevents players brewing invisibility potions
 	@EventHandler
 	public void onBrewEvent(BrewEvent event) {
 		if (event.getContents().contains(Material.FERMENTED_SPIDER_EYE)) {
 			event.setCancelled(true);
 		}
 	}
-
+	
+	//Bedrock exploit patch
 	@EventHandler
 	public void onExtend(BlockPistonExtendEvent event) {
 		if (event.getBlock().getLocation().getY() == 1) {
 			event.setCancelled(true);
 		}
 	}
-	// prevents players crafting hoppers
+	//Prevents players crafting hoppers
 	@EventHandler
 	public void onCraftEvent(PrepareItemCraftEvent event) {
 		try {
