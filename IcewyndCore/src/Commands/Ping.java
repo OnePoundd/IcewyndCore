@@ -20,8 +20,16 @@ Main plugin = Main.getPlugin(Main.class);
 					player.sendMessage("§aPing §7»§f " + ping);
 				} else if (args.length == 1) {
 					Player target = Bukkit.getPlayer(args[0]);
-					int targetPing = ((CraftPlayer) target).getHandle().ping;
-					player.sendMessage("§a" + target.getName() + "'s §aPing §7»§f " + targetPing);
+					if(!(target == null)) {
+						if (target.isOnline()) {
+							int targetPing = ((CraftPlayer) target).getHandle().ping;
+							player.sendMessage("§a" + target.getName() + "'s §aPing §7»§f " + targetPing);
+						}else if (!target.isOnline()) {
+							player.sendMessage("§cThat player is not online!");
+						}
+					}else {
+						player.sendMessage("§cThat player cannot be found or is offline.");
+					}
 				}
 			}
 		}
