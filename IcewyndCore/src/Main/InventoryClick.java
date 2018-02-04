@@ -2,10 +2,7 @@ package Main;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -88,13 +85,6 @@ public class InventoryClick implements Listener {
 			Item6.setItemMeta(Item6Meta);
 			player.sendMessage("§aPurchased 1 Elixir of Fury");
 			player.getInventory().addItem(new ItemStack(Item6));
-		} else if (item.getType() == Material.STAINED_GLASS_PANE)
-			;
-		{
-			ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
-			String command = "/q kits " + event.getWhoClicked().getName();
-			Bukkit.dispatchCommand(console, command);
-			Bukkit.broadcastMessage("q kits " + event.getWhoClicked().getName());
 		}
 		event.setCancelled(true);
 		player.closeInventory();
