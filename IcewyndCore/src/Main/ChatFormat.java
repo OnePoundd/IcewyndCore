@@ -23,6 +23,16 @@ public class ChatFormat implements Listener {
 				Bukkit.broadcastMessage("§7§l[§c§lADMIN§7§l]§b " + player.getName() + " §a» §f" + ChatMessage);
 			} else if (player.hasPermission("server.chatmod")) {
 				Bukkit.broadcastMessage("§f§l[§bChatMod§f§l]§a " + player.getName() + " §7» §f" + ChatMessage);
+			} else if (player.hasPermission("server.rank1")) {
+				Bukkit.broadcastMessage("§f[§2Fighter§f]§a " + player.getName() + " §7» §f" + ChatMessage);
+			} else if (player.hasPermission("server.rank2")) {
+				Bukkit.broadcastMessage("§f[§dWarlord§f]§a " + player.getName() + " §7» §f" + ChatMessage);
+			} else if (player.hasPermission("server.rank3")) {
+				Bukkit.broadcastMessage("§f[§cEmporer§f]§a " + player.getName() + " §7» §f" + ChatMessage);
+			} else if (player.hasPermission("server.rank4")) {
+				Bukkit.broadcastMessage("§f[§9§lGod§f]§a " + player.getName() + " §7» §f" + ChatMessage);
+			} else if (player.hasPermission("server.rank5")) {
+				Bukkit.broadcastMessage("§f[§b§lIcewynd§f]§a " + player.getName() + " §7» §f" + ChatMessage);
 			} else {
 				Bukkit.broadcastMessage("§8[§fMember§8]§7 " + player.getName() + " » §f" + ChatMessage);
 			}
