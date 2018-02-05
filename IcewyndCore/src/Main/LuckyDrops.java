@@ -27,7 +27,10 @@ public class LuckyDrops implements Listener {
 			Random rand = new Random();
 			int index = rand.nextInt(13) + 1;
 			int luckydrops = plugin.getConfig().getInt(p.getUniqueId() + ".LuckyDrops");
-			if (index == 1) {
+			//Inventory space check
+			if (p.getInventory().firstEmpty() == -1) {
+				return;
+			}else if (index == 1) {
 				Bukkit.broadcastMessage("§e§lLUCKYDROPS§8§l » §a§l" + event.getPlayer().getName() + " §b§lwas lucky and recieved a §5Witch Spawner §b§lfrom Mining!");
 				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spawnergive " + event.getPlayer().getName() + " witch");
 				plugin.getConfig().set(p.getUniqueId() + ".LuckyDrops", luckydrops + 1);
@@ -86,9 +89,11 @@ public class LuckyDrops implements Listener {
 				Item1Meta.setLore(lore1);
 				Item1.setItemMeta(Item1Meta);
 				event.getPlayer().getInventory().addItem(new ItemStack(Item1));
+				}
 			}
 		}
-	}
+	
+
 
 	@EventHandler
 	public void onFish(PlayerFishEvent event) {

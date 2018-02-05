@@ -23,6 +23,17 @@ import org.bukkit.potion.PotionEffectType;
 
 public class RightClickEvent implements Listener {
 
+	
+	/*
+	 //Inventory space check
+				if (player.getInventory().firstEmpty() == -1) {
+					player.sendMessage("§cYou do not have the required inventory space.");
+				}else {
+	 */
+	
+	
+	
+	
 	//Quartermaster Items
 	@SuppressWarnings("deprecation")
 	@EventHandler

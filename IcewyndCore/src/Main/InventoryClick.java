@@ -26,6 +26,11 @@ public class InventoryClick implements Listener {
 
 		Player player = (Player) event.getWhoClicked();
 		ItemStack item = event.getCurrentItem();
+		
+		//Inventory space check
+		if (player.getInventory().firstEmpty() == -1) {
+			player.sendMessage("§cYou do not have the required inventory space.");
+		}else {
 
 		if (item.getType() == Material.TRAPPED_CHEST) {
 			ItemStack Item1 = new ItemStack(Material.TRAPPED_CHEST, 1);
@@ -88,5 +93,6 @@ public class InventoryClick implements Listener {
 		}
 		event.setCancelled(true);
 		player.closeInventory();
+		}
 	}
 }
