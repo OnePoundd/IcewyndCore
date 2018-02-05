@@ -163,7 +163,7 @@ public class Main extends JavaPlugin implements Listener {
 			} else if (index == 16) {
 				Bukkit.broadcastMessage("§a§lINFO §7» Capture Castle for increased spawner rates, better sell prices and other rewards!");
 			} else if (index == 17) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Looking to test your cannons or need a place to build? Checkout our cannon server in the hub.");
+				Bukkit.broadcastMessage("§a§lINFO §7» Looking to test your cannons or need a place to build? Check out our cannon server in the hub.");
 			} else if (index == 18) {
 				Bukkit.broadcastMessage("§a§lINFO §7» Turn gunpowder into TNT using furnaces! Speed up this process using §a/f upgrade§7.");
 			} else if (index == 19) {

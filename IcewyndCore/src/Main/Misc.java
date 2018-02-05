@@ -89,19 +89,20 @@ Main plugin = Main.getPlugin(Main.class);
 		player.sendMessage("§b§lDISCORD: §fIcewynd.net/Discord");
 		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
 		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
+		
 		// TabList foot/header
-		PacketContainer packetContainer = Main.protocolManager
-				.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
-		packetContainer.getChatComponents()
-				.write(0,
-						WrappedChatComponent
-								.fromText(" §8§l§m-§7§l§m-§f§l[§f §lICEWYND §b§lNETWORK§f§l ]§7§l§m-§8§l§m-§r "))
-				.write(1, WrappedChatComponent.fromText("§c§lSITE:\n§c§lDISCORD:\nSTORE:"));
+		PacketContainer packetContainer = Main.protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
+		packetContainer.getChatComponents().write(0,WrappedChatComponent.fromText(" §8§l§m-§7§l§m-§f§l[§f ICEWYND §bNETWORK§f§l ]§7§l§m-§8§l§m-§r ")).write(1, WrappedChatComponent.fromText("§dStore, forums and more at Icewynd.net"));
 		ProtocolLibrary.getProtocolManager().sendServerPacket(player, packetContainer);
-		// Faction next to player name on Tablist
+		
+		// Faction tablist
 		MPlayer mplayer = MPlayer.get(player);
 		String faction = mplayer.getFactionName();
-		event.getPlayer().setPlayerListName("§c" + faction + " §f" + event.getPlayer().getName());
+		if (faction.equals("Wilderness")) {
+			event.getPlayer().setPlayerListName("§2WILDERNESS §f" + event.getPlayer().getName());
+		} else {
+			event.getPlayer().setPlayerListName(faction + "§f" + event.getPlayer().getName());
+		
 		// New Player Announce
 		if (!player.hasPlayedBefore()) {
 			Bukkit.broadcastMessage("§b§lWelcome to IcyWynd, §f§l" + player.getName() + "§b§l!");
@@ -125,7 +126,8 @@ Main plugin = Main.getPlugin(Main.class);
 			plugin.saveConfig();
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 			player.kickPlayer("BANNED PLAYER MESSAGE HERE");
-		}
+			}
+			}
 		}
 	}
 
