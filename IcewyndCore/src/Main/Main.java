@@ -25,6 +25,7 @@ import Commands.ClearChat;
 import Commands.ClearInventory;
 import Commands.Disposal;
 import Commands.Enderchest;
+import Commands.Event;
 import Commands.Freecam;
 import Commands.Invsee;
 import Commands.Kits;
@@ -110,6 +111,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("fstats").setExecutor(new Stats());
 		getCommand("freecam").setExecutor(new Freecam());
 		getCommand("kit").setExecutor(new Kits());
+		getCommand("event").setExecutor(new Event());
 
 		//manager.addPermission(new Permission("spawner.give"));
 		//manager.addPermission(new Permission("crate.give"));
