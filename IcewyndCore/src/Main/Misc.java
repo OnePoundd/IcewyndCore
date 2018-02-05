@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -52,20 +53,18 @@ Main plugin = Main.getPlugin(Main.class);
 	@EventHandler
 	// PlayerSkullDropOnDeath
 	public void ondeath(PlayerDeathEvent event) {
-		if ((event.getEntity().getKiller() instanceof Player)) {
-			Player player = event.getEntity().getPlayer();
-			if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
-				player.teleport(MConf.get().getWarp("jail"));
-			}else {
-				ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
-				SkullMeta sm = (SkullMeta) skull.getItemMeta();
-				sm.setDisplayName("§c§lSkull of §7§l" + event.getEntity().getPlayer().getName());
-				sm.setOwner(event.getEntity().getPlayer().getName());
-				skull.setItemMeta(sm);
-				event.getDrops().add(skull);
+		Player player = event.getEntity().getPlayer();
+		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
+			player.teleport(MConf.get().getWarp("jail"));
+		}else if ((event.getEntity().getKiller() instanceof Player)) {
+			ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+			SkullMeta sm = (SkullMeta) skull.getItemMeta();
+			sm.setDisplayName("§c§lSkull of §7§l" + event.getEntity().getPlayer().getName());
+			sm.setOwner(event.getEntity().getPlayer().getName());
+			skull.setItemMeta(sm);
+			event.getDrops().add(skull);
 			}
 		}
-	}
 
 	@EventHandler
 	// SpongePatch
@@ -164,10 +163,17 @@ Main plugin = Main.getPlugin(Main.class);
 	//Bedrock exploit patch
 	@EventHandler
 	public void onExtend(BlockPistonExtendEvent event) {
-		if (event.getBlock().getLocation().getY() == 1) {
-			event.setCancelled(true);
+		if (event.getBlock().getLocation().getBlockY() <=12) {
+			for (Block blocks : event.getBlocks()) {
+			if (blocks.getType().equals(Material.PISTON_BASE)) {
+				event.setCancelled(true);
+			} else if (blocks.getType().equals(Material.PISTON_STICKY_BASE)) {
+				event.setCancelled(true);
+				}
+			}
 		}
 	}
+	
 	//Prevents players crafting hoppers
 	@EventHandler
 	public void onCraftEvent(PrepareItemCraftEvent event) {
