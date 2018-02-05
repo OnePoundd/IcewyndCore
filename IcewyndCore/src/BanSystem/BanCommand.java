@@ -23,7 +23,7 @@ public class BanCommand implements CommandExecutor {
 						if (args.length == 3) {
 							Bukkit.broadcastMessage("§c§l[Ban] §7" + args[0] + " has been banned for " + args[1] );
 							plugin.getConfig().set(BannedPlayer.getUniqueId() + ".Banned", true);
-							BannedPlayer.sendMessage("§cYou've been banned for: " + args[2] + ". §bBans are handled differently here. Please read the holograms for more information.");
+							BannedPlayer.sendMessage("§c§lATTENTION! §eYou've been banned for " + args[2] + ". §eBans are handled differently here. Please read the holograms for more information.");
 							BannedPlayer.getInventory().clear();
 							BannedPlayer.setLevel(0);
 							if(MConf.get().getWarp("jail") != null) {
