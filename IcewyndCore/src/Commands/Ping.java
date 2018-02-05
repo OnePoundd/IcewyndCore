@@ -18,6 +18,7 @@ Main plugin = Main.getPlugin(Main.class);
 				if (args.length == 0) {
 					int ping = ((CraftPlayer) player).getHandle().ping;
 					player.sendMessage("§aPing §7»§f " + ping);
+					}
 				} else if (args.length == 1) {
 					Player target = Bukkit.getPlayer(args[0]);
 					if(!(target == null)) {
@@ -32,7 +33,6 @@ Main plugin = Main.getPlugin(Main.class);
 					}
 				}
 			}
-		}
 		return false;
 	}
 }
