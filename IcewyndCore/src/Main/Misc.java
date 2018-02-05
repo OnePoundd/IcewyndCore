@@ -26,6 +26,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import com.massivecraft.factions.entity.MConf;
 import com.massivecraft.factions.entity.MPlayer;
 
 public class Misc implements Listener {
@@ -52,12 +53,17 @@ Main plugin = Main.getPlugin(Main.class);
 	// PlayerSkullDropOnDeath
 	public void ondeath(PlayerDeathEvent event) {
 		if ((event.getEntity().getKiller() instanceof Player)) {
-			ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
-			SkullMeta sm = (SkullMeta) skull.getItemMeta();
-			sm.setDisplayName("§c§lSkull of §7§l" + event.getEntity().getPlayer().getName());
-			sm.setOwner(event.getEntity().getPlayer().getName());
-			skull.setItemMeta(sm);
-			event.getDrops().add(skull);
+			Player player = event.getEntity().getPlayer();
+			if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
+				player.teleport(MConf.get().getWarp("jail"));
+			}else {
+				ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+				SkullMeta sm = (SkullMeta) skull.getItemMeta();
+				sm.setDisplayName("§c§lSkull of §7§l" + event.getEntity().getPlayer().getName());
+				sm.setOwner(event.getEntity().getPlayer().getName());
+				skull.setItemMeta(sm);
+				event.getDrops().add(skull);
+			}
 		}
 	}
 
@@ -89,6 +95,8 @@ Main plugin = Main.getPlugin(Main.class);
 		player.sendMessage("§b§lDISCORD: §fIcewynd.net/Discord");
 		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
 		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
+		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
+			player.teleport(MConf.get().getWarp("jail"));
 		
 		// TabList foot/header
 		PacketContainer packetContainer = Main.protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
@@ -124,9 +132,7 @@ Main plugin = Main.getPlugin(Main.class);
 			plugin.getConfig().set(player.getUniqueId() + ".CastleCaptures", 0);
 			plugin.getConfig().set(player.getUniqueId() + ".SupplyDropsCaptured", 0);
 			plugin.saveConfig();
-		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
-			player.kickPlayer("BANNED PLAYER MESSAGE HERE");
-			}
+				}
 			}
 		}
 	}
