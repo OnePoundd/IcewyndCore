@@ -30,6 +30,8 @@ public class InventoryClick implements Listener {
 		//Inventory space check
 		if (player.getInventory().firstEmpty() == -1) {
 			player.sendMessage("§cYou do not have the required inventory space.");
+			event.setCancelled(true);
+			player.closeInventory();
 		}else {
 
 		if (item.getType() == Material.TRAPPED_CHEST) {
