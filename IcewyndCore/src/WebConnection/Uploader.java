@@ -18,7 +18,7 @@ public class Uploader {
 	 * This data will include the updated information for factions and players.
 	 */
 	
-	private static Plugin plugin = Main.instance;
+	static Main plugin = Main.getPlugin(Main.class);
 	
 	public static void triggerDatabaseAutoUpdate() {
         BukkitScheduler scheduler = plugin.getServer().getScheduler();

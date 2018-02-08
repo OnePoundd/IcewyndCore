@@ -49,7 +49,7 @@ import com.massivecraft.massivecore.ps.PS;
 import Main.Main;
 
 public class Enchantments implements Listener {
-
+	Main plugin = Main.getPlugin(Main.class);
 	// Shockwave, Extractor
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -94,7 +94,7 @@ public class Enchantments implements Listener {
 						} else if (s.equals("§5Harvester")) {
 							Material m = event.getBlock().getType();
 							if (m.equals(Material.SUGAR_CANE_BLOCK)) {
-								Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+								Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 									public void run() {
 										for (Entity entity : event.getPlayer().getNearbyEntities(6, 2, 6)) {
 											if (entity.getType().equals(EntityType.DROPPED_ITEM)) {
@@ -174,7 +174,7 @@ public class Enchantments implements Listener {
 							Random rand = new Random();
 							int index = rand.nextInt(5) + 1;
 							if (index == 5) {
-								Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+								Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 									public void run() {
 										Location damagedloc = damaged.getLocation();
 										Vector direction = damagedloc.getDirection().normalize();
@@ -217,7 +217,7 @@ public class Enchantments implements Listener {
 						int num = rand.nextInt(25) + 1;
 						if (num == 25) {
 							damaged.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 5 * 20, 1));
-							Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+							Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 								public void run() {
 									updateEnchantBuffs(damaged);
 								}
@@ -340,7 +340,7 @@ public class Enchantments implements Listener {
 	public void onInventoryClick(InventoryClickEvent event) {
 		Inventory inventory = event.getClickedInventory();
 		if (inventory != null && inventory.getType().equals(InventoryType.PLAYER)) {
-			Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+			Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 				public void run() {
 					updateEnchantBuffs(Bukkit.getPlayer(event.getWhoClicked().getName()));
 				}
@@ -363,7 +363,7 @@ public class Enchantments implements Listener {
 					|| m.equals(Material.DIAMOND_CHESTPLATE) || m.equals(Material.DIAMOND_LEGGINGS)
 					|| m.equals(Material.DIAMOND_HELMET)) {
 				// one tick later because it won't detect new armor piece
-				Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+				Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 					public void run() {
 						updateEnchantBuffs(event.getPlayer());
 					}
@@ -393,7 +393,7 @@ public class Enchantments implements Listener {
 
 	public void triggerInsightUpdate(Player player) {
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-		scheduler.scheduleSyncRepeatingTask(Main.instance, new Runnable() {
+		scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {
 			@Override
 			public void run() {
 				List<Player> players = getNearbyEnemies(player, 20, 50, 20);

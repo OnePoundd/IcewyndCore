@@ -28,7 +28,7 @@ public class SilkSpawners implements Listener {
 				ItemStack item = event.getItemInHand();
 				if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
 					String name = item.getItemMeta().getDisplayName();
-					Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+					Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 						public void run() {
 							if (!event.isCancelled()) {
 								BlockState blockState = event.getBlock().getState();

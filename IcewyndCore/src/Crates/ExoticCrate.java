@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import Main.Main;
 
 public class ExoticCrate {
-
+	static Main plugin = Main.getPlugin(Main.class);
 	static ItemStack ExoticCrateItem;
 	static List<ItemStack> items = new ArrayList<ItemStack>();
 
@@ -47,43 +47,43 @@ public class ExoticCrate {
 			player.openInventory(newInventory(false));
 			// AFTER 3 SECONDS, THE INVENTORY WILL "SHUFFLE"
 			Inventory ExoticCrateShuffle = Bukkit.createInventory(null, 27, "§eShuffling");
-			Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+			Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 				public void run() {
 					for (int i = 0; i < 27; i++) {
 						ExoticCrateShuffle.setItem(i, getRandomGlass());
 					}
 					player.openInventory(ExoticCrateShuffle);
-					Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+					Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 						public void run() {
 							for (int i = 0; i < 27; i++) {
 								ExoticCrateShuffle.setItem(i, getRandomGlass());
 							}
 							player.openInventory(ExoticCrateShuffle);
-							Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+							Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 								public void run() {
 									for (int i = 0; i < 27; i++) {
 										ExoticCrateShuffle.setItem(i, getRandomGlass());
 									}
 									player.openInventory(ExoticCrateShuffle);
-									Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+									Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 										public void run() {
 											for (int i = 0; i < 27; i++) {
 												ExoticCrateShuffle.setItem(i, getRandomGlass());
 											}
 											player.openInventory(ExoticCrateShuffle);
-											Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+											Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 												public void run() {
 													for (int i = 0; i < 27; i++) {
 														ExoticCrateShuffle.setItem(i, getRandomGlass());
 													}
 													player.openInventory(ExoticCrateShuffle);
-													Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+													Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 														public void run() {
 															for (int i = 0; i < 27; i++) {
 																ExoticCrateShuffle.setItem(i, getRandomGlass());
 															}
 															player.openInventory(ExoticCrateShuffle);
-															Bukkit.getScheduler().runTaskLater(Main.instance,
+															Bukkit.getScheduler().runTaskLater(plugin,
 																	new Runnable() {
 																		public void run() {
 																			for (int i = 0; i < 27; i++) {
@@ -92,7 +92,7 @@ public class ExoticCrate {
 																			}
 																			player.openInventory(ExoticCrateShuffle);
 																			Bukkit.getScheduler().runTaskLater(
-																					Main.instance, new Runnable() {
+																					plugin, new Runnable() {
 																						public void run() {
 																							player.openInventory(
 																									newInventory(true));

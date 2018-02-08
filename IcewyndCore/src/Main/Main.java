@@ -52,21 +52,12 @@ import McMMO.Milestones;
 import McMMO.Repair;
 
 public class Main extends JavaPlugin implements Listener {
-	FileConfiguration config = getConfig();
-	public Main plugin;
-	
-	public static Main getPlugin() {
-		return Main.getPlugin(Main.class);
-	}
-
-	public static Plugin instance;
 	public static ProtocolManager protocolManager;
 	
 	// public static List<NPC> npcs;
 
 	public void onEnable() {
 		saveDefaultConfig();
-		instance = this;
 		PluginManager manager = Bukkit.getServer().getPluginManager();
 		Main.protocolManager = ProtocolLibrary.getProtocolManager();
 		manager.registerEvents(this, this);

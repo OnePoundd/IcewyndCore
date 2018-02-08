@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 import Main.Main;
 
 public class NightVision implements CommandExecutor{
-Main plugin = Main.getPlugin(Main.class);
+	Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("nightvision")) {
@@ -22,9 +22,9 @@ Main plugin = Main.getPlugin(Main.class);
 				}else {
 					player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 999999, 1));
 					player.sendMessage("§aNightVision Enabled!");
-					}
 				}
 			}
+		}
 		return false;
-}
+	}
 }

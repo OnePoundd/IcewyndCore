@@ -16,7 +16,7 @@ import com.massivecraft.factions.entity.MPlayer;
 import Main.Main;
 
 public class CrateEventListener implements Listener {
-
+	Main plugin = Main.getPlugin(Main.class);
 	// CRATE OPENING
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -159,7 +159,7 @@ public class CrateEventListener implements Listener {
 						ItemStack rewardedItem = ExoticCrate.getRandomItem();
 						event.getInventory().setItem(event.getSlot(), rewardedItem);
 						event.getWhoClicked().getInventory().addItem(rewardedItem);
-						Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+						Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 							public void run() {
 								event.getWhoClicked().closeInventory();
 							}

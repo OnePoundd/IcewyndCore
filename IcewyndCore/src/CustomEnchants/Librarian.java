@@ -21,7 +21,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import Main.Main;
 
 public class Librarian implements Listener {
-
+	Main plugin = Main.getPlugin(Main.class);
 	public static void openInventory(Player player) {
 		Inventory anvil = Bukkit.createInventory(null, 27, "§c§l>> §8Librarian §c§l<<");
 
@@ -115,7 +115,7 @@ public class Librarian implements Listener {
 			} else {
 				// Waits one tick so that it can get the new item in the slot 10/12 if there is
 				// one
-				Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+				Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 					public void run() {
 						ItemStack itemToRepair = event.getInventory().getContents()[10];
 						ItemStack itemToAdd = event.getInventory().getContents()[12];
@@ -308,7 +308,7 @@ public class Librarian implements Listener {
 
 	@EventHandler
 	public void onAnvilPrepare(PrepareAnvilEvent event) {
-		Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+		Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 			public void run() {
 				AnvilInventory anvil = event.getInventory();
 				for (ItemStack item : anvil.getContents()) {

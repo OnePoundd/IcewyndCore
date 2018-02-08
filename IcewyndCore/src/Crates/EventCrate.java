@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import Main.Main;
 
 public class EventCrate {
-
+	static Main plugin = Main.getPlugin(Main.class);
 	static ItemStack EventCrateItem;
 	static List<ItemStack> items = new ArrayList<ItemStack>();
 
@@ -47,43 +47,43 @@ public class EventCrate {
 			player.openInventory(newInventory(false));
 			// AFTER 3 SECONDS, THE INVENTORY WILL "SHUFFLE"
 			Inventory EventCrateShuffle = Bukkit.createInventory(null, 27, "§3Shuffling");
-			Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+			Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 				public void run() {
 					for (int i = 0; i < 27; i++) {
 						EventCrateShuffle.setItem(i, getRandomGlass());
 					}
 					player.openInventory(EventCrateShuffle);
-					Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+					Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 						public void run() {
 							for (int i = 0; i < 27; i++) {
 								EventCrateShuffle.setItem(i, getRandomGlass());
 							}
 							player.openInventory(EventCrateShuffle);
-							Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+							Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 								public void run() {
 									for (int i = 0; i < 27; i++) {
 										EventCrateShuffle.setItem(i, getRandomGlass());
 									}
 									player.openInventory(EventCrateShuffle);
-									Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+									Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 										public void run() {
 											for (int i = 0; i < 27; i++) {
 												EventCrateShuffle.setItem(i, getRandomGlass());
 											}
 											player.openInventory(EventCrateShuffle);
-											Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+											Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 												public void run() {
 													for (int i = 0; i < 27; i++) {
 														EventCrateShuffle.setItem(i, getRandomGlass());
 													}
 													player.openInventory(EventCrateShuffle);
-													Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+													Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 														public void run() {
 															for (int i = 0; i < 27; i++) {
 																EventCrateShuffle.setItem(i, getRandomGlass());
 															}
 															player.openInventory(EventCrateShuffle);
-															Bukkit.getScheduler().runTaskLater(Main.instance,
+															Bukkit.getScheduler().runTaskLater(plugin,
 																	new Runnable() {
 																		public void run() {
 																			for (int i = 0; i < 27; i++) {
@@ -92,7 +92,7 @@ public class EventCrate {
 																			}
 																			player.openInventory(EventCrateShuffle);
 																			Bukkit.getScheduler().runTaskLater(
-																					Main.instance, new Runnable() {
+																					plugin, new Runnable() {
 																						public void run() {
 																							player.openInventory(
 																									newInventory(true));

@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 public class CreeperCountdown implements Listener {
+	Main plugin = Main.getPlugin(Main.class);
 
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -21,7 +22,7 @@ public class CreeperCountdown implements Listener {
 					event.setCancelled(true);
 					creeper.setCustomName("§a§l***§b§l3.0§a§l***");
 					final int task;
-					task = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
+					task = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 						double timer = 3.0;
 
 						@Override
@@ -44,7 +45,7 @@ public class CreeperCountdown implements Listener {
 						}
 					}, 0L, 2);
 
-					Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
+					Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 						public void run() {
 							Bukkit.getScheduler().cancelTask(task);
 						}
