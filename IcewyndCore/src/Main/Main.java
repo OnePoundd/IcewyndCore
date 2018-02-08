@@ -1,5 +1,7 @@
 package Main;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
@@ -8,6 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
@@ -38,6 +41,7 @@ import Commands.PatchNotes;
 import Commands.Ping;
 import Commands.QuarterMaster;
 import Commands.Rules;
+import Commands.Sell;
 import Commands.Stats;
 import Commands.TwitchBroadcast;
 import Commands.YoutubeBroadcast;
@@ -53,6 +57,7 @@ import McMMO.Repair;
 
 public class Main extends JavaPlugin implements Listener {
 	public static ProtocolManager protocolManager;
+	public static FileConfiguration pricesConfig;
 	
 	// public static List<NPC> npcs;
 
@@ -103,6 +108,8 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("freecam").setExecutor(new Freecam());
 		getCommand("kit").setExecutor(new Kits());
 		getCommand("event").setExecutor(new Event());
+		getCommand("sell").setExecutor(new Sell());
+
 
 		//manager.addPermission(new Permission("spawner.give"));
 		//manager.addPermission(new Permission("crate.give"));
@@ -164,8 +171,12 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 	}, 0L, 2000L);
+	
+	File customYml = new File(getDataFolder()+"/prices.yml");
+	pricesConfig = YamlConfiguration.loadConfiguration(customYml);	
+	saveResource("prices.yml", false);
 }
-
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (label.equalsIgnoreCase("crategive")) {
 			if (!sender.hasPermission("crate.give")) {
