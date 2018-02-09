@@ -32,11 +32,9 @@
   Buy: 200
 19:
   Name: Sponge
-  Sell: 100
   Buy: 200
 20:
   Name: Glass
-  Sell: 100
   Buy: 200
 22:
   Name: Lapis Block
@@ -44,7 +42,6 @@
   Buy: 200
 23:
   Name: Dispenser
-  Sell: 100
   Buy: 200
 24:
   Name: Sandstone
@@ -52,19 +49,15 @@
   Buy: 200
 29:
   Name: Sticky Piston
-  Sell: 100
   Buy: 200
 30:
   Name: Cobweb
-  Sell: 100
   Buy: 200
 33:
   Name: Piston
-  Sell: 100
   Buy: 200
 35:
   Name: Wool
-  Sell: 100
   Buy: 200
 41:
   Name: Gold Block
@@ -80,7 +73,6 @@
   Buy: 200
 46:
   Name: TNT
-  Sell: 100
   Buy: 200
 47:
   Name: Bookshelf
@@ -92,11 +84,9 @@
   Buy: 200
 49:
   Name: Obsidian
-  Sell: 100
   Buy: 200
 54:
   Name: Chest
-  Sell: 100
   Buy: 200
 57:
   Name: Diamond Block
@@ -104,27 +94,24 @@
   Buy: 200
 58:
   Name: Crafting Table
-  Sell: 100
   Buy: 200
-60:
+61:
   Name: Furnace
-  Sell: 100
   Buy: 200
 69:
   Name: Lever
-  Sell: 100
   Buy: 200
 76:
   Name: Redstone Torch
-  Sell: 100
   Buy: 200
 77:
   Name: Stone Button
-  Sell: 100
+  Buy: 200
+79:
+  Name: Ice
   Buy: 200
 80:
   Name: Snow Block
-  Sell: 100
   Buy: 200
 81:
   Name: Cactus
@@ -132,11 +119,9 @@
   Buy: 200
 82:
   Name: Clay
-  Sell: 100
   Buy: 200
 86:
   Name: Pumpkin
-  Sell: 100
   Buy: 200
 87:
   Name: Netherrack
@@ -150,17 +135,8 @@
   Name: Glowstone
   Sell: 100
   Buy: 200
-91:
-  Name: Jack O Lantern
-  Sell: 100
-  Buy: 200
-95:
-  Name: Stained Glass
-  Sell: 100
-  Buy: 200
 96:
   Name: Wooden Trap Door
-  Sell: 100
   Buy: 200
 98:
   Name: Stone Bricks
@@ -188,15 +164,12 @@
   Buy: 200
 116:
   Name: Enchantment Table
-  Sell: 100
   Buy: 200
 117:
   Name: Brewing Stand
-  Sell: 100
   Buy: 200
 118:
   Name: Cauldron
-  Sell: 100
   Buy: 200
 121:
   Name: End Stone
@@ -204,11 +177,9 @@
   Buy: 200
 123:
   Name: Redstone Lamp
-  Sell: 100
   Buy: 200
 130:
   Name: Ender Chest
-  Sell: 100
   Buy: 200
 133:
   Name: Emerald Block
@@ -216,19 +187,12 @@
   Buy: 200
 138:
   Name: Beacon
-  Sell: 100
   Buy: 200
 145:
   Name: Anvil
-  Sell: 100
   Buy: 200
 146:
   Name: Trapped Chest
-  Sell: 100
-  Buy: 200
-149:
-  Name: Redstone Comparator
-  Sell: 100
   Buy: 200
 152:
   Name: Redstone Block
@@ -236,7 +200,6 @@
   Buy: 200
 154:
   Name: Hopper
-  Sell: 100
   Buy: 200
 155:
   Name: Quartz Block
@@ -244,7 +207,6 @@
   Buy: 200
 158:
   Name: Dropper
-  Sell: 100
   Buy: 200
 159:
   Name: Stained Clay
@@ -264,11 +226,9 @@
   Buy: 200
 169:
   Name: Sea Lantern
-  Sell: 100
   Buy: 200
 170:
   Name: Hay Bale
-  Sell: 100
   Buy: 200
 172:
   Name: Hardened Clay
@@ -280,19 +240,13 @@
   Buy: 200
 174:
   Name: Packed Ice
-  Sell: 100
   Buy: 200
 179:
   Name: Red Sandstone
   Sell: 100
   Buy: 200
-212:
-  Name: Ice
-  Sell: 100
-  Buy: 200
 259:
   Name: Flint and Steel
-  Sell: 100
   Buy: 200
 260:
   Name: Apple
@@ -300,7 +254,6 @@
   Buy: 200
 261:
   Name: Bow
-  Sell: 100
   Buy: 200
 262:
   Name: Arrow
@@ -324,19 +277,15 @@
   Buy: 200
 276:
   Name: Diamond Sword
-  Sell: 100
   Buy: 200
 277:
   Name: Diamond Shovel
-  Sell: 100
   Buy: 200
 278:
   Name: Diamond Pickaxe
-  Sell: 100
   Buy: 200
 279:
   Name: Diamond Axe
-  Sell: 100
   Buy: 200
 280:
   Name: Stick
@@ -356,7 +305,6 @@
   Buy: 200
 293:
   Name: Diamond Hoe
-  Sell: 100
   Buy: 200
 295:
   Name: Wheat Seeds
@@ -372,19 +320,15 @@
   Buy: 200
 310:
   Name: Diamond Helmet
-  Sell: 100
   Buy: 200
 311:
   Name: Diamond Chestplate
-  Sell: 100
   Buy: 200
 312:
   Name: Diamond Leggings
-  Sell: 100
   Buy: 200
 313:
   Name: Diamond Boots
-  Sell: 100
   Buy: 200
 319:
   Name: Raw Porkchop
@@ -396,19 +340,15 @@
   Buy: 200
 323:
   Name: Sign
-  Sell: 100
   Buy: 200
 324:
   Name: Oak Door
-  Sell: 100
   Buy: 200
 325:
   Name: Empty Bucket
-  Sell: 100
   Buy: 200
 326:
   Name: Water Bucket
-  Sell: 100
   Buy: 200
 331:
   Name: Redstone
@@ -420,6 +360,9 @@
   Buy: 200
 335:
   Name: Milk Bucket
+  Buy: 200
+336:
+  Name: Brick
   Sell: 100
   Buy: 200
 338:
@@ -428,14 +371,13 @@
   Buy: 200
 340:
   Name: Book
-  Sell: 100
   Buy: 200
 341:
   Name: Slimeball
   Sell: 100
   Buy: 200
-344:
-  Name: Egg
+346:
+  Name: Fishing Rod
   Sell: 100
   Buy: 200
 348:
@@ -452,7 +394,6 @@
   Buy: 200
 351:
   Name: Dye
-  Sell: 100
   Buy: 200
 352:
   Name: Bone
@@ -464,7 +405,6 @@
   Buy: 200
 356:
   Name: Redstone Repeater
-  Sell: 100
   Buy: 200
 360:
   Name: Melon
@@ -544,7 +484,6 @@
   Buy: 200
 380:
   Name: Cauldron
-  Sell: 100
   Buy: 200
 382:
   Name: Glistering Melon
@@ -569,6 +508,9 @@
 396:
   Name: Golden Carrot
   Sell: 100
+  Buy: 200
+404:
+  Name: Comparator
   Buy: 200
 406:
   Name: Nether Quartz

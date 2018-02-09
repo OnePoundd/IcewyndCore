@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -42,6 +43,7 @@ import Commands.Ping;
 import Commands.QuarterMaster;
 import Commands.Rules;
 import Commands.Sell;
+import Commands.Shop;
 import Commands.Stats;
 import Commands.TwitchBroadcast;
 import Commands.YoutubeBroadcast;
@@ -54,10 +56,12 @@ import CustomEnchants.Enchantments;
 import CustomEnchants.Librarian;
 import McMMO.Milestones;
 import McMMO.Repair;
+import net.milkbowl.vault.economy.Economy;
 
 public class Main extends JavaPlugin implements Listener {
 	public static ProtocolManager protocolManager;
 	public static FileConfiguration pricesConfig;
+	public static Economy econ;
 	
 	// public static List<NPC> npcs;
 
@@ -85,6 +89,8 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Milestones(), this);
 		manager.registerEvents(new Kits(), this);
 		manager.registerEvents(new Freecam(), this);
+		manager.registerEvents(new Sell(), this);
+		manager.registerEvents(new Shop(), this);
 		
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -109,6 +115,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("kit").setExecutor(new Kits());
 		getCommand("event").setExecutor(new Event());
 		getCommand("sell").setExecutor(new Sell());
+		getCommand("shop").setExecutor(new Shop());
 
 
 		//manager.addPermission(new Permission("spawner.give"));
@@ -172,9 +179,16 @@ public class Main extends JavaPlugin implements Listener {
 		}
 	}, 0L, 2000L);
 	
+	// creates default prices.yml file if one doesn't already exist
 	File customYml = new File(getDataFolder()+"/prices.yml");
 	pricesConfig = YamlConfiguration.loadConfiguration(customYml);	
 	saveResource("prices.yml", false);
+	
+	// gets the economy
+    RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+    if (rsp != null) {
+        econ = rsp.getProvider();
+    }
 }
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
