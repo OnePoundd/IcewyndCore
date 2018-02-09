@@ -91,6 +91,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Freecam(), this);
 		manager.registerEvents(new Sell(), this);
 		manager.registerEvents(new Shop(), this);
+		manager.registerEvents(new DisguiseBuffs(), this);
 		
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());

@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="C:/Jars/Spigot.jar"/>
 	<classpathentry kind="lib" path="C:/Jars/mcMMO.jar"/>
 	<classpathentry kind="lib" path="C:/Jars/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Jars/LibsDisguises.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -33,6 +33,7 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -47,9 +48,21 @@ import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.ps.PS;
 
 import Main.Main;
+import me.libraryaddict.disguise.DisguiseAPI;
+import me.libraryaddict.disguise.disguisetypes.Disguise;
+import me.libraryaddict.disguise.disguisetypes.DisguiseType;
+import me.libraryaddict.disguise.events.DisguiseEvent;
+import me.libraryaddict.disguise.events.UndisguiseEvent;
 
 public class Enchantments implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
+	
+	@EventHandler //TO PREVENT DISGUISE BUFF DUPLICATION
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		updateEnchantBuffs(event.getPlayer());
+	}
+	
+	
 	// Shockwave, Extractor
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -279,7 +292,7 @@ public class Enchantments implements Listener {
 		}
 	}
 
-	// Runner, Jumper, Inferno, Vision
+	// Runner, Jumper, Inferno, Vision, ARMOR BUFFS, DISGUISE BUFFS
 	public void updateEnchantBuffs(Player player) {
 		// removes unlimited potion effects
 		Collection<PotionEffect> potions = player.getActivePotionEffects();
@@ -328,10 +341,51 @@ public class Enchantments implements Listener {
 				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 2));
 				player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 9999999, 1));
 			}
-		} catch (NullPointerException e) {
+		} catch (NullPointerException e) {}
+		
+		// apply disguise unlimited potion effects
+		if(DisguiseAPI.isDisguised(player)) {
+			Disguise disguise = DisguiseAPI.getDisguise(player);
+			if(disguise.getType().equals(DisguiseType.ENDERMAN)) {
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 1));
+			}else if(disguise.getType().equals(DisguiseType.HORSE)) {
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 1));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 9999999, 1));
+			}else if(disguise.getType().equals(DisguiseType.CHICKEN)) {
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 1));
+			}else if(disguise.getType().equals(DisguiseType.BLAZE)) {
+				player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 9999999, 0));
+			}else if(disguise.getType().equals(DisguiseType.MAGMA_CUBE)) {
+				player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 9999999, 0));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 9999999, 2));
+			}else if(disguise.getType().equals(DisguiseType.SLIME)) {
+				player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 9999999, 2));
+			}else if(disguise.getType().equals(DisguiseType.SQUID)) {
+				player.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 9999999, 0));
+			}
 		}
-
 	}
+	
+	@EventHandler
+	public void onPlayerDisguise(DisguiseEvent event) {
+		if(event.getEntity() instanceof Player) {
+			Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+				public void run() {
+					updateEnchantBuffs((Player)event.getEntity());
+				}
+			}, 3);
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerDisguise(UndisguiseEvent event) {
+		Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+			public void run() {
+				updateEnchantBuffs((Player)event.getEntity());
+			}
+		}, 3);
+	}
+	
 
 	/**
 	 * Necceccities for unlimited potion effects

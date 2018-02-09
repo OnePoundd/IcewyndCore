@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -12,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
@@ -31,7 +33,7 @@ import com.massivecraft.factions.entity.MConf;
 import com.massivecraft.factions.entity.MPlayer;
 
 public class Misc implements Listener {
-Main plugin = Main.getPlugin(Main.class);
+	Main plugin = Main.getPlugin(Main.class);
 
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -40,10 +42,11 @@ Main plugin = Main.getPlugin(Main.class);
 		if (e.getPlayer().getWorld().getName().equals("world")) {
 			ItemStack GenBucket = new ItemStack(Material.LAVA_BUCKET, 1);
 			ItemMeta meta = GenBucket.getItemMeta();
-			meta.setDisplayName("Â§cÂ§lGen Bucket");
-			meta.setLore(Arrays.asList("Â§7Automatically generates cobblestone walls."));
+			meta.setDisplayName("§c§lGen Bucket");
+			meta.setLore(Arrays.asList("§7Automatically generates cobblestone walls."));
 			GenBucket.setItemMeta(meta);
-			e.getPlayer().getInventory().getItemInHand().setAmount(e.getPlayer().getInventory().getItemInHand().getAmount() - 1);
+			e.getPlayer().getInventory().getItemInHand()
+					.setAmount(e.getPlayer().getInventory().getItemInHand().getAmount() - 1);
 			e.getPlayer().getInventory().addItem(GenBucket);
 		}
 		e.setCancelled(true);
@@ -56,15 +59,15 @@ Main plugin = Main.getPlugin(Main.class);
 		Player player = event.getEntity().getPlayer();
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 			player.teleport(MConf.get().getWarp("jail"));
-		}else if ((event.getEntity().getKiller() instanceof Player)) {
+		} else if ((event.getEntity().getKiller() instanceof Player)) {
 			ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
 			SkullMeta sm = (SkullMeta) skull.getItemMeta();
-			sm.setDisplayName("Â§cÂ§lSkull of Â§7Â§l" + event.getEntity().getPlayer().getName());
+			sm.setDisplayName("§c§lSkull of §7§l" + event.getEntity().getPlayer().getName());
 			sm.setOwner(event.getEntity().getPlayer().getName());
 			skull.setItemMeta(sm);
 			event.getDrops().add(skull);
-			}
 		}
+	}
 
 	@EventHandler
 	// SpongePatch
@@ -76,61 +79,66 @@ Main plugin = Main.getPlugin(Main.class);
 		if (event.getBlock().getType().equals(Material.SUGAR_CANE_BLOCK)) {
 			int sugarcanemined = plugin.getConfig().getInt(player.getUniqueId() + ".SugarcaneMined");
 			plugin.getConfig().set(player.getUniqueId() + ".SugarcaneMined", sugarcanemined + 1);
-		}else if (event.getBlock().getType().equals(Material.SPONGE)) {
+		} else if (event.getBlock().getType().equals(Material.SPONGE)) {
 			ItemStack Sponge = new ItemStack(Material.SPONGE, 1);
 			event.getBlock().setType(Material.AIR);
 			player.getInventory().addItem(Sponge);
 		}
 	}
+
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) throws InvocationTargetException {
 		Player player = event.getPlayer();
 		// MOTD
-		player.sendMessage("Â§fÂ§lÂ§m-----------Â§bÂ§lÂ§m-----------Â§fÂ§lÂ§m-----------");
-		player.sendMessage("        Â§fÂ§lCONNECTED TO Â§bÂ§lICEWYND Â§bÂ§lFACTIONS");
-		player.sendMessage("                         Â§f(Â§b1.7.10 Â§f- Â§b1.12Â§f)");
+		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
+		player.sendMessage("        §f§lCONNECTED TO §b§lICEWYND §b§lFACTIONS");
+		player.sendMessage("                         §f(§b1.7.10 §f- §b1.12§f)");
 		player.sendMessage("");
-		player.sendMessage("Â§bÂ§lFORUMS: Â§fIcewynd.net");
-		player.sendMessage("Â§bÂ§lDISCORD: Â§fIcewynd.net/Discord");
-		player.sendMessage("Â§bÂ§lSTORE: Â§fIcewynd.net/Store");
-		player.sendMessage("Â§fÂ§lÂ§m-----------Â§bÂ§lÂ§m-----------Â§fÂ§lÂ§m-----------");
+		player.sendMessage("§b§lFORUMS: §fIcewynd.net");
+		player.sendMessage("§b§lDISCORD: §fIcewynd.net/Discord");
+		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
+		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 			player.teleport(MConf.get().getWarp("jail"));
-		
-		// TabList foot/header
-		PacketContainer packetContainer = Main.protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
-		packetContainer.getChatComponents().write(0,WrappedChatComponent.fromText(" Â§8Â§lÂ§m-Â§7Â§lÂ§m-Â§fÂ§l[Â§f ICEWYND Â§bNETWORKÂ§fÂ§l ]Â§7Â§lÂ§m-Â§8Â§lÂ§m-Â§r ")).write(1, WrappedChatComponent.fromText("Â§dStore, forums and more at Icewynd.net"));
-		ProtocolLibrary.getProtocolManager().sendServerPacket(player, packetContainer);
-		
-		// Faction tablist
-		MPlayer mplayer = MPlayer.get(player);
-		String faction = mplayer.getFactionName();
-		if (faction.equals("Wilderness")) {
-			event.getPlayer().setPlayerListName("Â§2WILDERNESS Â§f" + event.getPlayer().getName());
-		} else {
-			event.getPlayer().setPlayerListName(faction + "Â§f" + event.getPlayer().getName());
-		
-		// New Player Announce
-		if (!player.hasPlayedBefore()) {
-			Bukkit.broadcastMessage("Â§bÂ§lWelcome to IcyWynd, Â§fÂ§l" + player.getName() + "Â§bÂ§l!");
-			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
-			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
-			plugin.getConfig().set(player.getUniqueId() + ".Freecam", false);
-			plugin.getConfig().set(player.getUniqueId() + ".Banned", false);
-			plugin.getConfig().set(player.getUniqueId() + ".BlocksMined", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".SugarcaneMined", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".BlocksPlaced", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".MCMMOLevelsGained", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".SkillsObtained", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".LuckyDropsFound", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".ChallengesCompleted", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".BooksEnchanted", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".CastleCaptures", 0);
-			plugin.getConfig().set(player.getUniqueId() + ".SupplyDropsCaptured", 0);
-			plugin.saveConfig();
+
+			// TabList foot/header
+			PacketContainer packetContainer = Main.protocolManager
+					.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
+			packetContainer.getChatComponents()
+					.write(0, WrappedChatComponent.fromText(
+							" §8§l§m-§7§l§m-§f§l[§f ICEWYND §bNETWORK§f§l ]§7§l§m-§8§l§m-§r "))
+					.write(1, WrappedChatComponent.fromText("§dStore, forums and more at Icewynd.net"));
+			ProtocolLibrary.getProtocolManager().sendServerPacket(player, packetContainer);
+
+			// Faction tablist
+			MPlayer mplayer = MPlayer.get(player);
+			String faction = mplayer.getFactionName();
+			if (faction.equals("Wilderness")) {
+				event.getPlayer().setPlayerListName("§2WILDERNESS §f" + event.getPlayer().getName());
+			} else {
+				event.getPlayer().setPlayerListName(faction + "§f" + event.getPlayer().getName());
+
+				// New Player Announce
+				if (!player.hasPlayedBefore()) {
+					Bukkit.broadcastMessage("§b§lWelcome to IcyWynd, §f§l" + player.getName() + "§b§l!");
+					plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
+					plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
+					plugin.getConfig().set(player.getUniqueId() + ".Freecam", false);
+					plugin.getConfig().set(player.getUniqueId() + ".Banned", false);
+					plugin.getConfig().set(player.getUniqueId() + ".BlocksMined", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".SugarcaneMined", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".BlocksPlaced", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".MCMMOLevelsGained", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".SkillsObtained", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".LuckyDropsFound", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".ChallengesCompleted", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".BooksEnchanted", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".CastleCaptures", 0);
+					plugin.getConfig().set(player.getUniqueId() + ".SupplyDropsCaptured", 0);
+					plugin.saveConfig();
 				}
 			}
 		}
@@ -139,11 +147,11 @@ Main plugin = Main.getPlugin(Main.class);
 	@EventHandler
 	public void onServerListPing(ServerListPingEvent s) {
 		s.setMotd(
-				"         Â§8Â§lÂ§m-Â§7Â§lÂ§m-Â§fÂ§l[Â§f Â§lICEWYND Â§bÂ§lNETWORK Â§fÂ§l- Â§a1.7 - 1.12 Â§fÂ§l]Â§7Â§lÂ§m-Â§8Â§lÂ§m-Â§r                      Â§cÂ§lFACTIONS MAP 1 LIVE!Â§7 / Â§9Â§l25% OFF SALE");
+				"         §8§l§m-§7§l§m-§f§l[§f §lICEWYND §b§lNETWORK §f§l- §a1.7 - 1.12 §f§l]§7§l§m-§8§l§m-§r                      §c§lFACTIONS MAP 1 LIVE!§7 / §9§l25% OFF SALE");
 		s.setMaxPlayers(0);
 	}
-	
-	//Prevents hoppers picking up spawners
+
+	// Prevents hoppers picking up spawners
 	@EventHandler
 	public void onHopperPickupItemEvent(InventoryPickupItemEvent event) {
 		if ((event.getInventory().getType().equals(InventoryType.HOPPER))
@@ -151,30 +159,30 @@ Main plugin = Main.getPlugin(Main.class);
 			event.setCancelled(true);
 		}
 	}
-	
-	//Prevents players brewing invisibility potions
+
+	// Prevents players brewing invisibility potions
 	@EventHandler
 	public void onBrewEvent(BrewEvent event) {
 		if (event.getContents().contains(Material.FERMENTED_SPIDER_EYE)) {
 			event.setCancelled(true);
 		}
 	}
-	
-	//Bedrock exploit patch
+
+	// Bedrock exploit patch
 	@EventHandler
 	public void onExtend(BlockPistonExtendEvent event) {
-		if (event.getBlock().getLocation().getBlockY() <=12) {
+		if (event.getBlock().getLocation().getBlockY() <= 12) {
 			for (Block blocks : event.getBlocks()) {
-			if (blocks.getType().equals(Material.PISTON_BASE)) {
-				event.setCancelled(true);
-			} else if (blocks.getType().equals(Material.PISTON_STICKY_BASE)) {
-				event.setCancelled(true);
+				if (blocks.getType().equals(Material.PISTON_BASE)) {
+					event.setCancelled(true);
+				} else if (blocks.getType().equals(Material.PISTON_STICKY_BASE)) {
+					event.setCancelled(true);
 				}
 			}
 		}
 	}
-	
-	//Prevents players crafting hoppers
+
+	// Prevents players crafting hoppers
 	@EventHandler
 	public void onCraftEvent(PrepareItemCraftEvent event) {
 		try {
@@ -185,24 +193,29 @@ Main plugin = Main.getPlugin(Main.class);
 		} catch (NullPointerException localNullPointerException) {
 		}
 	}
-	//Sign exploit fix
-	@EventHandler(priority=EventPriority.HIGHEST, ignoreCancelled=true)
-	  public void onSignChange(SignChangeEvent e)
-	  {
-	    for (int i = 0; i < 4; i++) {
-	      if (e.getLine(i).matches("^[a-zA-Z0-9_]*$"))
-	      {
-	        if (e.getLine(i).length() > 20)
-	        {
-	          e.setCancelled(true);
-	          e.getPlayer().sendMessage("Invalid amount of characters");
-	        }
-	      }
-	      else if (e.getLine(i).length() > 50)
-	      {
-	        e.setCancelled(true);
-	        e.getPlayer().sendMessage("Invalid amount of characters");
-	      }
-	    }
-	  }
+
+	// Sign exploit fix
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+	public void onSignChange(SignChangeEvent e) {
+		for (int i = 0; i < 4; i++) {
+			if (e.getLine(i).matches("^[a-zA-Z0-9_]*$")) {
+				if (e.getLine(i).length() > 20) {
+					e.setCancelled(true);
+					e.getPlayer().sendMessage("Invalid amount of characters");
+				}
+			} else if (e.getLine(i).length() > 50) {
+				e.setCancelled(true);
+				e.getPlayer().sendMessage("Invalid amount of characters");
+			}
+		}
 	}
+	
+	// prevents explosive block damage caused by fireballs
+	@EventHandler
+	public void onFireball(EntityExplodeEvent event) {
+		if(event.getEntity() instanceof Fireball) {
+			event.blockList().clear();
+		}
+	}
+	
+}

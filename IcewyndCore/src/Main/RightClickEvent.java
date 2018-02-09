@@ -468,11 +468,17 @@ public class RightClickEvent implements Listener {
 	@EventHandler
 	public void onClick(PlayerInteractEntityEvent event) {
 		String IPlayer = event.getRightClicked().getName();
-		if (event.getPlayer().hasPermission("server.admin")) {
-			if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.BLAZE_ROD) {
-				event.getPlayer().chat("/invsee " + IPlayer);
-			if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.BOOK) {
-				event.getPlayer().chat("/pinfo " + IPlayer);
+		Player player = event.getPlayer();
+		if (player.hasPermission("server.admin")) {
+			if (player.getItemInHand().getType().equals(Material.BLAZE_ROD)) {
+				if(player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasDisplayName()) {
+					// AND HAS NAME (NAME = WHATEVER IS IN OVERWATCH)
+					event.getPlayer().chat("/invsee " + IPlayer);
+				}
+			}else if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.BOOK) {
+				if(player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasDisplayName()) {
+					// AND HAS NAME (NAME = WHATEVER IS IN OVERWATCH)
+					event.getPlayer().chat("/pinfo " + IPlayer);
 				}
 			}
 		}
