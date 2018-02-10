@@ -30,6 +30,7 @@ import Commands.ClearInventory;
 import Commands.Disposal;
 import Commands.Enderchest;
 import Commands.Event;
+import Commands.Feed;
 import Commands.Freecam;
 import Commands.Invsee;
 import Commands.Kits;
