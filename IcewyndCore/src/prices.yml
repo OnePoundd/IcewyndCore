@@ -516,3 +516,45 @@
   Name: Nether Quartz
   Sell: 100
   Buy: 200
+CreeperSpawner:
+  Sell: 100
+  Buy: 500000
+PigmanSpawner:
+  Sell: 100
+  Buy: 500000
+WitchSpawner:
+  Sell: 100
+  Buy: 500000
+EndermanSpawner:
+  Sell: 100
+  Buy: 500000
+BlazeSpawner:
+  Sell: 100
+  Buy: 500000
+SquidSpawner:
+  Sell: 100
+  Buy: 500000
+PigSpawner:
+  Sell: 100
+  Buy: 500000
+CowSpawner:
+  Sell: 100
+  Buy: 500000
+ChickenSpawner:
+  Sell: 100
+  Buy: 500000
+SpiderSpawner:
+  Sell: 100
+  Buy: 500000
+ZombieSpawner:
+  Sell: 100
+  Buy: 500000
+SkeletonSpawner:
+  Sell: 100
+  Buy: 500000
+MagmaCubeSpawner:
+  Sell: 100
+  Buy: 500000
+SheepSpawner:
+  Sell: 100
+  Buy: 500000

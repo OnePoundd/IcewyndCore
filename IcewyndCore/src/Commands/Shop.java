@@ -51,6 +51,8 @@ public class Shop implements CommandExecutor, Listener{
 						openFoodFarming(player);
 					}else if(name.equals("§b§lMiscellaneous")) {
 						openMiscellaneous(player);
+					}else if(name.equals("§b§lSpawners")) {
+						openSpawners(player);
 					}
 				}
 			}else if(category.equals("§c§l>> §8Blocks §c§l<<") || category.equals("§c§l>> §8Materials §c§l<<") || category.equals("§c§l>> §8Brewing §c§l<<")
@@ -88,6 +90,73 @@ public class Shop implements CommandExecutor, Listener{
 						}
 					}
 				}
+			}else if(category.equals("§c§l>> §8Spawners §c§l<<")) {
+				event.setCancelled(true);
+				ItemStack item = event.getCurrentItem();
+				if(item != null && item.hasItemMeta()) {
+					if(item.getItemMeta().hasDisplayName()) {
+						String name = item.getItemMeta().getDisplayName();
+						if(name.equals("§c§lBack")) {
+							openHome(player);
+						}else {
+							double cost = 0;
+							if(name.equals("§eCreeper §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("CreeperSpawner.Buy"));
+							}else if(name.equals("§eZombie Pigman §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("PigmanSpawner.Buy"));
+							}else if(name.equals("§eWitch §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("WitchSpawner.Buy"));
+							}else if(name.equals("§eEnderman §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("EndermanSpawner.Buy"));
+							}else if(name.equals("§eBlaze §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("BlazeSpawner.Buy"));
+							}else if(name.equals("§eSquid §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("SquidSpawner.Buy"));
+							}else if(name.equals("§eMagma Cube §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("MagmaCubeSpawner.Buy"));
+							}else if(name.equals("§eSpider §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("SpiderSpawner.Buy"));
+							}else if(name.equals("§eZombie §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("ZombieSpawner.Buy"));
+							}else if(name.equals("§eSkeleton §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("SkeletonSpawner.Buy"));
+							}else if(name.equals("§ePig §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("PigSpawner.Buy"));
+							}else if(name.equals("§eCow §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("CowSpawner.Buy"));
+							}else if(name.equals("§eChicken §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("ChickenSpawner.Buy"));
+							}else if(name.equals("§eSheep §fSpawner")) {
+								cost = Main.pricesConfig.getDouble(String.valueOf("SheepSpawner.Buy"));
+							}
+							
+							if(player.getInventory().firstEmpty() != -1) {
+								int amount = 1;
+								if(event.isRightClick()) {
+									try {
+										amount = Integer.valueOf(item.getItemMeta().getLore().get(2).split("§8§l » §7")[1].split(" ")[0]);
+									}catch (Exception e) {}
+								}
+								cost = cost * amount;
+								if(Main.econ.getBalance(player) >= cost) {
+									Main.econ.withdrawPlayer(player, cost);
+									ItemStack itemToGive = new ItemStack(item.getType());
+									System.out.println(item.getItemMeta().getDisplayName());
+									ItemMeta itemToGiveMeta = itemToGive.getItemMeta();
+									itemToGiveMeta.setDisplayName(item.getItemMeta().getDisplayName());
+									itemToGive.setItemMeta(itemToGiveMeta);
+									itemToGive.setAmount(amount);
+									player.getInventory().addItem(itemToGive);
+									player.sendMessage("§a§l(!)§7 You purchased " + amount + " monster spawners for $" + cost);
+								}else {
+									player.sendMessage("§c§l(!)§7 You cannot afford to make that purchase!");
+								}
+							}else {
+								player.sendMessage("§c§l(!)§7 Your inventory is full, remove some items to make space!");
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -99,7 +168,8 @@ public class Shop implements CommandExecutor, Listener{
 		ItemStack Brewing = new ItemStack(Material.BREWING_STAND_ITEM);
 		ItemStack Redstone = new ItemStack(Material.REDSTONE);
 		ItemStack Food = new ItemStack(Material.COOKED_BEEF);
-		ItemStack Miscellaneous = new ItemStack(Material.BEACON);	
+		ItemStack Miscellaneous = new ItemStack(Material.BEACON);
+		ItemStack Spawners = new ItemStack(Material.MOB_SPAWNER);	
 
 		ItemMeta BlocksMeta = Blocks.getItemMeta();
 		BlocksMeta.setDisplayName("§b§lBlocks");
@@ -125,12 +195,17 @@ public class Shop implements CommandExecutor, Listener{
 		MiscellaneousMeta.setDisplayName("§b§lMiscellaneous");
 		Miscellaneous.setItemMeta(MiscellaneousMeta);
 		
+		ItemMeta SpawnersMeta = Spawners.getItemMeta();
+		SpawnersMeta.setDisplayName("§b§lSpawners");
+		Spawners.setItemMeta(SpawnersMeta);
+		
 		GUI.setItem(0, Blocks);
 		GUI.setItem(1, Materials);
 		GUI.setItem(2, Brewing);
 		GUI.setItem(3, Redstone);
 		GUI.setItem(4, Food);
 		GUI.setItem(5, Miscellaneous);
+		GUI.setItem(6, Spawners);
 		player.openInventory(GUI);
 	}
 	
@@ -1561,4 +1636,171 @@ public class Shop implements CommandExecutor, Listener{
 		
 		player.openInventory(GUI);
 	}
+	
+	public void openSpawners(Player player) {
+		Inventory GUI = Bukkit.createInventory(null, 45, "§c§l>> §8Spawners §c§l<<");
+		
+		ItemStack CreeperSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta CreeperSpawnerMeta = CreeperSpawner.getItemMeta();
+		CreeperSpawnerMeta.setDisplayName("§eCreeper §fSpawner");
+		ArrayList<String> CreeperSpawnerLore = new ArrayList<String>();
+		CreeperSpawnerLore.add("§e§lCost:");
+		CreeperSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("CreeperSpawner.Buy")) + " (left click)"));
+		CreeperSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("CreeperSpawner.Buy")) * 8) + " (right click)");
+		CreeperSpawnerMeta.setLore(CreeperSpawnerLore);
+		CreeperSpawner.setItemMeta(CreeperSpawnerMeta);
+		GUI.setItem(0, CreeperSpawner);
+		
+		ItemStack PigmanSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta PigmanSpawnerMeta = PigmanSpawner.getItemMeta();
+		PigmanSpawnerMeta.setDisplayName("§eZombie Pigman §fSpawner");
+		ArrayList<String> PigmanSpawnerLore = new ArrayList<String>();
+		PigmanSpawnerLore.add("§e§lCost:");
+		PigmanSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("PigmanSpawner.Buy")) + " (left click)"));
+		PigmanSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("PigmanSpawner.Buy")) * 8) + " (right click)");
+		PigmanSpawnerMeta.setLore(PigmanSpawnerLore);
+		PigmanSpawner.setItemMeta(PigmanSpawnerMeta);
+		GUI.setItem(1, PigmanSpawner);
+		
+		ItemStack WitchSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta WitchSpawnerMeta = WitchSpawner.getItemMeta();
+		WitchSpawnerMeta.setDisplayName("§eWitch §fSpawner");
+		ArrayList<String> WitchSpawnerLore = new ArrayList<String>();
+		WitchSpawnerLore.add("§e§lCost:");
+		WitchSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("WitchSpawner.Buy")) + " (left click)"));
+		WitchSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("WitchSpawner.Buy")) * 8) + " (right click)");
+		WitchSpawnerMeta.setLore(WitchSpawnerLore);
+		WitchSpawner.setItemMeta(WitchSpawnerMeta);
+		GUI.setItem(2, WitchSpawner);
+		
+		ItemStack EndermanSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta EndermanSpawnerMeta = EndermanSpawner.getItemMeta();
+		EndermanSpawnerMeta.setDisplayName("§eEnderman §fSpawner");
+		ArrayList<String> EndermanSpawnerLore = new ArrayList<String>();
+		EndermanSpawnerLore.add("§e§lCost:");
+		EndermanSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("EndermanSpawner.Buy")) + " (left click)"));
+		EndermanSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("EndermanSpawner.Buy")) * 8) + " (right click)");
+		EndermanSpawnerMeta.setLore(EndermanSpawnerLore);
+		EndermanSpawner.setItemMeta(EndermanSpawnerMeta);
+		GUI.setItem(3, EndermanSpawner);
+		
+		ItemStack BlazeSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta BlazeSpawnerMeta = BlazeSpawner.getItemMeta();
+		BlazeSpawnerMeta.setDisplayName("§eBlaze §fSpawner");
+		ArrayList<String> BlazeSpawnerLore = new ArrayList<String>();
+		BlazeSpawnerLore.add("§e§lCost:");
+		BlazeSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("BlazeSpawner.Buy")) + " (left click)"));
+		BlazeSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("BlazeSpawner.Buy")) * 8) + " (right click)");
+		BlazeSpawnerMeta.setLore(BlazeSpawnerLore);
+		BlazeSpawner.setItemMeta(BlazeSpawnerMeta);
+		GUI.setItem(4, BlazeSpawner);
+		
+		ItemStack SquidSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta SquidSpawnerMeta = SquidSpawner.getItemMeta();
+		SquidSpawnerMeta.setDisplayName("§eSquid §fSpawner");
+		ArrayList<String> SquidSpawnerLore = new ArrayList<String>();
+		SquidSpawnerLore.add("§e§lCost:");
+		SquidSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("SquidSpawner.Buy")) + " (left click)"));
+		SquidSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("SquidSpawner.Buy")) * 8) + " (right click)");
+		SquidSpawnerMeta.setLore(SquidSpawnerLore);
+		SquidSpawner.setItemMeta(SquidSpawnerMeta);
+		GUI.setItem(5, SquidSpawner);
+		
+		ItemStack MagmaCubeSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta MagmaCubeSpawnerMeta = MagmaCubeSpawner.getItemMeta();
+		MagmaCubeSpawnerMeta.setDisplayName("§eMagma Cube §fSpawner");
+		ArrayList<String> MagmaCubeSpawnerLore = new ArrayList<String>();
+		MagmaCubeSpawnerLore.add("§e§lCost:");
+		MagmaCubeSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("MagmaCubeSpawner.Buy")) + " (left click)"));
+		MagmaCubeSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("MagmaCubeSpawner.Buy")) * 8) + " (right click)");
+		MagmaCubeSpawnerMeta.setLore(MagmaCubeSpawnerLore);
+		MagmaCubeSpawner.setItemMeta(MagmaCubeSpawnerMeta);
+		GUI.setItem(6, MagmaCubeSpawner);
+		
+		ItemStack SpiderSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta SpiderSpawnerMeta = SpiderSpawner.getItemMeta();
+		SpiderSpawnerMeta.setDisplayName("§eSpider §fSpawner");
+		ArrayList<String> SpiderSpawnerLore = new ArrayList<String>();
+		SpiderSpawnerLore.add("§e§lCost:");
+		SpiderSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("SpiderSpawner.Buy")) + " (left click)"));
+		SpiderSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("SpiderSpawner.Buy")) * 8) + " (right click)");
+		SpiderSpawnerMeta.setLore(SpiderSpawnerLore);
+		SpiderSpawner.setItemMeta(SpiderSpawnerMeta);
+		GUI.setItem(7, SpiderSpawner);
+		
+		ItemStack ZombieSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta ZombieSpawnerMeta = ZombieSpawner.getItemMeta();
+		ZombieSpawnerMeta.setDisplayName("§eZombie §fSpawner");
+		ArrayList<String> ZombieSpawnerLore = new ArrayList<String>();
+		ZombieSpawnerLore.add("§e§lCost:");
+		ZombieSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("ZombieSpawner.Buy")) + " (left click)"));
+		ZombieSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("ZombieSpawner.Buy")) * 8) + " (right click)");
+		ZombieSpawnerMeta.setLore(ZombieSpawnerLore);
+		ZombieSpawner.setItemMeta(ZombieSpawnerMeta);
+		GUI.setItem(8, ZombieSpawner);
+		
+		ItemStack SkeletonSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta SkeletonSpawnerMeta = SkeletonSpawner.getItemMeta();
+		SkeletonSpawnerMeta.setDisplayName("§eSkeleton §fSpawner");
+		ArrayList<String> SkeletonSpawnerLore = new ArrayList<String>();
+		SkeletonSpawnerLore.add("§e§lCost:");
+		SkeletonSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("SkeletonSpawner.Buy")) + " (left click)"));
+		SkeletonSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("SkeletonSpawner.Buy")) * 8) + " (right click)");
+		SkeletonSpawnerMeta.setLore(SkeletonSpawnerLore);
+		SkeletonSpawner.setItemMeta(SkeletonSpawnerMeta);
+		GUI.setItem(9, SkeletonSpawner);
+		
+		ItemStack PigSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta PigSpawnerMeta = PigSpawner.getItemMeta();
+		PigSpawnerMeta.setDisplayName("§ePig §fSpawner");
+		ArrayList<String> PigSpawnerLore = new ArrayList<String>();
+		PigSpawnerLore.add("§e§lCost:");
+		PigSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("PigSpawner.Buy")) + " (left click)"));
+		PigSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("PigSpawner.Buy")) * 8) + " (right click)");
+		PigSpawnerMeta.setLore(PigSpawnerLore);
+		PigSpawner.setItemMeta(PigSpawnerMeta);
+		GUI.setItem(10, PigSpawner);
+		
+		ItemStack CowSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta CowSpawnerMeta = CowSpawner.getItemMeta();
+		CowSpawnerMeta.setDisplayName("§eCow §fSpawner");
+		ArrayList<String> CowSpawnerLore = new ArrayList<String>();
+		CowSpawnerLore.add("§e§lCost:");
+		CowSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("CowSpawner.Buy")) + " (left click)"));
+		CowSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("CowSpawner.Buy")) * 8) + " (right click)");
+		CowSpawnerMeta.setLore(CowSpawnerLore);
+		CowSpawner.setItemMeta(CowSpawnerMeta);
+		GUI.setItem(11, CowSpawner);
+		
+		ItemStack ChickenSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta ChickenSpawnerMeta = ChickenSpawner.getItemMeta();
+		ChickenSpawnerMeta.setDisplayName("§eChicken §fSpawner");
+		ArrayList<String> ChickenSpawnerLore = new ArrayList<String>();
+		ChickenSpawnerLore.add("§e§lCost:");
+		ChickenSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("ChickenSpawner.Buy")) + " (left click)"));
+		ChickenSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("ChickenSpawner.Buy")) * 8) + " (right click)");
+		ChickenSpawnerMeta.setLore(ChickenSpawnerLore);
+		ChickenSpawner.setItemMeta(ChickenSpawnerMeta);
+		GUI.setItem(12, ChickenSpawner);
+		
+		ItemStack SheepSpawner = new ItemStack(Material.MOB_SPAWNER);
+		ItemMeta SheepSpawnerMeta = SheepSpawner.getItemMeta();
+		SheepSpawnerMeta.setDisplayName("§eSheep §fSpawner");
+		ArrayList<String> SheepSpawnerLore = new ArrayList<String>();
+		SheepSpawnerLore.add("§e§lCost:");
+		SheepSpawnerLore.add("§8§l » §71 = $" + (Main.pricesConfig.getDouble(String.valueOf("SheepSpawner.Buy")) + " (left click)"));
+		SheepSpawnerLore.add("§8§l » §78 = $" + (Main.pricesConfig.getDouble(String.valueOf("SheepSpawner.Buy")) * 8) + " (right click)");
+		SheepSpawnerMeta.setLore(SheepSpawnerLore);
+		SheepSpawner.setItemMeta(SheepSpawnerMeta);
+		GUI.setItem(13, SheepSpawner);
+		
+		ItemStack backItem = new ItemStack(Material.REDSTONE_BLOCK);
+		ItemMeta backItemMeta = backItem.getItemMeta();
+		backItemMeta.setDisplayName("§c§lBack");
+		backItem.setItemMeta(backItemMeta);
+		GUI.setItem(44, backItem);
+		
+		player.openInventory(GUI);
+	}
+	
 }
