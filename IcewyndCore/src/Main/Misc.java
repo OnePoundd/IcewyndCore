@@ -112,9 +112,9 @@ public class Misc implements Listener {
 		MPlayer mplayer = MPlayer.get(player);
 		String faction = mplayer.getFactionName();
 		if (faction.equals("Wilderness")) {
-			event.getPlayer().setPlayerListName("§2WILDERNESS §f" + event.getPlayer().getName());
+			event.getPlayer().setPlayerListName("§2WILDERNESS §f" + event.getPlayer().getDisplayName());
 		} else {
-			event.getPlayer().setPlayerListName(faction + "§f " + event.getPlayer().getName());
+			event.getPlayer().setPlayerListName(faction + "§f " + event.getPlayer().getDisplayName());
 
 			// New Player Announce
 			if (!player.hasPlayedBefore()) {
