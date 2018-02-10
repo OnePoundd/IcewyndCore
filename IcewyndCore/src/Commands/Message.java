@@ -20,11 +20,19 @@ Main plugin = Main.getPlugin(Main.class);
 				Player player = (Player) sender;
 				Player r = Bukkit.getPlayer(args[0]);
 				if(r != null) {
-					if (args.length == 2) {
+					if (args.length >= 2) {
 						if (plugin.getConfig().getBoolean(r.getUniqueId() + ".MsgToggle") == true) { // if the player has messages turned off
 							if(sender.hasPermission("server.admin")) { // admins should bypass msgtoggle
-								player.sendMessage("§a§lMe" + " §7» " + "§b" + args[0] + "§7:§f " + args[1]);
-								r.sendMessage("§b" + player.getName() + " §7» " + "§a§lMe§f" + "§7:§f " + args[1]);
+								String messageContents = "";
+								int i = 1;
+								for(String s : args) {
+									if(i > 1) {
+										messageContents = messageContents + s + " ";
+									}
+									i++;
+								}
+								player.sendMessage("§a§lMe" + " §7» " + "§b" + args[0] + "§7:§f " + messageContents);
+								r.sendMessage("§b" + player.getName() + " §7» " + "§a§lMe§f" + "§7:§f " + messageContents);
 								r.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
 							}else if(!MPlayer.get(r).getFaction().equals(MPlayer.get(sender).getFaction())) { // faction members should bypass msgtoggle
 								player.sendMessage("§a§lMe" + " §7» " + "§b" + args[0] + "§7:§f " + args[1]);
@@ -32,8 +40,16 @@ Main plugin = Main.getPlugin(Main.class);
 								r.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
 							}
 						}else { // if the player is allowing messages to be received
-							player.sendMessage("§a§lMe" + " §7» " + "§b" + args[0] + "§7:§f " + args[1]);
-							r.sendMessage("§b" + player.getName() + " §7» " + "§a§lMe§f" + "§7:§f " + args[1]);
+							String messageContents = "";
+							int i = 1;
+							for(String s : args) {
+								if(i > 1) {
+									messageContents = messageContents + s + " ";
+								}
+								i++;
+							}
+							player.sendMessage("§a§lMe" + " §7» " + "§b" + args[0] + "§7:§f " + messageContents);
+							r.sendMessage("§b" + player.getName() + " §7» " + "§a§lMe§f" + "§7:§f " + messageContents);
 							r.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
 						}
 					}else {
