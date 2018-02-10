@@ -64,23 +64,27 @@ public class Shop implements CommandExecutor, Listener{
 							openHome(player);
 						}
 					}else {
-						double cost = Main.pricesConfig.getDouble(String.valueOf(item.getTypeId())+ ".Buy");
-						int amount = 1;
-						if(event.isRightClick()) {
-							try {
-								amount = Integer.valueOf(item.getItemMeta().getLore().get(2).split("§8§l » §7")[1].split(" ")[0]);
-							}catch (Exception e) {}
-						}
-						cost = cost * amount;
-						if(Main.econ.getBalance(player) >= cost) {
-							Main.econ.withdrawPlayer(player, cost);
-							ItemStack itemToGive = new ItemStack(item.getType());
-							itemToGive.setDurability(item.getDurability());
-							itemToGive.setAmount(amount);
-							player.getInventory().addItem(itemToGive);
-							player.sendMessage("§a§l(!)§7 You purchased " + amount + " " + Main.pricesConfig.getString(String.valueOf(item.getTypeId())+ ".Name") + " for $" + cost);
+						if(player.getInventory().firstEmpty() != -1) {
+							double cost = Main.pricesConfig.getDouble(String.valueOf(item.getTypeId())+ ".Buy");
+							int amount = 1;
+							if(event.isRightClick()) {
+								try {
+									amount = Integer.valueOf(item.getItemMeta().getLore().get(2).split("§8§l » §7")[1].split(" ")[0]);
+								}catch (Exception e) {}
+							}
+							cost = cost * amount;
+							if(Main.econ.getBalance(player) >= cost) {
+								Main.econ.withdrawPlayer(player, cost);
+								ItemStack itemToGive = new ItemStack(item.getType());
+								itemToGive.setDurability(item.getDurability());
+								itemToGive.setAmount(amount);
+								player.getInventory().addItem(itemToGive);
+								player.sendMessage("§a§l(!)§7 You purchased " + amount + " " + Main.pricesConfig.getString(String.valueOf(item.getTypeId())+ ".Name") + " for $" + cost);
+							}else {
+								player.sendMessage("§c§l(!)§7 You cannot afford to make that purchase!");
+							}
 						}else {
-							player.sendMessage("§c§l(!)§7 You cannot afford to make that purchase!");
+							player.sendMessage("§c§l(!)§7 Your inventory is full, remove some items to make space!");
 						}
 					}
 				}
