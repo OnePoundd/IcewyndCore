@@ -20,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
+import me.libraryaddict.disguise.events.UndisguiseEvent;
 
 public class DisguiseBuffs implements Listener{
 	
@@ -55,6 +56,19 @@ public class DisguiseBuffs implements Listener{
     	    }
     	}
     }
+	
+	//HORSE
+	@EventHandler
+	public void onUndisguise(UndisguiseEvent event) {
+		if(event.getDisguise().getType().equals(DisguiseType.HORSE)) {
+			if(event.getEntity() instanceof Player) {
+				for(Entity entity : event.getEntity().getPassengers()) {
+					event.getEntity().removePassenger(entity);
+				}
+			}
+		}
+	}
+	
 	
 	//CHICKEN, COW, PIG
 	@EventHandler
