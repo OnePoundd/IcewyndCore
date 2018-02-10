@@ -117,6 +117,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("event").setExecutor(new Event());
 		getCommand("sell").setExecutor(new Sell());
 		getCommand("shop").setExecutor(new Shop());
+		getCommand("feed").setExecutor(new Feed());
 
 
 		//manager.addPermission(new Permission("spawner.give"));
