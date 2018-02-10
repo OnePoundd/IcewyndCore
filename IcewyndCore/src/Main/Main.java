@@ -139,43 +139,43 @@ public class Main extends JavaPlugin implements Listener {
 			Random rand = new Random();
 			int index = rand.nextInt(19) + 1;
 			if (index == 1) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Join our community Discord to chat with others and get suppport by clicking this message");
+				Bukkit.broadcastMessage("§b§lINFO §7» Join our community Discord to chat with others and get suppport by clicking this message");
 			} else if (index == 2) {
-				Bukkit.broadcastMessage("§a§lINFO §7» There are many ways to gamble but Jackpot is the most fun! Participate using §a/jackpot§7.");
+				Bukkit.broadcastMessage("§b§lINFO §7» There are many ways to gamble but Jackpot is the most fun! Participate using §a/jackpot§7.");
 			} else if (index == 3) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Need a faction? Type §a/f list§7 to see if any factions are recruiting.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Need a faction? Type §a/f list§7 to see if any factions are recruiting.");
 			} else if (index == 4) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Need support? Send in a support ticket on the forums or join Discord for help.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Need support? Send in a support ticket on the forums or join Discord for help.");
 			} else if (index == 5) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Upgrade your faction using §a/f upgrade§7 to gain perks and progress faster!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Upgrade your faction using §a/f upgrade§7 to gain perks and progress faster!");
 			} else if (index == 6) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Secure your account using §a/auth§7 and prevent hackers from accessing your account.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Secure your account using §a/auth§7 and prevent hackers from accessing your account.");
 			} else if (index == 7) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Fishing is fun and fast! mcMMO is doubled in SafeZone and you may catch something valuable!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Fishing is fun and fast! mcMMO is doubled in SafeZone and you may catch something valuable!");
 			} else if (index == 8) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Practice and war other factions and players by visiting the duel NPCs at spawn.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Practice and war other factions and players by visiting the duel NPCs at spawn.");
 			} else if (index == 9) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Complete achievements to gain rewards and show off using §a/achievements§7.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Complete achievements to gain rewards and show off using §a/achievements§7.");
 			} else if (index == 10) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Quickly mine out your base using Shockwave pickaxes & Mining Drones!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Quickly mine out your base using Shockwave pickaxes & Mining Drones!");
 			} else if (index == 11) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Spend coins at the Quartermaster in Safezone and buy kits, disguises, ranks and other goodies!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Spend coins at the Quartermaster in Safezone and buy kits, disguises, ranks and other goodies!");
 			} else if (index == 12) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Found a bug? Submit it on our forums for a potential reward.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Found a bug? Submit it on our forums for a potential reward.");
 			} else if (index == 13) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Summon bosses using Boss Eggs, battle them and be rewarded!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Summon bosses using Boss Eggs, battle them and be rewarded!");
 			} else if (index == 14) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Protect your faction from betrayal using faction regions and trusted permissions.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Protect your faction from betrayal using faction regions and trusted permissions.");
 			} else if (index == 15) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Prestige your mcMMO once reaching 1000 in all skills. Use §a/prestige§7 for more info.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Prestige your mcMMO once reaching 1000 in all skills. Use §a/prestige§7 for more info.");
 			} else if (index == 16) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Capture Castle for increased spawner rates, better sell prices and other rewards!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Capture Castle for increased spawner rates, better sell prices and other rewards!");
 			} else if (index == 17) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Looking to test your cannons or need a place to build? Check out our cannon server in the hub.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Looking to test your cannons or need a place to build? Check out our cannon server in the hub.");
 			} else if (index == 18) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Turn gunpowder into TNT using furnaces! Speed up this process using §a/f upgrade§7.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Turn gunpowder into TNT using furnaces! Speed up this process using §a/f upgrade§7.");
 			} else if (index == 19) {
-				Bukkit.broadcastMessage("§a§lINFO §7» Fill cannons quickly and store virtual TNT using §a/f tnt§7.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Fill cannons quickly and store virtual TNT using §a/f tnt§7.");
 			}
 		}
 	}, 0L, 2000L);
