@@ -64,7 +64,6 @@ public class Main extends JavaPlugin implements Listener {
 	public static FileConfiguration pricesConfig;
 	public static Economy econ;
 	
-	// public static List<NPC> npcs;
 
 	public void onEnable() {
 		saveDefaultConfig();
@@ -120,19 +119,12 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("shop").setExecutor(new Shop());
 		getCommand("feed").setExecutor(new Feed());
 
-
-		//manager.addPermission(new Permission("spawner.give"));
-		//manager.addPermission(new Permission("crate.give"));
-		//manager.addPermission(new Permission("npc.use"));
-
 		ExoticCrate.load();
 		LegendaryCrate.load();
 		EventCrate.load();
 
-		// npcs = new ArrayList<NPC>();
 
-		// Uploader.triggerDatabaseAutoUpdate(); //Triggers the auto-updater for the
-		// factions web-database. Every 5 mins player and faction data will be updated.
+		// Uploader.triggerDatabaseAutoUpdate(); //Triggers the auto-updater for the factions web-database. Every 5 mins player and faction data will be updated.
 	
 	BukkitScheduler scheduler = getServer().getScheduler();
 	scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
@@ -180,7 +172,7 @@ public class Main extends JavaPlugin implements Listener {
 				Bukkit.broadcastMessage("§b§lINFO §7» Fill cannons quickly and store virtual TNT using §a/f tnt§7.");
 			}
 		}
-	}, 0L, 2000L);
+	}, 0L, 3000L);
 	
 	// creates default prices.yml file if one doesn't already exist
 	File customYml = new File(getDataFolder()+"/prices.yml");
@@ -320,84 +312,6 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		}
-
-		// }else if(label.equalsIgnoreCase("npc")) {
-		// Player player = Bukkit.getPlayer(sender.getName());
-		// if(player.hasPermission("npc.use")) {
-		// if(args.length == 0) {
-		// player.sendMessage("§8§l§m---------------§7§l[ §dNPC Help§7§l
-		// ]§8§l§m-----------------");
-		// sender.sendMessage("§b/npc create <name> §7- creates a new npc.");
-		// sender.sendMessage("§b/npc delete <name> §7- deletes an existing npc.");
-		// sender.sendMessage("§b/npc player <name> §7- makes an npc act as a player.");
-		// sender.sendMessage("§b/npc tphere <name> §7- teleports an npc to you.");
-		// sender.sendMessage("§b/npc tp <name> §7- teleports you to an npc.");
-		// sender.sendMessage("§b/npc list §7- lists all existing npcs.");
-		// }else {
-		// if(args.length == 1 && args[0].equalsIgnoreCase("list")) {
-		// String message = "§b§l(!)§7 NPC Names: ";
-		// for(NPC npc : npcs) {
-		// message = message + npc.get().displayName + ", ";
-		// }
-		// if(!message.equals("§b§l(!)§7 NPC Names: ")) {
-		// player.sendMessage(message.substring(0, message.length() - 2) + ".");
-		// }else {
-		// player.sendMessage("§c§l(!)§7 There are no npcs!");
-		// }
-		// }else if(args.length == 2) {
-		// if(args[0].equalsIgnoreCase("create")) {
-		// for(NPC npc : npcs) {
-		// if(npc.get().getName().equals(args[1])) {
-		// sender.sendMessage("§c§l(!)§7 There is already an NPC with that name!");
-		// return true;
-		// }
-		// }
-		// NPC npc = new NPC(args[1], player);
-		// Bukkit.getPluginManager().registerEvents(npc, this);
-		// npcs.add(npc);
-		// sender.sendMessage("§a§l(!)§7 An npc has been created at your location!");
-		// }else if(args[0].equalsIgnoreCase("delete")) {
-		// for(NPC npc : npcs) {
-		// if(npc.get().getName().equals(args[1])) {
-		// npc.delete();
-		// npcs.remove(npc);
-		// npc = null;
-		// sender.sendMessage("§a§l(!)§7 Successfully deleted the npc!");
-		// return true;
-		// }
-		// }
-		// sender.sendMessage("§c§l(!)§7 There was no npc with that name!");
-		// }else if(args[0].equals("tphere")) {
-		// for(NPC npc : npcs) {
-		// if(npc.get().getName().equals(args[1])) {
-		// npc.get().teleportTo(player.getLocation(), false);
-		// sender.sendMessage("§a§l(!)§7 Successfully teleported the npc!");
-		// return true;
-		// }
-		// }
-		// sender.sendMessage("§c§l(!)§7 There was no npc with that name!");
-		// }else if(args[0].equals("tp")) {
-		// for(NPC npc : npcs) {
-		// if(npc.get().getName().equals(args[1])) {
-		// player.teleport(npc.get().getBukkitEntity().getLocation());
-		// sender.sendMessage("§a§l(!)§7 Successfully teleported to the npc!");
-		// return true;
-		// }
-		// }
-		// sender.sendMessage("§c§l(!)§7 There was no npc with that name!");
-		// }
-		// }else {
-		// player.sendMessage("§8§l§m---------------§7§l[ §NPC Help§7§l
-		// ]§8§l§m-----------------");
-		// sender.sendMessage("§b/npc create <name> §7- creates a new npc.");
-		// sender.sendMessage("§b/npc delete <name> §7- deletes an existing npc.");
-		// sender.sendMessage("§b/npc player <name> §7- makes an npc act as a player.");
-		// sender.sendMessage("§b/npc tphere <name> §7- teleports an npc to you.");
-		// sender.sendMessage("§b/npc tp <name> §7- teleports you to an npc.");
-		// sender.sendMessage("§b/npc list §7- lists all existing npcs.");
-		// }
-		// }
-		// }
 		return true;
 	}
 }
