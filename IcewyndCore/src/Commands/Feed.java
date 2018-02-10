@@ -15,6 +15,7 @@ public class Feed implements CommandExecutor{
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
 				player.setFoodLevel(20);
+				player.sendMessage("§7Your hunger has been replenished.");
 			}
 		}
 		return false;
