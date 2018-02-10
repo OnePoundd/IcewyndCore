@@ -108,36 +108,27 @@ public class Misc implements Listener {
 		.write(1, WrappedChatComponent.fromText("§dStore, forums and more at Icewynd.net"));
 		ProtocolLibrary.getProtocolManager().sendServerPacket(player, packetContainer);
 
-		// Faction tablist
-		MPlayer mplayer = MPlayer.get(player);
-		String faction = mplayer.getFactionName();
-		if (faction.equals("Wilderness")) {
-			event.getPlayer().setPlayerListName("§2WILDERNESS §f" + event.getPlayer().getDisplayName());
-		} else {
-			event.getPlayer().setPlayerListName(faction + "§f " + event.getPlayer().getDisplayName());
-
-			// New Player Announce
-			if (!player.hasPlayedBefore()) {
-				Bukkit.broadcastMessage("§b§lWelcome to IcyWynd, §f§l" + player.getName() + "§b§l!");
-				plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
-				plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
-				plugin.getConfig().set(player.getUniqueId() + ".Freecam", false);
-				plugin.getConfig().set(player.getUniqueId() + ".Banned", false);
-				plugin.getConfig().set(player.getUniqueId() + ".BlocksMined", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".SugarcaneMined", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".BlocksPlaced", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".MCMMOLevelsGained", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".SkillsObtained", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".LuckyDropsFound", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".ChallengesCompleted", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".BooksEnchanted", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".CastleCaptures", 0);
-				plugin.getConfig().set(player.getUniqueId() + ".SupplyDropsCaptured", 0);
-				plugin.saveConfig();
-			}
+		// New Player Announce
+		if (!player.hasPlayedBefore()) {
+			Bukkit.broadcastMessage("§b§lWelcome to Icywynd, §f§l" + player.getName() + "§b§l!");
+			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
+			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
+			plugin.getConfig().set(player.getUniqueId() + ".Freecam", false);
+			plugin.getConfig().set(player.getUniqueId() + ".Banned", false);
+			plugin.getConfig().set(player.getUniqueId() + ".BlocksMined", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".SugarcaneMined", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".BlocksPlaced", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".MCMMOLevelsGained", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".SkillsObtained", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".LuckyDropsFound", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".ChallengesCompleted", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".BooksEnchanted", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".CastleCaptures", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".SupplyDropsCaptured", 0);
+			plugin.saveConfig();
 		}
 	}
 
