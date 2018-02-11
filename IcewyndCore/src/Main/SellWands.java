@@ -8,13 +8,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-
 import com.massivecraft.factions.entity.BoardColl;
 import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.ps.PS;
 
 public class SellWands implements Listener{
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onRightClick(PlayerInteractEvent event) {
 		Player player = event.getPlayer();

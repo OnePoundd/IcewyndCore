@@ -465,6 +465,7 @@ public class RightClickEvent implements Listener {
 			}
 		}
 	}
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onClick(PlayerInteractEntityEvent event) {
 		String IPlayer = event.getRightClicked().getName();
