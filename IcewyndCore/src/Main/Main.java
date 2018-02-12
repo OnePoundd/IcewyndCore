@@ -137,7 +137,7 @@ public class Main extends JavaPlugin implements Listener {
 			} else if (index == 2) {
 				Bukkit.broadcastMessage("§b§lINFO §7» There are many ways to gamble but Jackpot is the most fun! Participate using §b/jackpot§7.");
 			} else if (index == 3) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Need a faction? Type §b/f list§7 to see if any factions are recruiting.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Need a faction? Type §b/f find§7 to see if any factions are recruiting.");
 			} else if (index == 4) {
 				Bukkit.broadcastMessage("§b§lINFO §7» Need support? Send in a support ticket on the forums or join Discord for help.");
 			} else if (index == 5) {
@@ -145,29 +145,29 @@ public class Main extends JavaPlugin implements Listener {
 			} else if (index == 6) {
 				Bukkit.broadcastMessage("§b§lINFO §7» Secure your account using §b/auth§7 and prevent hackers from accessing your account.");
 			} else if (index == 7) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Fishing is fun and fast! mcMMO is doubled in SafeZone and you may catch something valuable!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Fishing is fun and fast! McMMO is doubled in SafeZone and you may catch something valuable!");
 			} else if (index == 8) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Practice and war other factions and players by visiting the duel NPCs at spawn.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Find more players for your faction by marking your faction as recruiting with the command §b/f recruiting§7!");
 			} else if (index == 9) {
 				Bukkit.broadcastMessage("§b§lINFO §7» Complete achievements to gain rewards and show off using §b/achievements§7.");
 			} else if (index == 10) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Quickly mine out your base using Shockwave pickaxes & Mining Drones!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Quickly mine out areas for your base with the shockwave enchantment aquired from the Enchanter NPC or the store!");
 			} else if (index == 11) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Spend coins at the Quartermaster in Safezone and buy kits, disguises, ranks and other goodies!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Spend coins at the Quartermaster in Safezone and buy kits, disguises and other valuable items!");
 			} else if (index == 12) {
 				Bukkit.broadcastMessage("§b§lINFO §7» Found a bug? Submit it on our forums for a potential reward.");
 			} else if (index == 13) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Summon bosses using Boss Eggs, battle them and be rewarded!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Boss eggs can be dropped when killing mobs from a spawner - summon them in warzone and kill them for rewards!");
 			} else if (index == 14) {
 				Bukkit.broadcastMessage("§b§lINFO §7» Protect your faction from betrayal using faction regions and trusted permissions.");
 			} else if (index == 15) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Prestige your mcMMO once reaching 1000 in all skills. Use §b/prestige§7 for more info.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Reach the top of the mcmmo leaderboard in any skill for a unique prefix in chat and a unique kit every day!");
 			} else if (index == 16) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Capture Castle for increased spawner rates, better sell prices and other rewards!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Capture Castle for victory points, double spawner rates, an extra 10% on /sell, and cash every 10 minutes!");
 			} else if (index == 17) {
 				Bukkit.broadcastMessage("§b§lINFO §7» Looking to test your cannons or need a place to build? Check out our cannon server in the hub.");
 			} else if (index == 18) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Turn gunpowder into TNT using furnaces! Speed up this process using §b/f upgrade§7.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Gunpowder can be converted to TNT using furnaces! Increase the chance by using §b/f upgrade§7.");
 			} else if (index == 19) {
 				Bukkit.broadcastMessage("§b§lINFO §7» Fill cannons quickly and store virtual TNT using §b/f tnt§7.");
 			}
