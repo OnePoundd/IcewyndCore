@@ -120,7 +120,7 @@ public class Main extends JavaPlugin implements Listener {
 		EventCrate.load();
 
 
-		/// Uploader.triggerDatabaseAutoUpdate(); //Triggers the auto-updater for the factions web-database. Every 5 mins player and faction data will be updated.
+		//Uploader.triggerDatabaseAutoUpdate(); //Triggers the auto-updater for the factions web-database. Every 5 mins player and faction data will be updated.
 	
 	BukkitScheduler scheduler = getServer().getScheduler();
 	scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
