@@ -1,7 +1,6 @@
 package Commands;
 
 import java.util.ArrayList;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -15,15 +14,14 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
 import com.massivecraft.factions.entity.MPlayer;
-
 import Main.Main;
 
 public class Sell implements CommandExecutor, Listener{
 
 	Main plugin = Main.getPlugin(Main.class);
 
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("sell")) {
 			Player player = (Player) sender;
@@ -83,6 +81,7 @@ public class Sell implements CommandExecutor, Listener{
 		player.openInventory(sellInv);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();

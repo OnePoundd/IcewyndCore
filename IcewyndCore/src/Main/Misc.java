@@ -30,7 +30,6 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.massivecraft.factions.entity.MConf;
-import com.massivecraft.factions.entity.MPlayer;
 
 public class Misc implements Listener {
 	Main plugin = Main.getPlugin(Main.class);

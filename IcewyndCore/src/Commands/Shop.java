@@ -1,7 +1,6 @@
 package Commands;
 
 import java.util.ArrayList;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -14,9 +13,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
-
-
 import Main.Main;
 
 public class Shop implements CommandExecutor, Listener{
@@ -30,6 +26,7 @@ public class Shop implements CommandExecutor, Listener{
 		return false;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();

@@ -4,8 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.Plugin;
-
 import Main.Main;
 
 public class ClearChat implements CommandExecutor{
