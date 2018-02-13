@@ -21,6 +21,7 @@ public class SilkSpawners implements Listener {
 	@EventHandler
 	public void onBlockPlaceEvent(BlockPlaceEvent event) {
 		Player player = event.getPlayer();
+		//Tracks blocks placed for stats command
 		int blocksplaced = plugin.getConfig().getInt(player.getUniqueId() + ".BlocksPlaced");
 		plugin.getConfig().set(player.getUniqueId() + ".BlocksPlaced", blocksplaced + 1);
 		if (!event.isCancelled()) {

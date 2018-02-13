@@ -8,6 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 
+import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
+
 import Main.Main;
 
 public class Stats implements CommandExecutor{
@@ -18,10 +20,17 @@ Main plugin = Main.getPlugin(Main.class);
 	@EventHandler
 	public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event) {
 		if (event.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals("§c§lGen Bucket")) {
-			event.getPlayer().sendMessage("hi");
-			
+			event.getPlayer().sendMessage("hi");	
+		}
 	}
-}
+	//MCMMO Level obtain tracking
+	@EventHandler
+	public void onPlayerLevelUp(McMMOPlayerLevelUpEvent event) {
+		Player player = event.getPlayer();
+		int mcmmolevelsgained = plugin.getConfig().getInt(player.getUniqueId() + ".MCMMOLevelsGained");
+		plugin.getConfig().set(player.getUniqueId() + ".MCMMOLevelsGained", mcmmolevelsgained + 1);
+	}
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("fstats")) {
 			Player p = (Player) sender;
@@ -43,27 +52,33 @@ Main plugin = Main.getPlugin(Main.class);
 				int challengescompleted = plugin.getConfig().getInt(target.getUniqueId() + ".ChallengesCompleted");
 				int skillsobtained = plugin.getConfig().getInt(target.getUniqueId() + ".SkillsBbtained");
 				int mcmmolevelsgained = plugin.getConfig().getInt(target.getUniqueId() + ".MCMMOLevelsGained");
-				//Blocks mined is tracked in Sponge Patch, Misc class
-				//Blocks placed is tracked in Silkspawners
 				
 				p.sendMessage("§8§l§m-------§r§8§l[ §a§l" + args[0] + "'s" + " Stats" + " §r§8§l]§8§l§m-------");
 				p.sendMessage("§cFirst Seen:§f " + target.getFirstPlayed());
 				p.sendMessage("§cTime Played:§f " + timeplayed);
+				//Tracked in Silkspawners Class
 				p.sendMessage("§cBlocks Placed:§f " + blocksplaced);
+				//Tracked in Misc Class
 				p.sendMessage("§cBlocks Broken:§f " + blocksmined);
+				//Tracked in Misc Class
 				p.sendMessage("§cSugarcane Farmed:§f " + sugarcanemined);
+				//Tracked in Misc Class
 				p.sendMessage("§cPlayers Killed:§f " + playerskilled);
 				p.sendMessage("§cMobs Killed:§f " + mobskilled);
 				p.sendMessage("§cMoney Made:§f " + moneymade);
 				p.sendMessage("§cMoney Spent:§f " + luckydrops);
+				//Tracked in Luckydrops Class
 				p.sendMessage("§cFish Caught:§f " + fishcaught);
+				//Tracked in Stats Command Class
 				p.sendMessage("§cGenbuckets Placed:§f " + genbuckets);
+				//Tracked in Luckydrops Class
 				p.sendMessage("§cLucky Drops Found:§f " + luckydrops);
 				p.sendMessage("§cSupply Drops Captured:§f " + supplydropscaptured);
 				p.sendMessage("§cCastle Captures:§f " + castlecaptures);
 				p.sendMessage("§cBooks Enchanted:§f " + booksenchanted);
 				p.sendMessage("§cChallenges Completed:§f " + challengescompleted);
 				p.sendMessage("§cSkills Obtained:§f " + skillsobtained);
+				//Tracked in this class
 				p.sendMessage("§cMCMMO Levels Gained:§f " + mcmmolevelsgained);
 			}else if (args.length == 0){
 				int timeplayed = plugin.getConfig().getInt(p.getUniqueId() + ".TimePlayed");

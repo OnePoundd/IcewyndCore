@@ -65,6 +65,8 @@ public class Misc implements Listener {
 			sm.setOwner(event.getEntity().getPlayer().getName());
 			skull.setItemMeta(sm);
 			event.getDrops().add(skull);
+			int playerskilled = plugin.getConfig().getInt(event.getEntity().getKiller().getUniqueId() + ".PlayersKilled");
+			plugin.getConfig().set(event.getEntity().getKiller().getUniqueId() + ".PlayersKilled", playerskilled + 1);
 		}
 	}
 
