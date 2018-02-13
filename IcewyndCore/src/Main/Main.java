@@ -20,6 +20,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import BanSystem.BanCommand;
+import BanSystem.UnbanCommand;
 import Commands.Book;
 import Commands.ClearChat;
 import Commands.ClearInventory;
@@ -104,6 +105,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("enderchest").setExecutor(new Enderchest());
 		getCommand("book").setExecutor(new Book());
 		getCommand("ban").setExecutor(new BanCommand());
+		getCommand("unban").setExecutor(new UnbanCommand());
 		getCommand("disposal").setExecutor(new Disposal());
 		getCommand("youtube").setExecutor(new YoutubeBroadcast());
 		getCommand("twitch").setExecutor(new TwitchBroadcast());
