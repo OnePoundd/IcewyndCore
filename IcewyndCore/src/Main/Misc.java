@@ -67,6 +67,7 @@ public class Misc implements Listener {
 			event.getDrops().add(skull);
 			int playerskilled = plugin.getConfig().getInt(event.getEntity().getKiller().getUniqueId() + ".PlayersKilled");
 			plugin.getConfig().set(event.getEntity().getKiller().getUniqueId() + ".PlayersKilled", playerskilled + 1);
+			plugin.saveConfig();
 		}
 	}
 
@@ -77,9 +78,11 @@ public class Misc implements Listener {
 		Player player = event.getPlayer();
 		int blocksmined = plugin.getConfig().getInt(player.getUniqueId() + ".BlocksMined");
 		plugin.getConfig().set(player.getUniqueId() + ".BlocksMined", blocksmined + 1);
+		plugin.saveConfig();
 		if (event.getBlock().getType().equals(Material.SUGAR_CANE_BLOCK)) {
 			int sugarcanemined = plugin.getConfig().getInt(player.getUniqueId() + ".SugarcaneMined");
 			plugin.getConfig().set(player.getUniqueId() + ".SugarcaneMined", sugarcanemined + 1);
+			plugin.saveConfig();
 		} else if (event.getBlock().getType().equals(Material.SPONGE)) {
 			ItemStack Sponge = new ItemStack(Material.SPONGE, 1);
 			event.getBlock().setType(Material.AIR);

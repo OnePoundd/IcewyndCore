@@ -24,6 +24,7 @@ public class SilkSpawners implements Listener {
 		//Tracks blocks placed for stats command
 		int blocksplaced = plugin.getConfig().getInt(player.getUniqueId() + ".BlocksPlaced");
 		plugin.getConfig().set(player.getUniqueId() + ".BlocksPlaced", blocksplaced + 1);
+		plugin.saveConfig();
 		if (!event.isCancelled()) {
 			if (event.getBlock().getType().equals(Material.MOB_SPAWNER)) {
 				ItemStack item = event.getItemInHand();
