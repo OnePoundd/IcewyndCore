@@ -46,15 +46,11 @@ Main plugin = Main.getPlugin(Main.class);
 			if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 				c.setCancelled(true);
 			}else {
+				TextComponent text = null;
 				if (player.hasPermission("server.admin")) {
-					TextComponent text = new TextComponent("§7§l[§c§lADMIN§7§l]§b "+ c.getPlayer().getName());
-					text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§7             §a§lGeneral          \n      §a§l§m------------§a   \n§d§lTime Played:§e " + timeplayed + "\n§d§lBlocks Broken:§e " + blocksmined + "\n§d§lSugarcane Farmed:§e " + sugarcanemined + "\n§d§lBlocks Placed:§e " + blocksplaced + "\n§d§lFish Caught:§e " + fishcaught + "\n§d§lPlayers Killed:§e " + playerskilled + "\n§d§lMonsters Killed:§e " + mobskilled + "\n              §a§lOther          \n      §a§l§m------------§a" + "\n§d§lMoney Made:§e " + moneymade + "\n§d§lGenbuckets Placed:§e " + genbuckets + "\n§d§lLucky Drops Found:§e " + luckydrops + "\n§d§lSupply Drops Captured:§e " + supplydropscaptured + "\n§d§lCastle Captures:§e " + castlecaptures + "\n§d§lBooks Enchanted:§e " + booksenchanted + "\n§d§lChallenges Completed:§e " + challengescompleted + "\n§d§lMCMMO Levels Gained:§e " + mcmmolevelsgained).create()));
-					TextComponent message = new TextComponent(" §a» §f" + ChatMessage);
-					for(Player player1 : Bukkit.getOnlinePlayers()) {
-						player1.sendMessage(text, message);
-					}
+					text = new TextComponent("§7§l[§c§lADMIN§7§l]§b "+ c.getPlayer().getName());
 				} else if (player.hasPermission("server.chatmod")) {
-					Bukkit.broadcastMessage("§f§l[§bChatMod§f§l]§a " + player.getName() + " §7» §f" + ChatMessage);
+					text = new TextComponent("§f§l[§bChatMod§f§l]§a "+ c.getPlayer().getName());
 				} else if (player.hasPermission("server.rank1")) {
 					Bukkit.broadcastMessage("§f[§2Fighter§f]§a " + player.getName() + " §7» §f" + ChatMessage);
 				} else if (player.hasPermission("server.rank2")) {
@@ -68,6 +64,13 @@ Main plugin = Main.getPlugin(Main.class);
 				} else {
 					Bukkit.broadcastMessage("§8[§fMember§8]§7 " + player.getName() + " » §f" + ChatMessage);
 				}
+				
+				text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§7             §a§lGeneral          \n      §a§l§m------------§a   \n§d§lTime Played:§e " + timeplayed + "\n§d§lBlocks Broken:§e " + blocksmined + "\n§d§lSugarcane Farmed:§e " + sugarcanemined + "\n§d§lBlocks Placed:§e " + blocksplaced + "\n§d§lFish Caught:§e " + fishcaught + "\n§d§lPlayers Killed:§e " + playerskilled + "\n§d§lMonsters Killed:§e " + mobskilled + "\n              §a§lOther          \n      §a§l§m------------§a" + "\n§d§lMoney Made:§e " + moneymade + "\n§d§lGenbuckets Placed:§e " + genbuckets + "\n§d§lLucky Drops Found:§e " + luckydrops + "\n§d§lSupply Drops Captured:§e " + supplydropscaptured + "\n§d§lCastle Captures:§e " + castlecaptures + "\n§d§lBooks Enchanted:§e " + booksenchanted + "\n§d§lChallenges Completed:§e " + challengescompleted + "\n§d§lMCMMO Levels Gained:§e " + mcmmolevelsgained).create()));
+				TextComponent message = new TextComponent(" §a» §f" + ChatMessage);
+				for(Player player1 : Bukkit.getOnlinePlayers()) {
+					player1.sendMessage(text, message);
+				}
+				
 			}
 		}
 	}
