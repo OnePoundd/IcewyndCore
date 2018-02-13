@@ -52,17 +52,17 @@ Main plugin = Main.getPlugin(Main.class);
 				} else if (player.hasPermission("server.chatmod")) {
 					text = new TextComponent("§f§l[§bChatMod§f§l]§a "+ c.getPlayer().getName());
 				} else if (player.hasPermission("server.rank1")) {
-					Bukkit.broadcastMessage("§f[§2Fighter§f]§a " + player.getName() + " §7» §f" + ChatMessage);
+					text = new TextComponent("§f[§2Fighter§f]§a "+ c.getPlayer().getName());
 				} else if (player.hasPermission("server.rank2")) {
-					Bukkit.broadcastMessage("§f[§dWarlord§f]§a " + player.getName() + " §7» §f" + ChatMessage);
+					text = new TextComponent("§f[§dWarlord§f]§a "+ c.getPlayer().getName());
 				} else if (player.hasPermission("server.rank3")) {
-					Bukkit.broadcastMessage("§f[§cEmporer§f]§a " + player.getName() + " §7» §f" + ChatMessage);
+					text = new TextComponent("§f[§cEmporer§f]§a "+ c.getPlayer().getName());
 				} else if (player.hasPermission("server.rank4")) {
-					Bukkit.broadcastMessage("§f[§9§lGod§f]§a " + player.getName() + " §7» §f" + ChatMessage);
+					text = new TextComponent("§f[§9§lGod§f]§a "+ c.getPlayer().getName());
 				} else if (player.hasPermission("server.rank5")) {
-					Bukkit.broadcastMessage("§f[§b§lIcewynd§f]§a " + player.getName() + " §7» §f" + ChatMessage);
+					text = new TextComponent("§f[§b§lIcewynd§f]§a "+ c.getPlayer().getName());
 				} else {
-					Bukkit.broadcastMessage("§8[§fMember§8]§7 " + player.getName() + " » §f" + ChatMessage);
+					text = new TextComponent("§8[§fMember§8]§7 "+ c.getPlayer().getName());
 				}
 				
 				text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§7             §a§lGeneral          \n      §a§l§m------------§a   \n§d§lTime Played:§e " + timeplayed + "\n§d§lBlocks Broken:§e " + blocksmined + "\n§d§lSugarcane Farmed:§e " + sugarcanemined + "\n§d§lBlocks Placed:§e " + blocksplaced + "\n§d§lFish Caught:§e " + fishcaught + "\n§d§lPlayers Killed:§e " + playerskilled + "\n§d§lMonsters Killed:§e " + mobskilled + "\n              §a§lOther          \n      §a§l§m------------§a" + "\n§d§lMoney Made:§e " + moneymade + "\n§d§lGenbuckets Placed:§e " + genbuckets + "\n§d§lLucky Drops Found:§e " + luckydrops + "\n§d§lSupply Drops Captured:§e " + supplydropscaptured + "\n§d§lCastle Captures:§e " + castlecaptures + "\n§d§lBooks Enchanted:§e " + booksenchanted + "\n§d§lChallenges Completed:§e " + challengescompleted + "\n§d§lMCMMO Levels Gained:§e " + mcmmolevelsgained).create()));
