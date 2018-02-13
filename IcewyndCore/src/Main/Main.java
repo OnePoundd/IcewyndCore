@@ -149,23 +149,50 @@ public class Main extends JavaPlugin implements Listener {
 			} else if (index == 10) {
 				Bukkit.broadcastMessage("§b§lINFO §7» Quickly mine out areas for your base with the shockwave enchantment aquired from the Enchanter NPC or the store!");
 			} else if (index == 11) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Spend coins at the Quartermaster in Safezone and buy kits, disguises and other valuable items!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Spend coins on a large variety of prizes by visiting the Quartermaster found in Safezone! ");
 			} else if (index == 12) {
 				Bukkit.broadcastMessage("§b§lINFO §7» Found a bug? Submit it on our forums for a potential reward.");
 			} else if (index == 13) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Boss eggs can be dropped when killing mobs from a spawner - summon them in warzone and kill them for rewards!");
+				Bukkit.broadcastMessage("§b§lINFO §7» Boss eggs are dropped from killing mobs, summon them in Warzone for a battle & prize!");
 			} else if (index == 14) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Protect your faction from betrayal using faction regions and trusted permissions.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Protect your faction from betrayal by using faction regions and trusted permissions.");
 			} else if (index == 15) {
 				Bukkit.broadcastMessage("§b§lINFO §7» Reach the top of the mcmmo leaderboard in any skill for a unique prefix in chat and a unique kit every day!");
 			} else if (index == 16) {
 				Bukkit.broadcastMessage("§b§lINFO §7» Capture Castle for victory points, double spawner rates, an extra 10% on /sell, and cash every 10 minutes!");
 			} else if (index == 17) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Looking to test your cannons or need a place to build? Check out our cannon server in the hub.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Test out your cannons and build freely using our cannon server! Connect by going to the hub.");
 			} else if (index == 18) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Gunpowder can be converted to TNT using furnaces! Increase the chance by using §b/f upgrade§7.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Gunpowder can be converted to TNT using furnaces! Increase the speed using §b/f upgrade§7.");
 			} else if (index == 19) {
-				Bukkit.broadcastMessage("§b§lINFO §7» Fill cannons quickly and store virtual TNT using §b/f tnt§7.");
+				Bukkit.broadcastMessage("§b§lINFO §7» Fill cannons quickly and store TNT using §b/f tnt§7.");
+			} else if (index == 20) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Want to sell items easier? Sell wands sell entire chests at a time. Obtain them from the Quartermaster.");
+			} else if (index == 21) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Support the server by purchasing items on the Store. Visit at §bIcewynd.net/store§7.");
+			} else if (index == 22) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Gain rewards from completing daily bounties, you can find these at Xavier in Safezone.");
+			} else if (index == 23) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Find our more information about the server including all commands by using §b/info§7!");
+			} else if (index == 24) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Check your ping by using §b/ping§b7. This command also works on other players.");
+			} else if (index == 25) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Access your enderchest by using §b/echest§7. This only works for ranked players.");
+			} else if (index == 26) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Check yours and other players statistics by using §b/statistics§7.");
+			} else if (index == 27) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Get assistance from your faction members in PVP by using Faction Banners!");
+			} else if (index == 28) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Do you stream on our server? Add your stream to our streamers tab on our website §bIcewynd.net§7!");
+			} else if (index == 29) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Is someone being annoying? Toggle messages and teleports by using §b/msgtoggle §7and §b/tptoggle§7.");
+			} else if (index == 30) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Broadcast a message to all online faction members by using §b/f announce§7.");
+			} else if (index == 31) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Everything you do on our server levels you up. You can spend level up tokens on rewards in §b/skills");
+			} else if (index == 32) {
+				Bukkit.broadcastMessage("§b§lINFO §7» Purchase mob spawners and anything else you need in the §b/shop§7.");
+				
 			}
 		}
 	}, 0L, 3000L);
