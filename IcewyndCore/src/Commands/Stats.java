@@ -7,10 +7,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
-
 import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
+import com.massivecraft.factions.entity.MPlayer;
 
 import Main.Main;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class Stats implements CommandExecutor{
 Main plugin = Main.getPlugin(Main.class);
@@ -50,36 +53,13 @@ Main plugin = Main.getPlugin(Main.class);
 				int castlecaptures = plugin.getConfig().getInt(target.getUniqueId() + ".CastleCaptures");
 				int booksenchanted = plugin.getConfig().getInt(target.getUniqueId() + ".BooksEnchanted");
 				int challengescompleted = plugin.getConfig().getInt(target.getUniqueId() + ".ChallengesCompleted");
-				int skillsobtained = plugin.getConfig().getInt(target.getUniqueId() + ".SkillsBbtained");
 				int mcmmolevelsgained = plugin.getConfig().getInt(target.getUniqueId() + ".MCMMOLevelsGained");
 				
-				p.sendMessage("§8§l§m-------§r§8§l[ §a§l" + args[0] + "'s" + " Stats" + " §r§8§l]§8§l§m-------");
-				p.sendMessage("§cFirst Seen:§f " + target.getFirstPlayed());
-				p.sendMessage("§cTime Played:§f " + timeplayed);
-				//Tracked in Silkspawners Class
-				p.sendMessage("§cBlocks Placed:§f " + blocksplaced);
-				//Tracked in Misc Class
-				p.sendMessage("§cBlocks Broken:§f " + blocksmined);
-				//Tracked in Misc Class
-				p.sendMessage("§cSugarcane Farmed:§f " + sugarcanemined);
-				//Tracked in Misc Class
-				p.sendMessage("§cPlayers Killed:§f " + playerskilled);
-				p.sendMessage("§cMobs Killed:§f " + mobskilled);
-				p.sendMessage("§cMoney Made:§f " + moneymade);
-				p.sendMessage("§cMoney Spent:§f " + luckydrops);
-				//Tracked in Luckydrops Class
-				p.sendMessage("§cFish Caught:§f " + fishcaught);
-				//Tracked in Stats Command Class
-				p.sendMessage("§cGenbuckets Placed:§f " + genbuckets);
-				//Tracked in Luckydrops Class
-				p.sendMessage("§cLucky Drops Found:§f " + luckydrops);
-				p.sendMessage("§cSupply Drops Captured:§f " + supplydropscaptured);
-				p.sendMessage("§cCastle Captures:§f " + castlecaptures);
-				p.sendMessage("§cBooks Enchanted:§f " + booksenchanted);
-				p.sendMessage("§cChallenges Completed:§f " + challengescompleted);
-				p.sendMessage("§cSkills Obtained:§f " + skillsobtained);
-				//Tracked in this class
-				p.sendMessage("§cMCMMO Levels Gained:§f " + mcmmolevelsgained);
+				MPlayer mplayer = MPlayer.get(target);
+				String faction = mplayer.getFactionName();
+				TextComponent text = new TextComponent("§a§lHover here to see " + target.getName() + "'s stats");
+				text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§dUsername: §e" + p.getName() + "\n§dFaction:§e " + faction + "\n" + "\n§7             §a§lGeneral          \n      §a§l§m------------§a   \n§d§lTime Played:§e " + timeplayed + "\n§d§lBlocks Broken:§e " + blocksmined + "\n§d§lSugarcane Farmed:§e " + sugarcanemined + "\n§d§lBlocks Placed:§e " + blocksplaced + "\n§d§lFish Caught:§e " + fishcaught + "\n§d§lPlayers Killed:§e " + playerskilled + "\n§d§lMonsters Killed:§e " + mobskilled + "\n               §a§lOther          \n      §a§l§m------------§a" + "\n§d§lMoney Made:§e " + moneymade + "\n§d§lGenbuckets Placed:§e " + genbuckets + "\n§d§lLucky Drops Found:§e " + luckydrops + "\n§d§lSupply Drops Captured:§e " + supplydropscaptured + "\n§d§lCastle Captures:§e " + castlecaptures + "\n§d§lBooks Enchanted:§e " + booksenchanted + "\n§d§lChallenges Completed:§e " + challengescompleted + "\n§d§lMCMMO Levels Gained:§e " + mcmmolevelsgained).create()));
+				p.sendMessage(text);
 			}else if (args.length == 0){
 				int timeplayed = plugin.getConfig().getInt(p.getUniqueId() + ".TimePlayed");
 				int blocksplaced = plugin.getConfig().getInt(p.getUniqueId() + ".BlocksPlaced");
@@ -95,28 +75,13 @@ Main plugin = Main.getPlugin(Main.class);
 				int castlecaptures = plugin.getConfig().getInt(p.getUniqueId() + ".CastleCaptures");
 				int booksenchanted = plugin.getConfig().getInt(p.getUniqueId() + ".BooksEnchanted");
 				int challengescompleted = plugin.getConfig().getInt(p.getUniqueId() + ".ChallengesCompleted");
-				int skillsobtained = plugin.getConfig().getInt(p.getUniqueId() + ".SkillsObtained");
 				int mcmmolevelsgained = plugin.getConfig().getInt(p.getUniqueId() + ".MCMMOLevelsGained");
 				
-				p.sendMessage("§8§l§m-------§r§8§l[ §a§l Your Stats" + " §r§8§l]§8§l§m-------");
-				p.sendMessage("§cFirst Seen:§f " + p.getFirstPlayed());
-				p.sendMessage("§cTime Played:§f " + timeplayed);
-				p.sendMessage("§cBlocks Placed:§f " + blocksplaced);
-				p.sendMessage("§cBlocks Broken:§f " + blocksmined);
-				p.sendMessage("§cSugarcane Farmed:§f " + sugarcanemined);
-				p.sendMessage("§cPlayers Killed:§f " + playerskilled);
-				p.sendMessage("§cMobs Killed:§f " + mobskilled);
-				p.sendMessage("§cMoney Made:§f " + moneymade);
-				p.sendMessage("§cMoney Spent:§f " + luckydrops);
-				p.sendMessage("§cFish Caught:§f " + fishcaught);
-				p.sendMessage("§cGenbuckets Placed:§f " + genbuckets);
-				p.sendMessage("§cLucky Drops Found:§f " + luckydrops);
-				p.sendMessage("§cSupply Drops Captured:§f " + supplydropscaptured);
-				p.sendMessage("§cCastle Captures:§f " + castlecaptures);
-				p.sendMessage("§cBooks Enchanted:§f " + booksenchanted);
-				p.sendMessage("§cChallenges Completed:§f " + challengescompleted);
-				p.sendMessage("§cSkills Obtained:§f " + skillsobtained);
-				p.sendMessage("§cMCMMO Levels Gained:§f " + mcmmolevelsgained);
+				MPlayer mplayer = MPlayer.get(p);
+				String faction = mplayer.getFactionName();
+				TextComponent text = new TextComponent("§a§lHover here to see your stats!");
+				text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§dUsername: §e" + p.getName() + "\n§dFaction:§e " + faction + "\n" + "\n§7             §a§lGeneral          \n      §a§l§m------------§a   \n§d§lTime Played:§e " + timeplayed + "\n§d§lBlocks Broken:§e " + blocksmined + "\n§d§lSugarcane Farmed:§e " + sugarcanemined + "\n§d§lBlocks Placed:§e " + blocksplaced + "\n§d§lFish Caught:§e " + fishcaught + "\n§d§lPlayers Killed:§e " + playerskilled + "\n§d§lMonsters Killed:§e " + mobskilled + "\n               §a§lOther          \n      §a§l§m------------§a" + "\n§d§lMoney Made:§e " + moneymade + "\n§d§lGenbuckets Placed:§e " + genbuckets + "\n§d§lLucky Drops Found:§e " + luckydrops + "\n§d§lSupply Drops Captured:§e " + supplydropscaptured + "\n§d§lCastle Captures:§e " + castlecaptures + "\n§d§lBooks Enchanted:§e " + booksenchanted + "\n§d§lChallenges Completed:§e " + challengescompleted + "\n§d§lMCMMO Levels Gained:§e " + mcmmolevelsgained).create()));
+				p.sendMessage(text);
 			}
 		}
 		return false;

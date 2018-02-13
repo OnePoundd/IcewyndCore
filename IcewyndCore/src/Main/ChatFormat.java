@@ -11,20 +11,47 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import com.massivecraft.factions.entity.MPlayer;
 
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+
 public class ChatFormat implements Listener {
 Main plugin = Main.getPlugin(Main.class);
+
+
 
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent c) { //adds rank prefixes to chat
 		if (!c.isCancelled()) {
 			String ChatMessage = c.getMessage();
 			Player player = c.getPlayer();
+			
+			int timeplayed = plugin.getConfig().getInt(player.getUniqueId() + ".TimePlayed");
+			int blocksplaced = plugin.getConfig().getInt(player.getUniqueId() + ".BlocksPlaced");
+			int playerskilled = plugin.getConfig().getInt(player.getUniqueId() + ".PlayersKilled");
+			int mobskilled = plugin.getConfig().getInt(player.getUniqueId() + ".MobsKilled");
+			int moneymade = plugin.getConfig().getInt(player.getUniqueId() + ".MoneyMade");
+			int fishcaught = plugin.getConfig().getInt(player.getUniqueId() + ".FishCaught");
+			int genbuckets = plugin.getConfig().getInt(player.getUniqueId() + ".GenBuckets");
+			int sugarcanemined = plugin.getConfig().getInt(player.getUniqueId() + ".SugarcaneMined");
+			int blocksmined = plugin.getConfig().getInt(player.getUniqueId() + ".BlocksMined");
+			int luckydrops = plugin.getConfig().getInt(player.getUniqueId() + ".LuckyDrops");
+			int supplydropscaptured = plugin.getConfig().getInt(player.getUniqueId() + ".SupplyDropsCaptured");
+			int castlecaptures = plugin.getConfig().getInt(player.getUniqueId() + ".CastleCaptures");
+			int booksenchanted = plugin.getConfig().getInt(player.getUniqueId() + ".BooksEnchanted");
+			int challengescompleted = plugin.getConfig().getInt(player.getUniqueId() + ".ChallengesCompleted");
+			int mcmmolevelsgained = plugin.getConfig().getInt(player.getUniqueId() + ".MCMMOLevelsGained");
+			
 			c.setCancelled(true);
 			if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 				c.setCancelled(true);
 			}else {
 				if (player.hasPermission("server.admin")) {
-					Bukkit.broadcastMessage("§7§l[§c§lADMIN§7§l]§b " + player.getName() + " §a» §f" + ChatMessage);
+					TextComponent text = new TextComponent("Test");
+					text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§7             §a§lGeneral          \n      §a§l§m------------§a   \n§d§lTime Played:§e " + timeplayed + "\n§d§lBlocks Broken:§e " + blocksmined + "\n§d§lSugarcane Farmed:§e " + sugarcanemined + "\n§d§lBlocks Placed:§e " + blocksplaced + "\n§d§lFish Caught:§e " + fishcaught + "\n§d§lPlayers Killed:§e " + playerskilled + "\n§d§lMonsters Killed:§e " + mobskilled + "\n              §a§lOther          \n      §a§l§m------------§a" + "\n§d§lMoney Made:§e " + moneymade + "\n§d§lGenbuckets Placed:§e " + genbuckets + "\n§d§lLucky Drops Found:§e " + luckydrops + "\n§d§lSupply Drops Captured:§e " + supplydropscaptured + "\n§d§lCastle Captures:§e " + castlecaptures + "\n§d§lBooks Enchanted:§e " + booksenchanted + "\n§d§lChallenges Completed:§e " + challengescompleted + "\n§d§lMCMMO Levels Gained:§e " + mcmmolevelsgained).create()));
+					Bukkit.broadcastMessage(text + "§7§l[§c§lADMIN§7§l]§b " + player.getName() + " §a» §f" + ChatMessage);
+					player.spigot().sendMessage(text);
+					
 				} else if (player.hasPermission("server.chatmod")) {
 					Bukkit.broadcastMessage("§f§l[§bChatMod§f§l]§a " + player.getName() + " §7» §f" + ChatMessage);
 				} else if (player.hasPermission("server.rank1")) {
