@@ -18,11 +18,7 @@ Main plugin = Main.getPlugin(Main.class);
 				player.sendMessage("§a[1]§f Do not spam chat excessively.");
 				player.sendMessage("§a[2]§f Do not be excessively racist in chat.");
 				player.sendMessage("§a[3]§f Do not run scripts, macros or clients to change gameplay.");
-				player.sendMessage("§a[4]§f Do not discuss DDoSing or Doxing.");
-				int coinbalance = plugin.getConfig().getInt(player.getUniqueId() + ".Coins");
-				plugin.getConfig().set(player.getUniqueId() + ".Coins", coinbalance + 1);
-				plugin.saveConfig();
-			}
+				player.sendMessage("§a[4]§f Do not discuss DDoSing or Doxing.");			}
 		}
 		return false;
 	}
