@@ -29,8 +29,10 @@ import Commands.Enderchest;
 import Commands.Event;
 import Commands.Feed;
 import Commands.Freecam;
+import Commands.Help;
 import Commands.Invsee;
 import Commands.Kits;
+import Commands.List;
 import Commands.Message;
 import Commands.MsgToggle;
 import Commands.NightVision;
@@ -43,6 +45,7 @@ import Commands.Rules;
 import Commands.Sell;
 import Commands.Shop;
 import Commands.Stats;
+import Commands.Suicide;
 import Commands.TwitchBroadcast;
 import Commands.YoutubeBroadcast;
 import Crates.CrateEventListener;
@@ -89,6 +92,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Sell(), this);
 		manager.registerEvents(new Shop(), this);
 		manager.registerEvents(new DisguiseBuffs(), this);
+		manager.registerEvents(new BossEggs(), this);
 		
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -116,11 +120,15 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("sell").setExecutor(new Sell());
 		getCommand("shop").setExecutor(new Shop());
 		getCommand("feed").setExecutor(new Feed());
+		getCommand("help").setExecutor(new Help());
+		getCommand("list").setExecutor(new List());
+		getCommand("suicide").setExecutor(new Suicide());
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
-		EventCrate.load();
+		EventCrate.load();	
 
+		
 
 		//Uploader.triggerDatabaseAutoUpdate(); //Triggers the auto-updater for the factions web-database. Every 5 mins player and faction data will be updated.
 	

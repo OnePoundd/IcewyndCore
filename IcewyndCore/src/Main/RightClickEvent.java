@@ -30,10 +30,7 @@ public class RightClickEvent implements Listener {
 					player.sendMessage("§cYou do not have the required inventory space.");
 				}else {
 	 */
-	
-	
-	
-	
+
 	//Quartermaster Items
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -42,31 +39,38 @@ public class RightClickEvent implements Listener {
 			Player player = event.getPlayer();
 			if (player.getItemInHand().getType().equals(Material.TRAPPED_CHEST)) {
 				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nCrate of TNT")) {
-					if (player.getInventory().firstEmpty() > 0) {
-						player.getPlayer().getInventory().setItemInHand(new ItemStack(Material.AIR, 1));
-				player.getInventory().addItem(new ItemStack(Material.TNT, 2304));
-				event.setCancelled(true);
-
+					if (player.getInventory().firstEmpty() == -1) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						event.setCancelled(true);
+						player.closeInventory();
+					}else {
+					player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+					player.getInventory().addItem(new ItemStack(Material.TNT, 2304));
+					event.setCancelled(true);
+					}
 				// Charged Creeper
 			} else if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
 				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§a§l§nCharged Creeper Egg")) {
-					player.getInventory().getItemInHand()
-							.setAmount(player.getInventory().getItemInHand().getAmount() - 1);
-				player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0), EntityType.CREEPER);
-				Block block = event.getClickedBlock();
-				Location locB = block.getLocation().getBlock().getLocation();
-				block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
+						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+						player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0), EntityType.CREEPER);
+						Block block = event.getClickedBlock();
+						Location locB = block.getLocation().getBlock().getLocation();
+						block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
+					}
 
 				// Mystery Spawner
 			} else if (player.getItemInHand().getType().equals(Material.MOB_SPAWNER)) {
 				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§l§nMystery Spawner")) {
-					if (player.getInventory().firstEmpty() > 0) {
-						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+					if (player.getInventory().firstEmpty() == -1) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						event.setCancelled(true);
+						player.closeInventory();
+					}else {
 						Random rand = new Random();
 						int index5 = rand.nextInt(5) + 1;
 						if (index5 == 1) {
 							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " villager");
-							Bukkit.broadcastMessage("§d§lœ¦§b§l " + player.getName() + " was lucky and recieved a §d§lVillager spawner§b§l from a Mystery Spawner!" + " §d§lœ¦");
+							Bukkit.broadcastMessage(" " + player.getName() + " was lucky and recieved a §d§lVillager spawner§b§l from a Mystery Spawner!" + " §d§lœ¦");
 						} else if (index5 == 2) {
 							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " creeper");
 						} else if (index5 == 3) {
@@ -75,7 +79,9 @@ public class RightClickEvent implements Listener {
 							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " blaze");
 						} else if (index5 == 5) {
 							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " witch");
-				}
+						}
+						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+					}
 			} else if (player.getItemInHand().getType().equals(Material.EYE_OF_ENDER)) {
 				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§lRandom TP")) {
 					event.setCancelled(true);
@@ -84,9 +90,13 @@ public class RightClickEvent implements Listener {
 				    Player randomPlayer = players.get(new Random().nextInt(players.size()));
 				    player.teleport(randomPlayer.getLocation());
 							}
-			} else if (player.getItemInHand().getType().equals(Material.PISTON_BASE)) {
+			} else if (player.getItemInHand().getType().equals(Material.CHEST)) {
 				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§2§l§nFighter Kit Crate")) {
-					if (player.getInventory().firstEmpty() > 0) {
+					if (player.getInventory().firstEmpty() == -1) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						event.setCancelled(true);
+						player.closeInventory();
+					}else {
 						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 						//Fighter Helmet
 						ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
@@ -144,8 +154,13 @@ public class RightClickEvent implements Listener {
 						player.getInventory().addItem(Item5);
 						player.getInventory().addItem(Item6);
 						player.getInventory().addItem(Item7);
+					}
 				}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§l§nWarlord Kit Crate")) {
-					if (player.getInventory().firstEmpty() > 0) {
+					if (player.getInventory().firstEmpty() == -1) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						event.setCancelled(true);
+						player.closeInventory();
+					}else {
 						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 						//Warlord Helmet
 						ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
@@ -203,8 +218,14 @@ public class RightClickEvent implements Listener {
 						player.getInventory().addItem(Item5);
 						player.getInventory().addItem(Item6);
 						player.getInventory().addItem(Item7);
-				}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nEmporer Kit Crate")) {
-					if (player.getInventory().firstEmpty() > 0) {
+					}
+				}
+				else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nEmporer Kit Crate")) {
+					if (player.getInventory().firstEmpty() == -1) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						event.setCancelled(true);
+						player.closeInventory();
+					}else {
 						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 						//Emporer Helmet
 						ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
@@ -277,8 +298,14 @@ public class RightClickEvent implements Listener {
 						player.getInventory().addItem(Item6);
 						player.getInventory().addItem(Item7);
 						player.getInventory().addItem(Item8);
-				}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§9§l§nGod Kit Crate")) {
-					if (player.getInventory().firstEmpty() > 0) {
+					}
+				}
+				else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§9§l§nGod Kit Crate")) {
+					if (player.getInventory().firstEmpty() == -1) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						event.setCancelled(true);
+						player.closeInventory();
+					}else {
 						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 						//God Helmet
 						ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
@@ -354,8 +381,14 @@ public class RightClickEvent implements Listener {
 						player.getInventory().addItem(Item7);
 						player.getInventory().addItem(Item8);
 						player.getInventory().addItem(Item8);
-				}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§b§l§nIcewynd Kit Crate")) {
-					if (player.getInventory().firstEmpty() > 0) {
+					}
+				}
+				else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§b§l§nIcewynd Kit Crate")) {
+					if (player.getInventory().firstEmpty() == -1) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						event.setCancelled(true);
+						player.closeInventory();
+					}else {
 						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 						//Icewynd Helmet
 						ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
@@ -437,18 +470,14 @@ public class RightClickEvent implements Listener {
 						player.getInventory().addItem(Item8);
 					}
 				}
-				}
-				}
-				}
-				}
 			}
-				}
-					}
-					}
-				}
 			}
+			}
+			
 		}
 	}
+
+	
 
 	//Quartermaster Item
 	@SuppressWarnings("deprecation")

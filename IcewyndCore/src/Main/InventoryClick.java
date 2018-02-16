@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -80,6 +81,20 @@ public class InventoryClick implements Listener {
 			Item4.setItemMeta(Item4Meta);
 			player.sendMessage("§aPurchased 1 Charged Creeper Egg!");
 			player.getInventory().addItem(new ItemStack(Item4));
+		} else if (item.getType() == Material.MOB_SPAWNER) {
+			ItemStack Item5 = new ItemStack(Material.MOB_SPAWNER, 1);
+			ItemMeta Item5Meta = Item5.getItemMeta();
+			List<String> lore5 = new ArrayList<String>();
+			Item5Meta.addEnchant(Enchantment.DIG_SPEED, 1, true);
+			Item5Meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+			Item5Meta.setDisplayName("§d§l§nMystery Spawner");
+			lore5.add("§7Rewards the player with 1 random spawner out of 5");
+			lore5.add("§1");
+			lore5.add("§cPrice: §f5 Coins");
+			Item5Meta.setLore(lore5);
+			Item5.setItemMeta(Item5Meta);
+			player.sendMessage("§aPurchased 1 Mystery Spawner");
+			player.getInventory().addItem(new ItemStack(Item5));
 		} else if (item.getType() == Material.POTION) {
 			ItemStack Item6 = new ItemStack(Material.POTION, 1);
 			ItemMeta Item6Meta = Item6.getItemMeta();

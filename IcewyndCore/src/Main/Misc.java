@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,6 +31,10 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.massivecraft.factions.entity.MConf;
+import com.massivecraft.factions.entity.MPlayer;
+import eu.haelexuis.utils.xoreboard.XoreBoard;
+import eu.haelexuis.utils.xoreboard.XoreBoardGlobalSidebar;
+import eu.haelexuis.utils.xoreboard.XoreBoardUtil;
 
 public class Misc implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
@@ -102,6 +107,26 @@ public class Misc implements Listener {
 		player.sendMessage("§b§lDISCORD: §fIcewynd.net/Discord");
 		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
 		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
+		//Scoreboard
+		XoreBoard xoreBoard = XoreBoardUtil.getNextXoreBoard();
+		xoreBoard.addPlayer(event.getPlayer());
+		XoreBoardGlobalSidebar sidebar = xoreBoard.getSidebar();
+		sidebar.setDisplayName("§b§lIcewynd.net");
+		sidebar.showSidebar();
+		sidebar.putLine("§l§7§m------------", 9);
+		sidebar.putLine("§a§lFaction:", 8);
+		MPlayer mplayer = MPlayer.get(player);
+		String faction = mplayer.getFactionName();
+		sidebar.putLine("§7»§f " + faction, 7);
+		sidebar.putLine("§b", 6);
+		sidebar.putLine("§d§lPing:", 5);
+		int ping = ((CraftPlayer) player).getHandle().ping;
+		sidebar.putLine("§7»§f " + ping, 4);
+		sidebar.putLine("§f", 3);
+		sidebar.putLine("§a§lBalance:", 2);
+		sidebar.putLine("§7»§f $250,000", 1);
+		sidebar.putLine("§7§l§m------------", 0);
+		
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 			player.teleport(MConf.get().getWarp("jail"));
 		}

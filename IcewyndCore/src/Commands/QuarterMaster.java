@@ -1,4 +1,3 @@
-//Item0Meta.addEnchant(Enchantment.ARROW_FIRE, 10, true);
 package Commands;
 
 import java.util.ArrayList;
@@ -8,18 +7,17 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class QuarterMaster implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (sender instanceof ConsoleCommandSender) {
 			if (cmd.getLabel().equals("q"))
 				;
 			if (args[0].equalsIgnoreCase("items")) {
@@ -27,7 +25,7 @@ public class QuarterMaster implements CommandExecutor {
 			} else if (args[0].equalsIgnoreCase("kits")) {
 				openKitsInventory(Bukkit.getPlayer(args[1]));
 			}
-		}
+		
 		return false;
 	}
 
@@ -84,7 +82,8 @@ public class QuarterMaster implements CommandExecutor {
 		List<String> lore4 = new ArrayList<String>();
 		Item4.setDurability(EntityType.CREEPER.getTypeId());
 		Item4Meta.setDisplayName("§a§l§nCharged Creeper Egg");
-		Item4Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
+		Item4Meta.addEnchant(Enchantment.DIG_SPEED, 1, true);
+		Item4Meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		lore4.add("§7Spawns a charged creeper!");
 		lore4.add("§1");
 		lore4.add("§cPrice: §f5 Coins");
@@ -94,6 +93,8 @@ public class QuarterMaster implements CommandExecutor {
 		ItemStack Item5 = new ItemStack(Material.MOB_SPAWNER, 1);
 		ItemMeta Item5Meta = Item5.getItemMeta();
 		List<String> lore5 = new ArrayList<String>();
+		Item5Meta.addEnchant(Enchantment.DIG_SPEED, 1, true);
+		Item5Meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		Item5Meta.setDisplayName("§d§l§nMystery Spawner");
 		lore5.add("§7Rewards the player with 1 random spawner out of 5");
 		lore5.add("§1");
@@ -105,7 +106,8 @@ public class QuarterMaster implements CommandExecutor {
 		ItemMeta Item6Meta = Item6.getItemMeta();
 		List<String> lore6 = new ArrayList<String>();
 		Item6Meta.setDisplayName("§4§l§nElixir of Fury");
-		Item6Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
+		Item6Meta.addEnchant(Enchantment.DIG_SPEED, 1, true);
+		Item6Meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		lore6.add("§eSpeed II (1:30)");
 		lore6.add("§eStrength II (1:30)");
 		lore6.add("§eFire Resistence (8:00)");
