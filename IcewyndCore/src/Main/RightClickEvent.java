@@ -3,6 +3,8 @@ package Main;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,10 +18,17 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import com.massivecraft.factions.entity.MPlayer;
+
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class RightClickEvent implements Listener {
 
@@ -37,16 +46,22 @@ public class RightClickEvent implements Listener {
 	public void onPlayerUse(PlayerInteractEvent event) {
 		if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			Player player = event.getPlayer();
-			if (player.getItemInHand().getType().equals(Material.TRAPPED_CHEST)) {
-				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nCrate of TNT")) {
-					if (player.getInventory().firstEmpty() == -1) {
-						player.sendMessage("§cYou do not have the required inventory space.");
-						event.setCancelled(true);
-						player.closeInventory();
-					}else {
-					player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
-					player.getInventory().addItem(new ItemStack(Material.TNT, 2304));
-					event.setCancelled(true);
+			if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§lPlagued Skeleton")) {
+						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+						player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0), EntityType.WITHER_SKELETON);
+						Block block = event.getClickedBlock();
+						Location locB = block.getLocation().getBlock().getLocation();
+						MPlayer mplayer = MPlayer.get(player);
+						String faction = mplayer.getFactionName();
+						
+						String nut = "§d§lBOSS EGGS§8§l » §7§lA §cPlagued Skeleton §7§lhas been summoned §7§lto Warzone by §e§l" + StringUtils.capitalize(faction) + "§7§l! §fCoords: [" + locB.getBlockX() + ", " +  locB.getBlockY() + ", " + locB.getBlockZ() + "]";
+						TextComponent text = new TextComponent(nut);
+						text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§c§lPlagued Skeleton \n \n§c§lRare §7§lboss egg that can be summoned in the Warzone. \n§7§lSlay this boss to be rewarded with a prize! \n \n§c§lDifficulty: §75 Players").create()));
+						for(Player player11 : Bukkit.getOnlinePlayers()) {
+							player11.sendMessage(text);
+						block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
+						}
 					}
 				// Charged Creeper
 			} else if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
@@ -57,6 +72,17 @@ public class RightClickEvent implements Listener {
 						Location locB = block.getLocation().getBlock().getLocation();
 						block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
 					}
+			}else if (player.getItemInHand().getType().equals(Material.TRAPPED_CHEST)) {
+					if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nCrate of TNT")) {
+						if (player.getInventory().firstEmpty() == -1) {
+							player.sendMessage("§cYou do not have the required inventory space.");
+							event.setCancelled(true);
+							player.closeInventory();
+						}else {
+						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+						player.getInventory().addItem(new ItemStack(Material.TNT, 2304));
+						event.setCancelled(true);
+						}
 
 				// Mystery Spawner
 			} else if (player.getItemInHand().getType().equals(Material.MOB_SPAWNER)) {

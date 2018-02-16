@@ -2,6 +2,8 @@ package Main;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -117,7 +119,7 @@ public class Misc implements Listener {
 		sidebar.putLine("§a§lFaction:", 8);
 		MPlayer mplayer = MPlayer.get(player);
 		String faction = mplayer.getFactionName();
-		sidebar.putLine("§7»§f " + faction, 7);
+		sidebar.putLine("§7»§f " + StringUtils.capitalize(faction), 7);
 		sidebar.putLine("§b", 6);
 		sidebar.putLine("§d§lPing:", 5);
 		int ping = ((CraftPlayer) player).getHandle().ping;
