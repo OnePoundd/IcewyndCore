@@ -12,8 +12,10 @@ public class Cancels implements Listener {
 	public void onBreed(EntityBreedEvent e) {
 		e.setCancelled(true);
 	}
+	@EventHandler
 	public void onspawn(EntitySpawnEvent e) {
-		if (e.getEntityType() == EntityType.ENDERMITE);
-		e.setCancelled(true);
+		if (e.getEntityType() == EntityType.ENDERMITE) {
+			e.setCancelled(true);
+		}
 	}
 }
