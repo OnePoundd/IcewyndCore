@@ -1,560 +1,560 @@
 1:
   Name: Stone
-  Sell: 100
-  Buy: 200
+  Sell: 1.56
+  Buy: 999999
 2:
   Name: Grass
-  Sell: 100
-  Buy: 200
+  Sell: 0.78
+  Buy: 999999
 3:
   Name: Dirt
-  Sell: 100
-  Buy: 200
+  Sell: 0.54
+  Buy: 999999
 4:
   Name: Cobblestone
-  Sell: 100
-  Buy: 200
+  Sell: 1.17
+  Buy: 999999
 5:
   Name: Wood Plank
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 12:
   Name: Sand
-  Sell: 100
-  Buy: 200
+  Sell: 0.78
+  Buy: 999999
 13:
   Name: Gravel
-  Sell: 100
-  Buy: 200
+  Sell: 0.78
+  Buy: 999999
 17:
   Name: Wood Log
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 19:
   Name: Sponge
-  Buy: 200
+  Buy: 999999
 20:
   Name: Glass
-  Buy: 200
+  Buy: 999999
 22:
   Name: Lapis Block
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 23:
   Name: Dispenser
-  Buy: 200
+  Buy: 999999
 24:
   Name: Sandstone
-  Sell: 100
-  Buy: 200
+  Sell: 0.78
+  Buy: 999999
 29:
   Name: Sticky Piston
-  Buy: 200
+  Buy: 999999
 30:
   Name: Cobweb
-  Buy: 200
+  Buy: 999999
 33:
   Name: Piston
-  Buy: 200
+  Buy: 999999
 35:
   Name: Wool
-  Buy: 200
+  Buy: 999999
 41:
   Name: Gold Block
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 42:
   Name: Iron Block
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 45:
   Name: Bricks
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 46:
   Name: TNT
-  Buy: 200
+  Buy: 999999
 47:
   Name: Bookshelf
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 48:
   Name: Moss Stone
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 49:
   Name: Obsidian
-  Buy: 200
+  Buy: 3.12
 54:
   Name: Chest
-  Buy: 200
+  Buy: 999999
 57:
   Name: Diamond Block
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 58:
   Name: Crafting Table
-  Buy: 200
+  Buy: 999999
 61:
   Name: Furnace
-  Buy: 200
+  Buy: 999999
 69:
   Name: Lever
-  Buy: 200
+  Buy: 999999
 76:
   Name: Redstone Torch
-  Buy: 200
+  Buy: 999999
 77:
   Name: Stone Button
-  Buy: 200
+  Buy: 999999
 79:
   Name: Ice
-  Buy: 200
+  Buy: 999999
 80:
   Name: Snow Block
-  Buy: 200
+  Buy: 999999
 81:
   Name: Cactus
-  Sell: 100
-  Buy: 200
+  Sell: 1.01
+  Buy: 999999
 82:
   Name: Clay
-  Buy: 200
+  Buy: 999999
 86:
   Name: Pumpkin
-  Buy: 200
+  Buy: 7.81
 87:
   Name: Netherrack
-  Sell: 100
-  Buy: 200
+  Sell: 0.78
+  Buy: 999999
 88:
   Name: Soul Sand
-  Sell: 100
-  Buy: 200
+  Sell: 1.56
+  Buy: 999999
 89:
   Name: Glowstone
-  Sell: 100
-  Buy: 200
+  Sell: 1.25
+  Buy: 999999
 96:
   Name: Wooden Trap Door
-  Buy: 200
+  Buy: 999999
 98:
   Name: Stone Bricks
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 103:
   Name: Melon Block
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 110:
   Name: Mycelium
-  Sell: 100
-  Buy: 200
+  Sell: 2.18
+  Buy: 999999
 111:
   Name: Lily Pad
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 112:
   Name: Nether Brick
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 115:
   Name: Nether Wart
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 116:
   Name: Enchantment Table
-  Buy: 200
+  Buy: 999999
 117:
   Name: Brewing Stand
-  Buy: 200
+  Buy: 999999
 118:
   Name: Cauldron
-  Buy: 200
+  Buy: 999999
 121:
   Name: End Stone
-  Sell: 100
-  Buy: 200
+  Sell: 1.17
+  Buy: 999999
 123:
   Name: Redstone Lamp
-  Buy: 200
+  Buy: 999999
 130:
   Name: Ender Chest
-  Buy: 200
+  Buy: 999999
 133:
   Name: Emerald Block
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 138:
   Name: Beacon
-  Buy: 200
+  Buy: 999999
 145:
   Name: Anvil
-  Buy: 200
+  Buy: 999999
 146:
   Name: Trapped Chest
-  Buy: 200
+  Buy: 999999
 152:
   Name: Redstone Block
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 154:
   Name: Hopper
-  Buy: 200
+  Buy: 999999
 155:
   Name: Quartz Block
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 158:
   Name: Dropper
-  Buy: 200
+  Buy: 999999
 159:
   Name: Stained Clay
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 162:
   Name: Acacia Wood
-  Sell: 100
-  Buy: 200
+  Sell: 3.21
+  Buy: 999999
 165:
   Name: Slime Block
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 168:
   Name: Prismarine
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 169:
   Name: Sea Lantern
-  Buy: 200
+  Buy: 999999
 170:
   Name: Hay Bale
-  Buy: 200
+  Buy: 999999
 172:
   Name: Hardened Clay
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 173:
   Name: Coal Block
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 174:
   Name: Packed Ice
-  Buy: 200
+  Buy: 999999
 179:
   Name: Red Sandstone
-  Sell: 100
-  Buy: 200
+  Sell: 0.78
+  Buy: 999999
 259:
   Name: Flint and Steel
-  Buy: 200
+  Buy: 999999
 260:
   Name: Apple
-  Sell: 100
-  Buy: 200
+  Sell: 4.06
+  Buy: 999999
 261:
   Name: Bow
-  Buy: 200
+  Buy: 999999
 262:
   Name: Arrow
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 263:
   Name: Coal
-  Sell: 100
-  Buy: 200
+  Sell: 1.56
+  Buy: 999999
 264:
   Name: Diamond
-  Sell: 100
-  Buy: 200
+  Sell: 75
+  Buy: 999999
 265:
   Name: Iron Ingot
-  Sell: 100
-  Buy: 200
+  Sell: 25
+  Buy: 999999
 266:
   Name: Gold Ingot
-  Sell: 100
-  Buy: 200
+  Sell: 35
+  Buy: 999999
 276:
   Name: Diamond Sword
-  Buy: 200
+  Buy: 999999
 277:
   Name: Diamond Shovel
-  Buy: 200
+  Buy: 999999
 278:
   Name: Diamond Pickaxe
-  Buy: 200
+  Buy: 999999
 279:
   Name: Diamond Axe
-  Buy: 200
+  Buy: 999999
 280:
   Name: Stick
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 287:
   Name: String
-  Sell: 100
-  Buy: 200
+  Sell: 0.78
+  Buy: 999999
 288:
   Name: Feather
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 289:
   Name: Gunpowder
-  Sell: 100
-  Buy: 200
+  Sell: 1.17
+  Buy: 999999
 293:
   Name: Diamond Hoe
-  Buy: 200
+  Buy: 999999
 295:
   Name: Wheat Seeds
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 296:
   Name: Wheat
-  Sell: 100
-  Buy: 200
+  Sell: 6.25
+  Buy: 999999
 297:
   Name: Bread
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 310:
   Name: Diamond Helmet
-  Buy: 200
+  Buy: 999999
 311:
   Name: Diamond Chestplate
-  Buy: 200
+  Buy: 999999
 312:
   Name: Diamond Leggings
-  Buy: 200
+  Buy: 999999
 313:
   Name: Diamond Boots
-  Buy: 200
+  Buy: 999999
 319:
   Name: Raw Porkchop
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 320:
   Name: Cooked Porkchop
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 323:
   Name: Sign
-  Buy: 200
+  Buy: 999999
 324:
   Name: Oak Door
-  Buy: 200
+  Buy: 999999
 325:
   Name: Empty Bucket
-  Buy: 200
+  Buy: 999999
 326:
   Name: Water Bucket
-  Buy: 200
+  Buy: 999999
 331:
   Name: Redstone
-  Sell: 100
-  Buy: 200
+  Sell: 3.125
+  Buy: 999999
 334:
   Name: Leather
-  Sell: 100
-  Buy: 200
+  Sell: 1.17
+  Buy: 999999
 335:
   Name: Milk Bucket
-  Buy: 200
+  Buy: 999999
 336:
   Name: Brick
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 338:
   Name: Sugar Cane
-  Sell: 100
-  Buy: 200
+  Sell: 3.75
+  Buy: 999999
 340:
   Name: Book
-  Buy: 200
+  Buy: 999999
 341:
   Name: Slimeball
-  Sell: 100
-  Buy: 200
+  Sell: 10
+  Buy: 999999
 346:
   Name: Fishing Rod
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 348:
   Name: Glowstone Dust
-  Sell: 100
-  Buy: 200
+  Sell: 0.68
+  Buy: 999999
 349:
   Name: Raw Fish
-  Sell: 100
-  Buy: 200
+  Sell: 10
+  Buy: 999999
 350:
   Name: Cooked Fish
-  Sell: 100
-  Buy: 200
+  Sell: 10.93
+  Buy: 999999
 351:
   Name: Dye
-  Buy: 200
+  Buy: 999999
 352:
   Name: Bone
-  Sell: 100
-  Buy: 200
+  Sell: 0.62
+  Buy: 999999
 353:
   Name: Sugar
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 356:
   Name: Redstone Repeater
-  Buy: 200
+  Buy: 999999
 360:
   Name: Melon
-  Sell: 100
-  Buy: 200
+  Sell: 3.90
+  Buy: 999999
 361:
   Name: Pumpkin Seeds
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 362:
   Name: Melon Seeds
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 363:
   Name: Raw Beef
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 364:
   Name: Steak
-  Sell: 100
-  Buy: 200
+  Sell: 1.71
+  Buy: 999999
 365:
   Name: Raw Chicken
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 366:
   Name: Cooked Chicken
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 367:
   Name: Rotten Flesh
-  Sell: 100
-  Buy: 200
+  Sell: 0.78
+  Buy: 999999
 368:
   Name: Ender Pearl
-  Sell: 100
-  Buy: 200
+  Sell: 12.5
+  Buy: 999999
 369:
   Name: Blaze Rod
-  Sell: 100
-  Buy: 200
+  Sell: 9.37
+  Buy: 999999
 370:
   Name: Ghast Tear
-  Sell: 100
-  Buy: 200
+  Sell: 31.25
+  Buy: 999999
 371:
   Name: Gold Nugget
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 372:
   Name: Nether Wart
-  Sell: 100
-  Buy: 200
+  Sell: 4.68
+  Buy: 999999
 374:
   Name: Glass Bottle
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 375:
   Name: Spider Eye
-  Sell: 100
-  Buy: 200
+  Sell: 0.93
+  Buy: 999999
 376:
   Name: Fermented Spider Eye
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 377:
   Name: Blaze Powder
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 378:
   Name: Magma Cream
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 379:
   Name: Brewing Stand
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 380:
   Name: Cauldron
-  Buy: 200
+  Buy: 999999
 382:
   Name: Glistering Melon
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 388:
   Name: Emerald
-  Sell: 100
-  Buy: 200
+  Sell: 35
+  Buy: 999999
 391:
   Name: Carrot
-  Sell: 100
-  Buy: 200
+  Sell: 4.68
+  Buy: 999999
 392:
   Name: Potato
-  Sell: 100
-  Buy: 200
+  Sell: 4.68
+  Buy: 999999
 393:
   Name: Baked Potato
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 396:
   Name: Golden Carrot
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 404:
   Name: Comparator
-  Buy: 200
+  Buy: 999999
 406:
   Name: Nether Quartz
-  Sell: 100
-  Buy: 200
+  Sell: 999999
+  Buy: 999999
 CreeperSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 PigmanSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 WitchSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 EndermanSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 BlazeSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 SquidSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 PigSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 CowSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 ChickenSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 SpiderSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 ZombieSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 SkeletonSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 MagmaCubeSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
 SheepSpawner:
-  Sell: 100
+  Sell: 999999
   Buy: 500000
