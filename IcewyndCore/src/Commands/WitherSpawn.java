@@ -36,6 +36,7 @@ public class WitherSpawn implements CommandExecutor, Listener {
 	@EventHandler
 	public void ondamage(EntityDamageEvent event) {
 		Entity e = event.getEntity();
+		Bukkit.broadcastMessage("Health: " + ((LivingEntity) e).getHealth());
 		if (e.getCustomName().equals("§4§l§nWither King")) {
 			if (((LivingEntity) e).getHealth() < 50) {
 				if (plugin.getConfig().getInt(".WitherPhase") == 0) {
