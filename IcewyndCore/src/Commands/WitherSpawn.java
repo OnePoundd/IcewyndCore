@@ -51,6 +51,7 @@ public class WitherSpawn implements CommandExecutor, Listener {
 					mob.setCanPickupItems(false);
 				}
 			}else if (((LivingEntity) e).getHealth() < 25) {
+				Bukkit.broadcastMessage("HEALTH IS BELOW 25");
 				if (plugin.getConfig().getInt(".WitherPhase") == 1) {
 					Bukkit.broadcastMessage("25% Health, summoning Blaze Guards");
 					plugin.getConfig().set(".WitherPhase", 0);
