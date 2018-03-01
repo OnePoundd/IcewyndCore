@@ -58,7 +58,7 @@ public class RightClickEvent implements Listener {
 							player11.sendMessage(text);
 						block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
 						}
-					}
+					
 				// Charged Creeper
 			} else if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
 				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§a§l§nCharged Creeper Egg")) {
@@ -490,12 +490,12 @@ public class RightClickEvent implements Listener {
 						player.getInventory().addItem(Item8);
 						player.getInventory().addItem(Item8);
 						player.getInventory().addItem(Item8);
+								}
+							}
+						}
 					}
 				}
 			}
-			}
-			}
-			
 		}
 	}
 

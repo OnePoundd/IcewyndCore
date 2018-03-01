@@ -3,19 +3,26 @@ package Main;
 import java.io.File;
 import java.util.Random;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Wither;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitScheduler;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -48,6 +55,7 @@ import Commands.Shop;
 import Commands.Stats;
 import Commands.Suicide;
 import Commands.TwitchBroadcast;
+import Commands.WitherSpawn;
 import Commands.YoutubeBroadcast;
 import Crates.CrateEventListener;
 import Crates.EventCrate;
@@ -95,6 +103,8 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new DisguiseBuffs(), this);
 		manager.registerEvents(new BossEggs(), this);
 		manager.registerEvents(new Seen(), this);
+		manager.registerEvents(new WitherSpawn(), this);
+		
 		
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -126,6 +136,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("list").setExecutor(new List());
 		getCommand("suicide").setExecutor(new Suicide());
 		getCommand("seen").setExecutor(new Seen());
+		getCommand("witherspawn").setExecutor(new WitherSpawn());
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
@@ -135,8 +146,8 @@ public class Main extends JavaPlugin implements Listener {
 
 		//Uploader.triggerDatabaseAutoUpdate(); //Triggers the auto-updater for the factions web-database. Every 5 mins player and faction data will be updated.
 	
-	BukkitScheduler scheduler = getServer().getScheduler();
-	scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
+	BukkitScheduler Broadcasts = getServer().getScheduler();
+	Broadcasts.scheduleSyncRepeatingTask(this, new Runnable() {
 		@Override
 		public void run() {
 			Random rand = new Random();
@@ -210,17 +221,48 @@ public class Main extends JavaPlugin implements Listener {
 		}
 	}, 0L, 3000L);
 	
-	// creates default prices.yml file if one doesn't already exist
+	// Wither Boss Event
+	BukkitScheduler WitherBossEvent = getServer().getScheduler();
+	WitherBossEvent.scheduleSyncRepeatingTask(this, new Runnable() {
+		@SuppressWarnings("deprecation")
+		@Override
+		public void run() {
+		    Bukkit.broadcastMessage("Spawn Message");
+	            Location WitherSpawn = (Location)(getConfig()).get(".WitherSpawn");
+	            Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn, EntityType.WITHER);
+	            mob.setCustomName("§4§l§nWither King");
+	            mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
+	            mob.setCanPickupItems(false);
+	            mob.setMaxHealth(750);
+	            mob.setHealth(750);
+		}
+	}, 0L, 3000L);
+	
+	
+	// Creates default prices.yml file if one doesn't already exist
 	File customYml = new File(getDataFolder()+"/prices.yml");
 	pricesConfig = YamlConfiguration.loadConfiguration(customYml);	
 	saveResource("prices.yml", false);
 	
-	// gets the economy
+	// Gets the economy
     RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
     if (rsp != null) {
         econ = rsp.getProvider();
     }
 }
+	@EventHandler
+	public void ondeath(EntityDeathEvent event) {
+		if (event.getEntityType().equals(EntityType.WITHER_SKELETON)) {
+			if (event.getEntity().getCustomName().equals("§4§l§nWither Minion")) {
+				Bukkit.broadcastMessage("hi");
+			}
+		} else if (event.getEntityType().equals(EntityType.WITHER)) {
+			if (event.getEntity().getCustomName().equals("§4§l§nWither King")) {
+				getConfig().set(".WitherPhase", 0);
+				saveConfig();
+			}
+		}
+	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (label.equalsIgnoreCase("crategive")) {
