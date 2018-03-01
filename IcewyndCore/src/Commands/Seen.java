@@ -28,10 +28,11 @@ Main plugin = Main.getPlugin(Main.class);
 						}else if (!target.isOnline()) {
 							long offline = plugin.getConfig().getLong(target.getUniqueId() + ".Seen");
 							long time = (System.currentTimeMillis() - offline);
-							long seconds = time / 1000;
-							long minutes = seconds / 60;
-							long hours = minutes / 60;
-							long days = hours / 24; 
+							int days = (int) time / (1000*60*60*24);
+							int hours = (int) (time - (days*1000*60*60*24)) / (1000*60*60);
+							int minutes = (int) ((days*1000*60*60*24) - (hours*1000*60*60)) / (1000*60);
+							int seconds = (int) ((days*1000*60*60*24) - (hours*1000*60*60) - (minutes*1000*60)) / 1000;
+
 							player.sendMessage("§b" + target.getName() + "§e has been offline for §b" + days + "§e days §b" + minutes + "§e minutes and §b" + seconds + "§e seconds");
 						}
 					}else {
