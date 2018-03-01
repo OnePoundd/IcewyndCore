@@ -37,7 +37,7 @@ public class WitherSpawn implements CommandExecutor, Listener {
 	public void ondamage(EntityDamageEvent event) {
 		Entity e = event.getEntity();
 		if (e.getCustomName().equals("§4§l§nWither King")) {
-			if (((LivingEntity) e).getHealth() < 375) {
+			if (((LivingEntity) e).getHealth() < 50) {
 				if (plugin.getConfig().getInt(".WitherPhase") == 0) {
 					plugin.getConfig().set(".WitherPhase", 1);
 					plugin.saveConfig();
@@ -48,10 +48,8 @@ public class WitherSpawn implements CommandExecutor, Listener {
 					mob.setCustomName("§4§l§nWither Minion");
 					mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
 					mob.setCanPickupItems(false);
-					mob.setMaxHealth(750);
-					mob.setHealth(750);
 				}
-			}else if (((LivingEntity) e).getHealth() < 187) {
+			}else if (((LivingEntity) e).getHealth() < 25) {
 				if (plugin.getConfig().getInt(".WitherPhase") == 1) {
 					Bukkit.broadcastMessage("25% Health, summoning Blaze Guards");
 					plugin.getConfig().set(".WitherPhase", 0);
