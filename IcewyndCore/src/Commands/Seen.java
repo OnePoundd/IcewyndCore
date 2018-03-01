@@ -30,8 +30,8 @@ Main plugin = Main.getPlugin(Main.class);
 							long time = (System.currentTimeMillis() - offline);
 							int days = (int) time / (1000*60*60*24);
 							int hours = (int) (time - (days*1000*60*60*24)) / (1000*60*60);
-							int minutes = (int) ((days*1000*60*60*24) - (hours*1000*60*60)) / (1000*60);
-							int seconds = (int) ((days*1000*60*60*24) - (hours*1000*60*60) - (minutes*1000*60)) / 1000;
+							int minutes = (int) (time - (days*1000*60*60*24) - (hours*1000*60*60)) / (1000*60);
+							int seconds = (int) (time - (days*1000*60*60*24) - (hours*1000*60*60) - (minutes*1000*60)) / 1000;
 
 							player.sendMessage("§b" + target.getName() + "§e has been offline for §b" + days + "§e days §b" + minutes + "§e minutes and §b" + seconds + "§e seconds");
 						}
