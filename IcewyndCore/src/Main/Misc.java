@@ -2,7 +2,6 @@ package Main;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
-
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -126,7 +125,7 @@ public class Misc implements Listener {
 		sidebar.putLine("§7»§f " + ping, 4);
 		sidebar.putLine("§f", 3);
 		sidebar.putLine("§a§lBalance:", 2);
-		sidebar.putLine("§7»§f $250,000", 1);
+		sidebar.putLine("§7»§f $", 1);
 		sidebar.putLine("§7§l§m------------", 0);
 		
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
