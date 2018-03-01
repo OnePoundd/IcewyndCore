@@ -22,7 +22,7 @@ Main plugin = Main.getPlugin(Main.class);
 					Player target = Bukkit.getPlayer(args[0]);
 					if(!(target == null)) {
 						if (target.isOnline()) {
-							int offline = plugin.getConfig().getInt(target.getUniqueId() + ".Seen");
+							long offline = plugin.getConfig().getLong(target.getUniqueId() + ".Seen");
 							//Ignore long time = (System.currentTimeMillis() - offline);
 							player.sendMessage("§a" + target.getName() + " has been offline for " + offline);
 						}else if (!target.isOnline()) {
