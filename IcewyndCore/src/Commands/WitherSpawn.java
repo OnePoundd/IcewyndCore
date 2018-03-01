@@ -37,29 +37,27 @@ public class WitherSpawn implements CommandExecutor, Listener {
 	public void ondamage(EntityDamageEvent event) {
 		Entity e = event.getEntity();
 		if (e.getCustomName().equals("§4§l§nWither King")) {
-			if (e instanceof LivingEntity) {
-				if (((LivingEntity) e).getHealth() < 375) {
-					if (plugin.getConfig().getInt(".WitherPhase") == 0) {
-						plugin.getConfig().set(".WitherPhase", 1);
-						plugin.saveConfig();
-						Bukkit.broadcastMessage("50% Health, enabling Wither Skeletons");
-						Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
-						e.teleport(WitherSpawn);
-						Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(0, 2, 0),EntityType.WITHER_SKELETON);
-						mob.setCustomName("§4§l§nWither Minion");
-						mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
-						mob.setCanPickupItems(false);
-						mob.setMaxHealth(750);
-						mob.setHealth(750);
-					}
-				}else if (((LivingEntity) e).getHealth() < 187) {
+			if (((LivingEntity) e).getHealth() < 375) {
+				if (plugin.getConfig().getInt(".WitherPhase") == 0) {
+					plugin.getConfig().set(".WitherPhase", 1);
+					plugin.saveConfig();
+					Bukkit.broadcastMessage("50% Health, summoning Wither Guards");
+					Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
+					e.teleport(WitherSpawn);
+					Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(0, 2, 0),EntityType.WITHER_SKELETON);
+					mob.setCustomName("§4§l§nWither Minion");
+					mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
+					mob.setCanPickupItems(false);
+					mob.setMaxHealth(750);
+					mob.setHealth(750);
+				}
+			}else if (((LivingEntity) e).getHealth() < 187) {
 				if (plugin.getConfig().getInt(".WitherPhase") == 1) {
-					Bukkit.broadcastMessage("25% Health, enabling Blaze");
+					Bukkit.broadcastMessage("25% Health, summoning Blaze Guards");
 					plugin.getConfig().set(".WitherPhase", 0);
 					plugin.saveConfig();
 					Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
 					Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(0, 2, 0),EntityType.BLAZE);
-				}
 				}
 			}
 		}
