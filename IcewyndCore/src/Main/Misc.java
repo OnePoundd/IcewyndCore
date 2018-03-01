@@ -125,7 +125,7 @@ public class Misc implements Listener {
 		sidebar.putLine("§7»§f " + ping, 4);
 		sidebar.putLine("§f", 3);
 		sidebar.putLine("§a§lBalance:", 2);
-		sidebar.putLine("§7»§f $", 1);
+		sidebar.putLine("§7»§f $" + Main.econ.getBalance(player), 1);
 		sidebar.putLine("§7§l§m------------", 0);
 		
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
