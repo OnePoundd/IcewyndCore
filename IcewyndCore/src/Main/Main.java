@@ -42,6 +42,7 @@ import Commands.PatchNotes;
 import Commands.Ping;
 import Commands.QuarterMaster;
 import Commands.Rules;
+import Commands.Seen;
 import Commands.Sell;
 import Commands.Shop;
 import Commands.Stats;
@@ -93,6 +94,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Shop(), this);
 		manager.registerEvents(new DisguiseBuffs(), this);
 		manager.registerEvents(new BossEggs(), this);
+		manager.registerEvents(new Seen(), this);
 		
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -123,6 +125,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("help").setExecutor(new Help());
 		getCommand("list").setExecutor(new List());
 		getCommand("suicide").setExecutor(new Suicide());
+		getCommand("seen").setExecutor(new Seen());
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
