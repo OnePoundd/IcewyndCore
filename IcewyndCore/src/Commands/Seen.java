@@ -15,12 +15,13 @@ public class Seen implements CommandExecutor, Listener{
 Main plugin = Main.getPlugin(Main.class);
 
 
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("seen")) {
 			Player player = (Player) sender;
 			if (sender instanceof Player) {
 				if (args.length == 1) {
-					OfflinePlayer target = Bukkit.getPlayer(args[0]);
+					OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
 					if(!(target == null)) {
 						if (target.isOnline()) {
 							player.sendMessage("That player is online");
@@ -30,9 +31,8 @@ Main plugin = Main.getPlugin(Main.class);
 							long seconds = time / 1000;
 							long minutes = seconds / 60;
 							long hours = minutes / 60;
-							long days = hours / 24;
-							String time2 = days + ":" + hours % 24 + ":" + minutes % 60 + ":" + seconds % 60; 
-							player.sendMessage("§a" + target.getName() + " has been offline for " + time2);
+							long days = hours / 24; 
+							player.sendMessage("§b" + target.getName() + "§e has been offline for §b" + days + "§e days §b" + minutes + "§e minutes and §b" + seconds + "§e seconds");
 						}
 					}else {
 						player.sendMessage("§cThat player cannot be found.");
