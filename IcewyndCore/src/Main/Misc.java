@@ -140,7 +140,7 @@ public class Misc implements Listener {
 
 		// New Player Announce
 		if (!player.hasPlayedBefore()) {
-			Bukkit.broadcastMessage("§b§lWelcome to Icywynd, §f§l" + player.getName() + "§b§l!");
+			Bukkit.broadcastMessage("§b§lWelcome to Icewynd, §f§l" + player.getName() + "§b§l!");
 			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
 			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
 			plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
@@ -233,6 +233,13 @@ public class Misc implements Listener {
 	public void onFireball(EntityExplodeEvent event) {
 		if(event.getEntity() instanceof Fireball) {
 			event.blockList().clear();
+		}
+	}
+	// Keep XP on Death
+	@EventHandler
+	public void XPKeep(PlayerDeathEvent event) {
+		if (event.getEntity().getPlayer().hasPermission("server.keepxp")) {
+			event.setKeepLevel(true);
 		}
 	}
 	
