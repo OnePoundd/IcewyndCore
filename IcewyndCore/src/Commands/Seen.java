@@ -1,6 +1,7 @@
 package Commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,14 +20,19 @@ Main plugin = Main.getPlugin(Main.class);
 			Player player = (Player) sender;
 			if (sender instanceof Player) {
 				if (args.length == 1) {
-					Player target = Bukkit.getPlayer(args[0]);
+					OfflinePlayer target = Bukkit.getPlayer(args[0]);
 					if(!(target == null)) {
 						if (target.isOnline()) {
-							long offline = plugin.getConfig().getLong(target.getUniqueId() + ".Seen");
-							//Ignore long time = (System.currentTimeMillis() - offline);
-							player.sendMessage("§a" + target.getName() + " has been offline for " + offline);
+							player.sendMessage("That player is online");
 						}else if (!target.isOnline()) {
-							player.sendMessage("§cThat player is not online!");
+							long offline = plugin.getConfig().getLong(target.getUniqueId() + ".Seen");
+							long time = (System.currentTimeMillis() - offline);
+							long seconds = time / 1000;
+							long minutes = seconds / 60;
+							long hours = minutes / 60;
+							long days = hours / 24;
+							String time2 = days + ":" + hours % 24 + ":" + minutes % 60 + ":" + seconds % 60; 
+							player.sendMessage("§a" + target.getName() + " has been offline for " + time2);
 						}
 					}else {
 						player.sendMessage("§cThat player cannot be found.");
@@ -41,5 +47,6 @@ Main plugin = Main.getPlugin(Main.class);
 	public void onLogout(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
 		plugin.getConfig().set(player.getUniqueId() + ".Seen", System.currentTimeMillis());
+		plugin.saveConfig();
 	}
 }
