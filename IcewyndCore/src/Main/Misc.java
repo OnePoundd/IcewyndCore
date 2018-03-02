@@ -29,6 +29,7 @@ import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -80,6 +81,18 @@ public class Misc implements Listener {
 		sidebar.rewriteLines(lines);
 		sidebar.showSidebar();
 
+        BukkitScheduler SBU = plugin.getServer().getScheduler();
+        SBU.scheduleSyncRepeatingTask(plugin, new Runnable() {
+            @Override
+            public void run() {
+                for(Player player : Bukkit.getOnlinePlayers()){
+                    XoreBoard xoreBoard = XoreBoardUtil.getNextXoreBoard();
+                    XoreBoardPlayerSidebar sidebar = xoreBoard.getSidebar(player);
+                    sidebar.setDisplayName("&d&lPretty Display");
+                }
+            }
+        }, 0L, 50L);
+		
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 			player.teleport(MConf.get().getWarp("jail"));
 		}
