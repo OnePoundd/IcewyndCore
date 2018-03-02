@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import Main.Main;
 
 public class Seen implements CommandExecutor, Listener{
-Main plugin = Main.getPlugin(Main.class);
+	Main plugin = Main.getPlugin(Main.class);
 
 
 	@SuppressWarnings("deprecation")

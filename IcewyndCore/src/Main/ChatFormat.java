@@ -16,7 +16,7 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 
 public class ChatFormat implements Listener {
-Main plugin = Main.getPlugin(Main.class);
+	Main plugin = Main.getPlugin(Main.class);
 
 
 
@@ -25,7 +25,7 @@ Main plugin = Main.getPlugin(Main.class);
 		if (!c.isCancelled()) {
 			String ChatMessage = c.getMessage();
 			Player player = c.getPlayer();
-			
+
 			int timeplayed = plugin.getConfig().getInt(player.getUniqueId() + ".TimePlayed");
 			int blocksplaced = plugin.getConfig().getInt(player.getUniqueId() + ".BlocksPlaced");
 			int playerskilled = plugin.getConfig().getInt(player.getUniqueId() + ".PlayersKilled");
@@ -41,7 +41,7 @@ Main plugin = Main.getPlugin(Main.class);
 			int booksenchanted = plugin.getConfig().getInt(player.getUniqueId() + ".BooksEnchanted");
 			int challengescompleted = plugin.getConfig().getInt(player.getUniqueId() + ".ChallengesCompleted");
 			int mcmmolevelsgained = plugin.getConfig().getInt(player.getUniqueId() + ".MCMMOLevelsGained");
-			
+
 			c.setCancelled(true);
 			if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 				c.setCancelled(true);
@@ -64,7 +64,7 @@ Main plugin = Main.getPlugin(Main.class);
 				} else {
 					text = new TextComponent("§8[§fMember§8]§7 "+ c.getPlayer().getName());
 				}
-				
+
 				MPlayer mplayer = MPlayer.get(player);
 				String faction = mplayer.getFactionName();
 				text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§dUsername: §e" + player.getName() + "\n§dFaction:§e " + faction + "\n" + "\n§7             §a§lGeneral          \n      §a§l§m------------§a   \n§d§lTime Played:§e " + timeplayed + "\n§d§lBlocks Broken:§e " + blocksmined + "\n§d§lSugarcane Farmed:§e " + sugarcanemined + "\n§d§lBlocks Placed:§e " + blocksplaced + "\n§d§lFish Caught:§e " + fishcaught + "\n§d§lPlayers Killed:§e " + playerskilled + "\n§d§lMonsters Killed:§e " + mobskilled + "\n§7              §a§lOther          \n      §a§l§m------------§a" + "\n§d§lMoney Made:§e " + moneymade + "\n§d§lGenbuckets Placed:§e " + genbuckets + "\n§d§lLucky Drops Found:§e " + luckydrops + "\n§d§lSupply Drops Captured:§e " + supplydropscaptured + "\n§d§lCastle Captures:§e " + castlecaptures + "\n§d§lBooks Enchanted:§e " + booksenchanted + "\n§d§lChallenges Completed:§e " + challengescompleted + "\n§d§lMCMMO Levels Gained:§e " + mcmmolevelsgained).create()));
@@ -72,11 +72,11 @@ Main plugin = Main.getPlugin(Main.class);
 				for(Player player1 : Bukkit.getOnlinePlayers()) {
 					player1.sendMessage(text, message);
 				}
-				
+
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onQuitEvent(PlayerQuitEvent event) { //changes the message when a player logs out and only shows to faction members
 		event.setQuitMessage("");
@@ -100,20 +100,20 @@ Main plugin = Main.getPlugin(Main.class);
 				for (Player player : Bukkit.getOnlinePlayers()) {
 					MPlayer mplayer = MPlayer.get(player);
 					player.sendMessage("§8§l>> " + mplayer.getColorTo(MPlayer.get(killed)) + killed.getName()
-							+ "§8 was killed by " + mplayer.getColorTo(MPlayer.get(killer)) + killer.getName()
-							+ "§8 with a " + item.getItemMeta().getDisplayName() + "§7!");
+					+ "§8 was killed by " + mplayer.getColorTo(MPlayer.get(killer)) + killer.getName()
+					+ "§8 with a " + item.getItemMeta().getDisplayName() + "§7!");
 				}
 			} else {
 				for (Player player : Bukkit.getOnlinePlayers()) {
 					MPlayer mplayer = MPlayer.get(player);
 					player.sendMessage("§8§l>> " + mplayer.getColorTo(MPlayer.get(killed)) + killed.getName()
-							+ "§8 was killed by " + mplayer.getColorTo(MPlayer.get(killer)) + killer.getName()
-							+ "§8!");
+					+ "§8 was killed by " + mplayer.getColorTo(MPlayer.get(killer)) + killer.getName()
+					+ "§8!");
 				}
 			}
 		}
 	}
-	
-	
-	
+
+
+
 }

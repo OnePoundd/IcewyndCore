@@ -75,25 +75,25 @@ public class CrateEventListener implements Listener {
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
 						player.sendMessage("§b§l(!)§7 You have been granted access to the villager disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
-								+ " permission set libsdisguises.disguise.villager true global");
+						+ " permission set libsdisguises.disguise.villager true global");
 					} else if (name.equals("§6Creeper Disguise")) {
 						event.setCancelled(true);
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
 						player.sendMessage("§b§l(!)§7 You have been granted access to the creeper disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
-								+ " permission set libsdisguises.disguise.creeper true global");
+						+ " permission set libsdisguises.disguise.creeper true global");
 					} else if (name.equals("§6Zombie Disguise")) {
 						event.setCancelled(true);
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
 						player.sendMessage("§b§l(!)§7 You have been granted access to the zombie disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
-								+ " permission set libsdisguises.disguise.zombie true global");
+						+ " permission set libsdisguises.disguise.zombie true global");
 					} else if (name.equals("§6Skeleton Disguise")) {
 						event.setCancelled(true);
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
 						player.sendMessage("§b§l(!)§7 You have been granted access to the skeleton disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
-								+ " permission set libsdisguises.disguise.skeleton true global");
+						+ " permission set libsdisguises.disguise.skeleton true global");
 					}
 				} else if (item.getType().equals(Material.EXP_BOTTLE)) {
 					Faction faction = MPlayer.get(player).getFaction();

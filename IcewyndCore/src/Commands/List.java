@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import Main.Main;
 
 public class List implements CommandExecutor{
-Main plugin = Main.getPlugin(Main.class);
+	Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("list")) {

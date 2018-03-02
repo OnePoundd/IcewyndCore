@@ -107,10 +107,10 @@ public class SilkSpawners implements Listener {
 						if (s.equals("§eSilk Feet")) {
 							player.getWorld().dropItem(player.getLocation(), spawnerItem);
 							event.getPlayer()
-									.sendMessage("§b§l(!)§7 You have destroyed a "
-											+ ChatColor.stripColor(
-													spawner.getCreatureTypeName().replace("_", " ").toLowerCase())
-											+ " spawner!");
+							.sendMessage("§b§l(!)§7 You have destroyed a "
+									+ ChatColor.stripColor(
+											spawner.getCreatureTypeName().replace("_", " ").toLowerCase())
+									+ " spawner!");
 							return;
 						}
 					}
@@ -118,10 +118,10 @@ public class SilkSpawners implements Listener {
 				if (item.containsEnchantment(Enchantment.SILK_TOUCH)) {
 					player.getWorld().dropItem(event.getBlock().getLocation(), spawnerItem);
 					event.getPlayer()
-							.sendMessage("§b§l(!)§7 You have destroyed a "
-									+ ChatColor
-											.stripColor(spawner.getCreatureTypeName().replace("_", " ").toLowerCase())
-									+ " spawner!");
+					.sendMessage("§b§l(!)§7 You have destroyed a "
+							+ ChatColor
+							.stripColor(spawner.getCreatureTypeName().replace("_", " ").toLowerCase())
+							+ " spawner!");
 				}
 			}
 		}

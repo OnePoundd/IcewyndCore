@@ -19,15 +19,15 @@ public class SellWands implements Listener{
 	public void onRightClick(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		if ((event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) && (event.getItem() != null)
-		&& (event.getItem().hasItemMeta()) && (event.getItem().getItemMeta().hasDisplayName())
-		&& (event.getItem().getItemMeta().getDisplayName().equals("§c§lSell Wand"))
-		&& ((event.getClickedBlock().getType().equals(Material.CHEST))
-		|| (event.getClickedBlock().getType().equals(Material.TRAPPED_CHEST)))) {
+				&& (event.getItem().hasItemMeta()) && (event.getItem().getItemMeta().hasDisplayName())
+				&& (event.getItem().getItemMeta().getDisplayName().equals("§c§lSell Wand"))
+				&& ((event.getClickedBlock().getType().equals(Material.CHEST))
+						|| (event.getClickedBlock().getType().equals(Material.TRAPPED_CHEST)))) {
 			if (BoardColl.get().getFactionAt(PS.valueOf(event.getClickedBlock().getLocation()))
-			.equals(MPlayer.get(event.getPlayer()).getFaction())) {
+					.equals(MPlayer.get(event.getPlayer()).getFaction())) {
 				Chest chest = (Chest) event.getClickedBlock().getState();
 				ItemStack[] chestcontents = chest.getInventory().getContents();
-				
+
 				double totalValue = 0;
 				for(ItemStack item : chestcontents) {
 					if(item != null) {
@@ -46,7 +46,7 @@ public class SellWands implements Listener{
 				}
 				Main.econ.depositPlayer(player, totalValue);
 				player.sendMessage("§a§l(!)§7 You sold all your sellable items for §a$" + totalValue);
-				
+
 				event.getPlayer().performCommand("sell all");
 				event.setCancelled(true);
 			} else {
@@ -54,5 +54,5 @@ public class SellWands implements Listener{
 			}
 		}
 	}
-	
+
 }

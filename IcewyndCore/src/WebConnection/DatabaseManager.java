@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class DatabaseManager {
-	
+
 	protected ResultSet getResultFromQuery(String query) {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
@@ -19,7 +19,7 @@ public class DatabaseManager {
 			return null;
 		}
 	}
-	
+
 	protected void sendQuery(String query) {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");

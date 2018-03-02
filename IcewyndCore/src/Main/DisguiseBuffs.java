@@ -21,11 +21,11 @@ import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.events.UndisguiseEvent;
 
 public class DisguiseBuffs implements Listener{
-	
+
 	/**
 	 *  UNLIMITED POTION EFFECTS ARE APPLIED WITHIN THE CUSTOM ENCHANTS "ENCHANTMENT" CLASS (updateEnchantBuffs() method)
 	 */
-	
+
 	//ENDERMAN
 	@EventHandler
 	public void onPlayerTeleportEvent(PlayerTeleportEvent event){
@@ -38,23 +38,23 @@ public class DisguiseBuffs implements Listener{
 			}
 		}
 	}
-	
+
 	//HORSE
 	@EventHandler
 	public void onPlayerInteractPlayer(PlayerInteractEntityEvent event){
-    	if(event.getRightClicked().getType().equals(EntityType.PLAYER)){
-    	    Player player = event.getPlayer();
-    	    Player rightClickedPlayer = (Player) event.getRightClicked();
-    	    if(DisguiseAPI.isDisguised(rightClickedPlayer)){
-        	    if(DisguiseAPI.getDisguise(rightClickedPlayer).getType().equals(DisguiseType.HORSE)){
-        	    	rightClickedPlayer.addPassenger(player);
-        	    	player.sendMessage("§6You just mounted, §b" + rightClickedPlayer.getName() + "§6!");
-        	    	rightClickedPlayer.sendMessage("§b" + player.getName() + "§6, just mounted you! Type §b/und §6to kick them off!");
-        	    }
-    	    }
-    	}
-    }
-	
+		if(event.getRightClicked().getType().equals(EntityType.PLAYER)){
+			Player player = event.getPlayer();
+			Player rightClickedPlayer = (Player) event.getRightClicked();
+			if(DisguiseAPI.isDisguised(rightClickedPlayer)){
+				if(DisguiseAPI.getDisguise(rightClickedPlayer).getType().equals(DisguiseType.HORSE)){
+					rightClickedPlayer.addPassenger(player);
+					player.sendMessage("§6You just mounted, §b" + rightClickedPlayer.getName() + "§6!");
+					rightClickedPlayer.sendMessage("§b" + player.getName() + "§6, just mounted you! Type §b/und §6to kick them off!");
+				}
+			}
+		}
+	}
+
 	//HORSE
 	@EventHandler
 	public void onUndisguise(UndisguiseEvent event) {
@@ -66,8 +66,8 @@ public class DisguiseBuffs implements Listener{
 			}
 		}
 	}
-	
-	
+
+
 	//CHICKEN, COW, PIG
 	@EventHandler
 	public void onHungerChange(FoodLevelChangeEvent event){
@@ -81,19 +81,19 @@ public class DisguiseBuffs implements Listener{
 			}
 		}
 	}
-	
+
 	//CHICKEN
 	@EventHandler
-    public void onEntityDamaged(EntityDamageEvent event){
-    	Entity damaged = event.getEntity();
-    	if(damaged.getType().equals(EntityType.PLAYER) && DisguiseAPI.isDisguised((Player) damaged) && event.getCause().equals(DamageCause.FALL)){
-    		if(DisguiseAPI.getDisguise((Player) damaged).getType().equals(DisguiseType.CHICKEN)){
-    			event.setCancelled(true);
-    			((Player) damaged).sendMessage("§6Being a §fchicken§6 allowed you to absorb the fall!");
-    		}
-    	}
+	public void onEntityDamaged(EntityDamageEvent event){
+		Entity damaged = event.getEntity();
+		if(damaged.getType().equals(EntityType.PLAYER) && DisguiseAPI.isDisguised((Player) damaged) && event.getCause().equals(DamageCause.FALL)){
+			if(DisguiseAPI.getDisguise((Player) damaged).getType().equals(DisguiseType.CHICKEN)){
+				event.setCancelled(true);
+				((Player) damaged).sendMessage("§6Being a §fchicken§6 allowed you to absorb the fall!");
+			}
+		}
 	}
-	
+
 	//BLAZE
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -107,5 +107,5 @@ public class DisguiseBuffs implements Listener{
 			}
 		}
 	}
-	
+
 }

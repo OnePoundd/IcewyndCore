@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import Main.Main;
 
 public class Rules implements CommandExecutor{
-Main plugin = Main.getPlugin(Main.class);
+	Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("rules")) {
@@ -18,7 +18,8 @@ Main plugin = Main.getPlugin(Main.class);
 				player.sendMessage("§a[1]§f Do not spam chat excessively.");
 				player.sendMessage("§a[2]§f Do not be excessively racist in chat.");
 				player.sendMessage("§a[3]§f Do not run scripts, macros or clients to change gameplay.");
-				player.sendMessage("§a[4]§f Do not discuss DDoSing or Doxing.");			}
+				player.sendMessage("§a[4]§f Do not discuss DDoSing or Doxing.");
+				}
 		}
 		return false;
 	}

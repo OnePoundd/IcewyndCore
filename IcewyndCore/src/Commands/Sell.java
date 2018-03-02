@@ -64,7 +64,7 @@ public class Sell implements CommandExecutor, Listener{
 		}
 		return false;
 	}
-	
+
 	public void openSellInventory(Player player) {
 		Inventory sellInv = Bukkit.createInventory(null, 54, "§c§l>> §8Sell §c§l<<");
 
@@ -80,7 +80,7 @@ public class Sell implements CommandExecutor, Listener{
 		sellInv.setItem(53, sell);
 		player.openInventory(sellInv);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
@@ -88,7 +88,7 @@ public class Sell implements CommandExecutor, Listener{
 		if(event.getClickedInventory() != null) {
 			if(event.getClickedInventory().getName().equals("§c§l>> §8Sell §c§l<<")) {
 				if(event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta() && 
-				event.getCurrentItem().getItemMeta().hasDisplayName() && event.getCurrentItem().getItemMeta().getDisplayName().equals("§f§l>> §aSell Items §f§l<<")) {
+						event.getCurrentItem().getItemMeta().hasDisplayName() && event.getCurrentItem().getItemMeta().getDisplayName().equals("§f§l>> §aSell Items §f§l<<")) {
 					event.setCancelled(true);
 					double totalValue = 0;
 					for(ItemStack item : event.getClickedInventory().getContents()) {
@@ -115,7 +115,7 @@ public class Sell implements CommandExecutor, Listener{
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onInventoryClose(InventoryCloseEvent event) {
 		if(event.getInventory().getName().equals("§c§l>> §8Sell §c§l<<")) {
@@ -128,5 +128,5 @@ public class Sell implements CommandExecutor, Listener{
 			}
 		}
 	}
-	
+
 }

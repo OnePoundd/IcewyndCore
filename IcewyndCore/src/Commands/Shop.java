@@ -25,7 +25,7 @@ public class Shop implements CommandExecutor, Listener{
 		}
 		return false;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
@@ -53,7 +53,7 @@ public class Shop implements CommandExecutor, Listener{
 					}
 				}
 			}else if(category.equals("§c§l>> §8Blocks §c§l<<") || category.equals("§c§l>> §8Materials §c§l<<") || category.equals("§c§l>> §8Brewing §c§l<<")
-			|| category.equals("§c§l>> §8Redstone §c§l<<") || category.equals("§c§l>> §8Food/Farming §c§l<<") || category.equals("§c§l>> §8Miscellaneous §c§l<<")) {
+					|| category.equals("§c§l>> §8Redstone §c§l<<") || category.equals("§c§l>> §8Food/Farming §c§l<<") || category.equals("§c§l>> §8Miscellaneous §c§l<<")) {
 				event.setCancelled(true);
 				ItemStack item = event.getCurrentItem();
 				if(item != null && item.hasItemMeta()) {
@@ -126,7 +126,7 @@ public class Shop implements CommandExecutor, Listener{
 							}else if(name.equals("§eSheep §fSpawner")) {
 								cost = Main.pricesConfig.getDouble(String.valueOf("SheepSpawner.Buy"));
 							}
-							
+
 							if(player.getInventory().firstEmpty() != -1) {
 								int amount = 1;
 								if(event.isRightClick()) {
@@ -157,7 +157,7 @@ public class Shop implements CommandExecutor, Listener{
 			}
 		}
 	}
-	
+
 	public void openHome(Player player) {
 		Inventory GUI = Bukkit.createInventory(null, 9, "§c§l>> §8Shop §c§l<<");
 		ItemStack Blocks = new ItemStack(Material.STONE);
@@ -171,15 +171,15 @@ public class Shop implements CommandExecutor, Listener{
 		ItemMeta BlocksMeta = Blocks.getItemMeta();
 		BlocksMeta.setDisplayName("§b§lBlocks");
 		Blocks.setItemMeta(BlocksMeta);
-		
+
 		ItemMeta MaterialsMeta = Materials.getItemMeta();
 		MaterialsMeta.setDisplayName("§b§lMaterials");
 		Materials.setItemMeta(MaterialsMeta);
-		
+
 		ItemMeta BrewingMeta = Brewing.getItemMeta();
 		BrewingMeta.setDisplayName("§b§lBrewing");
 		Brewing.setItemMeta(BrewingMeta);
-		
+
 		ItemMeta RedstoneMeta = Redstone.getItemMeta();
 		RedstoneMeta.setDisplayName("§b§lRedstone");
 		Redstone.setItemMeta(RedstoneMeta);
@@ -187,15 +187,15 @@ public class Shop implements CommandExecutor, Listener{
 		ItemMeta FoodMeta = Food.getItemMeta();
 		FoodMeta.setDisplayName("§b§lFood/Farming");
 		Food.setItemMeta(FoodMeta);
-		
+
 		ItemMeta MiscellaneousMeta = Miscellaneous.getItemMeta();
 		MiscellaneousMeta.setDisplayName("§b§lMiscellaneous");
 		Miscellaneous.setItemMeta(MiscellaneousMeta);
-		
+
 		ItemMeta SpawnersMeta = Spawners.getItemMeta();
 		SpawnersMeta.setDisplayName("§b§lSpawners");
 		Spawners.setItemMeta(SpawnersMeta);
-		
+
 		GUI.setItem(0, Blocks);
 		GUI.setItem(1, Materials);
 		GUI.setItem(2, Brewing);
@@ -205,11 +205,11 @@ public class Shop implements CommandExecutor, Listener{
 		GUI.setItem(6, Spawners);
 		player.openInventory(GUI);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public void openBlocks(Player player) {
 		Inventory GUI = Bukkit.createInventory(null, 45, "§c§l>> §8Blocks §c§l<<");
-		
+
 		ItemStack Stone = new ItemStack(Material.STONE);	
 		ItemMeta StoneMeta = Stone.getItemMeta();
 		ArrayList<String> StoneLore = new ArrayList<String>();
@@ -219,7 +219,7 @@ public class Shop implements CommandExecutor, Listener{
 		StoneMeta.setLore(StoneLore);
 		Stone.setItemMeta(StoneMeta);
 		GUI.setItem(0, Stone);
-		
+
 		ItemStack Grass = new ItemStack(Material.GRASS);
 		ItemMeta GrassMeta = Grass.getItemMeta();
 		ArrayList<String> GrassLore = new ArrayList<String>();
@@ -229,7 +229,7 @@ public class Shop implements CommandExecutor, Listener{
 		GrassMeta.setLore(GrassLore);
 		Grass.setItemMeta(GrassMeta);
 		GUI.setItem(1, Grass);
-		
+
 		ItemStack Dirt = new ItemStack(Material.DIRT);
 		ItemMeta DirtMeta = Dirt.getItemMeta();
 		ArrayList<String> DirtLore = new ArrayList<String>();
@@ -239,7 +239,7 @@ public class Shop implements CommandExecutor, Listener{
 		DirtMeta.setLore(DirtLore);
 		Dirt.setItemMeta(DirtMeta);
 		GUI.setItem(2, Dirt);
-		
+
 		ItemStack Cobblestone = new ItemStack(Material.COBBLESTONE);
 		ItemMeta CobblestoneMeta = Cobblestone.getItemMeta();
 		ArrayList<String> CobblestoneLore = new ArrayList<String>();
@@ -249,7 +249,7 @@ public class Shop implements CommandExecutor, Listener{
 		CobblestoneMeta.setLore(CobblestoneLore);
 		Cobblestone.setItemMeta(CobblestoneMeta);
 		GUI.setItem(3, Cobblestone);
-		
+
 		ItemStack Sand = new ItemStack(Material.SAND);
 		ItemMeta SandMeta = Sand.getItemMeta();
 		ArrayList<String> SandLore = new ArrayList<String>();
@@ -259,7 +259,7 @@ public class Shop implements CommandExecutor, Listener{
 		SandMeta.setLore(SandLore);
 		Sand.setItemMeta(SandMeta);
 		GUI.setItem(4, Sand);
-		
+
 		ItemStack RedSand = new ItemStack(Material.SAND);
 		RedSand.setDurability((short) 1);
 		ItemMeta RedSandMeta = RedSand.getItemMeta();
@@ -270,7 +270,7 @@ public class Shop implements CommandExecutor, Listener{
 		RedSandMeta.setLore(RedSandLore);
 		RedSand.setItemMeta(RedSandMeta);
 		GUI.setItem(5, RedSand);
-		
+
 		ItemStack Gravel = new ItemStack(Material.GRAVEL);
 		ItemMeta GravelMeta = Gravel.getItemMeta();
 		ArrayList<String> GravelLore = new ArrayList<String>();
@@ -280,7 +280,7 @@ public class Shop implements CommandExecutor, Listener{
 		GravelMeta.setLore(GravelLore);
 		Gravel.setItemMeta(GravelMeta);
 		GUI.setItem(6, Gravel);
-		
+
 		ItemStack OakWood = new ItemStack(Material.LOG);
 		ItemMeta OakWoodMeta = OakWood.getItemMeta();
 		ArrayList<String> OakWoodLore = new ArrayList<String>();
@@ -290,7 +290,7 @@ public class Shop implements CommandExecutor, Listener{
 		OakWoodMeta.setLore(OakWoodLore);
 		OakWood.setItemMeta(OakWoodMeta);
 		GUI.setItem(7, OakWood);
-		
+
 		ItemStack SpruceWood = new ItemStack(Material.LOG);
 		SpruceWood.setDurability((short) 1);
 		ItemMeta SpruceWoodMeta = SpruceWood.getItemMeta();
@@ -301,7 +301,7 @@ public class Shop implements CommandExecutor, Listener{
 		SpruceWoodMeta.setLore(SpruceWoodLore);
 		SpruceWood.setItemMeta(SpruceWoodMeta);
 		GUI.setItem(8, SpruceWood);
-		
+
 		ItemStack BirchWood = new ItemStack(Material.LOG);
 		BirchWood.setDurability((short) 2);
 		ItemMeta BirchWoodMeta = BirchWood.getItemMeta();
@@ -312,7 +312,7 @@ public class Shop implements CommandExecutor, Listener{
 		BirchWoodMeta.setLore(BirchWoodLore);
 		BirchWood.setItemMeta(BirchWoodMeta);
 		GUI.setItem(9, BirchWood);
-		
+
 		ItemStack JungleWood = new ItemStack(Material.LOG);
 		JungleWood.setDurability((short) 3);
 		ItemMeta JungleWoodMeta = JungleWood.getItemMeta();
@@ -323,7 +323,7 @@ public class Shop implements CommandExecutor, Listener{
 		JungleWoodMeta.setLore(JungleWoodLore);
 		JungleWood.setItemMeta(JungleWoodMeta);
 		GUI.setItem(10, JungleWood);
-		
+
 		ItemStack AcaciaWood = new ItemStack(Material.LOG_2);
 		ItemMeta AcaciaWoodMeta = AcaciaWood.getItemMeta();
 		ArrayList<String> AcaciaWoodLore = new ArrayList<String>();
@@ -333,7 +333,7 @@ public class Shop implements CommandExecutor, Listener{
 		AcaciaWoodMeta.setLore(AcaciaWoodLore);
 		AcaciaWood.setItemMeta(AcaciaWoodMeta);
 		GUI.setItem(11, AcaciaWood);
-		
+
 		ItemStack DarkOakWood = new ItemStack(Material.LOG_2);
 		DarkOakWood.setDurability((short) 1);
 		ItemMeta DarkOakWoodMeta = DarkOakWood.getItemMeta();
@@ -344,7 +344,7 @@ public class Shop implements CommandExecutor, Listener{
 		DarkOakWoodMeta.setLore(DarkOakWoodLore);
 		DarkOakWood.setItemMeta(DarkOakWoodMeta);
 		GUI.setItem(12, DarkOakWood);
-		
+
 		ItemStack Sandstone = new ItemStack(Material.SANDSTONE);
 		ItemMeta SandstoneMeta = Sandstone.getItemMeta();
 		ArrayList<String> SandstoneLore = new ArrayList<String>();
@@ -354,7 +354,7 @@ public class Shop implements CommandExecutor, Listener{
 		SandstoneMeta.setLore(SandstoneLore);
 		Sandstone.setItemMeta(SandstoneMeta);
 		GUI.setItem(13, Sandstone);
-		
+
 		ItemStack ChiseledSandstone = new ItemStack(Material.SANDSTONE);
 		ChiseledSandstone.setDurability((short) 1);
 		ItemMeta ChiseledSandstoneMeta = ChiseledSandstone.getItemMeta();
@@ -365,7 +365,7 @@ public class Shop implements CommandExecutor, Listener{
 		ChiseledSandstoneMeta.setLore(ChiseledSandstoneLore);
 		ChiseledSandstone.setItemMeta(ChiseledSandstoneMeta);
 		GUI.setItem(14, ChiseledSandstone);
-		
+
 		ItemStack SmoothSandstone = new ItemStack(Material.SANDSTONE);
 		SmoothSandstone.setDurability((short) 2);
 		ItemMeta SmoothSandstoneMeta = SmoothSandstone.getItemMeta();
@@ -376,7 +376,7 @@ public class Shop implements CommandExecutor, Listener{
 		SmoothSandstoneMeta.setLore(SmoothSandstoneLore);
 		SmoothSandstone.setItemMeta(SmoothSandstoneMeta);
 		GUI.setItem(15, SmoothSandstone);
-		
+
 		ItemStack RedSandstone = new ItemStack(Material.RED_SANDSTONE);
 		ItemMeta RedSandstoneMeta = RedSandstone.getItemMeta();
 		ArrayList<String> RedSandstoneLore = new ArrayList<String>();
@@ -386,7 +386,7 @@ public class Shop implements CommandExecutor, Listener{
 		RedSandstoneMeta.setLore(RedSandstoneLore);
 		RedSandstone.setItemMeta(RedSandstoneMeta);
 		GUI.setItem(16, RedSandstone);
-		
+
 		ItemStack ChiseledRedSandstone = new ItemStack(Material.RED_SANDSTONE);
 		ChiseledRedSandstone.setDurability((short) 1);
 		ItemMeta ChiseledRedSandstoneMeta = ChiseledRedSandstone.getItemMeta();
@@ -397,7 +397,7 @@ public class Shop implements CommandExecutor, Listener{
 		ChiseledRedSandstoneMeta.setLore(ChiseledRedSandstoneLore);
 		ChiseledRedSandstone.setItemMeta(ChiseledRedSandstoneMeta);
 		GUI.setItem(17, ChiseledRedSandstone);
-		
+
 		ItemStack SmoothRedSandstone = new ItemStack(Material.RED_SANDSTONE);
 		SmoothRedSandstone.setDurability((short) 2);
 		ItemMeta SmoothRedSandstoneMeta = SmoothRedSandstone.getItemMeta();
@@ -408,7 +408,7 @@ public class Shop implements CommandExecutor, Listener{
 		SmoothRedSandstoneMeta.setLore(SmoothRedSandstoneLore);
 		SmoothRedSandstone.setItemMeta(SmoothRedSandstoneMeta);
 		GUI.setItem(18, SmoothRedSandstone);
-		
+
 		ItemStack Brick = new ItemStack(Material.SMOOTH_BRICK);
 		ItemMeta BrickMeta = Brick.getItemMeta();
 		ArrayList<String> BrickLore = new ArrayList<String>();
@@ -418,7 +418,7 @@ public class Shop implements CommandExecutor, Listener{
 		BrickMeta.setLore(BrickLore);
 		Brick.setItemMeta(BrickMeta);
 		GUI.setItem(19, Brick);
-		
+
 		ItemStack Bookshelf = new ItemStack(Material.BOOKSHELF);
 		ItemMeta BookshelfMeta = Bookshelf.getItemMeta();
 		ArrayList<String> BookshelfLore = new ArrayList<String>();
@@ -428,7 +428,7 @@ public class Shop implements CommandExecutor, Listener{
 		BookshelfMeta.setLore(BookshelfLore);
 		Bookshelf.setItemMeta(BookshelfMeta);
 		GUI.setItem(20, Bookshelf);
-		
+
 		ItemStack MossStone = new ItemStack(Material.MOSSY_COBBLESTONE);
 		ItemMeta MossStoneMeta = MossStone.getItemMeta();
 		ArrayList<String> MossStoneLore = new ArrayList<String>();
@@ -438,7 +438,7 @@ public class Shop implements CommandExecutor, Listener{
 		MossStoneMeta.setLore(MossStoneLore);
 		MossStone.setItemMeta(MossStoneMeta);
 		GUI.setItem(21, MossStone);
-		
+
 		ItemStack Obsidian = new ItemStack(Material.OBSIDIAN);
 		ItemMeta ObsidianMeta = Obsidian.getItemMeta();
 		ArrayList<String> ObsidianLore = new ArrayList<String>();
@@ -448,7 +448,7 @@ public class Shop implements CommandExecutor, Listener{
 		ObsidianMeta.setLore(ObsidianLore);
 		Obsidian.setItemMeta(ObsidianMeta);
 		GUI.setItem(22, Obsidian);
-		
+
 		ItemStack Ice = new ItemStack(Material.ICE);
 		ItemMeta IceMeta = Ice.getItemMeta();
 		ArrayList<String> IceLore = new ArrayList<String>();
@@ -458,7 +458,7 @@ public class Shop implements CommandExecutor, Listener{
 		IceMeta.setLore(IceLore);
 		Ice.setItemMeta(IceMeta);
 		GUI.setItem(23, Ice);
-		
+
 		ItemStack SnowBlock = new ItemStack(Material.SNOW_BLOCK);
 		ItemMeta SnowBlockMeta = SnowBlock.getItemMeta();
 		ArrayList<String> SnowBlockLore = new ArrayList<String>();
@@ -468,7 +468,7 @@ public class Shop implements CommandExecutor, Listener{
 		SnowBlockMeta.setLore(SnowBlockLore);
 		SnowBlock.setItemMeta(SnowBlockMeta);
 		GUI.setItem(24, SnowBlock);
-		
+
 		ItemStack ClayBlock = new ItemStack(Material.CLAY);
 		ItemMeta ClayBlockMeta = ClayBlock.getItemMeta();
 		ArrayList<String> ClayBlockLore = new ArrayList<String>();
@@ -478,7 +478,7 @@ public class Shop implements CommandExecutor, Listener{
 		ClayBlockMeta.setLore(ClayBlockLore);
 		ClayBlock.setItemMeta(ClayBlockMeta);
 		GUI.setItem(25, ClayBlock);
-		
+
 		ItemStack Netherrack = new ItemStack(Material.NETHERRACK);
 		ItemMeta NetherrackMeta = Netherrack.getItemMeta();
 		ArrayList<String> NetherrackLore = new ArrayList<String>();
@@ -488,7 +488,7 @@ public class Shop implements CommandExecutor, Listener{
 		NetherrackMeta.setLore(NetherrackLore);
 		Netherrack.setItemMeta(NetherrackMeta);
 		GUI.setItem(26, Netherrack);
-		
+
 		ItemStack SoulSand = new ItemStack(Material.SOUL_SAND);
 		ItemMeta SoulSandMeta = SoulSand.getItemMeta();
 		ArrayList<String> SoulSandLore = new ArrayList<String>();
@@ -498,7 +498,7 @@ public class Shop implements CommandExecutor, Listener{
 		SoulSandMeta.setLore(SoulSandLore);
 		SoulSand.setItemMeta(SoulSandMeta);
 		GUI.setItem(27, SoulSand);
-		
+
 		ItemStack Glowstone = new ItemStack(Material.GLOWSTONE);
 		ItemMeta GlowstoneMeta = Glowstone.getItemMeta();
 		ArrayList<String> GlowstoneLore = new ArrayList<String>();
@@ -508,7 +508,7 @@ public class Shop implements CommandExecutor, Listener{
 		GlowstoneMeta.setLore(GlowstoneLore);
 		Glowstone.setItemMeta(GlowstoneMeta);
 		GUI.setItem(28, Glowstone);
-		
+
 		ItemStack StoneBrick = new ItemStack(Material.SMOOTH_BRICK);
 		ItemMeta StoneBrickMeta = StoneBrick.getItemMeta();
 		ArrayList<String> StoneBrickLore = new ArrayList<String>();
@@ -518,7 +518,7 @@ public class Shop implements CommandExecutor, Listener{
 		StoneBrickMeta.setLore(StoneBrickLore);
 		StoneBrick.setItemMeta(StoneBrickMeta);
 		GUI.setItem(29, StoneBrick);
-		
+
 		ItemStack MossyStoneBrick = new ItemStack(Material.SMOOTH_BRICK);
 		MossyStoneBrick.setDurability((short) 1);
 		ItemMeta MossyStoneBrickMeta = MossyStoneBrick.getItemMeta();
@@ -529,7 +529,7 @@ public class Shop implements CommandExecutor, Listener{
 		MossyStoneBrickMeta.setLore(MossyStoneBrickLore);
 		MossyStoneBrick.setItemMeta(MossyStoneBrickMeta);
 		GUI.setItem(30, MossyStoneBrick);
-		
+
 		ItemStack CrackedStoneBrick = new ItemStack(Material.SMOOTH_BRICK);
 		CrackedStoneBrick.setDurability((short) 2);
 		ItemMeta CrackedStoneBrickMeta = CrackedStoneBrick.getItemMeta();
@@ -540,7 +540,7 @@ public class Shop implements CommandExecutor, Listener{
 		CrackedStoneBrickMeta.setLore(CrackedStoneBrickLore);
 		CrackedStoneBrick.setItemMeta(CrackedStoneBrickMeta);
 		GUI.setItem(31, CrackedStoneBrick);
-		
+
 		ItemStack ChiseledStoneBrick = new ItemStack(Material.SMOOTH_BRICK);
 		ChiseledStoneBrick.setDurability((short) 3);
 		ItemMeta ChiseledStoneBrickMeta = ChiseledStoneBrick.getItemMeta();
@@ -551,7 +551,7 @@ public class Shop implements CommandExecutor, Listener{
 		ChiseledStoneBrickMeta.setLore(ChiseledStoneBrickLore);
 		ChiseledStoneBrick.setItemMeta(ChiseledStoneBrickMeta);
 		GUI.setItem(32, ChiseledStoneBrick);
-		
+
 		ItemStack NetherBrick = new ItemStack(Material.NETHER_BRICK);
 		ItemMeta NetherBrickMeta = NetherBrick.getItemMeta();
 		ArrayList<String> NetherBrickLore = new ArrayList<String>();
@@ -561,7 +561,7 @@ public class Shop implements CommandExecutor, Listener{
 		NetherBrickMeta.setLore(NetherBrickLore);
 		NetherBrick.setItemMeta(NetherBrickMeta);
 		GUI.setItem(33, NetherBrick);
-		
+
 		ItemStack EndStone = new ItemStack(Material.ENDER_STONE);
 		ItemMeta EndStoneMeta = EndStone.getItemMeta();
 		ArrayList<String> EndStoneLore = new ArrayList<String>();
@@ -571,7 +571,7 @@ public class Shop implements CommandExecutor, Listener{
 		EndStoneMeta.setLore(EndStoneLore);
 		EndStone.setItemMeta(EndStoneMeta);
 		GUI.setItem(34, EndStone);
-		
+
 		ItemStack Quartz = new ItemStack(Material.QUARTZ_BLOCK);
 		ItemMeta QuartzMeta = Quartz.getItemMeta();
 		ArrayList<String> QuartzLore = new ArrayList<String>();
@@ -581,7 +581,7 @@ public class Shop implements CommandExecutor, Listener{
 		QuartzMeta.setLore(QuartzLore);
 		Quartz.setItemMeta(QuartzMeta);
 		GUI.setItem(35, Quartz);
-		
+
 		ItemStack ChiseledQuartz = new ItemStack(Material.QUARTZ_BLOCK);
 		ChiseledQuartz.setDurability((short) 1);
 		ItemMeta ChiseledQuartzMeta = ChiseledQuartz.getItemMeta();
@@ -592,7 +592,7 @@ public class Shop implements CommandExecutor, Listener{
 		ChiseledQuartzMeta.setLore(ChiseledQuartzLore);
 		ChiseledQuartz.setItemMeta(ChiseledQuartzMeta);
 		GUI.setItem(36, ChiseledQuartz);
-		
+
 		ItemStack PillarQuartz = new ItemStack(Material.QUARTZ_BLOCK);
 		PillarQuartz.setDurability((short) 2);
 		ItemMeta PillarQuartzMeta = PillarQuartz.getItemMeta();
@@ -603,7 +603,7 @@ public class Shop implements CommandExecutor, Listener{
 		PillarQuartzMeta.setLore(PillarQuartzLore);
 		PillarQuartz.setItemMeta(PillarQuartzMeta);
 		GUI.setItem(37, PillarQuartz);
-		
+
 		ItemStack Wool = new ItemStack(Material.WOOL);
 		ItemMeta WoolMeta = Wool.getItemMeta();
 		ArrayList<String> WoolLore = new ArrayList<String>();
@@ -613,7 +613,7 @@ public class Shop implements CommandExecutor, Listener{
 		WoolMeta.setLore(WoolLore);
 		Wool.setItemMeta(WoolMeta);
 		GUI.setItem(38, Wool);
-		
+
 		ItemStack HardenedClay = new ItemStack(Material.HARD_CLAY);
 		ItemMeta HardenedClayMeta = HardenedClay.getItemMeta();
 		ArrayList<String> HardenedClayLore = new ArrayList<String>();
@@ -623,7 +623,7 @@ public class Shop implements CommandExecutor, Listener{
 		HardenedClayMeta.setLore(HardenedClayLore);
 		HardenedClay.setItemMeta(HardenedClayMeta);
 		GUI.setItem(39, HardenedClay);
-		
+
 		ItemStack Glass = new ItemStack(Material.GLASS);
 		ItemMeta GlassMeta = Glass.getItemMeta();
 		ArrayList<String> GlassLore = new ArrayList<String>();
@@ -633,20 +633,20 @@ public class Shop implements CommandExecutor, Listener{
 		GlassMeta.setLore(GlassLore);
 		Glass.setItemMeta(GlassMeta);
 		GUI.setItem(40, Glass);
-		
+
 		ItemStack backItem = new ItemStack(Material.REDSTONE_BLOCK);
 		ItemMeta backItemMeta = backItem.getItemMeta();
 		backItemMeta.setDisplayName("§c§lBack");
 		backItem.setItemMeta(backItemMeta);
 		GUI.setItem(44, backItem);
-		
+
 		player.openInventory(GUI);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public void openMaterials(Player player) {
 		Inventory GUI = Bukkit.createInventory(null, 45, "§c§l>> §8Materials §c§l<<");
-		
+
 		ItemStack Coal = new ItemStack(Material.COAL);	
 		ItemMeta CoalMeta = Coal.getItemMeta();
 		ArrayList<String> CoalLore = new ArrayList<String>();
@@ -656,7 +656,7 @@ public class Shop implements CommandExecutor, Listener{
 		CoalMeta.setLore(CoalLore);
 		Coal.setItemMeta(CoalMeta);
 		GUI.setItem(0, Coal);
-		
+
 		ItemStack Iron = new ItemStack(Material.IRON_INGOT);	
 		ItemMeta IronMeta = Iron.getItemMeta();
 		ArrayList<String> IronLore = new ArrayList<String>();
@@ -666,7 +666,7 @@ public class Shop implements CommandExecutor, Listener{
 		IronMeta.setLore(IronLore);
 		Iron.setItemMeta(IronMeta);
 		GUI.setItem(1, Iron);
-		
+
 		ItemStack Gold = new ItemStack(Material.GOLD_INGOT);	
 		ItemMeta GoldMeta = Gold.getItemMeta();
 		ArrayList<String> GoldLore = new ArrayList<String>();
@@ -676,7 +676,7 @@ public class Shop implements CommandExecutor, Listener{
 		GoldMeta.setLore(GoldLore);
 		Gold.setItemMeta(GoldMeta);
 		GUI.setItem(2, Gold);
-		
+
 		ItemStack Diamond = new ItemStack(Material.DIAMOND);	
 		ItemMeta DiamondMeta = Diamond.getItemMeta();
 		ArrayList<String> DiamondLore = new ArrayList<String>();
@@ -686,7 +686,7 @@ public class Shop implements CommandExecutor, Listener{
 		DiamondMeta.setLore(DiamondLore);
 		Diamond.setItemMeta(DiamondMeta);
 		GUI.setItem(3, Diamond);
-		
+
 		ItemStack Redstone = new ItemStack(Material.REDSTONE);	
 		ItemMeta RedstoneMeta = Redstone.getItemMeta();
 		ArrayList<String> RedstoneLore = new ArrayList<String>();
@@ -696,7 +696,7 @@ public class Shop implements CommandExecutor, Listener{
 		RedstoneMeta.setLore(RedstoneLore);
 		Redstone.setItemMeta(RedstoneMeta);
 		GUI.setItem(4, Redstone);
-		
+
 		ItemStack Gunpowder = new ItemStack(Material.SULPHUR);	
 		ItemMeta GunpowderMeta = Gunpowder.getItemMeta();
 		ArrayList<String> GunpowderLore = new ArrayList<String>();
@@ -706,7 +706,7 @@ public class Shop implements CommandExecutor, Listener{
 		GunpowderMeta.setLore(GunpowderLore);
 		Gunpowder.setItemMeta(GunpowderMeta);
 		GUI.setItem(5, Gunpowder);
-		
+
 		ItemStack Leather = new ItemStack(Material.LEATHER);	
 		ItemMeta LeatherMeta = Leather.getItemMeta();
 		ArrayList<String> LeatherLore = new ArrayList<String>();
@@ -716,7 +716,7 @@ public class Shop implements CommandExecutor, Listener{
 		LeatherMeta.setLore(LeatherLore);
 		Leather.setItemMeta(LeatherMeta);
 		GUI.setItem(6, Leather);
-		
+
 		ItemStack Brick = new ItemStack(Material.CLAY_BRICK);	
 		ItemMeta BrickMeta = Brick.getItemMeta();
 		ArrayList<String> BrickLore = new ArrayList<String>();
@@ -726,7 +726,7 @@ public class Shop implements CommandExecutor, Listener{
 		BrickMeta.setLore(BrickLore);
 		Brick.setItemMeta(BrickMeta);
 		GUI.setItem(7, Brick);
-		
+
 		ItemStack Glowstone = new ItemStack(Material.GLOWSTONE_DUST);	
 		ItemMeta GlowstoneMeta = Glowstone.getItemMeta();
 		ArrayList<String> GlowstoneLore = new ArrayList<String>();
@@ -736,7 +736,7 @@ public class Shop implements CommandExecutor, Listener{
 		GlowstoneMeta.setLore(GlowstoneLore);
 		Glowstone.setItemMeta(GlowstoneMeta);
 		GUI.setItem(8, Glowstone);
-		
+
 		ItemStack InkSac = new ItemStack(Material.INK_SACK);	
 		ItemMeta InkSacMeta = InkSac.getItemMeta();
 		ArrayList<String> InkSacLore = new ArrayList<String>();
@@ -746,7 +746,7 @@ public class Shop implements CommandExecutor, Listener{
 		InkSacMeta.setLore(InkSacLore);
 		InkSac.setItemMeta(InkSacMeta);
 		GUI.setItem(9, InkSac);
-		
+
 		ItemStack RoseRed = new ItemStack(Material.INK_SACK);
 		RoseRed.setDurability((short) 1);
 		ItemMeta RoseRedMeta = RoseRed.getItemMeta();
@@ -757,7 +757,7 @@ public class Shop implements CommandExecutor, Listener{
 		RoseRedMeta.setLore(RoseRedLore);
 		RoseRed.setItemMeta(RoseRedMeta);
 		GUI.setItem(10, RoseRed);
-		
+
 		ItemStack CactusGreen = new ItemStack(Material.INK_SACK);
 		CactusGreen.setDurability((short) 2);
 		ItemMeta CactusGreenMeta = CactusGreen.getItemMeta();
@@ -768,7 +768,7 @@ public class Shop implements CommandExecutor, Listener{
 		CactusGreenMeta.setLore(CactusGreenLore);
 		CactusGreen.setItemMeta(CactusGreenMeta);
 		GUI.setItem(11, CactusGreen);
-		
+
 		ItemStack CocoaBeans = new ItemStack(Material.INK_SACK);
 		CocoaBeans.setDurability((short) 3);
 		ItemMeta CocoaBeansMeta = CocoaBeans.getItemMeta();
@@ -779,7 +779,7 @@ public class Shop implements CommandExecutor, Listener{
 		CocoaBeansMeta.setLore(CocoaBeansLore);
 		CocoaBeans.setItemMeta(CocoaBeansMeta);
 		GUI.setItem(12, CocoaBeans);
-		
+
 		ItemStack LapisLuzili = new ItemStack(Material.INK_SACK);
 		LapisLuzili.setDurability((short) 4);
 		ItemMeta LapisLuziliMeta = LapisLuzili.getItemMeta();
@@ -790,7 +790,7 @@ public class Shop implements CommandExecutor, Listener{
 		LapisLuziliMeta.setLore(LapisLuziliLore);
 		LapisLuzili.setItemMeta(LapisLuziliMeta);
 		GUI.setItem(13, LapisLuzili);
-		
+
 		ItemStack PurpleDye = new ItemStack(Material.INK_SACK);
 		PurpleDye.setDurability((short) 5);
 		ItemMeta PurpleDyeMeta = PurpleDye.getItemMeta();
@@ -801,7 +801,7 @@ public class Shop implements CommandExecutor, Listener{
 		PurpleDyeMeta.setLore(PurpleDyeLore);
 		PurpleDye.setItemMeta(PurpleDyeMeta);
 		GUI.setItem(14, PurpleDye);
-		
+
 		ItemStack CyanDye = new ItemStack(Material.INK_SACK);
 		CyanDye.setDurability((short) 6);
 		ItemMeta CyanDyeMeta = CyanDye.getItemMeta();
@@ -812,7 +812,7 @@ public class Shop implements CommandExecutor, Listener{
 		CyanDyeMeta.setLore(CyanDyeLore);
 		CyanDye.setItemMeta(CyanDyeMeta);
 		GUI.setItem(15, CyanDye);
-		
+
 		ItemStack LightGrayDye = new ItemStack(Material.INK_SACK);
 		LightGrayDye.setDurability((short) 7);
 		ItemMeta LightGrayDyeMeta = LightGrayDye.getItemMeta();
@@ -823,7 +823,7 @@ public class Shop implements CommandExecutor, Listener{
 		LightGrayDyeMeta.setLore(LightGrayDyeLore);
 		LightGrayDye.setItemMeta(LightGrayDyeMeta);
 		GUI.setItem(16, LightGrayDye);
-		
+
 		ItemStack GrayDye = new ItemStack(Material.INK_SACK);
 		GrayDye.setDurability((short) 8);
 		ItemMeta GrayDyeMeta = GrayDye.getItemMeta();
@@ -834,7 +834,7 @@ public class Shop implements CommandExecutor, Listener{
 		GrayDyeMeta.setLore(GrayDyeLore);
 		GrayDye.setItemMeta(GrayDyeMeta);
 		GUI.setItem(17, GrayDye);
-		
+
 		ItemStack PinkDye = new ItemStack(Material.INK_SACK);
 		PinkDye.setDurability((short) 9);
 		ItemMeta PinkDyeMeta = PinkDye.getItemMeta();
@@ -845,7 +845,7 @@ public class Shop implements CommandExecutor, Listener{
 		PinkDyeMeta.setLore(PinkDyeLore);
 		PinkDye.setItemMeta(PinkDyeMeta);
 		GUI.setItem(18, PinkDye);
-		
+
 		ItemStack LimeDye = new ItemStack(Material.INK_SACK);
 		LimeDye.setDurability((short) 10);
 		ItemMeta LimeDyeMeta = LimeDye.getItemMeta();
@@ -856,7 +856,7 @@ public class Shop implements CommandExecutor, Listener{
 		LimeDyeMeta.setLore(LimeDyeLore);
 		LimeDye.setItemMeta(LimeDyeMeta);
 		GUI.setItem(19, LimeDye);
-		
+
 		ItemStack DandilionYellowDye = new ItemStack(Material.INK_SACK);
 		DandilionYellowDye.setDurability((short) 11);
 		ItemMeta DandilionYellowDyeMeta = DandilionYellowDye.getItemMeta();
@@ -867,7 +867,7 @@ public class Shop implements CommandExecutor, Listener{
 		DandilionYellowDyeMeta.setLore(DandilionYellowDyeLore);
 		DandilionYellowDye.setItemMeta(DandilionYellowDyeMeta);
 		GUI.setItem(20, DandilionYellowDye);
-		
+
 		ItemStack LightBlueDye = new ItemStack(Material.INK_SACK);
 		LightBlueDye.setDurability((short) 12);
 		ItemMeta LightBlueDyeMeta = LightBlueDye.getItemMeta();
@@ -878,7 +878,7 @@ public class Shop implements CommandExecutor, Listener{
 		LightBlueDyeMeta.setLore(LightBlueDyeLore);
 		LightBlueDye.setItemMeta(LightBlueDyeMeta);
 		GUI.setItem(21, LightBlueDye);
-		
+
 		ItemStack MagentaDye = new ItemStack(Material.INK_SACK);
 		MagentaDye.setDurability((short) 13);
 		ItemMeta MagentaDyeMeta = MagentaDye.getItemMeta();
@@ -889,7 +889,7 @@ public class Shop implements CommandExecutor, Listener{
 		MagentaDyeMeta.setLore(MagentaDyeLore);
 		MagentaDye.setItemMeta(MagentaDyeMeta);
 		GUI.setItem(22, MagentaDye);
-		
+
 		ItemStack OrangeDye = new ItemStack(Material.INK_SACK);
 		OrangeDye.setDurability((short) 14);
 		ItemMeta OrangeDyeMeta = OrangeDye.getItemMeta();
@@ -900,7 +900,7 @@ public class Shop implements CommandExecutor, Listener{
 		OrangeDyeMeta.setLore(OrangeDyeLore);
 		OrangeDye.setItemMeta(OrangeDyeMeta);
 		GUI.setItem(23, OrangeDye);
-		
+
 		ItemStack BoneMeal = new ItemStack(Material.INK_SACK);
 		BoneMeal.setDurability((short) 15);
 		ItemMeta BoneMealMeta = BoneMeal.getItemMeta();
@@ -911,20 +911,20 @@ public class Shop implements CommandExecutor, Listener{
 		BoneMealMeta.setLore(BoneMealLore);
 		BoneMeal.setItemMeta(BoneMealMeta);
 		GUI.setItem(24, BoneMeal);
-		
+
 		ItemStack backItem = new ItemStack(Material.REDSTONE_BLOCK);
 		ItemMeta backItemMeta = backItem.getItemMeta();
 		backItemMeta.setDisplayName("§c§lBack");
 		backItem.setItemMeta(backItemMeta);
 		GUI.setItem(44, backItem);
-		
+
 		player.openInventory(GUI);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public void openBrewing(Player player) {
 		Inventory GUI = Bukkit.createInventory(null, 45, "§c§l>> §8Brewing §c§l<<");
-		
+
 		ItemStack BrewingStand = new ItemStack(Material.BREWING_STAND_ITEM);	
 		ItemMeta BrewingStandMeta = BrewingStand.getItemMeta();
 		ArrayList<String> BrewingStandLore = new ArrayList<String>();
@@ -934,7 +934,7 @@ public class Shop implements CommandExecutor, Listener{
 		BrewingStandMeta.setLore(BrewingStandLore);
 		BrewingStand.setItemMeta(BrewingStandMeta);
 		GUI.setItem(0, BrewingStand);
-		
+
 		ItemStack GlassBottle = new ItemStack(Material.GLASS_BOTTLE);	
 		ItemMeta GlassBottleMeta = GlassBottle.getItemMeta();
 		ArrayList<String> GlassBottleLore = new ArrayList<String>();
@@ -944,7 +944,7 @@ public class Shop implements CommandExecutor, Listener{
 		GlassBottleMeta.setLore(GlassBottleLore);
 		GlassBottle.setItemMeta(GlassBottleMeta);
 		GUI.setItem(1, GlassBottle);
-		
+
 		ItemStack NetherWart = new ItemStack(Material.NETHER_STALK);	
 		ItemMeta NetherWartMeta = NetherWart.getItemMeta();
 		ArrayList<String> NetherWartLore = new ArrayList<String>();
@@ -954,7 +954,7 @@ public class Shop implements CommandExecutor, Listener{
 		NetherWartMeta.setLore(NetherWartLore);
 		NetherWart.setItemMeta(NetherWartMeta);
 		GUI.setItem(2, NetherWart);
-		
+
 		ItemStack BlazePowder = new ItemStack(Material.BLAZE_POWDER);	
 		ItemMeta BlazePowderMeta = BlazePowder.getItemMeta();
 		ArrayList<String> BlazePowderLore = new ArrayList<String>();
@@ -964,7 +964,7 @@ public class Shop implements CommandExecutor, Listener{
 		BlazePowderMeta.setLore(BlazePowderLore);
 		BlazePowder.setItemMeta(BlazePowderMeta);
 		GUI.setItem(3, BlazePowder);
-		
+
 		ItemStack Sugar = new ItemStack(Material.SUGAR);	
 		ItemMeta SugarMeta = Sugar.getItemMeta();
 		ArrayList<String> SugarLore = new ArrayList<String>();
@@ -974,7 +974,7 @@ public class Shop implements CommandExecutor, Listener{
 		SugarMeta.setLore(SugarLore);
 		Sugar.setItemMeta(SugarMeta);
 		GUI.setItem(4, Sugar);
-		
+
 		ItemStack MagmaCream = new ItemStack(Material.MAGMA_CREAM);	
 		ItemMeta MagmaCreamMeta = MagmaCream.getItemMeta();
 		ArrayList<String> MagmaCreamLore = new ArrayList<String>();
@@ -984,7 +984,7 @@ public class Shop implements CommandExecutor, Listener{
 		MagmaCreamMeta.setLore(MagmaCreamLore);
 		MagmaCream.setItemMeta(MagmaCreamMeta);
 		GUI.setItem(5, MagmaCream);
-		
+
 		ItemStack GlisteringMelon = new ItemStack(Material.SPECKLED_MELON);	
 		ItemMeta GlisteringMelonMeta = GlisteringMelon.getItemMeta();
 		ArrayList<String> GlisteringMelonLore = new ArrayList<String>();
@@ -994,7 +994,7 @@ public class Shop implements CommandExecutor, Listener{
 		GlisteringMelonMeta.setLore(GlisteringMelonLore);
 		GlisteringMelon.setItemMeta(GlisteringMelonMeta);
 		GUI.setItem(6, GlisteringMelon);
-		
+
 		ItemStack GoldenCarrot = new ItemStack(Material.GOLDEN_CARROT);	
 		ItemMeta GoldenCarrotMeta = GoldenCarrot.getItemMeta();
 		ArrayList<String> GoldenCarrotLore = new ArrayList<String>();
@@ -1004,7 +1004,7 @@ public class Shop implements CommandExecutor, Listener{
 		GoldenCarrotMeta.setLore(GoldenCarrotLore);
 		GoldenCarrot.setItemMeta(GoldenCarrotMeta);
 		GUI.setItem(7, GoldenCarrot);
-		
+
 		ItemStack GhastTear = new ItemStack(Material.GHAST_TEAR);	
 		ItemMeta GhastTearMeta = GhastTear.getItemMeta();
 		ArrayList<String> GhastTearLore = new ArrayList<String>();
@@ -1014,7 +1014,7 @@ public class Shop implements CommandExecutor, Listener{
 		GhastTearMeta.setLore(GhastTearLore);
 		GhastTear.setItemMeta(GhastTearMeta);
 		GUI.setItem(8, GhastTear);
-		
+
 		ItemStack SpiderEye = new ItemStack(Material.SPIDER_EYE);	
 		ItemMeta SpiderEyeMeta = SpiderEye.getItemMeta();
 		ArrayList<String> SpiderEyeLore = new ArrayList<String>();
@@ -1024,7 +1024,7 @@ public class Shop implements CommandExecutor, Listener{
 		SpiderEyeMeta.setLore(SpiderEyeLore);
 		SpiderEye.setItemMeta(SpiderEyeMeta);
 		GUI.setItem(9, SpiderEye);
-		
+
 		ItemStack WaterLily = new ItemStack(Material.WATER_LILY);	
 		ItemMeta WaterLilyMeta = WaterLily.getItemMeta();
 		ArrayList<String> WaterLilyLore = new ArrayList<String>();
@@ -1034,7 +1034,7 @@ public class Shop implements CommandExecutor, Listener{
 		WaterLilyMeta.setLore(WaterLilyLore);
 		WaterLily.setItemMeta(WaterLilyMeta);
 		GUI.setItem(10, WaterLily);
-		
+
 		ItemStack PufferFish = new ItemStack(Material.RAW_FISH);
 		PufferFish.setDurability((short)3);
 		ItemMeta PufferFishMeta = PufferFish.getItemMeta();
@@ -1045,7 +1045,7 @@ public class Shop implements CommandExecutor, Listener{
 		PufferFishMeta.setLore(PufferFishLore);
 		PufferFish.setItemMeta(PufferFishMeta);
 		GUI.setItem(11, PufferFish);
-		
+
 		ItemStack Gunpowder = new ItemStack(Material.SULPHUR);	
 		ItemMeta GunpowderMeta = Gunpowder.getItemMeta();
 		ArrayList<String> GunpowderLore = new ArrayList<String>();
@@ -1055,7 +1055,7 @@ public class Shop implements CommandExecutor, Listener{
 		GunpowderMeta.setLore(GunpowderLore);
 		Gunpowder.setItemMeta(GunpowderMeta);
 		GUI.setItem(12, Gunpowder);
-		
+
 		ItemStack GlowstoneDust = new ItemStack(Material.GLOWSTONE_DUST);	
 		ItemMeta GlowstoneDustMeta = GlowstoneDust.getItemMeta();
 		ArrayList<String> GlowstoneDustLore = new ArrayList<String>();
@@ -1065,7 +1065,7 @@ public class Shop implements CommandExecutor, Listener{
 		GlowstoneDustMeta.setLore(GlowstoneDustLore);
 		GlowstoneDust.setItemMeta(GlowstoneDustMeta);
 		GUI.setItem(13, GlowstoneDust);
-		
+
 		ItemStack RedstoneDust = new ItemStack(Material.REDSTONE);	
 		ItemMeta RedstoneDustMeta = RedstoneDust.getItemMeta();
 		ArrayList<String> RedstoneDustLore = new ArrayList<String>();
@@ -1075,20 +1075,20 @@ public class Shop implements CommandExecutor, Listener{
 		RedstoneDustMeta.setLore(RedstoneDustLore);
 		RedstoneDust.setItemMeta(RedstoneDustMeta);
 		GUI.setItem(14, RedstoneDust);
-		
+
 		ItemStack backItem = new ItemStack(Material.REDSTONE_BLOCK);
 		ItemMeta backItemMeta = backItem.getItemMeta();
 		backItemMeta.setDisplayName("§c§lBack");
 		backItem.setItemMeta(backItemMeta);
 		GUI.setItem(44, backItem);
-		
+
 		player.openInventory(GUI);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public void openRedstone(Player player) {
 		Inventory GUI = Bukkit.createInventory(null, 45, "§c§l>> §8Redstone §c§l<<");
-		
+
 		ItemStack Redstone = new ItemStack(Material.REDSTONE);	
 		ItemMeta RedstoneMeta = Redstone.getItemMeta();
 		ArrayList<String> RedstoneLore = new ArrayList<String>();
@@ -1098,7 +1098,7 @@ public class Shop implements CommandExecutor, Listener{
 		RedstoneMeta.setLore(RedstoneLore);
 		Redstone.setItemMeta(RedstoneMeta);
 		GUI.setItem(0, Redstone);
-		
+
 		ItemStack Dispenser = new ItemStack(Material.DISPENSER);	
 		ItemMeta DispenserMeta = Dispenser.getItemMeta();
 		ArrayList<String> DispenserLore = new ArrayList<String>();
@@ -1108,7 +1108,7 @@ public class Shop implements CommandExecutor, Listener{
 		DispenserMeta.setLore(DispenserLore);
 		Dispenser.setItemMeta(DispenserMeta);
 		GUI.setItem(1, Dispenser);
-		
+
 		ItemStack StickyPiston = new ItemStack(Material.PISTON_STICKY_BASE);	
 		ItemMeta StickyPistonMeta = StickyPiston.getItemMeta();
 		ArrayList<String> StickyPistonLore = new ArrayList<String>();
@@ -1118,7 +1118,7 @@ public class Shop implements CommandExecutor, Listener{
 		StickyPistonMeta.setLore(StickyPistonLore);
 		StickyPiston.setItemMeta(StickyPistonMeta);
 		GUI.setItem(2, StickyPiston);
-		
+
 		ItemStack Piston = new ItemStack(Material.PISTON_BASE);	
 		ItemMeta PistonMeta = Piston.getItemMeta();
 		ArrayList<String> PistonLore = new ArrayList<String>();
@@ -1128,7 +1128,7 @@ public class Shop implements CommandExecutor, Listener{
 		PistonMeta.setLore(PistonLore);
 		Piston.setItemMeta(PistonMeta);
 		GUI.setItem(3, Piston);
-		
+
 		ItemStack TNT = new ItemStack(Material.TNT);	
 		ItemMeta TNTMeta = TNT.getItemMeta();
 		ArrayList<String> TNTLore = new ArrayList<String>();
@@ -1138,7 +1138,7 @@ public class Shop implements CommandExecutor, Listener{
 		TNTMeta.setLore(TNTLore);
 		TNT.setItemMeta(TNTMeta);
 		GUI.setItem(4, TNT);
-		
+
 		ItemStack Lever = new ItemStack(Material.LEVER);	
 		ItemMeta LeverMeta = Lever.getItemMeta();
 		ArrayList<String> LeverLore = new ArrayList<String>();
@@ -1148,7 +1148,7 @@ public class Shop implements CommandExecutor, Listener{
 		LeverMeta.setLore(LeverLore);
 		Lever.setItemMeta(LeverMeta);
 		GUI.setItem(5, Lever);
-		
+
 		ItemStack RedstoneTorch = new ItemStack(Material.REDSTONE_TORCH_ON);	
 		ItemMeta RedstoneTorchMeta = RedstoneTorch.getItemMeta();
 		ArrayList<String> RedstoneTorchLore = new ArrayList<String>();
@@ -1158,7 +1158,7 @@ public class Shop implements CommandExecutor, Listener{
 		RedstoneTorchMeta.setLore(RedstoneTorchLore);
 		RedstoneTorch.setItemMeta(RedstoneTorchMeta);
 		GUI.setItem(6, RedstoneTorch);
-		
+
 		ItemStack StoneButton = new ItemStack(Material.STONE_BUTTON);	
 		ItemMeta StoneButtonMeta = StoneButton.getItemMeta();
 		ArrayList<String> StoneButtonLore = new ArrayList<String>();
@@ -1168,7 +1168,7 @@ public class Shop implements CommandExecutor, Listener{
 		StoneButtonMeta.setLore(StoneButtonLore);
 		StoneButton.setItemMeta(StoneButtonMeta);
 		GUI.setItem(7, StoneButton);
-		
+
 		ItemStack TrapDoor = new ItemStack(Material.TRAP_DOOR);	
 		ItemMeta TrapDoorMeta = TrapDoor.getItemMeta();
 		ArrayList<String> TrapDoorLore = new ArrayList<String>();
@@ -1178,7 +1178,7 @@ public class Shop implements CommandExecutor, Listener{
 		TrapDoorMeta.setLore(TrapDoorLore);
 		TrapDoor.setItemMeta(TrapDoorMeta);
 		GUI.setItem(8, TrapDoor);
-		
+
 		ItemStack RedstoneLamp = new ItemStack(Material.REDSTONE_LAMP_OFF);	
 		ItemMeta RedstoneLampMeta = RedstoneLamp.getItemMeta();
 		ArrayList<String> RedstoneLampLore = new ArrayList<String>();
@@ -1188,7 +1188,7 @@ public class Shop implements CommandExecutor, Listener{
 		RedstoneLampMeta.setLore(RedstoneLampLore);
 		RedstoneLamp.setItemMeta(RedstoneLampMeta);
 		GUI.setItem(9, RedstoneLamp);
-		
+
 		ItemStack TrappedChest = new ItemStack(Material.TRAPPED_CHEST);	
 		ItemMeta TrappedChestMeta = TrappedChest.getItemMeta();
 		ArrayList<String> TrappedChestLore = new ArrayList<String>();
@@ -1198,7 +1198,7 @@ public class Shop implements CommandExecutor, Listener{
 		TrappedChestMeta.setLore(TrappedChestLore);
 		TrappedChest.setItemMeta(TrappedChestMeta);
 		GUI.setItem(10, TrappedChest);
-		
+
 		ItemStack Dropper = new ItemStack(Material.DROPPER);	
 		ItemMeta DropperMeta = Dropper.getItemMeta();
 		ArrayList<String> DropperLore = new ArrayList<String>();
@@ -1208,7 +1208,7 @@ public class Shop implements CommandExecutor, Listener{
 		DropperMeta.setLore(DropperLore);
 		Dropper.setItemMeta(DropperMeta);
 		GUI.setItem(11, Dropper);
-		
+
 		ItemStack Repeater = new ItemStack(Material.DIODE);	
 		ItemMeta RepeaterMeta = Repeater.getItemMeta();
 		ArrayList<String> RepeaterLore = new ArrayList<String>();
@@ -1218,7 +1218,7 @@ public class Shop implements CommandExecutor, Listener{
 		RepeaterMeta.setLore(RepeaterLore);
 		Repeater.setItemMeta(RepeaterMeta);
 		GUI.setItem(12, Repeater);
-		
+
 		ItemStack Comparator = new ItemStack(Material.REDSTONE_COMPARATOR);	
 		ItemMeta ComparatorMeta = Comparator.getItemMeta();
 		ArrayList<String> ComparatorLore = new ArrayList<String>();
@@ -1228,20 +1228,20 @@ public class Shop implements CommandExecutor, Listener{
 		ComparatorMeta.setLore(ComparatorLore);
 		Comparator.setItemMeta(ComparatorMeta);
 		GUI.setItem(13, Comparator);		
-		
+
 		ItemStack backItem = new ItemStack(Material.REDSTONE_BLOCK);
 		ItemMeta backItemMeta = backItem.getItemMeta();
 		backItemMeta.setDisplayName("§c§lBack");
 		backItem.setItemMeta(backItemMeta);
 		GUI.setItem(44, backItem);
-		
+
 		player.openInventory(GUI);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public void openFoodFarming(Player player) {
 		Inventory GUI = Bukkit.createInventory(null, 45, "§c§l>> §8Food/Farming §c§l<<");
-		
+
 		ItemStack Apple = new ItemStack(Material.APPLE);	
 		ItemMeta AppleMeta = Apple.getItemMeta();
 		ArrayList<String> AppleLore = new ArrayList<String>();
@@ -1251,7 +1251,7 @@ public class Shop implements CommandExecutor, Listener{
 		AppleMeta.setLore(AppleLore);
 		Apple.setItemMeta(AppleMeta);
 		GUI.setItem(0, Apple);
-		
+
 		ItemStack CookedPork = new ItemStack(Material.GRILLED_PORK);	
 		ItemMeta CookedPorkMeta = CookedPork.getItemMeta();
 		ArrayList<String> CookedPorkLore = new ArrayList<String>();
@@ -1261,7 +1261,7 @@ public class Shop implements CommandExecutor, Listener{
 		CookedPorkMeta.setLore(CookedPorkLore);
 		CookedPork.setItemMeta(CookedPorkMeta);
 		GUI.setItem(1, CookedPork);
-		
+
 		ItemStack CookedFish = new ItemStack(Material.COOKED_FISH);	
 		ItemMeta CookedFishMeta = CookedFish.getItemMeta();
 		ArrayList<String> CookedFishLore = new ArrayList<String>();
@@ -1271,7 +1271,7 @@ public class Shop implements CommandExecutor, Listener{
 		CookedFishMeta.setLore(CookedFishLore);
 		CookedFish.setItemMeta(CookedFishMeta);
 		GUI.setItem(2, CookedFish);
-		
+
 		ItemStack Steak = new ItemStack(Material.COOKED_BEEF);	
 		ItemMeta SteakMeta = Steak.getItemMeta();
 		ArrayList<String> SteakLore = new ArrayList<String>();
@@ -1281,7 +1281,7 @@ public class Shop implements CommandExecutor, Listener{
 		SteakMeta.setLore(SteakLore);
 		Steak.setItemMeta(SteakMeta);
 		GUI.setItem(3, Steak);
-		
+
 		ItemStack Chicken = new ItemStack(Material.COOKED_CHICKEN);	
 		ItemMeta ChickenMeta = Chicken.getItemMeta();
 		ArrayList<String> ChickenLore = new ArrayList<String>();
@@ -1291,7 +1291,7 @@ public class Shop implements CommandExecutor, Listener{
 		ChickenMeta.setLore(ChickenLore);
 		Chicken.setItemMeta(ChickenMeta);
 		GUI.setItem(4, Chicken);
-		
+
 		ItemStack Carrot = new ItemStack(Material.CARROT_ITEM);	
 		ItemMeta CarrotMeta = Carrot.getItemMeta();
 		ArrayList<String> CarrotLore = new ArrayList<String>();
@@ -1301,7 +1301,7 @@ public class Shop implements CommandExecutor, Listener{
 		CarrotMeta.setLore(CarrotLore);
 		Carrot.setItemMeta(CarrotMeta);
 		GUI.setItem(5, Carrot);
-		
+
 		ItemStack Potato = new ItemStack(Material.POTATO_ITEM);	
 		ItemMeta PotatoMeta = Potato.getItemMeta();
 		ArrayList<String> PotatoLore = new ArrayList<String>();
@@ -1311,7 +1311,7 @@ public class Shop implements CommandExecutor, Listener{
 		PotatoMeta.setLore(PotatoLore);
 		Potato.setItemMeta(PotatoMeta);
 		GUI.setItem(6, Potato);
-		
+
 		ItemStack Seeds = new ItemStack(Material.SEEDS);	
 		ItemMeta SeedsMeta = Seeds.getItemMeta();
 		ArrayList<String> SeedsLore = new ArrayList<String>();
@@ -1321,7 +1321,7 @@ public class Shop implements CommandExecutor, Listener{
 		SeedsMeta.setLore(SeedsLore);
 		Seeds.setItemMeta(SeedsMeta);
 		GUI.setItem(7, Seeds);
-		
+
 		ItemStack Sugarcane = new ItemStack(Material.SUGAR_CANE);	
 		ItemMeta SugarcaneMeta = Sugarcane.getItemMeta();
 		ArrayList<String> SugarcaneLore = new ArrayList<String>();
@@ -1331,7 +1331,7 @@ public class Shop implements CommandExecutor, Listener{
 		SugarcaneMeta.setLore(SugarcaneLore);
 		Sugarcane.setItemMeta(SugarcaneMeta);
 		GUI.setItem(8, Sugarcane);
-		
+
 		ItemStack MelonSeeds = new ItemStack(Material.MELON_SEEDS);	
 		ItemMeta MelonSeedsMeta = MelonSeeds.getItemMeta();
 		ArrayList<String> MelonSeedsLore = new ArrayList<String>();
@@ -1341,7 +1341,7 @@ public class Shop implements CommandExecutor, Listener{
 		MelonSeedsMeta.setLore(MelonSeedsLore);
 		MelonSeeds.setItemMeta(MelonSeedsMeta);
 		GUI.setItem(9, MelonSeeds);
-		
+
 		ItemStack PumpkinSeeds = new ItemStack(Material.PUMPKIN_SEEDS);	
 		ItemMeta PumpkinSeedsMeta = PumpkinSeeds.getItemMeta();
 		ArrayList<String> PumpkinSeedsLore = new ArrayList<String>();
@@ -1351,20 +1351,20 @@ public class Shop implements CommandExecutor, Listener{
 		PumpkinSeedsMeta.setLore(PumpkinSeedsLore);
 		PumpkinSeeds.setItemMeta(PumpkinSeedsMeta);
 		GUI.setItem(10, PumpkinSeeds);
-		
+
 		ItemStack backItem = new ItemStack(Material.REDSTONE_BLOCK);
 		ItemMeta backItemMeta = backItem.getItemMeta();
 		backItemMeta.setDisplayName("§c§lBack");
 		backItem.setItemMeta(backItemMeta);
 		GUI.setItem(44, backItem);
-		
+
 		player.openInventory(GUI);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public void openMiscellaneous(Player player) {
 		Inventory GUI = Bukkit.createInventory(null, 45, "§c§l>> §8Miscellaneous §c§l<<");
-		
+
 		ItemStack Beacon = new ItemStack(Material.BEACON);	
 		ItemMeta BeaconMeta = Beacon.getItemMeta();
 		ArrayList<String> BeaconLore = new ArrayList<String>();
@@ -1374,7 +1374,7 @@ public class Shop implements CommandExecutor, Listener{
 		BeaconMeta.setLore(BeaconLore);
 		Beacon.setItemMeta(BeaconMeta);
 		GUI.setItem(0, Beacon);
-		
+
 		ItemStack Hopper = new ItemStack(Material.HOPPER);	
 		ItemMeta HopperMeta = Hopper.getItemMeta();
 		ArrayList<String> HopperLore = new ArrayList<String>();
@@ -1384,7 +1384,7 @@ public class Shop implements CommandExecutor, Listener{
 		HopperMeta.setLore(HopperLore);
 		Hopper.setItemMeta(HopperMeta);
 		GUI.setItem(1, Hopper);
-		
+
 		ItemStack Bucket = new ItemStack(Material.BUCKET);	
 		ItemMeta BucketMeta = Bucket.getItemMeta();
 		ArrayList<String> BucketLore = new ArrayList<String>();
@@ -1394,7 +1394,7 @@ public class Shop implements CommandExecutor, Listener{
 		BucketMeta.setLore(BucketLore);
 		Bucket.setItemMeta(BucketMeta);
 		GUI.setItem(2, Bucket);
-		
+
 		ItemStack WaterBucket = new ItemStack(Material.WATER_BUCKET);	
 		ItemMeta WaterBucketMeta = WaterBucket.getItemMeta();
 		ArrayList<String> WaterBucketLore = new ArrayList<String>();
@@ -1404,7 +1404,7 @@ public class Shop implements CommandExecutor, Listener{
 		WaterBucketMeta.setLore(WaterBucketLore);
 		WaterBucket.setItemMeta(WaterBucketMeta);
 		GUI.setItem(3, WaterBucket);
-		
+
 		ItemStack MilkBucket = new ItemStack(Material.MILK_BUCKET);	
 		ItemMeta MilkBucketMeta = MilkBucket.getItemMeta();
 		ArrayList<String> MilkBucketLore = new ArrayList<String>();
@@ -1414,7 +1414,7 @@ public class Shop implements CommandExecutor, Listener{
 		MilkBucketMeta.setLore(MilkBucketLore);
 		MilkBucket.setItemMeta(MilkBucketMeta);
 		GUI.setItem(4, MilkBucket);
-		
+
 		ItemStack Book = new ItemStack(Material.BOOK);	
 		ItemMeta BookMeta = Book.getItemMeta();
 		ArrayList<String> BookLore = new ArrayList<String>();
@@ -1424,7 +1424,7 @@ public class Shop implements CommandExecutor, Listener{
 		BookMeta.setLore(BookLore);
 		Book.setItemMeta(BookMeta);
 		GUI.setItem(5, Book);
-		
+
 		ItemStack SlimeBall = new ItemStack(Material.SLIME_BALL);	
 		ItemMeta SlimeBallMeta = SlimeBall.getItemMeta();
 		ArrayList<String> SlimeBallLore = new ArrayList<String>();
@@ -1434,7 +1434,7 @@ public class Shop implements CommandExecutor, Listener{
 		SlimeBallMeta.setLore(SlimeBallLore);
 		SlimeBall.setItemMeta(SlimeBallMeta);
 		GUI.setItem(6, SlimeBall);
-		
+
 		ItemStack Bone = new ItemStack(Material.BONE);	
 		ItemMeta BoneMeta = Bone.getItemMeta();
 		ArrayList<String> BoneLore = new ArrayList<String>();
@@ -1444,7 +1444,7 @@ public class Shop implements CommandExecutor, Listener{
 		BoneMeta.setLore(BoneLore);
 		Bone.setItemMeta(BoneMeta);
 		GUI.setItem(7, Bone);
-		
+
 		ItemStack Pearl = new ItemStack(Material.ENDER_PEARL);	
 		ItemMeta PearlMeta = Pearl.getItemMeta();
 		ArrayList<String> PearlLore = new ArrayList<String>();
@@ -1454,7 +1454,7 @@ public class Shop implements CommandExecutor, Listener{
 		PearlMeta.setLore(PearlLore);
 		Pearl.setItemMeta(PearlMeta);
 		GUI.setItem(8, Pearl);
-		
+
 		ItemStack DiamondHelmet = new ItemStack(Material.DIAMOND_HELMET);	
 		ItemMeta DiamondHelmetMeta = DiamondHelmet.getItemMeta();
 		ArrayList<String> DiamondHelmetLore = new ArrayList<String>();
@@ -1463,7 +1463,7 @@ public class Shop implements CommandExecutor, Listener{
 		DiamondHelmetMeta.setLore(DiamondHelmetLore);
 		DiamondHelmet.setItemMeta(DiamondHelmetMeta);
 		GUI.setItem(9, DiamondHelmet);
-		
+
 		ItemStack DiamondChestplate = new ItemStack(Material.DIAMOND_CHESTPLATE);	
 		ItemMeta DiamondChestplateMeta = DiamondChestplate.getItemMeta();
 		ArrayList<String> DiamondChestplateLore = new ArrayList<String>();
@@ -1472,7 +1472,7 @@ public class Shop implements CommandExecutor, Listener{
 		DiamondChestplateMeta.setLore(DiamondChestplateLore);
 		DiamondChestplate.setItemMeta(DiamondChestplateMeta);
 		GUI.setItem(10, DiamondChestplate);
-		
+
 		ItemStack DiamondLeggings = new ItemStack(Material.DIAMOND_LEGGINGS);	
 		ItemMeta DiamondLeggingsMeta = DiamondLeggings.getItemMeta();
 		ArrayList<String> DiamondLeggingsLore = new ArrayList<String>();
@@ -1481,7 +1481,7 @@ public class Shop implements CommandExecutor, Listener{
 		DiamondLeggingsMeta.setLore(DiamondLeggingsLore);
 		DiamondLeggings.setItemMeta(DiamondLeggingsMeta);
 		GUI.setItem(11, DiamondLeggings);
-		
+
 		ItemStack DiamondBoots = new ItemStack(Material.DIAMOND_BOOTS);	
 		ItemMeta DiamondBootsMeta = DiamondBoots.getItemMeta();
 		ArrayList<String> DiamondBootsLore = new ArrayList<String>();
@@ -1490,7 +1490,7 @@ public class Shop implements CommandExecutor, Listener{
 		DiamondBootsMeta.setLore(DiamondBootsLore);
 		DiamondBoots.setItemMeta(DiamondBootsMeta);
 		GUI.setItem(12, DiamondBoots);
-		
+
 		ItemStack DiamondSword = new ItemStack(Material.DIAMOND_SWORD);	
 		ItemMeta DiamondSwordMeta = DiamondSword.getItemMeta();
 		ArrayList<String> DiamondSwordLore = new ArrayList<String>();
@@ -1499,7 +1499,7 @@ public class Shop implements CommandExecutor, Listener{
 		DiamondSwordMeta.setLore(DiamondSwordLore);
 		DiamondSword.setItemMeta(DiamondSwordMeta);
 		GUI.setItem(13, DiamondSword);
-		
+
 		ItemStack DiamondAxe = new ItemStack(Material.DIAMOND_AXE);	
 		ItemMeta DiamondAxeMeta = DiamondAxe.getItemMeta();
 		ArrayList<String> DiamondAxeLore = new ArrayList<String>();
@@ -1508,7 +1508,7 @@ public class Shop implements CommandExecutor, Listener{
 		DiamondAxeMeta.setLore(DiamondAxeLore);
 		DiamondAxe.setItemMeta(DiamondAxeMeta);
 		GUI.setItem(14, DiamondAxe);
-		
+
 		ItemStack DiamondPickaxe = new ItemStack(Material.DIAMOND_PICKAXE);	
 		ItemMeta DiamondPickaxeMeta = DiamondPickaxe.getItemMeta();
 		ArrayList<String> DiamondPickaxeLore = new ArrayList<String>();
@@ -1517,7 +1517,7 @@ public class Shop implements CommandExecutor, Listener{
 		DiamondPickaxeMeta.setLore(DiamondPickaxeLore);
 		DiamondPickaxe.setItemMeta(DiamondPickaxeMeta);
 		GUI.setItem(15, DiamondPickaxe);
-		
+
 		ItemStack DiamondHoe = new ItemStack(Material.DIAMOND_HOE);	
 		ItemMeta DiamondHoeMeta = DiamondHoe.getItemMeta();
 		ArrayList<String> DiamondHoeLore = new ArrayList<String>();
@@ -1526,7 +1526,7 @@ public class Shop implements CommandExecutor, Listener{
 		DiamondHoeMeta.setLore(DiamondHoeLore);
 		DiamondHoe.setItemMeta(DiamondHoeMeta);
 		GUI.setItem(16, DiamondHoe);
-		
+
 		ItemStack Bow = new ItemStack(Material.BOW);	
 		ItemMeta BowMeta = Bow.getItemMeta();
 		ArrayList<String> BowLore = new ArrayList<String>();
@@ -1535,7 +1535,7 @@ public class Shop implements CommandExecutor, Listener{
 		BowMeta.setLore(BowLore);
 		Bow.setItemMeta(BowMeta);
 		GUI.setItem(16, Bow);
-		
+
 		ItemStack Arrow = new ItemStack(Material.ARROW);	
 		ItemMeta ArrowMeta = Arrow.getItemMeta();
 		ArrayList<String> ArrowLore = new ArrayList<String>();
@@ -1545,7 +1545,7 @@ public class Shop implements CommandExecutor, Listener{
 		ArrowMeta.setLore(ArrowLore);
 		Arrow.setItemMeta(ArrowMeta);
 		GUI.setItem(17, Arrow);
-		
+
 		ItemStack FishingRod = new ItemStack(Material.FISHING_ROD);	
 		ItemMeta FishingRodMeta = FishingRod.getItemMeta();
 		ArrayList<String> FishingRodLore = new ArrayList<String>();
@@ -1554,7 +1554,7 @@ public class Shop implements CommandExecutor, Listener{
 		FishingRodMeta.setLore(FishingRodLore);
 		FishingRod.setItemMeta(FishingRodMeta);
 		GUI.setItem(18, FishingRod);
-		
+
 		ItemStack Chest = new ItemStack(Material.CHEST);	
 		ItemMeta ChestMeta = Chest.getItemMeta();
 		ArrayList<String> ChestLore = new ArrayList<String>();
@@ -1564,7 +1564,7 @@ public class Shop implements CommandExecutor, Listener{
 		ChestMeta.setLore(ChestLore);
 		Chest.setItemMeta(ChestMeta);
 		GUI.setItem(19, Chest);
-		
+
 		ItemStack CraftingTable = new ItemStack(Material.WORKBENCH);	
 		ItemMeta CraftingTableMeta = CraftingTable.getItemMeta();
 		ArrayList<String> CraftingTableLore = new ArrayList<String>();
@@ -1574,7 +1574,7 @@ public class Shop implements CommandExecutor, Listener{
 		CraftingTableMeta.setLore(CraftingTableLore);
 		CraftingTable.setItemMeta(CraftingTableMeta);
 		GUI.setItem(20, CraftingTable);
-		
+
 		ItemStack Furnace = new ItemStack(Material.FURNACE);	
 		ItemMeta FurnaceMeta = Furnace.getItemMeta();
 		ArrayList<String> FurnaceLore = new ArrayList<String>();
@@ -1584,7 +1584,7 @@ public class Shop implements CommandExecutor, Listener{
 		FurnaceMeta.setLore(FurnaceLore);
 		Furnace.setItemMeta(FurnaceMeta);
 		GUI.setItem(21, Furnace);
-		
+
 		ItemStack EnchantmentTable = new ItemStack(Material.ENCHANTMENT_TABLE);	
 		ItemMeta EnchantmentTableMeta = EnchantmentTable.getItemMeta();
 		ArrayList<String> EnchantmentTableLore = new ArrayList<String>();
@@ -1594,7 +1594,7 @@ public class Shop implements CommandExecutor, Listener{
 		EnchantmentTableMeta.setLore(EnchantmentTableLore);
 		EnchantmentTable.setItemMeta(EnchantmentTableMeta);
 		GUI.setItem(22, EnchantmentTable);
-		
+
 		ItemStack EnderChest = new ItemStack(Material.ENDER_CHEST);	
 		ItemMeta EnderChestMeta = EnderChest.getItemMeta();
 		ArrayList<String> EnderChestLore = new ArrayList<String>();
@@ -1604,7 +1604,7 @@ public class Shop implements CommandExecutor, Listener{
 		EnderChestMeta.setLore(EnderChestLore);
 		EnderChest.setItemMeta(EnderChestMeta);
 		GUI.setItem(23, EnderChest);
-		
+
 		ItemStack Anvil = new ItemStack(Material.ANVIL);	
 		ItemMeta AnvilMeta = Anvil.getItemMeta();
 		ArrayList<String> AnvilLore = new ArrayList<String>();
@@ -1614,7 +1614,7 @@ public class Shop implements CommandExecutor, Listener{
 		AnvilMeta.setLore(AnvilLore);
 		Anvil.setItemMeta(AnvilMeta);
 		GUI.setItem(24, Anvil);
-		
+
 		ItemStack Sign = new ItemStack(Material.SIGN);	
 		ItemMeta SignMeta = Sign.getItemMeta();
 		ArrayList<String> SignLore = new ArrayList<String>();
@@ -1624,19 +1624,19 @@ public class Shop implements CommandExecutor, Listener{
 		SignMeta.setLore(SignLore);
 		Sign.setItemMeta(SignMeta);
 		GUI.setItem(25, Sign);
-		
+
 		ItemStack backItem = new ItemStack(Material.REDSTONE_BLOCK);
 		ItemMeta backItemMeta = backItem.getItemMeta();
 		backItemMeta.setDisplayName("§c§lBack");
 		backItem.setItemMeta(backItemMeta);
 		GUI.setItem(44, backItem);
-		
+
 		player.openInventory(GUI);
 	}
-	
+
 	public void openSpawners(Player player) {
 		Inventory GUI = Bukkit.createInventory(null, 45, "§c§l>> §8Spawners §c§l<<");
-		
+
 		ItemStack CreeperSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta CreeperSpawnerMeta = CreeperSpawner.getItemMeta();
 		CreeperSpawnerMeta.setDisplayName("§eCreeper §fSpawner");
@@ -1647,7 +1647,7 @@ public class Shop implements CommandExecutor, Listener{
 		CreeperSpawnerMeta.setLore(CreeperSpawnerLore);
 		CreeperSpawner.setItemMeta(CreeperSpawnerMeta);
 		GUI.setItem(0, CreeperSpawner);
-		
+
 		ItemStack PigmanSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta PigmanSpawnerMeta = PigmanSpawner.getItemMeta();
 		PigmanSpawnerMeta.setDisplayName("§eZombie Pigman §fSpawner");
@@ -1658,7 +1658,7 @@ public class Shop implements CommandExecutor, Listener{
 		PigmanSpawnerMeta.setLore(PigmanSpawnerLore);
 		PigmanSpawner.setItemMeta(PigmanSpawnerMeta);
 		GUI.setItem(1, PigmanSpawner);
-		
+
 		ItemStack WitchSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta WitchSpawnerMeta = WitchSpawner.getItemMeta();
 		WitchSpawnerMeta.setDisplayName("§eWitch §fSpawner");
@@ -1669,7 +1669,7 @@ public class Shop implements CommandExecutor, Listener{
 		WitchSpawnerMeta.setLore(WitchSpawnerLore);
 		WitchSpawner.setItemMeta(WitchSpawnerMeta);
 		GUI.setItem(2, WitchSpawner);
-		
+
 		ItemStack EndermanSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta EndermanSpawnerMeta = EndermanSpawner.getItemMeta();
 		EndermanSpawnerMeta.setDisplayName("§eEnderman §fSpawner");
@@ -1680,7 +1680,7 @@ public class Shop implements CommandExecutor, Listener{
 		EndermanSpawnerMeta.setLore(EndermanSpawnerLore);
 		EndermanSpawner.setItemMeta(EndermanSpawnerMeta);
 		GUI.setItem(3, EndermanSpawner);
-		
+
 		ItemStack BlazeSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta BlazeSpawnerMeta = BlazeSpawner.getItemMeta();
 		BlazeSpawnerMeta.setDisplayName("§eBlaze §fSpawner");
@@ -1691,7 +1691,7 @@ public class Shop implements CommandExecutor, Listener{
 		BlazeSpawnerMeta.setLore(BlazeSpawnerLore);
 		BlazeSpawner.setItemMeta(BlazeSpawnerMeta);
 		GUI.setItem(4, BlazeSpawner);
-		
+
 		ItemStack SquidSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta SquidSpawnerMeta = SquidSpawner.getItemMeta();
 		SquidSpawnerMeta.setDisplayName("§eSquid §fSpawner");
@@ -1702,7 +1702,7 @@ public class Shop implements CommandExecutor, Listener{
 		SquidSpawnerMeta.setLore(SquidSpawnerLore);
 		SquidSpawner.setItemMeta(SquidSpawnerMeta);
 		GUI.setItem(5, SquidSpawner);
-		
+
 		ItemStack MagmaCubeSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta MagmaCubeSpawnerMeta = MagmaCubeSpawner.getItemMeta();
 		MagmaCubeSpawnerMeta.setDisplayName("§eMagma Cube §fSpawner");
@@ -1713,7 +1713,7 @@ public class Shop implements CommandExecutor, Listener{
 		MagmaCubeSpawnerMeta.setLore(MagmaCubeSpawnerLore);
 		MagmaCubeSpawner.setItemMeta(MagmaCubeSpawnerMeta);
 		GUI.setItem(6, MagmaCubeSpawner);
-		
+
 		ItemStack SpiderSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta SpiderSpawnerMeta = SpiderSpawner.getItemMeta();
 		SpiderSpawnerMeta.setDisplayName("§eSpider §fSpawner");
@@ -1724,7 +1724,7 @@ public class Shop implements CommandExecutor, Listener{
 		SpiderSpawnerMeta.setLore(SpiderSpawnerLore);
 		SpiderSpawner.setItemMeta(SpiderSpawnerMeta);
 		GUI.setItem(7, SpiderSpawner);
-		
+
 		ItemStack ZombieSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta ZombieSpawnerMeta = ZombieSpawner.getItemMeta();
 		ZombieSpawnerMeta.setDisplayName("§eZombie §fSpawner");
@@ -1735,7 +1735,7 @@ public class Shop implements CommandExecutor, Listener{
 		ZombieSpawnerMeta.setLore(ZombieSpawnerLore);
 		ZombieSpawner.setItemMeta(ZombieSpawnerMeta);
 		GUI.setItem(8, ZombieSpawner);
-		
+
 		ItemStack SkeletonSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta SkeletonSpawnerMeta = SkeletonSpawner.getItemMeta();
 		SkeletonSpawnerMeta.setDisplayName("§eSkeleton §fSpawner");
@@ -1746,7 +1746,7 @@ public class Shop implements CommandExecutor, Listener{
 		SkeletonSpawnerMeta.setLore(SkeletonSpawnerLore);
 		SkeletonSpawner.setItemMeta(SkeletonSpawnerMeta);
 		GUI.setItem(9, SkeletonSpawner);
-		
+
 		ItemStack PigSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta PigSpawnerMeta = PigSpawner.getItemMeta();
 		PigSpawnerMeta.setDisplayName("§ePig §fSpawner");
@@ -1757,7 +1757,7 @@ public class Shop implements CommandExecutor, Listener{
 		PigSpawnerMeta.setLore(PigSpawnerLore);
 		PigSpawner.setItemMeta(PigSpawnerMeta);
 		GUI.setItem(10, PigSpawner);
-		
+
 		ItemStack CowSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta CowSpawnerMeta = CowSpawner.getItemMeta();
 		CowSpawnerMeta.setDisplayName("§eCow §fSpawner");
@@ -1768,7 +1768,7 @@ public class Shop implements CommandExecutor, Listener{
 		CowSpawnerMeta.setLore(CowSpawnerLore);
 		CowSpawner.setItemMeta(CowSpawnerMeta);
 		GUI.setItem(11, CowSpawner);
-		
+
 		ItemStack ChickenSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta ChickenSpawnerMeta = ChickenSpawner.getItemMeta();
 		ChickenSpawnerMeta.setDisplayName("§eChicken §fSpawner");
@@ -1779,7 +1779,7 @@ public class Shop implements CommandExecutor, Listener{
 		ChickenSpawnerMeta.setLore(ChickenSpawnerLore);
 		ChickenSpawner.setItemMeta(ChickenSpawnerMeta);
 		GUI.setItem(12, ChickenSpawner);
-		
+
 		ItemStack SheepSpawner = new ItemStack(Material.MOB_SPAWNER);
 		ItemMeta SheepSpawnerMeta = SheepSpawner.getItemMeta();
 		SheepSpawnerMeta.setDisplayName("§eSheep §fSpawner");
@@ -1790,14 +1790,14 @@ public class Shop implements CommandExecutor, Listener{
 		SheepSpawnerMeta.setLore(SheepSpawnerLore);
 		SheepSpawner.setItemMeta(SheepSpawnerMeta);
 		GUI.setItem(13, SheepSpawner);
-		
+
 		ItemStack backItem = new ItemStack(Material.REDSTONE_BLOCK);
 		ItemMeta backItemMeta = backItem.getItemMeta();
 		backItemMeta.setDisplayName("§c§lBack");
 		backItem.setItemMeta(backItemMeta);
 		GUI.setItem(44, backItem);
-		
+
 		player.openInventory(GUI);
 	}
-	
+
 }
