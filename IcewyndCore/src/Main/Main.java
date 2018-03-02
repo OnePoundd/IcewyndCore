@@ -1,51 +1,31 @@
 package Main;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
-
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Wither;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitScheduler;
-
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.wrappers.WrappedChatComponent;
-import com.massivecraft.factions.entity.MConf;
-import com.massivecraft.factions.entity.MPlayer;
-
 import BanSystem.BanCommand;
 import BanSystem.UnbanCommand;
 import Commands.Book;
 import Commands.ClearChat;
 import Commands.ClearInventory;
+import Commands.Crates;
 import Commands.Disposal;
 import Commands.Enderchest;
-import Commands.Event;
 import Commands.Feed;
 import Commands.Freecam;
 import Commands.Help;
@@ -80,7 +60,7 @@ import CustomEnchants.Librarian;
 import McMMO.Milestones;
 import McMMO.Repair;
 import eu.haelexuis.utils.xoreboard.XoreBoard;
-import eu.haelexuis.utils.xoreboard.XoreBoardGlobalSidebar;
+import eu.haelexuis.utils.xoreboard.XoreBoardPlayerSidebar;
 import eu.haelexuis.utils.xoreboard.XoreBoardUtil;
 import net.milkbowl.vault.economy.Economy;
 
@@ -88,7 +68,6 @@ public class Main extends JavaPlugin implements Listener {
 	public static ProtocolManager protocolManager;
 	public static FileConfiguration pricesConfig;
 	public static Economy econ;
-
 
 	public void onEnable() {
 		saveDefaultConfig();
@@ -121,7 +100,6 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Seen(), this);
 		manager.registerEvents(new WitherSpawn(), this);
 
-
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
 		getCommand("ping").setExecutor(new Ping());
@@ -144,7 +122,6 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("fstats").setExecutor(new Stats());
 		getCommand("freecam").setExecutor(new Freecam());
 		getCommand("kit").setExecutor(new Kits());
-		getCommand("event").setExecutor(new Event());
 		getCommand("sell").setExecutor(new Sell());
 		getCommand("shop").setExecutor(new Shop());
 		getCommand("feed").setExecutor(new Feed());
@@ -154,6 +131,12 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("seen").setExecutor(new Seen());
 		getCommand("witherspawn").setExecutor(new WitherSpawn());
 		getCommand("reset").setExecutor(new Reset());
+		getCommand("sandstone").setExecutor(new Crates());
+		getCommand("xpgive").setExecutor(new Crates());
+		getCommand("spawnergive").setExecutor(new Crates());
+		getCommand("enchanter").setExecutor(new Crates());
+		getCommand("librarian").setExecutor(new Crates());
+		getCommand("crategive").setExecutor(new Crates());
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
@@ -231,7 +214,6 @@ public class Main extends JavaPlugin implements Listener {
 					Bukkit.broadcastMessage("§b§lINFO §7» Everything you do on our server levels you up. You can spend level up tokens on rewards in §b/skills");
 				} else if (index == 32) {
 					Bukkit.broadcastMessage("§b§lINFO §7» Purchase mob spawners and anything else you need in the §b/shop§7.");
-
 				}
 			}
 		}, 0L, 3000L);
@@ -251,96 +233,6 @@ public class Main extends JavaPlugin implements Listener {
 				mob.setHealth(100);
 			}
 		}, 0L, 3000L);
-	}
-
-	@EventHandler
-	public void onJoin(PlayerJoinEvent event) throws InvocationTargetException {
-		Player player = event.getPlayer();
-		// MOTD
-		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
-		player.sendMessage("        §f§lCONNECTED TO §b§lICEWYND §b§lFACTIONS");
-		player.sendMessage("                         §f(§b1.7.10 §f- §b1.12§f)");
-		player.sendMessage("");
-		player.sendMessage("§b§lFORUMS: §fIcewynd.net");
-		player.sendMessage("§b§lDISCORD: §fIcewynd.net/Discord");
-		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
-		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
-		//Scoreboard
-		XoreBoard xoreBoard = XoreBoardUtil.getNextXoreBoard();
-		xoreBoard.addPlayer(event.getPlayer());
-		XoreBoardGlobalSidebar sidebar = xoreBoard.getSidebar();
-		sidebar.setDisplayName("§b§lIcewynd.net");
-		sidebar.showSidebar();
-		sidebar.putLine("§l§7§m------------", 9);
-		sidebar.putLine("§a§lFaction:", 8);
-		MPlayer mplayer = MPlayer.get(player);
-		String faction = mplayer.getFactionName();
-		sidebar.putLine("§7»§f " + StringUtils.capitalize(faction), 7);
-		sidebar.putLine("§b", 6);
-		sidebar.putLine("§d§lPing:", 5);
-		int ping = ((CraftPlayer) player).getHandle().ping;
-		sidebar.putLine("§7»§f " + ping, 4);
-		sidebar.putLine("§f", 3);
-		sidebar.putLine("§a§lBalance:", 2);
-		sidebar.putLine("§7»§f $" + econ.getBalance(player), 1);
-		sidebar.putLine("§7§l§m------------", 0);
-
-		if (getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
-			player.teleport(MConf.get().getWarp("jail"));
-		}
-		// TabList foot/header
-		PacketContainer packetContainer = Main.protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
-		packetContainer.getChatComponents().write(0, WrappedChatComponent.fromText(
-				" §8§l§m-§7§l§m-§f§l[§f ICEWYND §bNETWORK§f§l ]§7§l§m-§8§l§m-§r "))
-		.write(1, WrappedChatComponent.fromText("§dStore, forums and more at Icewynd.net"));
-		ProtocolLibrary.getProtocolManager().sendServerPacket(player, packetContainer);
-
-		// New Player Announce
-		if (!player.hasPlayedBefore()) {
-			Bukkit.broadcastMessage("§b§lWelcome to Icewynd, §f§l" + player.getName() + "§b§l!");
-			getConfig().set(player.getUniqueId() + ".Name", player.getName());
-			getConfig().set(player.getUniqueId() + ".Coins", 0);
-			getConfig().set(player.getUniqueId() + ".MsgToggle", false);
-			getConfig().set(player.getUniqueId() + ".Freecam", false);
-			getConfig().set(player.getUniqueId() + ".Banned", false);
-			getConfig().set(player.getUniqueId() + ".BlocksMined", 0);
-			getConfig().set(player.getUniqueId() + ".SugarcaneMined", 0);
-			getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
-			getConfig().set(player.getUniqueId() + ".BlocksPlaced", 0);
-			getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
-			getConfig().set(player.getUniqueId() + ".MCMMOLevelsGained", 0);
-			getConfig().set(player.getUniqueId() + ".SkillsObtained", 0);
-			getConfig().set(player.getUniqueId() + ".LuckyDropsFound", 0);
-			getConfig().set(player.getUniqueId() + ".ChallengesCompleted", 0);
-			getConfig().set(player.getUniqueId() + ".BooksEnchanted", 0);
-			getConfig().set(player.getUniqueId() + ".CastleCaptures", 0);
-			getConfig().set(player.getUniqueId() + ".SupplyDropsCaptured", 0);
-			saveConfig();
-		}
-		// Scoreboard Update
-		BukkitScheduler WitherBossEvent = getServer().getScheduler();
-		WitherBossEvent.scheduleSyncRepeatingTask(this, new Runnable() {
-			@Override
-			public void run() {
-				Bukkit.broadcastMessage("update");
-				sidebar.setDisplayName("§b§lIcewynd.net");
-				sidebar.showSidebar();
-				sidebar.putLine("§l§7§m------------", 9);
-				sidebar.putLine("§a§lFaction:", 8);
-				MPlayer mplayer = MPlayer.get(player);
-				String faction = mplayer.getFactionName();
-				sidebar.putLine("§7»§f " + StringUtils.capitalize(faction), 7);
-				sidebar.putLine("§b", 6);
-				sidebar.putLine("§d§lPing:", 5);
-				int ping = ((CraftPlayer) player).getHandle().ping;
-				sidebar.putLine("§7»§f " + ping, 4);
-				sidebar.putLine("§f", 3);
-				sidebar.putLine("§a§lBalance:", 2);
-				sidebar.putLine("§7»§f $" + econ.getBalance(player), 1);
-				sidebar.putLine("§7§l§m------------", 0);
-			}
-		}, 0L, 50L);
-
 
 		// Creates default prices.yml file if one doesn't already exist
 		File customYml = new File(getDataFolder()+"/prices.yml");
@@ -352,148 +244,5 @@ public class Main extends JavaPlugin implements Listener {
 		if (rsp != null) {
 			econ = rsp.getProvider();
 		}
-	}
-	@EventHandler
-	public void ondeath(EntityDeathEvent event) {
-		if (event.getEntityType().equals(EntityType.WITHER_SKELETON)) {
-			if (event.getEntity().getCustomName().equals("§4§l§nWither Minion")) {
-				Bukkit.broadcastMessage("hi");
-			}
-		} else if (event.getEntityType().equals(EntityType.WITHER)) {
-			if (event.getEntity().getCustomName().equals("§4§l§nWither King")) {
-				getConfig().set(".WitherPhase", 0);
-				saveConfig();
-			}
-		}
-	}
-
-
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (label.equalsIgnoreCase("crategive")) {
-			if (!sender.hasPermission("crate.give")) {
-				sender.sendMessage("§c§l(!)§7 You do not have permission to do that!");
-				return true;
-			}
-			if (args.length == 2) {
-				try {
-					Player player = Bukkit.getPlayer(args[0]);
-					if (args[1].equalsIgnoreCase("legendary")) {
-						LegendaryCrate.give(player);
-						sender.sendMessage("§b§l(!)§7 A crate has been added to the players inventory!");
-					} else if (args[1].equalsIgnoreCase("exotic")) {
-						ExoticCrate.give(player);
-						sender.sendMessage("§b§l(!)§7 A crate has been added to the players inventory!");
-					} else if (args[1].equalsIgnoreCase("event")) {
-						EventCrate.give(player);
-						sender.sendMessage("§b§l(!)§7 A crate has been added to the players inventory!");
-					} else {
-						sender.sendMessage(
-								"§c§l(!)§7 Incorrect usage. Try /crate <playername> <legendary/exotic/event>");
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-					sender.sendMessage("§c§l(!)§7 That player cannot be found!");
-				}
-			} else {
-				sender.sendMessage("§c§l(!)§7 Usage: /crategive <playername> <legendary/exotic>");
-			}
-		} else if (label.equalsIgnoreCase("librarian")) {
-			if (sender instanceof ConsoleCommandSender) {
-				if (args.length == 1) {
-					try {
-						Player player = Bukkit.getPlayer(args[0]);
-						Librarian.openInventory(player);
-					} catch (Exception e) {
-						sender.sendMessage("§c§l(!)§7 That player cannot be found!");
-					}
-				} else {
-					sender.sendMessage("§c§l(!)§7 Usage: /librarian <playername>!");
-				}
-			} else {
-				sender.sendMessage("§c§l(!)§7 You do not have permission to do that!");
-			}
-		} else if (label.equalsIgnoreCase("enchanter")) {
-			if (sender instanceof ConsoleCommandSender) {
-				if (args.length == 1) {
-					try {
-						Player player = Bukkit.getPlayer(args[0]);
-						Enchanter.openInventory(player);
-					} catch (Exception e) {
-						sender.sendMessage("§c§l(!)§7 That player cannot be found!");
-					}
-				} else {
-					sender.sendMessage("§c§l(!)§7 Usage: /enchanter <playername>!");
-				}
-			} else {
-				sender.sendMessage("§c§l(!)§7 You do not have permission to do that!");
-			}
-		} else if (label.equalsIgnoreCase("spawnergive")) {
-			if (!sender.hasPermission("spawner.give")) {
-				sender.sendMessage("§c§l(!)§7 You do not have permission to do that!");
-				return true;
-			}
-			if (args.length == 2) {
-				try {
-					Player player = Bukkit.getPlayer(args[0]);
-					System.out.println(player.getName());
-					ItemStack spawner = new ItemStack(Material.MOB_SPAWNER);
-					ItemMeta spawnerMeta = spawner.getItemMeta();
-					spawnerMeta.setDisplayName("§e" + args[1].toUpperCase().replaceAll("_", " ") + " §fSpawner");
-					spawner.setItemMeta(spawnerMeta);
-					if (player.getInventory().firstEmpty() == -1) {
-						player.sendMessage("§b§l(!)§7 Your inventory is full, dropping spawner at your feet!");
-						player.getWorld().dropItem(player.getLocation(), spawner);
-					} else {
-						player.sendMessage("§b§l(!)§7 A spawner has been added to your inventory!");
-						player.getInventory().addItem(spawner);
-					}
-					sender.sendMessage("§a§l(!)§7 Successfully added the spawner to the player's inventory!");
-				} catch (Exception e) {
-					sender.sendMessage("§c§l(!)§7 That player cannot be found!");
-				}
-			} else {
-				sender.sendMessage("§c§l(!)§7 Usage: /spawnergive <playername> <type>");
-			}
-		} else if (label.equalsIgnoreCase("sandstone")) {
-			Player player = Bukkit.getPlayer(sender.getName());
-			if (player.hasPermission("server.admin")) {
-				SandstoneBiome.convert(player);
-			} else {
-				player.sendMessage("§c§l(!)§7 You don't have permission to use that command!");
-			}
-		} else if (label.equalsIgnoreCase("xp")) {
-			Player player = Bukkit.getPlayer(sender.getName());
-			player.sendMessage("§b§l(!)§7 You have §8" + player.getExp() + " §7experience!");
-		} else if (label.equalsIgnoreCase("xpgive")) {
-			if (sender instanceof Player) {
-				Player player = Bukkit.getPlayer(sender.getName());
-				if (player.hasPermission("server.admin")) {
-					if (args.length == 2) {
-						try {
-							Bukkit.getPlayer(args[0]).giveExp(Integer.parseInt(args[1]));
-							player.sendMessage("§a§l(!)§7 Successfully added the xp to the specified player.");
-						} catch (Exception e) {
-							player.sendMessage("§c§l(!)§7 Player offline or incorrect amount.");
-						}
-					} else {
-						player.sendMessage("§c§l(!)§7 Usage: /xpgive <player> <amount>");
-					}
-				} else {
-					player.sendMessage("§c§l(!)§7 You don't have permission to use that command!");
-				}
-			} else {
-				if (args.length == 2) {
-					try {
-						Bukkit.getPlayer(args[0]).giveExp(Integer.parseInt(args[1]));
-						sender.sendMessage("§a§l(!)§7 Successfully added the xp to the specified player.");
-					} catch (Exception e) {
-						sender.sendMessage("§c§l(!)§7 Player offline or incorrect amount.");
-					}
-				} else {
-					sender.sendMessage("§c§l(!)§7 Usage: /xpgive <player> <amount>");
-				}
-			}
-		}
-		return true;
 	}
 }

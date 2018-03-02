@@ -1,8 +1,14 @@
 package Main;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.HashMap;
+
+import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,15 +24,96 @@ import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.massivecraft.factions.entity.MConf;
+import com.massivecraft.factions.entity.MPlayer;
+
+import eu.haelexuis.utils.xoreboard.XoreBoard;
+import eu.haelexuis.utils.xoreboard.XoreBoardPlayerSidebar;
+import eu.haelexuis.utils.xoreboard.XoreBoardUtil;
 
 public class Misc implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
 
+	@EventHandler
+	public void onJoin(PlayerJoinEvent event) throws InvocationTargetException {
+		Player player = event.getPlayer();
+		// MOTD
+		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
+		player.sendMessage("        §f§lCONNECTED TO §b§lICEWYND §b§lFACTIONS");
+		player.sendMessage("                         §f(§b1.7.10 §f- §b1.12§f)");
+		player.sendMessage("");
+		player.sendMessage("§b§lFORUMS: §fIcewynd.net");
+		player.sendMessage("§b§lDISCORD: §fIcewynd.net/Discord");
+		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
+		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
+		//Scoreboard
+		
+		XoreBoard xoreBoard = XoreBoardUtil.getNextXoreBoard();
+		xoreBoard.addPlayer(player);
+		XoreBoardPlayerSidebar sidebar = xoreBoard.getSidebar(player);
+		sidebar.setDisplayName("§b§lIcewynd.net");
+		sidebar.showSidebar();
+		HashMap<String, Integer> lines = new HashMap<>();
+		lines.put("§l§7§m------------", 9);
+		lines.put("§a§lFaction:", 8);
+		MPlayer mplayer = MPlayer.get(player);
+		String faction = mplayer.getFactionName();
+		lines.put("§7»§f " + StringUtils.capitalize(faction), 7);
+		lines.put("§b", 6);
+		lines.put("§d§lPing:", 5);
+		int ping = ((CraftPlayer) player).getHandle().ping;
+		lines.put("§7»§f " + ping, 4);
+		lines.put("§f", 3);
+		lines.put("§a§lBalance:", 2);
+		lines.put("§7»§f $" + Main.econ.getBalance(player), 1);
+		lines.put("§7§l§m------------", 0);
+		sidebar.rewriteLines(lines);
+		sidebar.showSidebar();
+
+		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
+			player.teleport(MConf.get().getWarp("jail"));
+		}
+		// TabList foot/header
+		PacketContainer packetContainer = Main.protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
+		packetContainer.getChatComponents().write(0, WrappedChatComponent.fromText(
+				" §8§l§m-§7§l§m-§f§l[§f ICEWYND §bNETWORK§f§l ]§7§l§m-§8§l§m-§r "))
+		.write(1, WrappedChatComponent.fromText("§dStore, forums and more at Icewynd.net"));
+		ProtocolLibrary.getProtocolManager().sendServerPacket(player, packetContainer);
+
+		// New Player Announce
+		if (!player.hasPlayedBefore()) {
+			Bukkit.broadcastMessage("§b§lWelcome to Icewynd, §f§l" + player.getName() + "§b§l!");
+			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
+			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
+			plugin.getConfig().set(player.getUniqueId() + ".Freecam", false);
+			plugin.getConfig().set(player.getUniqueId() + ".Banned", false);
+			plugin.getConfig().set(player.getUniqueId() + ".BlocksMined", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".SugarcaneMined", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".BlocksPlaced", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".LuckyDrops", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".MCMMOLevelsGained", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".SkillsObtained", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".LuckyDropsFound", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".ChallengesCompleted", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".BooksEnchanted", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".CastleCaptures", 0);
+			plugin.getConfig().set(player.getUniqueId() + ".SupplyDropsCaptured", 0);
+			plugin.saveConfig();
+		}
+	}
+		
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	// GetBucketPickup
