@@ -86,21 +86,21 @@ public class LegendaryCrate {
 															player.openInventory(LegendaryCrateShuffle);
 															Bukkit.getScheduler().runTaskLater(plugin,
 																	new Runnable() {
-																		public void run() {
-																			for (int i = 0; i < 27; i++) {
-																				LegendaryCrateShuffle.setItem(i,
-																						getRandomGlass());
-																			}
-																			player.openInventory(LegendaryCrateShuffle);
-																			Bukkit.getScheduler().runTaskLater(
-																					plugin, new Runnable() {
-																						public void run() {
-																							player.openInventory(
-																									newInventory(true));
-																						}
-																					}, 4);
-																		}
-																	}, 4);
+																public void run() {
+																	for (int i = 0; i < 27; i++) {
+																		LegendaryCrateShuffle.setItem(i,
+																				getRandomGlass());
+																	}
+																	player.openInventory(LegendaryCrateShuffle);
+																	Bukkit.getScheduler().runTaskLater(
+																			plugin, new Runnable() {
+																				public void run() {
+																					player.openInventory(
+																							newInventory(true));
+																				}
+																			}, 4);
+																}
+															}, 4);
 														}
 													}, 4);
 												}

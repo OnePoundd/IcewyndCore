@@ -56,13 +56,13 @@ import me.libraryaddict.disguise.events.UndisguiseEvent;
 
 public class Enchantments implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
-	
+
 	@EventHandler //TO PREVENT DISGUISE BUFF DUPLICATION
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		updateEnchantBuffs(event.getPlayer());
 	}
-	
-	
+
+
 	// Shockwave, Extractor
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -192,7 +192,7 @@ public class Enchantments implements Listener {
 										Location damagedloc = damaged.getLocation();
 										Vector direction = damagedloc.getDirection().normalize();
 										direction.multiply(-5); // now the vector should have a length of 2 blocks
-																// pointing behind the player
+										// pointing behind the player
 										damagedloc.add(direction);
 										Vector dir = damagedloc.clone().subtract(damaged.getEyeLocation()).toVector();
 										Location loc = damagedloc.setDirection(dir);
@@ -342,7 +342,7 @@ public class Enchantments implements Listener {
 				player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 9999999, 1));
 			}
 		} catch (NullPointerException e) {}
-		
+
 		// apply disguise unlimited potion effects
 		if(DisguiseAPI.isDisguised(player)) {
 			Disguise disguise = DisguiseAPI.getDisguise(player);
@@ -365,7 +365,7 @@ public class Enchantments implements Listener {
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onPlayerDisguise(DisguiseEvent event) {
 		if(event.getEntity() instanceof Player) {
@@ -376,7 +376,7 @@ public class Enchantments implements Listener {
 			}, 3);
 		}
 	}
-	
+
 	@EventHandler
 	public void onPlayerDisguise(UndisguiseEvent event) {
 		Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
@@ -385,7 +385,7 @@ public class Enchantments implements Listener {
 			}
 		}, 3);
 	}
-	
+
 
 	/**
 	 * Necceccities for unlimited potion effects

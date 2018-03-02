@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class BossEggs implements Listener {
-	
+
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void ondeath(EntityDeathEvent event) {
@@ -34,7 +34,7 @@ public class BossEggs implements Listener {
 			lore5.add("§c§lDifficulty: §75 Players");
 			Item5Meta.setLore(lore5);
 			Item5.setItemMeta(Item5Meta);
-			
+
 			event.getDrops().add(Item5);
 		}
 	}

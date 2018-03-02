@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import Main.Main;
 
 public class Ping implements CommandExecutor{
-Main plugin = Main.getPlugin(Main.class);
+	Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("ping")) {
@@ -18,21 +18,21 @@ Main plugin = Main.getPlugin(Main.class);
 				if (args.length == 0) {
 					int ping = ((CraftPlayer) player).getHandle().ping;
 					player.sendMessage("§aPing §7»§f " + ping);
+				}
+			} else if (args.length == 1) {
+				Player target = Bukkit.getPlayer(args[0]);
+				if(!(target == null)) {
+					if (target.isOnline()) {
+						int targetPing = ((CraftPlayer) target).getHandle().ping;
+						player.sendMessage("§a" + target.getName() + "'s §aPing §7»§f " + targetPing);
+					}else if (!target.isOnline()) {
+						player.sendMessage("§cThat player is not online!");
 					}
-				} else if (args.length == 1) {
-					Player target = Bukkit.getPlayer(args[0]);
-					if(!(target == null)) {
-						if (target.isOnline()) {
-							int targetPing = ((CraftPlayer) target).getHandle().ping;
-							player.sendMessage("§a" + target.getName() + "'s §aPing §7»§f " + targetPing);
-						}else if (!target.isOnline()) {
-							player.sendMessage("§cThat player is not online!");
-						}
-					}else {
-						player.sendMessage("§cThat player cannot be found or is offline.");
-					}
+				}else {
+					player.sendMessage("§cThat player cannot be found or is offline.");
 				}
 			}
+		}
 		return false;
 	}
 }

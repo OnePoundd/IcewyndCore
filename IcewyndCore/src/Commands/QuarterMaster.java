@@ -18,14 +18,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class QuarterMaster implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-			if (cmd.getLabel().equals("q"))
-				;
-			if (args[0].equalsIgnoreCase("items")) {
-				openItemsInventory(Bukkit.getPlayer(args[1]));
-			} else if (args[0].equalsIgnoreCase("kits")) {
-				openKitsInventory(Bukkit.getPlayer(args[1]));
-			}
-		
+		if (cmd.getLabel().equals("q"))
+			;
+		if (args[0].equalsIgnoreCase("items")) {
+			openItemsInventory(Bukkit.getPlayer(args[1]));
+		} else if (args[0].equalsIgnoreCase("kits")) {
+			openKitsInventory(Bukkit.getPlayer(args[1]));
+		}
+
 		return false;
 	}
 

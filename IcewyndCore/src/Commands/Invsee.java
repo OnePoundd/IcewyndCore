@@ -9,7 +9,7 @@ import org.bukkit.inventory.Inventory;
 import Main.Main;
 
 public class Invsee implements CommandExecutor{
-Main plugin = Main.getPlugin(Main.class);
+	Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("invsee")) {
@@ -17,13 +17,13 @@ Main plugin = Main.getPlugin(Main.class);
 			if (sender instanceof Player) {
 				if (args.length == 1) {
 					Player tplayer = player.getServer().getPlayer(args[0]);
-		            Inventory tinv = tplayer.getInventory();
-		            player.openInventory(tinv);
+					Inventory tinv = tplayer.getInventory();
+					player.openInventory(tinv);
 				} else if (args.length == 2) {
 					if (args[1].equalsIgnoreCase("enderchest"));
-						Player tplayer = player.getServer().getPlayer(args[0]);
-						Inventory tinv = tplayer.getEnderChest();
-						player.openInventory(tinv);
+					Player tplayer = player.getServer().getPlayer(args[0]);
+					Inventory tinv = tplayer.getEnderChest();
+					player.openInventory(tinv);
 				}
 			}
 		}

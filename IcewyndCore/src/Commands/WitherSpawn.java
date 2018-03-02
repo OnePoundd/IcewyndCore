@@ -34,7 +34,7 @@ public class WitherSpawn implements CommandExecutor, Listener {
 	}
 
 	@EventHandler
-	public void ondamage(EntityDamageEvent event) {
+	public void ondamage(EntityDamageEvent event){
 		Entity e = event.getEntity();
 		if (e.getCustomName().equals("§4§l§oWither King")) {
 			if (((LivingEntity) e).getHealth() < 50) {
@@ -56,7 +56,6 @@ public class WitherSpawn implements CommandExecutor, Listener {
 					mob3.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
 					WitherSpawn.add(-2, 0, -2);
 					plugin.saveConfig();
-					
 				}
 			}
 			if (((LivingEntity) e).getHealth() < 25) {
@@ -73,46 +72,48 @@ public class WitherSpawn implements CommandExecutor, Listener {
 			}
 		}
 	}
+
 	@EventHandler
 	public void ondamage1(EntityDamageEvent event) {
 		if (event.getEntity().getCustomName().equals("§4§l§oWither King")) {
 			if (plugin.getConfig().getBoolean(".WitherInvin") == true) {
 				event.setCancelled(true);
 			}
-		
+
 		}
 	}
+
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void ondeath(EntityDeathEvent event) {
+		int totalKilled = plugin.getConfig().getInt(".WitherSkeletons");
 		if(event.getEntity() instanceof Wither){
-			Bukkit.broadcastMessage("1");
+			Bukkit.broadcastMessage("Wither");
 			if (event.getEntity().getCustomName().equals("§4§l§oWither King")) {
 				plugin.getConfig().set(".WitherPhase", 0);
 				plugin.saveConfig();
 				Bukkit.broadcastMessage("WITHER KING HAS BEEN SLAIN");
 			}
 		}else if(event.getEntity() instanceof WitherSkeleton){
-			int totalKilled = plugin.getConfig().getInt(".WitherSkeletons");
+			Bukkit.broadcastMessage("Skeleton");
 			plugin.getConfig().set(".WitherSkeletons", totalKilled + 1);
 			plugin.saveConfig();
 		}
-			int totalKilled = plugin.getConfig().getInt(".WitherSkeletons");
-			if (totalKilled == 3) {
-				plugin.getConfig().set(".WitherInvin", false);
-				plugin.saveConfig();
-			    for (Entity entity : Bukkit.getWorld("World").getEntities())
-			    	if (entity.getType() == EntityType.WITHER){
-			    		entity.remove();
-			    		Bukkit.broadcastMessage("Spawn Message");
-						Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
-						Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn, EntityType.WITHER);
-						mob.setCustomName("§4§l§oWither King");
-						mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
-						mob.setMaxHealth(50);
-						mob.setHealth(50);
-			    	}
+		if (totalKilled == 3) {
+			plugin.getConfig().set(".WitherInvin", false);
+			plugin.saveConfig();
+			for (Entity entity : Bukkit.getWorld("World").getEntities())
+				if (entity.getType() == EntityType.WITHER){
+					entity.remove();
+					Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
+					Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn, EntityType.WITHER);
+					mob.setCustomName("§4§l§oWither King");
+					mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
+					mob.setMaxHealth(50);
+					mob.setHealth(50);
 				}
-			}
 		}
+	}
+}
+
 

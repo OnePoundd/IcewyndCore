@@ -11,7 +11,7 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 
 public class YoutubeBroadcast implements CommandExecutor{
-Main plugin = Main.getPlugin(Main.class);
+	Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("youtube")) {
@@ -24,9 +24,9 @@ Main plugin = Main.getPlugin(Main.class);
 					Bukkit.broadcast( message );
 				}else {
 					player.sendMessage("§cYour message must contain a Youtube link!");
+				}
 			}
 		}
-	}
 		return false;
-}
+	}
 }

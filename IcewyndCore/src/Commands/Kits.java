@@ -18,9 +18,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import Main.Main;
 
 public class Kits implements CommandExecutor, Listener{
-	
+
 	Main plugin = Main.getPlugin(Main.class);
-	
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("kit")) {
 			Player player = (Player) sender;
@@ -47,7 +47,7 @@ public class Kits implements CommandExecutor, Listener{
 
 	public void openKitInventory(Player player) {
 		Inventory kit = Bukkit.createInventory(null, InventoryType.HOPPER, "§5§lKits");
-		
+
 		//Rank 1 - Fighter
 		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Fighter");
 		String cooldown;
@@ -75,7 +75,7 @@ public class Kits implements CommandExecutor, Listener{
 		lore1.add("§8§l » §7128 Arrows");
 		Item1Meta.setLore(lore1);
 		Item1.setItemMeta(Item1Meta);
-		
+
 		//Rank 2 - Warlord
 		millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Warlord");
 		if (millisWhenKitIsAvailable == 0) {
@@ -102,7 +102,7 @@ public class Kits implements CommandExecutor, Listener{
 		lore2.add("§8§l » §7128 Arrows");
 		Item2Meta.setLore(lore2);
 		Item2.setItemMeta(Item2Meta);		
-		
+
 		//Rank 3 - Emporer
 		millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Emporer");
 		if (millisWhenKitIsAvailable == 0) {
@@ -130,7 +130,7 @@ public class Kits implements CommandExecutor, Listener{
 		lore3.add("§8§l » §71 Elixir of Fury");
 		Item3Meta.setLore(lore3);
 		Item3.setItemMeta(Item3Meta);
-		
+
 		//Rank 4 - God
 		millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.God");
 		if (millisWhenKitIsAvailable == 0) {
@@ -160,7 +160,7 @@ public class Kits implements CommandExecutor, Listener{
 		Item4Meta.addEnchant(Enchantment.DIG_SPEED, 1, true);
 		Item4Meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		Item4.setItemMeta(Item4Meta);
-		
+
 		//Rank 5 - Icewynd
 		millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Icewynd");
 		if (millisWhenKitIsAvailable == 0) {
@@ -198,7 +198,7 @@ public class Kits implements CommandExecutor, Listener{
 		kit.setItem(4, Item5);
 		player.openInventory(kit);
 	}
-	
+
 	public void giveKitFighter(Player player) {
 		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Fighter");
 		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
@@ -271,7 +271,7 @@ public class Kits implements CommandExecutor, Listener{
 			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
 		}
 	}
-	
+
 	public void giveKitWarlord(Player player) {
 		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Warlord");
 		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
@@ -344,7 +344,7 @@ public class Kits implements CommandExecutor, Listener{
 			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
 		}
 	}
-	
+
 	public void giveKitEmporer(Player player) {
 		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Emporer");
 		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
@@ -430,7 +430,7 @@ public class Kits implements CommandExecutor, Listener{
 			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
 		}
 	}
-	
+
 	public void giveKitGod(Player player) {
 		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.God");
 		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
@@ -518,7 +518,7 @@ public class Kits implements CommandExecutor, Listener{
 			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
 		}
 	}
-	
+
 	public void giveKitIcewynd(Player player) {
 		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Icewynd");
 		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
@@ -598,7 +598,7 @@ public class Kits implements CommandExecutor, Listener{
 			player.getInventory().addItem(Item8);
 			player.getInventory().addItem(Item8);
 			player.getInventory().addItem(Item8);
-			
+
 			// Cooldown
 			plugin.getConfig().set(player.getUniqueId() + ".KitCooldowns.Icewynd", (System.currentTimeMillis() + 86400000));
 			plugin.saveConfig();
@@ -611,6 +611,5 @@ public class Kits implements CommandExecutor, Listener{
 			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
 		}
 	}
-	
+
 }
-	

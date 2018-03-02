@@ -16,7 +16,7 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 
 public class Stats implements CommandExecutor{
-Main plugin = Main.getPlugin(Main.class);
+	Main plugin = Main.getPlugin(Main.class);
 
 	//Genbucket Tracking
 	@SuppressWarnings("deprecation")
@@ -54,7 +54,7 @@ Main plugin = Main.getPlugin(Main.class);
 				int booksenchanted = plugin.getConfig().getInt(target.getUniqueId() + ".BooksEnchanted");
 				int challengescompleted = plugin.getConfig().getInt(target.getUniqueId() + ".ChallengesCompleted");
 				int mcmmolevelsgained = plugin.getConfig().getInt(target.getUniqueId() + ".MCMMOLevelsGained");
-				
+
 				MPlayer mplayer = MPlayer.get(target);
 				String faction = mplayer.getFactionName();
 				TextComponent text = new TextComponent("§a§lHover here to see " + target.getName() + "'s stats");
@@ -76,7 +76,7 @@ Main plugin = Main.getPlugin(Main.class);
 				int booksenchanted = plugin.getConfig().getInt(p.getUniqueId() + ".BooksEnchanted");
 				int challengescompleted = plugin.getConfig().getInt(p.getUniqueId() + ".ChallengesCompleted");
 				int mcmmolevelsgained = plugin.getConfig().getInt(p.getUniqueId() + ".MCMMOLevelsGained");
-				
+
 				MPlayer mplayer = MPlayer.get(p);
 				String faction = mplayer.getFactionName();
 				TextComponent text = new TextComponent("§a§lHover here to see your stats!");

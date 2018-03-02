@@ -51,7 +51,7 @@ public class Misc implements Listener {
 			meta.setLore(Arrays.asList("§7Automatically generates cobblestone walls."));
 			GenBucket.setItemMeta(meta);
 			e.getPlayer().getInventory().getItemInHand()
-					.setAmount(e.getPlayer().getInventory().getItemInHand().getAmount() - 1);
+			.setAmount(e.getPlayer().getInventory().getItemInHand().getAmount() - 1);
 			e.getPlayer().getInventory().addItem(GenBucket);
 		}
 		e.setCancelled(true);
@@ -127,7 +127,7 @@ public class Misc implements Listener {
 		sidebar.putLine("§a§lBalance:", 2);
 		sidebar.putLine("§7»§f $" + Main.econ.getBalance(player), 1);
 		sidebar.putLine("§7§l§m------------", 0);
-		
+
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 			player.teleport(MConf.get().getWarp("jail"));
 		}
@@ -227,7 +227,7 @@ public class Misc implements Listener {
 			}
 		}
 	}
-	
+
 	// prevents explosive block damage caused by fireballs
 	@EventHandler
 	public void onFireball(EntityExplodeEvent event) {
@@ -242,5 +242,5 @@ public class Misc implements Listener {
 			event.setKeepLevel(true);
 		}
 	}
-	
+
 }

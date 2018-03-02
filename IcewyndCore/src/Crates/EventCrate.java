@@ -85,21 +85,21 @@ public class EventCrate {
 															player.openInventory(EventCrateShuffle);
 															Bukkit.getScheduler().runTaskLater(plugin,
 																	new Runnable() {
-																		public void run() {
-																			for (int i = 0; i < 27; i++) {
-																				EventCrateShuffle.setItem(i,
-																						getRandomGlass());
-																			}
-																			player.openInventory(EventCrateShuffle);
-																			Bukkit.getScheduler().runTaskLater(
-																					plugin, new Runnable() {
-																						public void run() {
-																							player.openInventory(
-																									newInventory(true));
-																						}
-																					}, 4);
-																		}
-																	}, 4);
+																public void run() {
+																	for (int i = 0; i < 27; i++) {
+																		EventCrateShuffle.setItem(i,
+																				getRandomGlass());
+																	}
+																	player.openInventory(EventCrateShuffle);
+																	Bukkit.getScheduler().runTaskLater(
+																			plugin, new Runnable() {
+																				public void run() {
+																					player.openInventory(
+																							newInventory(true));
+																				}
+																			}, 4);
+																}
+															}, 4);
 														}
 													}, 4);
 												}

@@ -16,7 +16,7 @@ public class ClearChat implements CommandExecutor{
 					Bukkit.broadcastMessage("§1");
 				}
 				Bukkit.broadcastMessage("§f§l[§b§lICEWYND§f§l]§a§l Chat has been cleared!");
-				}
+			}
 		}
 		return false;
 	}

@@ -108,7 +108,7 @@ public class InventoryClick implements Listener {
 				player.sendMessage("§aPurchased 1 Elixir of Fury");
 				player.getInventory().addItem(new ItemStack(Item6));
 			}
-			event.setCancelled(true);
-			player.closeInventory();
-		}
+		event.setCancelled(true);
+		player.closeInventory();
 	}
+}

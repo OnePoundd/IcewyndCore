@@ -12,7 +12,7 @@ import com.massivecraft.factions.entity.MPlayer;
 import Main.Main;
 
 public class Message implements CommandExecutor{
-Main plugin = Main.getPlugin(Main.class);
+	Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("msg")) {

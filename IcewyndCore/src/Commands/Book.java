@@ -27,17 +27,17 @@ public class Book implements CommandExecutor{
 		if (cmd.getName().equalsIgnoreCase("book")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
-				
+
 				ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
 				BookMeta bookMeta = (BookMeta) book.getItemMeta();
 				List<IChatBaseComponent> pages;
 
 				//get the pages
 				try {
-				    pages = (List<IChatBaseComponent>) CraftMetaBook.class.getDeclaredField("pages").get(bookMeta);
+					pages = (List<IChatBaseComponent>) CraftMetaBook.class.getDeclaredField("pages").get(bookMeta);
 				} catch (ReflectiveOperationException ex) {
-				    ex.printStackTrace();
-				    return false;
+					ex.printStackTrace();
+					return false;
 				}
 
 				TextComponent text = new TextComponent("§8§l> §9§lICEWYND FACTIONS \n §8§l§m---------------- \n Use this guide to get informed on server features! \n \n §rPage 2 §7-§9 Features \n §rPage 3 §7-§9 Rules ");
@@ -54,8 +54,8 @@ public class Book implements CommandExecutor{
 				bookMeta.setAuthor("§fICEWYND §bNETWORK");
 				book.setItemMeta(bookMeta);
 				player.getInventory().addItem(book);
-				}
 			}
-		return false;
 		}
+		return false;
 	}
+}

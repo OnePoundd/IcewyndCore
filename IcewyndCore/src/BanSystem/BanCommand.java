@@ -32,7 +32,7 @@ public class BanCommand implements CommandExecutor {
 								System.out.println("[Factions] ERROR: You must set /warp jail.");
 							}
 						}
-						
+
 					}
 				}else {
 					sender.sendMessage("§c§l(!)§7 The player cannot be found!");
