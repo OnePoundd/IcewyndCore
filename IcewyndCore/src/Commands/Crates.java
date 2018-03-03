@@ -14,16 +14,14 @@ import Crates.ExoticCrate;
 import Crates.LegendaryCrate;
 import CustomEnchants.Enchanter;
 import CustomEnchants.Librarian;
-import Main.Main;
 import Main.SandstoneBiome;
 
 public class Crates implements CommandExecutor{
-	Main plugin = Main.getPlugin(Main.class);
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (label.equalsIgnoreCase("crategive")) {
 			if (!sender.hasPermission("crate.give")) {
-				sender.sendMessage("งcงl(!)ง7 You do not have permission to do that!");
+				sender.sendMessage("ยงcยงl(!)ยง7 You do not have permission to do that!");
 				return true;
 			}
 			if (args.length == 2) {
@@ -31,23 +29,23 @@ public class Crates implements CommandExecutor{
 					Player player = Bukkit.getPlayer(args[0]);
 					if (args[1].equalsIgnoreCase("legendary")) {
 						LegendaryCrate.give(player);
-						sender.sendMessage("งbงl(!)ง7 A crate has been added to the players inventory!");
+						sender.sendMessage("ยงbยงl(!)ยง7 A crate has been added to the players inventory!");
 					} else if (args[1].equalsIgnoreCase("exotic")) {
 						ExoticCrate.give(player);
-						sender.sendMessage("งbงl(!)ง7 A crate has been added to the players inventory!");
+						sender.sendMessage("ยงbยงl(!)ยง7 A crate has been added to the players inventory!");
 					} else if (args[1].equalsIgnoreCase("event")) {
 						EventCrate.give(player);
-						sender.sendMessage("งbงl(!)ง7 A crate has been added to the players inventory!");
+						sender.sendMessage("ยงbยงl(!)ยง7 A crate has been added to the players inventory!");
 					} else {
 						sender.sendMessage(
-								"งcงl(!)ง7 Incorrect usage. Try /crate <playername> <legendary/exotic/event>");
+								"ยงcยงl(!)ยง7 Incorrect usage. Try /crate <playername> <legendary/exotic/event>");
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
-					sender.sendMessage("งcงl(!)ง7 That player cannot be found!");
+					sender.sendMessage("ยงcยงl(!)ยง7 That player cannot be found!");
 				}
 			} else {
-				sender.sendMessage("งcงl(!)ง7 Usage: /crategive <playername> <legendary/exotic>");
+				sender.sendMessage("ยงcยงl(!)ยง7 Usage: /crategive <playername> <legendary/exotic>");
 			}
 		} else if (label.equalsIgnoreCase("librarian")) {
 			if (sender instanceof ConsoleCommandSender) {
@@ -56,13 +54,13 @@ public class Crates implements CommandExecutor{
 						Player player = Bukkit.getPlayer(args[0]);
 						Librarian.openInventory(player);
 					} catch (Exception e) {
-						sender.sendMessage("งcงl(!)ง7 That player cannot be found!");
+						sender.sendMessage("ยงcยงl(!)ยง7 That player cannot be found!");
 					}
 				} else {
-					sender.sendMessage("งcงl(!)ง7 Usage: /librarian <playername>!");
+					sender.sendMessage("ยงcยงl(!)ยง7 Usage: /librarian <playername>!");
 				}
 			} else {
-				sender.sendMessage("งcงl(!)ง7 You do not have permission to do that!");
+				sender.sendMessage("ยงcยงl(!)ยง7 You do not have permission to do that!");
 			}
 		} else if (label.equalsIgnoreCase("enchanter")) {
 			if (sender instanceof ConsoleCommandSender) {
@@ -71,17 +69,17 @@ public class Crates implements CommandExecutor{
 						Player player = Bukkit.getPlayer(args[0]);
 						Enchanter.openInventory(player);
 					} catch (Exception e) {
-						sender.sendMessage("งcงl(!)ง7 That player cannot be found!");
+						sender.sendMessage("ยงcยงl(!)ยง7 That player cannot be found!");
 					}
 				} else {
-					sender.sendMessage("งcงl(!)ง7 Usage: /enchanter <playername>!");
+					sender.sendMessage("ยงcยงl(!)ยง7 Usage: /enchanter <playername>!");
 				}
 			} else {
-				sender.sendMessage("งcงl(!)ง7 You do not have permission to do that!");
+				sender.sendMessage("ยงcยงl(!)ยง7 You do not have permission to do that!");
 			}
 		} else if (label.equalsIgnoreCase("spawnergive")) {
 			if (!sender.hasPermission("spawner.give")) {
-				sender.sendMessage("งcงl(!)ง7 You do not have permission to do that!");
+				sender.sendMessage("ยงcยงl(!)ยง7 You do not have permission to do that!");
 				return true;
 			}
 			if (args.length == 2) {
@@ -90,32 +88,32 @@ public class Crates implements CommandExecutor{
 					System.out.println(player.getName());
 					ItemStack spawner = new ItemStack(Material.MOB_SPAWNER);
 					ItemMeta spawnerMeta = spawner.getItemMeta();
-					spawnerMeta.setDisplayName("งe" + args[1].toUpperCase().replaceAll("_", " ") + " งfSpawner");
+					spawnerMeta.setDisplayName("ยงe" + args[1].toUpperCase().replaceAll("_", " ") + " ยงfSpawner");
 					spawner.setItemMeta(spawnerMeta);
 					if (player.getInventory().firstEmpty() == -1) {
-						player.sendMessage("งbงl(!)ง7 Your inventory is full, dropping spawner at your feet!");
+						player.sendMessage("ยงbยงl(!)ยง7 Your inventory is full, dropping spawner at your feet!");
 						player.getWorld().dropItem(player.getLocation(), spawner);
 					} else {
-						player.sendMessage("งbงl(!)ง7 A spawner has been added to your inventory!");
+						player.sendMessage("ยงbยงl(!)ยง7 A spawner has been added to your inventory!");
 						player.getInventory().addItem(spawner);
 					}
-					sender.sendMessage("งaงl(!)ง7 Successfully added the spawner to the player's inventory!");
+					sender.sendMessage("ยงaยงl(!)ยง7 Successfully added the spawner to the player's inventory!");
 				} catch (Exception e) {
-					sender.sendMessage("งcงl(!)ง7 That player cannot be found!");
+					sender.sendMessage("ยงcยงl(!)ยง7 That player cannot be found!");
 				}
 			} else {
-				sender.sendMessage("งcงl(!)ง7 Usage: /spawnergive <playername> <type>");
+				sender.sendMessage("ยงcยงl(!)ยง7 Usage: /spawnergive <playername> <type>");
 			}
 		} else if (label.equalsIgnoreCase("sandstone")) {
 			Player player = Bukkit.getPlayer(sender.getName());
 			if (player.hasPermission("server.admin")) {
 				SandstoneBiome.convert(player);
 			} else {
-				player.sendMessage("งcงl(!)ง7 You don't have permission to use that command!");
+				player.sendMessage("ยงcยงl(!)ยง7 You don't have permission to use that command!");
 			}
 		} else if (label.equalsIgnoreCase("xp")) {
 			Player player = Bukkit.getPlayer(sender.getName());
-			player.sendMessage("งbงl(!)ง7 You have ง8" + player.getExp() + " ง7experience!");
+			player.sendMessage("ยงbยงl(!)ยง7 You have ยง8" + player.getExp() + " ยง7experience!");
 		} else if (label.equalsIgnoreCase("xpgive")) {
 			if (sender instanceof Player) {
 				Player player = Bukkit.getPlayer(sender.getName());
@@ -123,26 +121,130 @@ public class Crates implements CommandExecutor{
 					if (args.length == 2) {
 						try {
 							Bukkit.getPlayer(args[0]).giveExp(Integer.parseInt(args[1]));
-							player.sendMessage("งaงl(!)ง7 Successfully added the xp to the specified player.");
+							player.sendMessage("ยงaยงl(!)ยง7 Successfully added the xp to the specified player.");
 						} catch (Exception e) {
-							player.sendMessage("งcงl(!)ง7 Player offline or incorrect amount.");
+							player.sendMessage("ยงcยงl(!)ยง7 Player offline or incorrect amount.");
 						}
 					} else {
-						player.sendMessage("งcงl(!)ง7 Usage: /xpgive <player> <amount>");
+						player.sendMessage("ยงcยงl(!)ยง7 Usage: /xpgive <player> <amount>");
 					}
 				} else {
-					player.sendMessage("งcงl(!)ง7 You don't have permission to use that command!");
+					player.sendMessage("ยงcยงl(!)ยง7 You don't have permission to use that command!");
 				}
 			} else {
 				if (args.length == 2) {
 					try {
 						Bukkit.getPlayer(args[0]).giveExp(Integer.parseInt(args[1]));
-						sender.sendMessage("งaงl(!)ง7 Successfully added the xp to the specified player.");
+						sender.sendMessage("ยงaยงl(!)ยง7 Successfully added the xp to the specified player.");
 					} catch (Exception e) {
-						sender.sendMessage("งcงl(!)ง7 Player offline or incorrect amount.");
+						sender.sendMessage("ยงcยงl(!)ยง7 Player offline or incorrect amount.");
 					}
 				} else {
-					sender.sendMessage("งcงl(!)ง7 Usage: /xpgive <player> <amount>");
+					sender.sendMessage("ยงcยงl(!)ยง7 Usage: /xpgive <player> <amount>");
+				}
+			}
+		}
+		return true;
+	}
+}
+
+
+
+			}
+		} else if (label.equalsIgnoreCase("librarian")) {
+			if (sender instanceof ConsoleCommandSender) {
+				if (args.length == 1) {
+					try {
+						Player player = Bukkit.getPlayer(args[0]);
+						Librarian.openInventory(player);
+					} catch (Exception e) {
+						sender.sendMessage("ยงcยงl(!)ยง7 That player cannot be found!");
+					}
+				} else {
+					sender.sendMessage("ยงcยงl(!)ยง7 Usage: /librarian <playername>!");
+				}
+			} else {
+				sender.sendMessage("ยงcยงl(!)ยง7 You do not have permission to do that!");
+			}
+		} else if (label.equalsIgnoreCase("enchanter")) {
+			if (sender instanceof ConsoleCommandSender) {
+				if (args.length == 1) {
+					try {
+						Player player = Bukkit.getPlayer(args[0]);
+						Enchanter.openInventory(player);
+					} catch (Exception e) {
+						sender.sendMessage("ยงcยงl(!)ยง7 That player cannot be found!");
+					}
+				} else {
+					sender.sendMessage("ยงcยงl(!)ยง7 Usage: /enchanter <playername>!");
+				}
+			} else {
+				sender.sendMessage("ยงcยงl(!)ยง7 You do not have permission to do that!");
+			}
+		} else if (label.equalsIgnoreCase("spawnergive")) {
+			if (!sender.hasPermission("spawner.give")) {
+				sender.sendMessage("ยงcยงl(!)ยง7 You do not have permission to do that!");
+				return true;
+			}
+			if (args.length == 2) {
+				try {
+					Player player = Bukkit.getPlayer(args[0]);
+					System.out.println(player.getName());
+					ItemStack spawner = new ItemStack(Material.MOB_SPAWNER);
+					ItemMeta spawnerMeta = spawner.getItemMeta();
+					spawnerMeta.setDisplayName("ยงe" + args[1].toUpperCase().replaceAll("_", " ") + " ยงfSpawner");
+					spawner.setItemMeta(spawnerMeta);
+					if (player.getInventory().firstEmpty() == -1) {
+						player.sendMessage("ยงbยงl(!)ยง7 Your inventory is full, dropping spawner at your feet!");
+						player.getWorld().dropItem(player.getLocation(), spawner);
+					} else {
+						player.sendMessage("ยงbยงl(!)ยง7 A spawner has been added to your inventory!");
+						player.getInventory().addItem(spawner);
+					}
+					sender.sendMessage("ยงaยงl(!)ยง7 Successfully added the spawner to the player's inventory!");
+				} catch (Exception e) {
+					sender.sendMessage("ยงcยงl(!)ยง7 That player cannot be found!");
+				}
+			} else {
+				sender.sendMessage("ยงcยงl(!)ยง7 Usage: /spawnergive <playername> <type>");
+			}
+		} else if (label.equalsIgnoreCase("sandstone")) {
+			Player player = Bukkit.getPlayer(sender.getName());
+			if (player.hasPermission("server.admin")) {
+				SandstoneBiome.convert(player);
+			} else {
+				player.sendMessage("ยงcยงl(!)ยง7 You don't have permission to use that command!");
+			}
+		} else if (label.equalsIgnoreCase("xp")) {
+			Player player = Bukkit.getPlayer(sender.getName());
+			player.sendMessage("ยงbยงl(!)ยง7 You have ยง8" + player.getExp() + " ยง7experience!");
+		} else if (label.equalsIgnoreCase("xpgive")) {
+			if (sender instanceof Player) {
+				Player player = Bukkit.getPlayer(sender.getName());
+				if (player.hasPermission("server.admin")) {
+					if (args.length == 2) {
+						try {
+							Bukkit.getPlayer(args[0]).giveExp(Integer.parseInt(args[1]));
+							player.sendMessage("ยงaยงl(!)ยง7 Successfully added the xp to the specified player.");
+						} catch (Exception e) {
+							player.sendMessage("ยงcยงl(!)ยง7 Player offline or incorrect amount.");
+						}
+					} else {
+						player.sendMessage("ยงcยงl(!)ยง7 Usage: /xpgive <player> <amount>");
+					}
+				} else {
+					player.sendMessage("ยงcยงl(!)ยง7 You don't have permission to use that command!");
+				}
+			} else {
+				if (args.length == 2) {
+					try {
+						Bukkit.getPlayer(args[0]).giveExp(Integer.parseInt(args[1]));
+						sender.sendMessage("ยงaยงl(!)ยง7 Successfully added the xp to the specified player.");
+					} catch (Exception e) {
+						sender.sendMessage("ยงcยงl(!)ยง7 Player offline or incorrect amount.");
+					}
+				} else {
+					sender.sendMessage("ยงcยงl(!)ยง7 Usage: /xpgive <player> <amount>");
 				}
 			}
 		}
