@@ -32,18 +32,17 @@ public class RightClickEvent implements Listener {
 	/*
 	 //Inventory space check
 				if (player.getInventory().firstEmpty() == -1) {
-					player.sendMessage("§cYou do not have the required inventory space.");
+					player.sendMessage("Â§cYou do not have the required inventory space.");
 				}else {
 	 */
 
 	//Quartermaster Items
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerUse(PlayerInteractEvent event) {
 		if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			Player player = event.getPlayer();
 			if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
-				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§lPlagued Skeleton")) {
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§cÂ§lPlagued Skeleton")) {
 					player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 					player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0), EntityType.WITHER_SKELETON);
 					Block block = event.getClickedBlock();
@@ -51,9 +50,9 @@ public class RightClickEvent implements Listener {
 					MPlayer mplayer = MPlayer.get(player);
 					String faction = mplayer.getFactionName();
 
-					String nut = "§d§lBOSS EGGS§8§l » §7§lA §cPlagued Skeleton §7§lhas been summoned §7§lto Warzone by §e§l" + StringUtils.capitalize(faction) + "§7§l! §fCoords: [" + locB.getBlockX() + ", " +  locB.getBlockY() + ", " + locB.getBlockZ() + "]";
+					String nut = "Â§dÂ§lBOSS EGGSÂ§8Â§l Â» Â§7Â§lA Â§cPlagued Skeleton Â§7Â§lhas been summoned Â§7Â§lto Warzone by Â§eÂ§l" + StringUtils.capitalize(faction) + "Â§7Â§l! Â§fCoords: [" + locB.getBlockX() + ", " +  locB.getBlockY() + ", " + locB.getBlockZ() + "]";
 					TextComponent text = new TextComponent(nut);
-					text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§c§lPlagued Skeleton \n \n§c§lRare §7§lboss egg that can be summoned in the Warzone. \n§7§lSlay this boss to be rewarded with a prize! \n \n§c§lDifficulty: §75 Players").create()));
+					text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Â§cÂ§lPlagued Skeleton \n \nÂ§cÂ§lRare Â§7Â§lboss egg that can be summoned in the Warzone. \nÂ§7Â§lSlay this boss to be rewarded with a prize! \n \nÂ§cÂ§lDifficulty: Â§75 Players").create()));
 					for(Player player11 : Bukkit.getOnlinePlayers()) {
 						player11.sendMessage(text);
 						block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
@@ -61,7 +60,7 @@ public class RightClickEvent implements Listener {
 
 					// Charged Creeper
 				} else if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
-					if (player.getItemInHand().getItemMeta().getDisplayName().equals("§a§l§nCharged Creeper Egg")) {
+					if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§aÂ§lÂ§nCharged Creeper Egg")) {
 						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 						player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0), EntityType.CREEPER);
 						Block block = event.getClickedBlock();
@@ -69,9 +68,9 @@ public class RightClickEvent implements Listener {
 						block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
 					}
 				}else if (player.getItemInHand().getType().equals(Material.TRAPPED_CHEST)) {
-					if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nCrate of TNT")) {
+					if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§cÂ§lÂ§nCrate of TNT")) {
 						if (player.getInventory().firstEmpty() == -1) {
-							player.sendMessage("§cYou do not have the required inventory space.");
+							player.sendMessage("Â§cYou do not have the required inventory space.");
 							event.setCancelled(true);
 							player.closeInventory();
 						}else {
@@ -82,9 +81,9 @@ public class RightClickEvent implements Listener {
 
 						// Mystery Spawner
 					} else if (player.getItemInHand().getType().equals(Material.MOB_SPAWNER)) {
-						if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§l§nMystery Spawner")) {
+						if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§dÂ§lÂ§nMystery Spawner")) {
 							if (player.getInventory().firstEmpty() == -1) {
-								player.sendMessage("§cYou do not have the required inventory space.");
+								player.sendMessage("Â§cYou do not have the required inventory space.");
 								event.setCancelled(true);
 								player.closeInventory();
 							}else {
@@ -92,7 +91,7 @@ public class RightClickEvent implements Listener {
 								int index5 = rand.nextInt(5) + 1;
 								if (index5 == 1) {
 									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " villager");
-									Bukkit.broadcastMessage(" " + player.getName() + " was lucky and recieved a §d§lVillager spawner§b§l from a Mystery Spawner!" + " §d§lœ¦");
+									Bukkit.broadcastMessage(" " + player.getName() + " was lucky and recieved a Â§dÂ§lVillager spawnerÂ§bÂ§l from a Mystery Spawner!" + " Â§dÂ§lÅ“Â¦");
 								} else if (index5 == 2) {
 									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " creeper");
 								} else if (index5 == 3) {
@@ -105,7 +104,7 @@ public class RightClickEvent implements Listener {
 								player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 							}
 						} else if (player.getItemInHand().getType().equals(Material.EYE_OF_ENDER)) {
-							if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§lRandom TP")) {
+							if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§dÂ§lRandom TP")) {
 								event.setCancelled(true);
 								ArrayList<Player> players = new ArrayList<Player>();
 								for (Player e : Bukkit.getOnlinePlayers()) players.add(e);
@@ -113,9 +112,9 @@ public class RightClickEvent implements Listener {
 								player.teleport(randomPlayer.getLocation());
 							}
 						} else if (player.getItemInHand().getType().equals(Material.CHEST)) {
-							if (player.getItemInHand().getItemMeta().getDisplayName().equals("§2§l§nFighter Kit Crate")) {
+							if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§2Â§lÂ§nFighter Kit Crate")) {
 								if (player.getInventory().firstEmpty() == -1) {
-									player.sendMessage("§cYou do not have the required inventory space.");
+									player.sendMessage("Â§cYou do not have the required inventory space.");
 									event.setCancelled(true);
 									player.closeInventory();
 								}else {
@@ -123,7 +122,7 @@ public class RightClickEvent implements Listener {
 									//Fighter Helmet
 									ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 									ItemMeta Item1Meta = Item1.getItemMeta();
-									Item1Meta.setDisplayName("§2Fighter Helmet");
+									Item1Meta.setDisplayName("Â§2Fighter Helmet");
 									Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
 									Item1Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item1.setItemMeta(Item1Meta);
@@ -131,7 +130,7 @@ public class RightClickEvent implements Listener {
 									//Fighter Chestplate
 									ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 									ItemMeta Item2Meta = Item2.getItemMeta();
-									Item2Meta.setDisplayName("§2Fighter Chestplate");
+									Item2Meta.setDisplayName("Â§2Fighter Chestplate");
 									Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
 									Item2Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item2.setItemMeta(Item2Meta);
@@ -139,7 +138,7 @@ public class RightClickEvent implements Listener {
 									//Fighter Leggings
 									ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 									ItemMeta Item3Meta = Item3.getItemMeta();
-									Item3Meta.setDisplayName("§2Fighter Leggings");
+									Item3Meta.setDisplayName("Â§2Fighter Leggings");
 									Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
 									Item3Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item3.setItemMeta(Item3Meta);
@@ -147,7 +146,7 @@ public class RightClickEvent implements Listener {
 									//Fighter Boots
 									ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 									ItemMeta Item4Meta = Item4.getItemMeta();
-									Item4Meta.setDisplayName("§2Fighter Boots");
+									Item4Meta.setDisplayName("Â§2Fighter Boots");
 									Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
 									Item4Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item4.setItemMeta(Item4Meta);
@@ -155,14 +154,14 @@ public class RightClickEvent implements Listener {
 									//Fighter Sword
 									ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
 									ItemMeta Item5Meta = Item5.getItemMeta();
-									Item5Meta.setDisplayName("§2Fighter Sword");
+									Item5Meta.setDisplayName("Â§2Fighter Sword");
 									Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
 									Item5.setItemMeta(Item5Meta);
 
 									//Fighter Bow
 									ItemStack Item6 = new ItemStack(Material.BOW, 1);
 									ItemMeta Item6Meta = Item6.getItemMeta();
-									Item6Meta.setDisplayName("§2Fighter Bow");
+									Item6Meta.setDisplayName("Â§2Fighter Bow");
 									Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 2, true);
 									Item6.setItemMeta(Item6Meta);
 
@@ -177,9 +176,9 @@ public class RightClickEvent implements Listener {
 									player.getInventory().addItem(Item6);
 									player.getInventory().addItem(Item7);
 								}
-							}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§l§nWarlord Kit Crate")) {
+							}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§dÂ§lÂ§nWarlord Kit Crate")) {
 								if (player.getInventory().firstEmpty() == -1) {
-									player.sendMessage("§cYou do not have the required inventory space.");
+									player.sendMessage("Â§cYou do not have the required inventory space.");
 									event.setCancelled(true);
 									player.closeInventory();
 								}else {
@@ -187,7 +186,7 @@ public class RightClickEvent implements Listener {
 									//Warlord Helmet
 									ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 									ItemMeta Item1Meta = Item1.getItemMeta();
-									Item1Meta.setDisplayName("§dWarlord Helmet");
+									Item1Meta.setDisplayName("Â§dWarlord Helmet");
 									Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
 									Item1Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item1.setItemMeta(Item1Meta);
@@ -195,7 +194,7 @@ public class RightClickEvent implements Listener {
 									//Warlord Chestplate
 									ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 									ItemMeta Item2Meta = Item2.getItemMeta();
-									Item2Meta.setDisplayName("§dWarlord Chestplate");
+									Item2Meta.setDisplayName("Â§dWarlord Chestplate");
 									Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
 									Item2Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item2.setItemMeta(Item2Meta);
@@ -203,7 +202,7 @@ public class RightClickEvent implements Listener {
 									//Warlord Leggings
 									ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 									ItemMeta Item3Meta = Item3.getItemMeta();
-									Item3Meta.setDisplayName("§dWarlord Leggings");
+									Item3Meta.setDisplayName("Â§dWarlord Leggings");
 									Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
 									Item3Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item3.setItemMeta(Item3Meta);
@@ -211,7 +210,7 @@ public class RightClickEvent implements Listener {
 									//Warlord Boots
 									ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 									ItemMeta Item4Meta = Item4.getItemMeta();
-									Item4Meta.setDisplayName("§dWarlord Boots");
+									Item4Meta.setDisplayName("Â§dWarlord Boots");
 									Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
 									Item4Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item4.setItemMeta(Item4Meta);
@@ -219,14 +218,14 @@ public class RightClickEvent implements Listener {
 									//Warlord Sword
 									ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
 									ItemMeta Item5Meta = Item5.getItemMeta();
-									Item5Meta.setDisplayName("§dWarlord Sword");
+									Item5Meta.setDisplayName("Â§dWarlord Sword");
 									Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
 									Item5.setItemMeta(Item5Meta);
 
 									//Warlord Bow
 									ItemStack Item6 = new ItemStack(Material.BOW, 1);
 									ItemMeta Item6Meta = Item6.getItemMeta();
-									Item6Meta.setDisplayName("§dWarlord Bow");
+									Item6Meta.setDisplayName("Â§dWarlord Bow");
 									Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 3, true);
 									Item6.setItemMeta(Item6Meta);
 
@@ -242,9 +241,9 @@ public class RightClickEvent implements Listener {
 									player.getInventory().addItem(Item7);
 								}
 							}
-							else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nEmporer Kit Crate")) {
+							else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§cÂ§lÂ§nEmporer Kit Crate")) {
 								if (player.getInventory().firstEmpty() == -1) {
-									player.sendMessage("§cYou do not have the required inventory space.");
+									player.sendMessage("Â§cYou do not have the required inventory space.");
 									event.setCancelled(true);
 									player.closeInventory();
 								}else {
@@ -252,7 +251,7 @@ public class RightClickEvent implements Listener {
 									//Emporer Helmet
 									ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 									ItemMeta Item1Meta = Item1.getItemMeta();
-									Item1Meta.setDisplayName("§cEmporer Helmet");
+									Item1Meta.setDisplayName("Â§cEmporer Helmet");
 									Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item1Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item1.setItemMeta(Item1Meta);
@@ -260,7 +259,7 @@ public class RightClickEvent implements Listener {
 									//Emporer Chestplate
 									ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 									ItemMeta Item2Meta = Item2.getItemMeta();
-									Item2Meta.setDisplayName("§cEmporer Chestplate");
+									Item2Meta.setDisplayName("Â§cEmporer Chestplate");
 									Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item2Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item2.setItemMeta(Item2Meta);
@@ -268,7 +267,7 @@ public class RightClickEvent implements Listener {
 									//Emporer Leggings
 									ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 									ItemMeta Item3Meta = Item3.getItemMeta();
-									Item3Meta.setDisplayName("§cEmporer Leggings");
+									Item3Meta.setDisplayName("Â§cEmporer Leggings");
 									Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item3Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item3.setItemMeta(Item3Meta);
@@ -276,7 +275,7 @@ public class RightClickEvent implements Listener {
 									//Emporer Boots
 									ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 									ItemMeta Item4Meta = Item4.getItemMeta();
-									Item4Meta.setDisplayName("§cEmporer Boots");
+									Item4Meta.setDisplayName("Â§cEmporer Boots");
 									Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item4Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 									Item4.setItemMeta(Item4Meta);
@@ -284,14 +283,14 @@ public class RightClickEvent implements Listener {
 									//Emporer Sword
 									ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
 									ItemMeta Item5Meta = Item5.getItemMeta();
-									Item5Meta.setDisplayName("§cEmporer Sword");
+									Item5Meta.setDisplayName("Â§cEmporer Sword");
 									Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 4, true);
 									Item5.setItemMeta(Item5Meta);
 
 									//Emporer Bow
 									ItemStack Item6 = new ItemStack(Material.BOW, 1);
 									ItemMeta Item6Meta = Item6.getItemMeta();
-									Item6Meta.setDisplayName("§cEmporer Bow");
+									Item6Meta.setDisplayName("Â§cEmporer Bow");
 									Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 3, true);
 									Item6.setItemMeta(Item6Meta);
 
@@ -302,13 +301,13 @@ public class RightClickEvent implements Listener {
 									ItemStack Item8 = new ItemStack(Material.POTION, 1, (byte) 8266);
 									ItemMeta Item8Meta = Item6.getItemMeta();
 									List<String> lore8 = new ArrayList<String>();
-									Item8Meta.setDisplayName("§4§l§nElixir of Fury");
+									Item8Meta.setDisplayName("Â§4Â§lÂ§nElixir of Fury");
 									Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
-									lore8.add("§eSpeed II (1:30)");
-									lore8.add("§eStrength II (1:30)");
-									lore8.add("§eFire Resistence (8:00)");
-									lore8.add("§1");
-									lore8.add("§cPrice: §f5 Coins");
+									lore8.add("Â§eSpeed II (1:30)");
+									lore8.add("Â§eStrength II (1:30)");
+									lore8.add("Â§eFire Resistence (8:00)");
+									lore8.add("Â§1");
+									lore8.add("Â§cPrice: Â§f5 Coins");
 									Item8Meta.setLore(lore8);
 									Item8.setItemMeta(Item8Meta);
 
@@ -322,9 +321,9 @@ public class RightClickEvent implements Listener {
 									player.getInventory().addItem(Item8);
 								}
 							}
-							else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§9§l§nGod Kit Crate")) {
+							else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§9Â§lÂ§nGod Kit Crate")) {
 								if (player.getInventory().firstEmpty() == -1) {
-									player.sendMessage("§cYou do not have the required inventory space.");
+									player.sendMessage("Â§cYou do not have the required inventory space.");
 									event.setCancelled(true);
 									player.closeInventory();
 								}else {
@@ -332,7 +331,7 @@ public class RightClickEvent implements Listener {
 									//God Helmet
 									ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 									ItemMeta Item1Meta = Item1.getItemMeta();
-									Item1Meta.setDisplayName("§9§lGod Helmet");
+									Item1Meta.setDisplayName("Â§9Â§lGod Helmet");
 									Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item1Meta.addEnchant(Enchantment.DURABILITY, 2, true);
 									Item1.setItemMeta(Item1Meta);
@@ -340,7 +339,7 @@ public class RightClickEvent implements Listener {
 									//God Chestplate
 									ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 									ItemMeta Item2Meta = Item2.getItemMeta();
-									Item2Meta.setDisplayName("§9§lGod Chestplate");
+									Item2Meta.setDisplayName("Â§9Â§lGod Chestplate");
 									Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item2Meta.addEnchant(Enchantment.DURABILITY, 2, true);
 									Item2.setItemMeta(Item2Meta);
@@ -348,7 +347,7 @@ public class RightClickEvent implements Listener {
 									//God Leggings
 									ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 									ItemMeta Item3Meta = Item3.getItemMeta();
-									Item3Meta.setDisplayName("§9§lGod Leggings");
+									Item3Meta.setDisplayName("Â§9Â§lGod Leggings");
 									Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item3Meta.addEnchant(Enchantment.DURABILITY, 2, true);
 									Item3.setItemMeta(Item3Meta);
@@ -356,7 +355,7 @@ public class RightClickEvent implements Listener {
 									//God Boots
 									ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 									ItemMeta Item4Meta = Item4.getItemMeta();
-									Item4Meta.setDisplayName("§9§lGod Boots");
+									Item4Meta.setDisplayName("Â§9Â§lGod Boots");
 									Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item4Meta.addEnchant(Enchantment.DURABILITY, 2, true);
 									Item4.setItemMeta(Item4Meta);
@@ -364,7 +363,7 @@ public class RightClickEvent implements Listener {
 									//God Sword
 									ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
 									ItemMeta Item5Meta = Item5.getItemMeta();
-									Item5Meta.setDisplayName("§9§lGod Sword");
+									Item5Meta.setDisplayName("Â§9Â§lGod Sword");
 									Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
 									Item5Meta.addEnchant(Enchantment.FIRE_ASPECT, 1, true);
 									Item5.setItemMeta(Item5Meta);
@@ -372,7 +371,7 @@ public class RightClickEvent implements Listener {
 									//God Bow
 									ItemStack Item6 = new ItemStack(Material.BOW, 1);
 									ItemMeta Item6Meta = Item6.getItemMeta();
-									Item6Meta.setDisplayName("§9§lGod Bow");
+									Item6Meta.setDisplayName("Â§9Â§lGod Bow");
 									Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 5, true);
 									Item6Meta.addEnchant(Enchantment.ARROW_FIRE, 1, true);
 									Item6.setItemMeta(Item6Meta);
@@ -384,13 +383,13 @@ public class RightClickEvent implements Listener {
 									ItemStack Item8 = new ItemStack(Material.POTION, 1, (byte) 8266);
 									ItemMeta Item8Meta = Item6.getItemMeta();
 									List<String> lore8 = new ArrayList<String>();
-									Item8Meta.setDisplayName("§4§l§nElixir of Fury");
+									Item8Meta.setDisplayName("Â§4Â§lÂ§nElixir of Fury");
 									Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
-									lore8.add("§eSpeed II (1:30)");
-									lore8.add("§eStrength II (1:30)");
-									lore8.add("§eFire Resistence (8:00)");
-									lore8.add("§1");
-									lore8.add("§cPrice: §f5 Coins");
+									lore8.add("Â§eSpeed II (1:30)");
+									lore8.add("Â§eStrength II (1:30)");
+									lore8.add("Â§eFire Resistence (8:00)");
+									lore8.add("Â§1");
+									lore8.add("Â§cPrice: Â§f5 Coins");
 									Item8Meta.setLore(lore8);
 									Item8.setItemMeta(Item8Meta);
 
@@ -405,9 +404,9 @@ public class RightClickEvent implements Listener {
 									player.getInventory().addItem(Item8);
 								}
 							}
-							else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§b§l§nIcewynd Kit Crate")) {
+							else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§bÂ§lÂ§nIcewynd Kit Crate")) {
 								if (player.getInventory().firstEmpty() == -1) {
-									player.sendMessage("§cYou do not have the required inventory space.");
+									player.sendMessage("Â§cYou do not have the required inventory space.");
 									event.setCancelled(true);
 									player.closeInventory();
 								}else {
@@ -415,7 +414,7 @@ public class RightClickEvent implements Listener {
 									//Icewynd Helmet
 									ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 									ItemMeta Item1Meta = Item1.getItemMeta();
-									Item1Meta.setDisplayName("§b§lIcewynd Helmet");
+									Item1Meta.setDisplayName("Â§bÂ§lIcewynd Helmet");
 									Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item1Meta.addEnchant(Enchantment.DURABILITY, 3, true);
 									Item1.setItemMeta(Item1Meta);
@@ -423,7 +422,7 @@ public class RightClickEvent implements Listener {
 									//Icewynd Chestplate
 									ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 									ItemMeta Item2Meta = Item2.getItemMeta();
-									Item2Meta.setDisplayName("§b§lIcewynd Chestplate");
+									Item2Meta.setDisplayName("Â§bÂ§lIcewynd Chestplate");
 									Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item2Meta.addEnchant(Enchantment.DURABILITY, 3, true);
 									Item2.setItemMeta(Item2Meta);
@@ -431,7 +430,7 @@ public class RightClickEvent implements Listener {
 									//Icewynd Leggings
 									ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 									ItemMeta Item3Meta = Item3.getItemMeta();
-									Item3Meta.setDisplayName("§b§lIcewynd Leggings");
+									Item3Meta.setDisplayName("Â§bÂ§lIcewynd Leggings");
 									Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item3Meta.addEnchant(Enchantment.DURABILITY, 3, true);
 									Item3.setItemMeta(Item3Meta);
@@ -439,7 +438,7 @@ public class RightClickEvent implements Listener {
 									//Icewynd Boots
 									ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 									ItemMeta Item4Meta = Item4.getItemMeta();
-									Item4Meta.setDisplayName("§b§lIcewynd Boots");
+									Item4Meta.setDisplayName("Â§bÂ§lIcewynd Boots");
 									Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 									Item4Meta.addEnchant(Enchantment.DURABILITY, 3, true);
 									Item4.setItemMeta(Item4Meta);
@@ -447,7 +446,7 @@ public class RightClickEvent implements Listener {
 									//Icewynd Sword
 									ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
 									ItemMeta Item5Meta = Item5.getItemMeta();
-									Item5Meta.setDisplayName("§b§lIcewynd Sword");
+									Item5Meta.setDisplayName("Â§bÂ§lIcewynd Sword");
 									Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
 									Item5Meta.addEnchant(Enchantment.FIRE_ASPECT, 2, true);
 									Item5Meta.addEnchant(Enchantment.DURABILITY, 3, true);
@@ -456,7 +455,7 @@ public class RightClickEvent implements Listener {
 									//Icewynd Bow
 									ItemStack Item6 = new ItemStack(Material.BOW, 1);
 									ItemMeta Item6Meta = Item6.getItemMeta();
-									Item6Meta.setDisplayName("§b§lIcewynd Bow");
+									Item6Meta.setDisplayName("Â§bÂ§lIcewynd Bow");
 									Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 5, true);
 									Item6Meta.addEnchant(Enchantment.ARROW_FIRE, 2, true);
 									Item6Meta.addEnchant(Enchantment.DURABILITY, 3, true);
@@ -470,13 +469,498 @@ public class RightClickEvent implements Listener {
 									ItemStack Item8 = new ItemStack(Material.POTION, 1, (byte) 8266);
 									ItemMeta Item8Meta = Item6.getItemMeta();
 									List<String> lore8 = new ArrayList<String>();
-									Item8Meta.setDisplayName("§4§l§nElixir of Fury");
+									Item8Meta.setDisplayName("Â§4Â§lÂ§nElixir of Fury");
 									Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
-									lore8.add("§eSpeed II (1:30)");
-									lore8.add("§eStrength II (1:30)");
-									lore8.add("§eFire Resistence (8:00)");
-									lore8.add("§1");
-									lore8.add("§cPrice: §f5 Coins");
+									lore8.add("Â§eSpeed II (1:30)");
+									lore8.add("Â§eStrength II (1:30)");
+									lore8.add("Â§eFire Resistence (8:00)");
+									lore8.add("Â§1");
+									lore8.add("Â§cPrice: Â§f5 Coins");
+									Item8Meta.setLore(lore8);
+									Item8.setItemMeta(Item8Meta);
+
+									player.getInventory().addItem(Item1);
+									player.getInventory().addItem(Item2);
+									player.getInventory().addItem(Item3);
+									player.getInventory().addItem(Item4);
+									player.getInventory().addItem(Item5);
+									player.getInventory().addItem(Item6);
+									player.getInventory().addItem(Item7);
+									player.getInventory().addItem(Item8);
+									player.getInventory().addItem(Item8);
+									player.getInventory().addItem(Item8);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+
+	//Quartermaster Item - PVP Potion
+	@EventHandler
+	public void onDrink(PlayerItemConsumeEvent e) {
+		Player player = e.getPlayer();
+		if (player.getItemInHand().getType().equals(Material.POTION)) {
+			if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§4Â§lÂ§nElixir of Fury")) {
+				;
+				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3600, 1));
+				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 3600, 1));
+				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 9570, 1));
+				player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+			}
+		}
+	}
+	@EventHandler
+	public void onClick(PlayerInteractEntityEvent event) {
+		//Overwatch Tools
+		String IPlayer = event.getRightClicked().getName();
+		Player player = event.getPlayer();
+		if (player.hasPermission("server.admin")) {
+			if (player.getItemInHand().getType().equals(Material.BLAZE_ROD)) {
+				if(player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasDisplayName()) {
+					event.getPlayer().chat("/invsee " + IPlayer);
+				}
+			}else if (event.getPlayer().getInventory().getItemInHand().getType() == Material.BOOK) {
+				if(player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasDisplayName()) {
+					event.getPlayer().chat("/pinfo " + IPlayer);
+				}
+			}
+		}
+	}
+}
+					MPlayer mplayer = MPlayer.get(player);
+					String faction = mplayer.getFactionName();
+
+					String nut = "Â§dÂ§lBOSS EGGSÂ§8Â§l Â» Â§7Â§lA Â§cPlagued Skeleton Â§7Â§lhas been summoned Â§7Â§lto Warzone by Â§eÂ§l" + StringUtils.capitalize(faction) + "Â§7Â§l! Â§fCoords: [" + locB.getBlockX() + ", " +  locB.getBlockY() + ", " + locB.getBlockZ() + "]";
+					TextComponent text = new TextComponent(nut);
+					text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Â§cÂ§lPlagued Skeleton \n \nÂ§cÂ§lRare Â§7Â§lboss egg that can be summoned in the Warzone. \nÂ§7Â§lSlay this boss to be rewarded with a prize! \n \nÂ§cÂ§lDifficulty: Â§75 Players").create()));
+					for(Player player11 : Bukkit.getOnlinePlayers()) {
+						player11.sendMessage(text);
+						block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
+					}
+
+					// Charged Creeper
+				} else if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
+					if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§aÂ§lÂ§nCharged Creeper Egg")) {
+						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+						player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0), EntityType.CREEPER);
+						Block block = event.getClickedBlock();
+						Location locB = block.getLocation().getBlock().getLocation();
+						block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
+					}
+				}else if (player.getItemInHand().getType().equals(Material.TRAPPED_CHEST)) {
+					if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§cÂ§lÂ§nCrate of TNT")) {
+						if (player.getInventory().firstEmpty() == -1) {
+							player.sendMessage("Â§cYou do not have the required inventory space.");
+							event.setCancelled(true);
+							player.closeInventory();
+						}else {
+							player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+							player.getInventory().addItem(new ItemStack(Material.TNT, 2304));
+							event.setCancelled(true);
+						}
+
+						// Mystery Spawner
+					} else if (player.getItemInHand().getType().equals(Material.MOB_SPAWNER)) {
+						if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§dÂ§lÂ§nMystery Spawner")) {
+							if (player.getInventory().firstEmpty() == -1) {
+								player.sendMessage("Â§cYou do not have the required inventory space.");
+								event.setCancelled(true);
+								player.closeInventory();
+							}else {
+								Random rand = new Random();
+								int index5 = rand.nextInt(5) + 1;
+								if (index5 == 1) {
+									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " villager");
+									Bukkit.broadcastMessage(" " + player.getName() + " was lucky and recieved a Â§dÂ§lVillager spawnerÂ§bÂ§l from a Mystery Spawner!" + " Â§dÂ§lÅ“Â¦");
+								} else if (index5 == 2) {
+									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " creeper");
+								} else if (index5 == 3) {
+									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " enderman");
+								} else if (index5 == 4) {
+									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " blaze");
+								} else if (index5 == 5) {
+									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " witch");
+								}
+								player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+							}
+						} else if (player.getItemInHand().getType().equals(Material.EYE_OF_ENDER)) {
+							if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§dÂ§lRandom TP")) {
+								event.setCancelled(true);
+								ArrayList<Player> players = new ArrayList<Player>();
+								for (Player e : Bukkit.getOnlinePlayers()) players.add(e);
+								Player randomPlayer = players.get(new Random().nextInt(players.size()));
+								player.teleport(randomPlayer.getLocation());
+							}
+						} else if (player.getItemInHand().getType().equals(Material.CHEST)) {
+							if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§2Â§lÂ§nFighter Kit Crate")) {
+								if (player.getInventory().firstEmpty() == -1) {
+									player.sendMessage("Â§cYou do not have the required inventory space.");
+									event.setCancelled(true);
+									player.closeInventory();
+								}else {
+									player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+									//Fighter Helmet
+									ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
+									ItemMeta Item1Meta = Item1.getItemMeta();
+									Item1Meta.setDisplayName("Â§2Fighter Helmet");
+									Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
+									Item1Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item1.setItemMeta(Item1Meta);
+
+									//Fighter Chestplate
+									ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+									ItemMeta Item2Meta = Item2.getItemMeta();
+									Item2Meta.setDisplayName("Â§2Fighter Chestplate");
+									Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
+									Item2Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item2.setItemMeta(Item2Meta);
+
+									//Fighter Leggings
+									ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+									ItemMeta Item3Meta = Item3.getItemMeta();
+									Item3Meta.setDisplayName("Â§2Fighter Leggings");
+									Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
+									Item3Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item3.setItemMeta(Item3Meta);
+
+									//Fighter Boots
+									ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
+									ItemMeta Item4Meta = Item4.getItemMeta();
+									Item4Meta.setDisplayName("Â§2Fighter Boots");
+									Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
+									Item4Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item4.setItemMeta(Item4Meta);
+
+									//Fighter Sword
+									ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
+									ItemMeta Item5Meta = Item5.getItemMeta();
+									Item5Meta.setDisplayName("Â§2Fighter Sword");
+									Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
+									Item5.setItemMeta(Item5Meta);
+
+									//Fighter Bow
+									ItemStack Item6 = new ItemStack(Material.BOW, 1);
+									ItemMeta Item6Meta = Item6.getItemMeta();
+									Item6Meta.setDisplayName("Â§2Fighter Bow");
+									Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 2, true);
+									Item6.setItemMeta(Item6Meta);
+
+									//Arrows
+									ItemStack Item7 = new ItemStack(Material.ARROW, 128);
+
+									player.getInventory().addItem(Item1);
+									player.getInventory().addItem(Item2);
+									player.getInventory().addItem(Item3);
+									player.getInventory().addItem(Item4);
+									player.getInventory().addItem(Item5);
+									player.getInventory().addItem(Item6);
+									player.getInventory().addItem(Item7);
+								}
+							}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§dÂ§lÂ§nWarlord Kit Crate")) {
+								if (player.getInventory().firstEmpty() == -1) {
+									player.sendMessage("Â§cYou do not have the required inventory space.");
+									event.setCancelled(true);
+									player.closeInventory();
+								}else {
+									player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+									//Warlord Helmet
+									ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
+									ItemMeta Item1Meta = Item1.getItemMeta();
+									Item1Meta.setDisplayName("Â§dWarlord Helmet");
+									Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
+									Item1Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item1.setItemMeta(Item1Meta);
+
+									//Warlord Chestplate
+									ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+									ItemMeta Item2Meta = Item2.getItemMeta();
+									Item2Meta.setDisplayName("Â§dWarlord Chestplate");
+									Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
+									Item2Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item2.setItemMeta(Item2Meta);
+
+									//Warlord Leggings
+									ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+									ItemMeta Item3Meta = Item3.getItemMeta();
+									Item3Meta.setDisplayName("Â§dWarlord Leggings");
+									Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
+									Item3Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item3.setItemMeta(Item3Meta);
+
+									//Warlord Boots
+									ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
+									ItemMeta Item4Meta = Item4.getItemMeta();
+									Item4Meta.setDisplayName("Â§dWarlord Boots");
+									Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
+									Item4Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item4.setItemMeta(Item4Meta);
+
+									//Warlord Sword
+									ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
+									ItemMeta Item5Meta = Item5.getItemMeta();
+									Item5Meta.setDisplayName("Â§dWarlord Sword");
+									Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
+									Item5.setItemMeta(Item5Meta);
+
+									//Warlord Bow
+									ItemStack Item6 = new ItemStack(Material.BOW, 1);
+									ItemMeta Item6Meta = Item6.getItemMeta();
+									Item6Meta.setDisplayName("Â§dWarlord Bow");
+									Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 3, true);
+									Item6.setItemMeta(Item6Meta);
+
+									//Arrows
+									ItemStack Item7 = new ItemStack(Material.ARROW, 128);
+
+									player.getInventory().addItem(Item1);
+									player.getInventory().addItem(Item2);
+									player.getInventory().addItem(Item3);
+									player.getInventory().addItem(Item4);
+									player.getInventory().addItem(Item5);
+									player.getInventory().addItem(Item6);
+									player.getInventory().addItem(Item7);
+								}
+							}
+							else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§cÂ§lÂ§nEmporer Kit Crate")) {
+								if (player.getInventory().firstEmpty() == -1) {
+									player.sendMessage("Â§cYou do not have the required inventory space.");
+									event.setCancelled(true);
+									player.closeInventory();
+								}else {
+									player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+									//Emporer Helmet
+									ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
+									ItemMeta Item1Meta = Item1.getItemMeta();
+									Item1Meta.setDisplayName("Â§cEmporer Helmet");
+									Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item1Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item1.setItemMeta(Item1Meta);
+
+									//Emporer Chestplate
+									ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+									ItemMeta Item2Meta = Item2.getItemMeta();
+									Item2Meta.setDisplayName("Â§cEmporer Chestplate");
+									Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item2Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item2.setItemMeta(Item2Meta);
+
+									//Emporer Leggings
+									ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+									ItemMeta Item3Meta = Item3.getItemMeta();
+									Item3Meta.setDisplayName("Â§cEmporer Leggings");
+									Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item3Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item3.setItemMeta(Item3Meta);
+
+									//Emporer Boots
+									ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
+									ItemMeta Item4Meta = Item4.getItemMeta();
+									Item4Meta.setDisplayName("Â§cEmporer Boots");
+									Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item4Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+									Item4.setItemMeta(Item4Meta);
+
+									//Emporer Sword
+									ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
+									ItemMeta Item5Meta = Item5.getItemMeta();
+									Item5Meta.setDisplayName("Â§cEmporer Sword");
+									Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 4, true);
+									Item5.setItemMeta(Item5Meta);
+
+									//Emporer Bow
+									ItemStack Item6 = new ItemStack(Material.BOW, 1);
+									ItemMeta Item6Meta = Item6.getItemMeta();
+									Item6Meta.setDisplayName("Â§cEmporer Bow");
+									Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 3, true);
+									Item6.setItemMeta(Item6Meta);
+
+									//Arrows
+									ItemStack Item7 = new ItemStack(Material.ARROW, 128);
+
+									//Elixir of Fury
+									ItemStack Item8 = new ItemStack(Material.POTION, 1, (byte) 8266);
+									ItemMeta Item8Meta = Item6.getItemMeta();
+									List<String> lore8 = new ArrayList<String>();
+									Item8Meta.setDisplayName("Â§4Â§lÂ§nElixir of Fury");
+									Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
+									lore8.add("Â§eSpeed II (1:30)");
+									lore8.add("Â§eStrength II (1:30)");
+									lore8.add("Â§eFire Resistence (8:00)");
+									lore8.add("Â§1");
+									lore8.add("Â§cPrice: Â§f5 Coins");
+									Item8Meta.setLore(lore8);
+									Item8.setItemMeta(Item8Meta);
+
+									player.getInventory().addItem(Item1);
+									player.getInventory().addItem(Item2);
+									player.getInventory().addItem(Item3);
+									player.getInventory().addItem(Item4);
+									player.getInventory().addItem(Item5);
+									player.getInventory().addItem(Item6);
+									player.getInventory().addItem(Item7);
+									player.getInventory().addItem(Item8);
+								}
+							}
+							else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§9Â§lÂ§nGod Kit Crate")) {
+								if (player.getInventory().firstEmpty() == -1) {
+									player.sendMessage("Â§cYou do not have the required inventory space.");
+									event.setCancelled(true);
+									player.closeInventory();
+								}else {
+									player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+									//God Helmet
+									ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
+									ItemMeta Item1Meta = Item1.getItemMeta();
+									Item1Meta.setDisplayName("Â§9Â§lGod Helmet");
+									Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item1Meta.addEnchant(Enchantment.DURABILITY, 2, true);
+									Item1.setItemMeta(Item1Meta);
+
+									//God Chestplate
+									ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+									ItemMeta Item2Meta = Item2.getItemMeta();
+									Item2Meta.setDisplayName("Â§9Â§lGod Chestplate");
+									Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item2Meta.addEnchant(Enchantment.DURABILITY, 2, true);
+									Item2.setItemMeta(Item2Meta);
+
+									//God Leggings
+									ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+									ItemMeta Item3Meta = Item3.getItemMeta();
+									Item3Meta.setDisplayName("Â§9Â§lGod Leggings");
+									Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item3Meta.addEnchant(Enchantment.DURABILITY, 2, true);
+									Item3.setItemMeta(Item3Meta);
+
+									//God Boots
+									ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
+									ItemMeta Item4Meta = Item4.getItemMeta();
+									Item4Meta.setDisplayName("Â§9Â§lGod Boots");
+									Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item4Meta.addEnchant(Enchantment.DURABILITY, 2, true);
+									Item4.setItemMeta(Item4Meta);
+
+									//God Sword
+									ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
+									ItemMeta Item5Meta = Item5.getItemMeta();
+									Item5Meta.setDisplayName("Â§9Â§lGod Sword");
+									Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
+									Item5Meta.addEnchant(Enchantment.FIRE_ASPECT, 1, true);
+									Item5.setItemMeta(Item5Meta);
+
+									//God Bow
+									ItemStack Item6 = new ItemStack(Material.BOW, 1);
+									ItemMeta Item6Meta = Item6.getItemMeta();
+									Item6Meta.setDisplayName("Â§9Â§lGod Bow");
+									Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 5, true);
+									Item6Meta.addEnchant(Enchantment.ARROW_FIRE, 1, true);
+									Item6.setItemMeta(Item6Meta);
+
+									//Arrows
+									ItemStack Item7 = new ItemStack(Material.ARROW, 128);
+
+									//Elixir of Fury
+									ItemStack Item8 = new ItemStack(Material.POTION, 1, (byte) 8266);
+									ItemMeta Item8Meta = Item6.getItemMeta();
+									List<String> lore8 = new ArrayList<String>();
+									Item8Meta.setDisplayName("Â§4Â§lÂ§nElixir of Fury");
+									Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
+									lore8.add("Â§eSpeed II (1:30)");
+									lore8.add("Â§eStrength II (1:30)");
+									lore8.add("Â§eFire Resistence (8:00)");
+									lore8.add("Â§1");
+									lore8.add("Â§cPrice: Â§f5 Coins");
+									Item8Meta.setLore(lore8);
+									Item8.setItemMeta(Item8Meta);
+
+									player.getInventory().addItem(Item1);
+									player.getInventory().addItem(Item2);
+									player.getInventory().addItem(Item3);
+									player.getInventory().addItem(Item4);
+									player.getInventory().addItem(Item5);
+									player.getInventory().addItem(Item6);
+									player.getInventory().addItem(Item7);
+									player.getInventory().addItem(Item8);
+									player.getInventory().addItem(Item8);
+								}
+							}
+							else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§bÂ§lÂ§nIcewynd Kit Crate")) {
+								if (player.getInventory().firstEmpty() == -1) {
+									player.sendMessage("Â§cYou do not have the required inventory space.");
+									event.setCancelled(true);
+									player.closeInventory();
+								}else {
+									player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+									//Icewynd Helmet
+									ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
+									ItemMeta Item1Meta = Item1.getItemMeta();
+									Item1Meta.setDisplayName("Â§bÂ§lIcewynd Helmet");
+									Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item1Meta.addEnchant(Enchantment.DURABILITY, 3, true);
+									Item1.setItemMeta(Item1Meta);
+
+									//Icewynd Chestplate
+									ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+									ItemMeta Item2Meta = Item2.getItemMeta();
+									Item2Meta.setDisplayName("Â§bÂ§lIcewynd Chestplate");
+									Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item2Meta.addEnchant(Enchantment.DURABILITY, 3, true);
+									Item2.setItemMeta(Item2Meta);
+
+									//Icewynd Leggings
+									ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+									ItemMeta Item3Meta = Item3.getItemMeta();
+									Item3Meta.setDisplayName("Â§bÂ§lIcewynd Leggings");
+									Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item3Meta.addEnchant(Enchantment.DURABILITY, 3, true);
+									Item3.setItemMeta(Item3Meta);
+
+									//Icewynd Boots
+									ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
+									ItemMeta Item4Meta = Item4.getItemMeta();
+									Item4Meta.setDisplayName("Â§bÂ§lIcewynd Boots");
+									Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+									Item4Meta.addEnchant(Enchantment.DURABILITY, 3, true);
+									Item4.setItemMeta(Item4Meta);
+
+									//Icewynd Sword
+									ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
+									ItemMeta Item5Meta = Item5.getItemMeta();
+									Item5Meta.setDisplayName("Â§bÂ§lIcewynd Sword");
+									Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
+									Item5Meta.addEnchant(Enchantment.FIRE_ASPECT, 2, true);
+									Item5Meta.addEnchant(Enchantment.DURABILITY, 3, true);
+									Item5.setItemMeta(Item5Meta);
+
+									//Icewynd Bow
+									ItemStack Item6 = new ItemStack(Material.BOW, 1);
+									ItemMeta Item6Meta = Item6.getItemMeta();
+									Item6Meta.setDisplayName("Â§bÂ§lIcewynd Bow");
+									Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 5, true);
+									Item6Meta.addEnchant(Enchantment.ARROW_FIRE, 2, true);
+									Item6Meta.addEnchant(Enchantment.DURABILITY, 3, true);
+									Item6Meta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
+									Item6.setItemMeta(Item6Meta);
+
+									//Arrows
+									ItemStack Item7 = new ItemStack(Material.ARROW, 1);
+
+									//Elixir of Fury
+									ItemStack Item8 = new ItemStack(Material.POTION, 1, (byte) 8266);
+									ItemMeta Item8Meta = Item6.getItemMeta();
+									List<String> lore8 = new ArrayList<String>();
+									Item8Meta.setDisplayName("Â§4Â§lÂ§nElixir of Fury");
+									Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
+									lore8.add("Â§eSpeed II (1:30)");
+									lore8.add("Â§eStrength II (1:30)");
+									lore8.add("Â§eFire Resistence (8:00)");
+									lore8.add("Â§1");
+									lore8.add("Â§cPrice: Â§f5 Coins");
 									Item8Meta.setLore(lore8);
 									Item8.setItemMeta(Item8Meta);
 
@@ -507,7 +991,7 @@ public class RightClickEvent implements Listener {
 	public void onDrink(PlayerItemConsumeEvent e) {
 		Player player = e.getPlayer();
 		if (player.getItemInHand().getType().equals(Material.POTION)) {
-			if (player.getItemInHand().getItemMeta().getDisplayName().equals("§4§l§nElixir of Fury")) {
+			if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§4Â§lÂ§nElixir of Fury")) {
 				;
 				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3600, 1));
 				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 3600, 1));
