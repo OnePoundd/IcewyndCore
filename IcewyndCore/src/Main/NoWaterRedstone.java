@@ -1,6 +1,5 @@
 package Main;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,7 +9,6 @@ public class NoWaterRedstone implements Listener{
 	
 	@EventHandler
 	public void onWaterBreak(BlockFromToEvent event) {
-		Bukkit.broadcastMessage("update");
 		if (event.getToBlock().getType() == Material.REDSTONE_WIRE) {
 			event.setCancelled(true);
 		}else if (event.getToBlock().getType() == Material.REDSTONE_COMPARATOR) {
