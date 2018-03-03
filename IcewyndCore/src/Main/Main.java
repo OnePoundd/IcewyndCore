@@ -62,7 +62,6 @@ import CustomEnchants.Enchanter;
 import CustomEnchants.Enchantments;
 import CustomEnchants.Librarian;
 import McMMO.Milestones;
-import McMMO.Repair;
 import net.milkbowl.vault.economy.Economy;
 
 public class Main extends JavaPlugin implements Listener {
@@ -90,7 +89,6 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new RightClickEvent(), this);
 		manager.registerEvents(new LuckyDrops(), this);
 		manager.registerEvents(new SellWands(), this);
-		manager.registerEvents(new Repair(), this);
 		manager.registerEvents(new Milestones(), this);
 		manager.registerEvents(new Kits(), this);
 		manager.registerEvents(new Freecam(), this);

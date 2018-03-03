@@ -7,16 +7,20 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.PrepareAnvilEvent;
+import org.bukkit.event.inventory.InventoryEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.Repairable;
 
 import Main.Main;
 
@@ -91,7 +95,7 @@ public class Librarian implements Listener {
 					Player player = (Player) event.getWhoClicked();
 					if (player.getLevel() >= 15) {
 						player.setLevel(player.getLevel() - 15);
-						player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_USE, 10, 1);
+						player.playSound(player.getLocation(), Sound.ANVIL_USE, 10, 1);
 						if (player.getInventory().firstEmpty() == -1) {
 							player.sendMessage("§b§l(!)§7 Your inventory is full, dropping item at your feet!");
 							player.getWorld().dropItem(player.getLocation(), event.getClickedInventory().getItem(16));
@@ -104,7 +108,7 @@ public class Librarian implements Listener {
 						player.closeInventory();
 					} else {
 						player.sendMessage("§c§l(!)§7 You cannot afford to do that!");
-						player.playSound(player.getLocation(), Sound.ENTITY_CREEPER_HURT, 10, 1);
+						player.playSound(player.getLocation(), Sound.CREEPER_HISS, 10, 1);
 					}
 				}
 				return;
@@ -307,17 +311,17 @@ public class Librarian implements Listener {
 	}
 
 	@EventHandler
-	public void onAnvilPrepare(PrepareAnvilEvent event) {
-		Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-			public void run() {
-				AnvilInventory anvil = event.getInventory();
-				for (ItemStack item : anvil.getContents()) {
-					if (item != null && item.hasItemMeta()
-							&& (item.getItemMeta().hasLore() || item.getItemMeta().hasDisplayName())) {
-						anvil.setRepairCost(9999);
-					}
+	public static void onAnvilPrepare(InventoryEvent e){
+		Inventory inv = e.getInventory();
+		if(inv instanceof AnvilInventory){
+			AnvilInventory anvil = (AnvilInventory) inv;
+			ItemStack item = anvil.getItem(2);
+			if(item != null) {
+				if(item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
+					anvil.setItem(2, new ItemStack(Material.AIR));
 				}
 			}
-		}, 1);
+		}
 	}
+
 }

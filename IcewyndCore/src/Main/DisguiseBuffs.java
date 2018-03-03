@@ -47,9 +47,11 @@ public class DisguiseBuffs implements Listener{
 			Player rightClickedPlayer = (Player) event.getRightClicked();
 			if(DisguiseAPI.isDisguised(rightClickedPlayer)){
 				if(DisguiseAPI.getDisguise(rightClickedPlayer).getType().equals(DisguiseType.HORSE)){
-					rightClickedPlayer.addPassenger(player);
-					player.sendMessage("§6You just mounted, §b" + rightClickedPlayer.getName() + "§6!");
-					rightClickedPlayer.sendMessage("§b" + player.getName() + "§6, just mounted you! Type §b/und §6to kick them off!");
+					if(rightClickedPlayer.getPassenger() == null) {
+						rightClickedPlayer.setPassenger(player);
+						player.sendMessage("§6You just mounted, §b" + rightClickedPlayer.getName() + "§6!");
+						rightClickedPlayer.sendMessage("§b" + player.getName() + "§6, just mounted you! Type §b/und §6to kick them off!");
+					}
 				}
 			}
 		}
@@ -60,9 +62,7 @@ public class DisguiseBuffs implements Listener{
 	public void onUndisguise(UndisguiseEvent event) {
 		if(event.getDisguise().getType().equals(DisguiseType.HORSE)) {
 			if(event.getEntity() instanceof Player) {
-				for(Entity entity : event.getEntity().getPassengers()) {
-					event.getEntity().removePassenger(entity);
-				}
+				event.getEntity().setPassenger(null);
 			}
 		}
 	}

@@ -14,7 +14,6 @@ import java.util.Map.Entry;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Arrow;
@@ -176,9 +175,15 @@ public class Enchantments implements Listener {
 						Random rand = new Random();
 						int index = rand.nextInt(20) + 1;
 						if (index == 20) {
-							if (damaged.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE) && damaged
-									.getPotionEffect(PotionEffectType.FIRE_RESISTANCE).getDuration() < 99999) {
-								damaged.removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
+							if (damaged.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE)) {
+								for(PotionEffect potionEffect : damaged.getActivePotionEffects()) {
+									if(potionEffect.getType().equals(PotionEffectType.FIRE_RESISTANCE)) {
+										if(potionEffect.getDuration() < 99999) {
+											damaged.removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
+											break;
+										}
+									}
+								}
 							}
 						}
 					} else if (line.equals("§eShadowstep")) {
@@ -313,8 +318,6 @@ public class Enchantments implements Listener {
 						player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 9999999, 0));
 					} else if (line.equals("§5Vision")) {
 						player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 9999999, 0));
-					} else if (line.equals("§eInsight")) {
-						triggerInsightUpdate(player);
 					}
 				}
 			}
@@ -441,38 +444,7 @@ public class Enchantments implements Listener {
 		}
 	}
 
-	/**
-	 * Neccecities for insight
-	 */
 
-	public void triggerInsightUpdate(Player player) {
-		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-		scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {
-			@Override
-			public void run() {
-				List<Player> players = getNearbyEnemies(player, 20, 50, 20);
-				Map<Player, Integer> playersToOrganise = new HashMap<Player, Integer>();
-				if (players != null) {
-					for (Player player : players) {
-						int count = 0;
-						for (ItemStack item : player.getInventory()) {
-							if (item.getType().equals(Material.SPLASH_POTION)) {
-								count++;
-							}
-						}
-						playersToOrganise.put(player, count);
-					}
-					sortByValue(playersToOrganise);
-					for (Entry<Player, Integer> entry : playersToOrganise.entrySet()) {
-						Location weakLoc = entry.getKey().getLocation();
-						player.spawnParticle(Particle.FLAME, weakLoc.getX(), weakLoc.getY(), weakLoc.getZ(), 10);
-						break;
-					}
-				}
-			}
-		}, 0L, (20L));
-
-	}
 
 	public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
 		List<Map.Entry<K, V>> list = new LinkedList<Map.Entry<K, V>>(map.entrySet());

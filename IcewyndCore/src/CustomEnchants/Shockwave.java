@@ -22,8 +22,7 @@ public class Shockwave {
 	public static void minePickaxe(Player player, Block block) {
 
 		if (BoardColl.get().getFactionAt(PS.valueOf(block.getLocation())).getName().equals("Castle")) {
-			player.getPlayer().getLocation().getWorld().playSound(player.getPlayer().getLocation(),
-					Sound.BLOCK_FIRE_EXTINGUISH, 10, 1);
+			player.getPlayer().getLocation().getWorld().playSound(player.getPlayer().getLocation(), Sound.CREEPER_HISS, 10, 1);
 			player.sendMessage("§c§l(!)§7 You cannot use the shockwave effect in castle territory!");
 			return;
 		}
