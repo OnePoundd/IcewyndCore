@@ -23,10 +23,11 @@ public class Cancels implements Listener {
 		nmsEntity.f(tag);
 	}
 
-	@EventHandler
-	public void onBreed(EntityBreedEvent e) {
-		e.setCancelled(true);
-	}
+	//@EventHandler
+	//public void onBreed(EntityBreedEvent e) {
+		//e.setCancelled(true);
+	//}
+	
 	@EventHandler
 	public void onspawn(EntitySpawnEvent e) {
 		if (e.getEntityType() == EntityType.ENDERMITE) {

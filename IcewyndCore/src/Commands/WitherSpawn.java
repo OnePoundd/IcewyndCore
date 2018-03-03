@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -17,6 +18,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import Main.Main;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
 
 public class WitherSpawn implements CommandExecutor, Listener {
 	Main plugin = Main.getPlugin(Main.class);
@@ -31,7 +33,20 @@ public class WitherSpawn implements CommandExecutor, Listener {
 		}
 		return false;
 	}
+	
+	public void noAI(org.bukkit.entity.Entity bukkitEntity)
+	{
+		net.minecraft.server.v1_8_R3.Entity nmsEntity = ((CraftEntity)bukkitEntity).getHandle();
+		NBTTagCompound tag = nmsEntity.getNBTTag();
+		if (tag == null) {
+			tag = new NBTTagCompound();
+		}
+		nmsEntity.c(tag);
+		tag.setInt("NoAI", 1);
+		nmsEntity.f(tag);
+	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void ondamage(EntityDamageEvent event) {
 		Entity e = event.getEntity();
@@ -48,13 +63,12 @@ public class WitherSpawn implements CommandExecutor, Listener {
 						Bukkit.broadcastMessage("50% Health, summoning Wither Guards");
 						Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
 						e.teleport(WitherSpawn);
-						((LivingEntity) e).setAI(false);
-						WitherSkeleton mob = (WitherSkeleton) Bukkit.getWorld("world")
-								.spawnEntity(WitherSpawn.add(-4, 0, 0), EntityType.WITHER_SKELETON);
-						WitherSkeleton mob2 = (WitherSkeleton) Bukkit.getWorld("world")
-								.spawnEntity(WitherSpawn.add(4, 0, 4), EntityType.WITHER_SKELETON);
-						WitherSkeleton mob3 = (WitherSkeleton) Bukkit.getWorld("world")
-								.spawnEntity(WitherSpawn.add(2, 0, -2), EntityType.WITHER_SKELETON);
+						LivingEntity entity = (LivingEntity) event.getEntity();
+						noAI(entity);
+						@SuppressWarnings("deprecation")
+						WitherSkeleton mob = (EntityType.fromId(5)); Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(-4, 0, 0), EntityType.fromId(5));
+						WitherSkeleton mob2 = (EntityType.fromId(5)); Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(4, 0, 4), EntityType.fromId(5));
+						WitherSkeleton mob3 = (EntityType.fromId(5)); Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(2, 0, -2), EntityType.fromId(5));
 						mob.setCustomName("§c§lWithered Minion");
 						mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
 						mob2.setCustomName("§c§lWithered Minion");
