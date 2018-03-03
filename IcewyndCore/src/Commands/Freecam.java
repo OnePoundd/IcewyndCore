@@ -19,11 +19,11 @@ Main plugin = Main.getPlugin(Main.class);
 			Player player = (Player) sender;
 			if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Freecam") == false) {
 				plugin.getConfig().set(player.getUniqueId() + ".Freecam", true);
-				player.sendMessage("งeงl(!)ง7 Freecam has been enabled!");
+				player.sendMessage("ยงeยงl(!)ยง7 Freecam has been enabled!");
 				player.setGameMode(GameMode.SPECTATOR);
 			}else if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Freecam") == true) {
 				plugin.getConfig().set(player.getUniqueId() + ".Freecam", false);
-				player.sendMessage("งeงl(!)ง7 Freecam has been disabled!");
+				player.sendMessage("ยงeยงl(!)ยง7 Freecam has been disabled!");
 				player.setGameMode(GameMode.SURVIVAL);
 			}
 		}
@@ -36,6 +36,10 @@ Main plugin = Main.getPlugin(Main.class);
 			player.teleport(player.getWorld().getSpawnLocation());
 			player.setGameMode(GameMode.SURVIVAL);
 			plugin.getConfig().set(player.getUniqueId() + ".Freecam", false);
+			plugin.getConfig().set(player.getUniqueId() + ".Seen", System.currentTimeMillis());
+			int playersonline = plugin.getConfig().getInt(".PlayersOnline");
+			plugin.getConfig().set(".PlayersOnline", playersonline - 1);
+			plugin.saveConfig();
 		}
 	}
 }
