@@ -6,9 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerQuitEvent;
 import Main.Main;
 
 public class Seen implements CommandExecutor, Listener{
@@ -33,21 +31,17 @@ public class Seen implements CommandExecutor, Listener{
 							int minutes = (int) (time - (days*1000*60*60*24) - (hours*1000*60*60)) / (1000*60);
 							int seconds = (int) (time - (days*1000*60*60*24) - (hours*1000*60*60) - (minutes*1000*60)) / 1000;
 
-							player.sendMessage("§b" + target.getName() + "§e has been offline for §b" + days + "§e days §b" + minutes + "§e minutes and §b" + seconds + "§e seconds");
+							player.sendMessage("Â§b" + target.getName() + "Â§e has been offline for Â§b" + days + "Â§e days Â§b" + minutes + "Â§e minutes and Â§b" + seconds + "Â§e seconds");
 						}
 					}else {
-						player.sendMessage("§cThat player cannot be found.");
+						player.sendMessage("Â§cThat player cannot be found.");
 					}
 				}
 			}
 		}
 		return false;
 	}
-
-	@EventHandler
-	public void onLogout(PlayerQuitEvent event) {
-		Player player = event.getPlayer();
-		plugin.getConfig().set(player.getUniqueId() + ".Seen", System.currentTimeMillis());
+}
 		plugin.saveConfig();
 	}
 }
