@@ -52,7 +52,6 @@ import Commands.Shop;
 import Commands.Stats;
 import Commands.Suicide;
 import Commands.TwitchBroadcast;
-import Commands.WitherSpawn;
 import Commands.YoutubeBroadcast;
 import Crates.CrateEventListener;
 import Crates.EventCrate;
@@ -97,7 +96,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new DisguiseBuffs(), this);
 		manager.registerEvents(new BossEggs(), this);
 		manager.registerEvents(new Seen(), this);
-		manager.registerEvents(new WitherSpawn(), this);
+		//manager.registerEvents(new WitherSpawn(), this);
 
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -128,7 +127,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("list").setExecutor(new List());
 		getCommand("suicide").setExecutor(new Suicide());
 		getCommand("seen").setExecutor(new Seen());
-		getCommand("witherspawn").setExecutor(new WitherSpawn());
+		//getCommand("witherspawn").setExecutor(new WitherSpawn());
 		getCommand("reset").setExecutor(new Reset());
 		getCommand("sandstone").setExecutor(new Crates());
 		getCommand("xpgive").setExecutor(new Crates());

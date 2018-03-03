@@ -95,7 +95,6 @@ public class DisguiseBuffs implements Listener{
 	}
 
 	//BLAZE
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInterract(PlayerInteractEvent event) {
 		if(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
