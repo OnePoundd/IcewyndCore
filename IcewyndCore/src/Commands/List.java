@@ -14,6 +14,7 @@ public class List implements CommandExecutor{
 		if (cmd.getName().equalsIgnoreCase("list")) {
 			if (sender instanceof Player) {
 				sender.sendMessage("Admins:");
+				sender.sendMessage("Players online: " + plugin.getConfig().getInt(".PlayersOnline"));
 			}
 		}
 		return false;
