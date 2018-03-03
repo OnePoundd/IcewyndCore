@@ -49,35 +49,35 @@ public class Misc implements Listener {
 	public void onJoin(PlayerJoinEvent event) throws InvocationTargetException {
 		Player player = event.getPlayer();
 		// MOTD
-		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
-		player.sendMessage("        §f§lCONNECTED TO §b§lICEWYND §b§lFACTIONS");
-		player.sendMessage("                         §f(§b1.7.10 §f- §b1.12§f)");
+		player.sendMessage("Â§fÂ§lÂ§m-----------Â§bÂ§lÂ§m-----------Â§fÂ§lÂ§m-----------");
+		player.sendMessage("        Â§fÂ§lCONNECTED TO Â§bÂ§lICEWYND Â§bÂ§lFACTIONS");
+		player.sendMessage("                         Â§f(Â§b1.7.10 Â§f- Â§b1.12Â§f)");
 		player.sendMessage("");
-		player.sendMessage("§b§lFORUMS: §fIcewynd.net");
-		player.sendMessage("§b§lDISCORD: §fIcewynd.net/Discord");
-		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
-		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
+		player.sendMessage("Â§bÂ§lFORUMS: Â§fIcewynd.net");
+		player.sendMessage("Â§bÂ§lDISCORD: Â§fIcewynd.net/Discord");
+		player.sendMessage("Â§bÂ§lSTORE: Â§fIcewynd.net/Store");
+		player.sendMessage("Â§fÂ§lÂ§m-----------Â§bÂ§lÂ§m-----------Â§fÂ§lÂ§m-----------");
 		//Scoreboard
 		
 		XoreBoard xoreBoard = XoreBoardUtil.getNextXoreBoard();
 		xoreBoard.addPlayer(player);
 		XoreBoardPlayerSidebar sidebar = xoreBoard.getSidebar(player);
-		sidebar.setDisplayName("§b§lIcewynd.net");
+		sidebar.setDisplayName("Â§bÂ§lIcewynd.net");
 		sidebar.showSidebar();
 		HashMap<String, Integer> lines = new HashMap<>();
-		lines.put("§l§7§m------------", 9);
-		lines.put("§a§lFaction:", 8);
+		lines.put("Â§lÂ§7Â§m------------", 9);
+		lines.put("Â§aÂ§lFaction:", 8);
 		MPlayer mplayer = MPlayer.get(player);
 		String faction = mplayer.getFactionName();
-		lines.put("§7»§f " + StringUtils.capitalize(faction), 7);
-		lines.put("§b", 6);
-		lines.put("§d§lPing:", 5);
+		lines.put("Â§7Â»Â§f " + StringUtils.capitalize(faction), 7);
+		lines.put("Â§b", 6);
+		lines.put("Â§dÂ§lPing:", 5);
 		int ping = ((CraftPlayer) player).getHandle().ping;
-		lines.put("§7»§f " + ping, 4);
-		lines.put("§f", 3);
-		lines.put("§a§lBalance:", 2);
-		lines.put("§7»§f $" + Main.econ.getBalance(player), 1);
-		lines.put("§7§l§m------------", 0);
+		lines.put("Â§7Â»Â§f " + ping, 4);
+		lines.put("Â§f", 3);
+		lines.put("Â§aÂ§lBalance:", 2);
+		lines.put("Â§7Â»Â§f $" + Main.econ.getBalance(player), 1);
+		lines.put("Â§7Â§lÂ§m------------", 0);
 		sidebar.rewriteLines(lines);
 		sidebar.showSidebar();
 
@@ -99,13 +99,13 @@ public class Misc implements Listener {
 		// TabList foot/header
 		PacketContainer packetContainer = Main.protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
 		packetContainer.getChatComponents().write(0, WrappedChatComponent.fromText(
-				" §8§l§m-§7§l§m-§f§l[§f ICEWYND §bNETWORK§f§l ]§7§l§m-§8§l§m-§r "))
-		.write(1, WrappedChatComponent.fromText("§dStore, forums and more at Icewynd.net"));
+				" Â§8Â§lÂ§m-Â§7Â§lÂ§m-Â§fÂ§l[Â§f ICEWYND Â§bNETWORKÂ§fÂ§l ]Â§7Â§lÂ§m-Â§8Â§lÂ§m-Â§r "))
+		.write(1, WrappedChatComponent.fromText("Â§dStore, forums and more at Icewynd.net"));
 		ProtocolLibrary.getProtocolManager().sendServerPacket(player, packetContainer);
 
 		// New Player Announce
 		if (!player.hasPlayedBefore()) {
-			Bukkit.broadcastMessage("§b§lWelcome to Icewynd, §f§l" + player.getName() + "§b§l!");
+			Bukkit.broadcastMessage("Â§bÂ§lWelcome to Icewynd, Â§fÂ§l" + player.getName() + "Â§bÂ§l!");
 			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
 			plugin.getConfig().set(player.getUniqueId() + ".Coins", 0);
 			plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
@@ -134,8 +134,8 @@ public class Misc implements Listener {
 		if (e.getPlayer().getWorld().getName().equals("world")) {
 			ItemStack GenBucket = new ItemStack(Material.LAVA_BUCKET, 1);
 			ItemMeta meta = GenBucket.getItemMeta();
-			meta.setDisplayName("§c§lGen Bucket");
-			meta.setLore(Arrays.asList("§7Automatically generates cobblestone walls."));
+			meta.setDisplayName("Â§cÂ§lGen Bucket");
+			meta.setLore(Arrays.asList("Â§7Automatically generates cobblestone walls."));
 			GenBucket.setItemMeta(meta);
 			e.getPlayer().getInventory().getItemInHand()
 			.setAmount(e.getPlayer().getInventory().getItemInHand().getAmount() - 1);
@@ -154,7 +154,7 @@ public class Misc implements Listener {
 		} else if ((event.getEntity().getKiller() instanceof Player)) {
 			ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
 			SkullMeta sm = (SkullMeta) skull.getItemMeta();
-			sm.setDisplayName("§c§lSkull of §7§l" + event.getEntity().getPlayer().getName());
+			sm.setDisplayName("Â§cÂ§lSkull of Â§7Â§l" + event.getEntity().getPlayer().getName());
 			sm.setOwner(event.getEntity().getPlayer().getName());
 			skull.setItemMeta(sm);
 			event.getDrops().add(skull);
@@ -186,7 +186,7 @@ public class Misc implements Listener {
 	@EventHandler
 	public void onServerListPing(ServerListPingEvent s) {
 		s.setMotd(
-				"         §8§l§m-§7§l§m-§f§l[§f §lICEWYND §b§lNETWORK §f§l- §a1.7 - 1.12 §f§l]§7§l§m-§8§l§m-§r                      §c§lFACTIONS MAP 1 LIVE!§7 / §9§l25% OFF SALE");
+				"         Â§8Â§lÂ§m-Â§7Â§lÂ§m-Â§fÂ§l[Â§f Â§lICEWYND Â§bÂ§lNETWORK Â§fÂ§l- Â§a1.7 - 1.12 Â§fÂ§l]Â§7Â§lÂ§m-Â§8Â§lÂ§m-Â§r                      Â§cÂ§lFACTIONS MAP 1 LIVE!Â§7 / Â§9Â§l25% OFF SALE");
 		s.setMaxPlayers(0);
 	}
 
