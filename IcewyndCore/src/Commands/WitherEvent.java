@@ -8,21 +8,19 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Wither;
 import org.bukkit.entity.Skeleton.SkeletonType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import Main.Main;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 
-public class WitherSpawn implements CommandExecutor, Listener {
+public class WitherEvent implements CommandExecutor, Listener {
 	Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -48,7 +46,7 @@ public class WitherSpawn implements CommandExecutor, Listener {
 		nmsEntity.f(tag);
 	}
 
-	@SuppressWarnings("deprecation")
+	/*@SuppressWarnings("deprecation")
 	@EventHandler
 	public void ondamage(EntityDamageEvent event) {
 		Entity e = event.getEntity();
@@ -93,9 +91,8 @@ public class WitherSpawn implements CommandExecutor, Listener {
 				}
 			}
 		}
-	}
+	}*/
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void ondeath(EntityDeathEvent event) {
 		int totalKilled = plugin.getConfig().getInt(".WitherSkeletons");

@@ -52,13 +52,13 @@ import Commands.Shop;
 import Commands.Stats;
 import Commands.Suicide;
 import Commands.TwitchBroadcast;
+import Commands.WitherEvent;
 import Commands.YoutubeBroadcast;
 import Crates.CrateEventListener;
 import Crates.EventCrate;
 import Crates.ExoticCrate;
 import Crates.LegendaryCrate;
 import CustomEnchants.Enchanter;
-import CustomEnchants.Enchantments;
 import CustomEnchants.Librarian;
 import McMMO.Milestones;
 import net.milkbowl.vault.economy.Economy;
@@ -74,7 +74,7 @@ public class Main extends JavaPlugin implements Listener {
 		Main.protocolManager = ProtocolLibrary.getProtocolManager();
 		manager.registerEvents(this, this);
 		manager.registerEvents(new CrateEventListener(), this);
-		manager.registerEvents(new Enchantments(), this);
+		//manager.registerEvents(new Enchantments(), this);
 		manager.registerEvents(new Librarian(), this);
 		manager.registerEvents(new Enchanter(), this);
 		manager.registerEvents(new SilkSpawners(), this);
@@ -96,7 +96,8 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new DisguiseBuffs(), this);
 		manager.registerEvents(new BossEggs(), this);
 		manager.registerEvents(new Seen(), this);
-		//manager.registerEvents(new WitherSpawn(), this);
+		manager.registerEvents(new WitherEvent(), this);
+		manager.registerEvents(new NoWaterRedstone(), this);
 
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -127,7 +128,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("list").setExecutor(new List());
 		getCommand("suicide").setExecutor(new Suicide());
 		getCommand("seen").setExecutor(new Seen());
-		//getCommand("witherspawn").setExecutor(new WitherSpawn());
+		getCommand("witherspawn").setExecutor(new WitherEvent());
 		getCommand("reset").setExecutor(new Reset());
 		getCommand("sandstone").setExecutor(new Crates());
 		getCommand("xpgive").setExecutor(new Crates());
@@ -232,7 +233,7 @@ public class Main extends JavaPlugin implements Listener {
 		WitherBossEvent.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
-				Bukkit.broadcastMessage("Spawn Message");
+				Bukkit.broadcastMessage("§7The §cWither King §7was spotted north of Safezone!");
 				Location WitherSpawn = (Location)(getConfig()).get(".WitherSpawn");
 				Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn, EntityType.WITHER);
 				mob.setCustomName("§4§l§nWither King");
