@@ -10,10 +10,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import Main.Main;
+
 
 public class Overwatch implements CommandExecutor{
-	Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("ow")) {
@@ -24,32 +23,45 @@ public class Overwatch implements CommandExecutor{
 						if (args[0].equalsIgnoreCase("on")) {
 							ItemStack RandomTP = new ItemStack(Material.EYE_OF_ENDER, 1);
 							ItemMeta meta = RandomTP.getItemMeta();
-							meta.setDisplayName("§d§lRandom TP");
-							meta.setLore(Arrays.asList("§eTeleport to a random player."));
+							meta.setDisplayName("Â§dÂ§lRandom TP");
+							meta.setLore(Arrays.asList("Â§eTeleport to a random player."));
 							RandomTP.setItemMeta(meta);
 
 							ItemStack OpenInv = new ItemStack(Material.BLAZE_ROD, 1);
 							ItemMeta meta1 = OpenInv.getItemMeta();
-							meta1.setDisplayName("§9§lOpen Inventory");
-							meta1.setLore(Arrays.asList("§eOpen target players inventory."));
+							meta1.setDisplayName("Â§9Â§lOpen Inventory");
+							meta1.setLore(Arrays.asList("Â§eOpen target players inventory."));
 							OpenInv.setItemMeta(meta1);
 
 							ItemStack PInfo = new ItemStack(Material.BOOK, 1);
 							ItemMeta meta2 = PInfo.getItemMeta();
-							meta2.setDisplayName("§b§lPlayer Info");
-							meta2.setLore(Arrays.asList("§eView targeted players information"));
+							meta2.setDisplayName("Â§bÂ§lPlayer Info");
+							meta2.setLore(Arrays.asList("Â§eView targeted players information"));
 							PInfo.setItemMeta(meta2);
 
 							player.getInventory().setItem(0, RandomTP);
 							player.getInventory().setItem(2, OpenInv);
 							player.getInventory().setItem(4, PInfo);
-							player.sendMessage("§d§l(!) §a§lOverwatch Enabled!");
+							player.sendMessage("Â§dÂ§l(!) Â§aÂ§lOverwatch Enabled!");
 						} else if (args[0].equalsIgnoreCase("off")) {
 							if (player.hasPermission("server.admin")) {
 								player.getInventory().clear();
 								Location spawn = player.getWorld().getSpawnLocation();
 								player.teleport(spawn);
-								player.sendMessage("§d§l(!) §c§lOverwatch Disabled!");
+								player.sendMessage("Â§dÂ§l(!) Â§cÂ§lOverwatch Disabled!");
+
+
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+}
+								player.teleport(spawn);
+								player.sendMessage("Â§dÂ§l(!) Â§cÂ§lOverwatch Disabled!");
 
 
 							}
