@@ -5,6 +5,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import Main.Main;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class Rules implements CommandExecutor{
 	Main plugin = Main.getPlugin(Main.class);
@@ -13,12 +15,14 @@ public class Rules implements CommandExecutor{
 		if (cmd.getName().equalsIgnoreCase("rules")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
-				player.sendMessage("§8§l§m--------§8§l[§a§l Rules §8§l]§8§l§m--------");
-				player.sendMessage("§eClick here for more indepth rules.");
-				player.sendMessage("§a[1]§f Do not spam chat excessively.");
-				player.sendMessage("§a[2]§f Do not be excessively racist in chat.");
-				player.sendMessage("§a[3]§f Do not run scripts, macros or clients to change gameplay.");
-				player.sendMessage("§a[4]§f Do not discuss DDoSing or Doxing.");
+				player.sendMessage("Â§8Â§lÂ§m--------Â§8Â§l[Â§aÂ§l Rules Â§8Â§l]Â§8Â§lÂ§m--------");
+				TextComponent text = new TextComponent("Â§eClick here for more indepth rules.");
+				text.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://Icewynd.net/community/"));
+				player.sendMessage(text);
+				player.sendMessage("Â§a[1]Â§f Do not spam chat excessively.");
+				player.sendMessage("Â§a[2]Â§f Do not be excessively racist in chat.");
+				player.sendMessage("Â§a[3]Â§f Do not run scripts, macros or cheats.");
+				player.sendMessage("Â§a[4]Â§f Do not discuss DDoSing or Doxing.");
 				}
 		}
 		return false;
