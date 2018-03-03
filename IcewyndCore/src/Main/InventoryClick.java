@@ -20,7 +20,7 @@ public class InventoryClick implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
 		Inventory inv = event.getInventory();
-		if (!inv.getTitle().equals("§8» §9§lItems QuarterMaster"))
+		if (!inv.getTitle().equals("Â§8Â» Â§9Â§lItems QuarterMaster"))
 			return;
 		if (!(event.getWhoClicked() instanceof Player))
 			return;
@@ -30,7 +30,7 @@ public class InventoryClick implements Listener {
 
 		// Inventory space check
 		if (player.getInventory().firstEmpty() == -1) {
-			player.sendMessage("§cYou do not have the required inventory space.");
+			player.sendMessage("Â§cYou do not have the required inventory space.");
 			event.setCancelled(true);
 			player.closeInventory();
 		} else 
@@ -39,47 +39,47 @@ public class InventoryClick implements Listener {
 				ItemStack Item1 = new ItemStack(Material.TRAPPED_CHEST, 1);
 				ItemMeta Item1Meta = Item1.getItemMeta();
 				List<String> lore1 = new ArrayList<String>();
-				Item1Meta.setDisplayName("§c§l§nCrate of TNT");
-				lore1.add("§7Empty your inventory then right click!");
+				Item1Meta.setDisplayName("Â§cÂ§lÂ§nCrate of TNT");
+				lore1.add("Â§7Empty your inventory then right click!");
 				Item1Meta.setLore(lore1);
 				Item1.setItemMeta(Item1Meta);
-				player.sendMessage("§aPurchased 1 Crate of TNT!");
+				player.sendMessage("Â§aPurchased 1 Crate of TNT!");
 				player.getInventory().addItem(new ItemStack(Item1));
 			} else if (item.getType() == Material.DIAMOND_PICKAXE) {
 				ItemStack Item2 = new ItemStack(Material.DIAMOND_PICKAXE, 1);
 				ItemMeta Item2Meta = Item2.getItemMeta();
 				List<String> lore2 = new ArrayList<String>();
-				Item2Meta.setDisplayName("§d§l§nExotic Pickaxe");
-				lore2.add("§f");
-				lore2.add("§a§lCustom Enchantments:");
-				lore2.add("§eShockwave");
-				lore2.add("§eSilk Feet");
+				Item2Meta.setDisplayName("Â§dÂ§lÂ§nExotic Pickaxe");
+				lore2.add("Â§f");
+				lore2.add("Â§aÂ§lCustom Enchantments:");
+				lore2.add("Â§eShockwave");
+				lore2.add("Â§eSilk Feet");
 				Item2Meta.setLore(lore2);
 				Item2Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
 				Item2Meta.addEnchant(Enchantment.DURABILITY, 3, true);
 				Item2.setItemMeta(Item2Meta);
-				player.sendMessage("§aPurchased 1 Exotic Pickaxe!");
+				player.sendMessage("Â§aPurchased 1 Exotic Pickaxe!");
 				player.getInventory().addItem(new ItemStack(Item2));
 			} else if (item.getType() == Material.BEDROCK) {
 				ItemStack Item3 = new ItemStack(Material.BEDROCK, 8);
 				ItemMeta Item3Meta = Item3.getItemMeta();
 				List<String> lore3 = new ArrayList<String>();
-				Item3Meta.setDisplayName("§8§l§nHardened Bedrock");
-				lore3.add("§7Destructible block with 100 block durability!");
+				Item3Meta.setDisplayName("Â§8Â§lÂ§nHardened Bedrock");
+				lore3.add("Â§7Destructible block with 100 block durability!");
 				Item3Meta.setLore(lore3);
 				Item3.setItemMeta(Item3Meta);
-				player.sendMessage("§aPurchased 8 Bedrock!");
+				player.sendMessage("Â§aPurchased 8 Bedrock!");
 				player.getInventory().addItem(new ItemStack(Item3));
 			} else if (item.getType() == Material.MONSTER_EGG) {
 				ItemStack Item4 = new ItemStack(Material.MONSTER_EGG, 1);
 				Item4.setDurability(EntityType.CREEPER.getTypeId());
 				ItemMeta Item4Meta = Item4.getItemMeta();
 				List<String> lore4 = new ArrayList<String>();
-				Item4Meta.setDisplayName("§a§l§nCharged Creeper Egg");
-				lore4.add("§7Spawns a charged creeper!");
+				Item4Meta.setDisplayName("Â§aÂ§lÂ§nCharged Creeper Egg");
+				lore4.add("Â§7Spawns a charged creeper!");
 				Item4Meta.setLore(lore4);
 				Item4.setItemMeta(Item4Meta);
-				player.sendMessage("§aPurchased 1 Charged Creeper Egg!");
+				player.sendMessage("Â§aPurchased 1 Charged Creeper Egg!");
 				player.getInventory().addItem(new ItemStack(Item4));
 			} else if (item.getType() == Material.MOB_SPAWNER) {
 				ItemStack Item5 = new ItemStack(Material.MOB_SPAWNER, 1);
@@ -87,25 +87,90 @@ public class InventoryClick implements Listener {
 				List<String> lore5 = new ArrayList<String>();
 				Item5Meta.addEnchant(Enchantment.DIG_SPEED, 1, true);
 				Item5Meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-				Item5Meta.setDisplayName("§d§l§nMystery Spawner");
-				lore5.add("§7Rewards the player with 1 random spawner out of 5");
-				lore5.add("§1");
-				lore5.add("§cPrice: §f5 Coins");
+				Item5Meta.setDisplayName("Â§dÂ§lÂ§nMystery Spawner");
+				lore5.add("Â§7Rewards the player with 1 random spawner out of 5");
+				lore5.add("Â§1");
+				lore5.add("Â§cPrice: Â§f5 Coins");
 				Item5Meta.setLore(lore5);
 				Item5.setItemMeta(Item5Meta);
-				player.sendMessage("§aPurchased 1 Mystery Spawner");
+				player.sendMessage("Â§aPurchased 1 Mystery Spawner");
 				player.getInventory().addItem(new ItemStack(Item5));
 			} else if (item.getType() == Material.POTION) {
 				ItemStack Item6 = new ItemStack(Material.POTION, 1);
 				ItemMeta Item6Meta = Item6.getItemMeta();
 				List<String> lore6 = new ArrayList<String>();
-				Item6Meta.setDisplayName("§4§l§nElixir of Fury");
-				lore6.add("§eSpeed II (1:30)");
-				lore6.add("§eStrength II (1:30)");
-				lore6.add("§eFire Resistence (8:00)");
+				Item6Meta.setDisplayName("Â§4Â§lÂ§nElixir of Fury");
+				lore6.add("Â§eSpeed II (1:30)");
+				lore6.add("Â§eStrength II (1:30)");
+				lore6.add("Â§eFire Resistence (8:00)");
 				Item6Meta.setLore(lore6);
 				Item6.setItemMeta(Item6Meta);
-				player.sendMessage("§aPurchased 1 Elixir of Fury");
+				player.sendMessage("Â§aPurchased 1 Elixir of Fury");
+				player.getInventory().addItem(new ItemStack(Item6));
+			}
+		event.setCancelled(true);
+		player.closeInventory();
+	}
+}
+
+				List<String> lore2 = new ArrayList<String>();
+				Item2Meta.setDisplayName("Â§dÂ§lÂ§nExotic Pickaxe");
+				lore2.add("Â§f");
+				lore2.add("Â§aÂ§lCustom Enchantments:");
+				lore2.add("Â§eShockwave");
+				lore2.add("Â§eSilk Feet");
+				Item2Meta.setLore(lore2);
+				Item2Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
+				Item2Meta.addEnchant(Enchantment.DURABILITY, 3, true);
+				Item2.setItemMeta(Item2Meta);
+				player.sendMessage("Â§aPurchased 1 Exotic Pickaxe!");
+				player.getInventory().addItem(new ItemStack(Item2));
+			} else if (item.getType() == Material.BEDROCK) {
+				ItemStack Item3 = new ItemStack(Material.BEDROCK, 8);
+				ItemMeta Item3Meta = Item3.getItemMeta();
+				List<String> lore3 = new ArrayList<String>();
+				Item3Meta.setDisplayName("Â§8Â§lÂ§nHardened Bedrock");
+				lore3.add("Â§7Destructible block with 100 block durability!");
+				Item3Meta.setLore(lore3);
+				Item3.setItemMeta(Item3Meta);
+				player.sendMessage("Â§aPurchased 8 Bedrock!");
+				player.getInventory().addItem(new ItemStack(Item3));
+			} else if (item.getType() == Material.MONSTER_EGG) {
+				ItemStack Item4 = new ItemStack(Material.MONSTER_EGG, 1);
+				Item4.setDurability(EntityType.CREEPER.getTypeId());
+				ItemMeta Item4Meta = Item4.getItemMeta();
+				List<String> lore4 = new ArrayList<String>();
+				Item4Meta.setDisplayName("Â§aÂ§lÂ§nCharged Creeper Egg");
+				lore4.add("Â§7Spawns a charged creeper!");
+				Item4Meta.setLore(lore4);
+				Item4.setItemMeta(Item4Meta);
+				player.sendMessage("Â§aPurchased 1 Charged Creeper Egg!");
+				player.getInventory().addItem(new ItemStack(Item4));
+			} else if (item.getType() == Material.MOB_SPAWNER) {
+				ItemStack Item5 = new ItemStack(Material.MOB_SPAWNER, 1);
+				ItemMeta Item5Meta = Item5.getItemMeta();
+				List<String> lore5 = new ArrayList<String>();
+				Item5Meta.addEnchant(Enchantment.DIG_SPEED, 1, true);
+				Item5Meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+				Item5Meta.setDisplayName("Â§dÂ§lÂ§nMystery Spawner");
+				lore5.add("Â§7Rewards the player with 1 random spawner out of 5");
+				lore5.add("Â§1");
+				lore5.add("Â§cPrice: Â§f5 Coins");
+				Item5Meta.setLore(lore5);
+				Item5.setItemMeta(Item5Meta);
+				player.sendMessage("Â§aPurchased 1 Mystery Spawner");
+				player.getInventory().addItem(new ItemStack(Item5));
+			} else if (item.getType() == Material.POTION) {
+				ItemStack Item6 = new ItemStack(Material.POTION, 1);
+				ItemMeta Item6Meta = Item6.getItemMeta();
+				List<String> lore6 = new ArrayList<String>();
+				Item6Meta.setDisplayName("Â§4Â§lÂ§nElixir of Fury");
+				lore6.add("Â§eSpeed II (1:30)");
+				lore6.add("Â§eStrength II (1:30)");
+				lore6.add("Â§eFire Resistence (8:00)");
+				Item6Meta.setLore(lore6);
+				Item6.setItemMeta(Item6Meta);
+				player.sendMessage("Â§aPurchased 1 Elixir of Fury");
 				player.getInventory().addItem(new ItemStack(Item6));
 			}
 		event.setCancelled(true);
