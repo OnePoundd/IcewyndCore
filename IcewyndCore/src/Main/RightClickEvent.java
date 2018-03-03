@@ -34,6 +34,7 @@ public class RightClickEvent implements Listener {
 	 * {
 	 */
 
+	@SuppressWarnings("deprecation")
 	// Quartermaster Items
 	@EventHandler
 	public void onPlayerUse(PlayerInteractEvent event) {
@@ -41,22 +42,16 @@ public class RightClickEvent implements Listener {
 			Player player = event.getPlayer();
 			if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
 				if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßcßlPlagued Skeleton")) {
-					player.getInventory().getItemInHand()
-							.setAmount(player.getInventory().getItemInHand().getAmount() - 1);
-					player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0),
-							EntityType.WITHER_SKELETON);
+					player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+					player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0),EntityType.fromId(5));
 					Block block = event.getClickedBlock();
 					Location locB = block.getLocation().getBlock().getLocation();
 					MPlayer mplayer = MPlayer.get(player);
 					String faction = mplayer.getFactionName();
 
-					String nut = "ßdßlBOSS EGGSß8ßl ª ß7ßlA ßcPlagued Skeleton ß7ßlhas been summoned ß7ßlto Warzone by ßeßl"
-							+ StringUtils.capitalize(faction) + "ß7ßl! ßfCoords: [" + locB.getBlockX() + ", "
-							+ locB.getBlockY() + ", " + locB.getBlockZ() + "]";
+					String nut = "ßdßlBOSS EGGSß8ßl ª ß7ßlA ßcPlagued Skeleton ß7ßlhas been summoned ß7ßlto Warzone by ßeßl" + StringUtils.capitalize(faction) + "ß7ßl! ßfCoords: [" + locB.getBlockX() + ", " + locB.getBlockY() + ", " + locB.getBlockZ() + "]";
 					TextComponent text = new TextComponent(nut);
-					text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(
-							"ßcßlPlagued Skeleton \n \nßcßlRare ß7ßlboss egg that can be summoned in the Warzone. \nß7ßlSlay this boss to be rewarded with a prize! \n \nßcßlDifficulty: ß75 Players")
-									.create()));
+					text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("ßcßlPlagued Skeleton \n \nßcßlRare ß7ßlboss egg that can be summoned in the Warzone. \nß7ßlSlay this boss to be rewarded with a prize! \n \nßcßlDifficulty: ß75 Players").create()));
 					for (Player player11 : Bukkit.getOnlinePlayers()) {
 						player11.sendMessage(text);
 						block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
@@ -65,10 +60,8 @@ public class RightClickEvent implements Listener {
 					// Charged Creeper
 				} else if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
 					if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßaßlßnCharged Creeper Egg")) {
-						player.getInventory().getItemInHand()
-								.setAmount(player.getInventory().getItemInHand().getAmount() - 1);
-						player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0),
-								EntityType.CREEPER);
+						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+						player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0),EntityType.CREEPER);
 						Block block = event.getClickedBlock();
 						Location locB = block.getLocation().getBlock().getLocation();
 						block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
@@ -80,8 +73,7 @@ public class RightClickEvent implements Listener {
 							event.setCancelled(true);
 							player.closeInventory();
 						} else {
-							player.getInventory().getItemInHand()
-									.setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+							player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 							player.getInventory().addItem(new ItemStack(Material.TNT, 2304));
 							event.setCancelled(true);
 						}
@@ -97,23 +89,16 @@ public class RightClickEvent implements Listener {
 								Random rand = new Random();
 								int index5 = rand.nextInt(5) + 1;
 								if (index5 == 1) {
-									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-											"spawnergive " + player.getName() + " villager");
-									Bukkit.broadcastMessage(" " + player.getName()
-											+ " was lucky and recieved a ßdßlVillager spawnerßbßl from a Mystery Spawner!"
-											+ " ßdßl≈ì¶");
+									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spawnergive " + player.getName() + " villager");
+									Bukkit.broadcastMessage(" " + player.getName() + " was lucky and recieved a ßdßlVillager spawnerßbßl from a Mystery Spawner!" + " ßdßl≈ì¶");
 								} else if (index5 == 2) {
-									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-											"spawnergive " + player.getName() + " creeper");
+									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " creeper");
 								} else if (index5 == 3) {
-									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-											"spawnergive " + player.getName() + " enderman");
+									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " enderman");
 								} else if (index5 == 4) {
-									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-											"spawnergive " + player.getName() + " blaze");
+									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " blaze");
 								} else if (index5 == 5) {
-									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-											"spawnergive " + player.getName() + " witch");
+									Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " witch");
 								}
 								player.getInventory().getItemInHand()
 										.setAmount(player.getInventory().getItemInHand().getAmount() - 1);
