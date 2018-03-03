@@ -17,13 +17,12 @@ public class TwitchBroadcast implements CommandExecutor{
 		if (cmd.getName().equalsIgnoreCase("twitch")) {
 			Player player = (Player) sender;
 			if (player.hasPermission("server.twitch")) {
-				String link = args[0];
-				if (link.contains("twitch.tv")) {
-					TextComponent message = new TextComponent( "§5§lTWITCH§8§l » §b§l" + player.getName() + " has started streaming! Click here §b§lto check it out." );
-					message.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "" + link ) );
-					Bukkit.broadcast( message );
+				if (args[0].contains("twitch.tv")) {
+					TextComponent message = new TextComponent( "Â§5Â§lTWITCHÂ§8Â§l Â» Â§bÂ§l" + player.getName() + " has started streaming! Click here Â§bÂ§lto check it out." );
+					message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, args[0]));
+					Bukkit.broadcast(message);
 				}else {
-					player.sendMessage("§cYour message must contain a Twitch link!");
+					player.sendMessage("Â§cYour message must contain a Twitch link!");
 				}
 			}
 		}
