@@ -3,7 +3,7 @@
  description: Icewynd Core Systems
  author: OnePoundd
  main: Main.Main
- depend: [Factions]
+ depend:
  commands:
     crategive:
     librarian:

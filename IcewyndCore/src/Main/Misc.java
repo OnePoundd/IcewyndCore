@@ -2,8 +2,6 @@ package Main;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
-import java.util.HashMap;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -27,25 +25,41 @@ import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.scheduler.BukkitScheduler;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.massivecraft.factions.entity.MConf;
-import com.massivecraft.factions.entity.MPlayer;
-import eu.haelexuis.utils.xoreboard.XoreBoard;
-import eu.haelexuis.utils.xoreboard.XoreBoardPlayerSidebar;
-import eu.haelexuis.utils.xoreboard.XoreBoardUtil;
+import me.bowser123467.hikariboard.ScoreboardEvent;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 
 public class Misc implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
+	
+	//Scoreboard
+	@EventHandler
+	public void onScoreboardUpdate(ScoreboardEvent event){
+	  Player player = event.getPlayer();
+	  event.setScoreboardName("§b§lIcewynd.net");
+	  event.setHeader("§7§l§m------------");
+	  event.setFooter("§7§l§m------------");
+	  //MPlayer mplayer = MPlayer.get(player);
+      //String faction = mplayer.getFactionName();
+	  event.writeLine("§a§lFaction: ");
+	  event.writeLine("§7Chaos - 7 Online");
+	  event.writeLine("");
+	  int ping = ((CraftPlayer) player).getHandle().ping;
+	  event.writeLine("§d§lPing:");
+	  event.writeLine("§7" + ping);
+	  event.writeLine("");
+	  event.writeLine("§a§lBalance:");
+	  event.writeLine("§7" + Main.econ.getBalance(player));
+	}
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) throws InvocationTargetException {
 		Player player = event.getPlayer();
-		// MOTD
+		//MOTD
 		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
 		player.sendMessage("        §f§lCONNECTED TO §b§lICEWYND §b§lFACTIONS");
 		player.sendMessage("                         §f(§b1.7.10 §f- §b1.12§f)");
@@ -54,52 +68,15 @@ public class Misc implements Listener {
 		player.sendMessage("§b§lDISCORD: §fIcewynd.net/Discord");
 		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
 		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
-		//Scoreboard
-		
-		XoreBoard xoreBoard = XoreBoardUtil.getNextXoreBoard();
-		xoreBoard.addPlayer(player);
-		XoreBoardPlayerSidebar sidebar = xoreBoard.getSidebar(player);
-		sidebar.setDisplayName("§b§lIcewynd.net");
-		sidebar.showSidebar();
-		HashMap<String, Integer> lines = new HashMap<>();
-		lines.put("§l§7§m------------", 9);
-		lines.put("§a§lFaction:", 8);
-		MPlayer mplayer = MPlayer.get(player);
-		String faction = mplayer.getFactionName();
-		lines.put("§7»§f " + StringUtils.capitalize(faction), 7);
-		lines.put("§b", 6);
-		lines.put("§d§lPing:", 5);
-		int ping = ((CraftPlayer) player).getHandle().ping;
-		lines.put("§7»§f " + ping, 4);
-		lines.put("§f", 3);
-		lines.put("§a§lBalance:", 2);
-		lines.put("§7»§f $" + Main.econ.getBalance(player), 1);
-		lines.put("§7§l§m------------", 0);
-		sidebar.rewriteLines(lines);
-		sidebar.showSidebar();
-
-        BukkitScheduler SBU = plugin.getServer().getScheduler();
-        SBU.scheduleSyncRepeatingTask(plugin, new Runnable() {
-            @Override
-            public void run() {
-                for(Player player : Bukkit.getOnlinePlayers()){
-                    XoreBoard xoreBoard = XoreBoardUtil.getNextXoreBoard();
-                    XoreBoardPlayerSidebar sidebar = xoreBoard.getSidebar(player);
-                    sidebar.setDisplayName("&d&lPretty Display");
-                }
-            }
-        }, 0L, 50L);
 		
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 			player.teleport(MConf.get().getWarp("jail"));
 		}
-		// TabList foot/header
+		//TabList foot/header
 		PacketContainer packetContainer = Main.protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
-		packetContainer.getChatComponents().write(0, WrappedChatComponent.fromText(
-				" §8§l§m-§7§l§m-§f§l[§f ICEWYND §bNETWORK§f§l ]§7§l§m-§8§l§m-§r "))
+		packetContainer.getChatComponents().write(0, WrappedChatComponent.fromText(" §8§l§m-§7§l§m-§f§l[§f ICEWYND §bNETWORK§f§l ]§7§l§m-§8§l§m-§r "))
 		.write(1, WrappedChatComponent.fromText("§dStore, forums and more at Icewynd.net"));
 		ProtocolLibrary.getProtocolManager().sendServerPacket(player, packetContainer);
-
 		// New Player Announce
 		if (!player.hasPlayedBefore()) {
 			Bukkit.broadcastMessage("§b§lWelcome to Icewynd, §f§l" + player.getName() + "§b§l!");
@@ -125,19 +102,19 @@ public class Misc implements Listener {
 	}
 		
 	@EventHandler
-	// GetBucketPickup
-	public void onBucketFill(PlayerBucketFillEvent e) {
-		if (e.getPlayer().getWorld().getName().equals("world")) {
+	//GenBucketPickup
+	public void onBucketFill(PlayerBucketFillEvent event) {
+		if (event.getPlayer().getWorld().getName().equals("world")) {
 			ItemStack GenBucket = new ItemStack(Material.LAVA_BUCKET, 1);
 			ItemMeta meta = GenBucket.getItemMeta();
 			meta.setDisplayName("§c§lGen Bucket");
 			meta.setLore(Arrays.asList("§7Automatically generates cobblestone walls."));
 			GenBucket.setItemMeta(meta);
-			e.getPlayer().getInventory().getItemInHand()
-			.setAmount(e.getPlayer().getInventory().getItemInHand().getAmount() - 1);
-			e.getPlayer().getInventory().addItem(GenBucket);
+			event.getPlayer().getInventory().getItemInHand()
+			.setAmount(event.getPlayer().getInventory().getItemInHand().getAmount() - 1);
+			event.getPlayer().getInventory().addItem(GenBucket);
 		}
-		e.setCancelled(true);
+		event.setCancelled(true);
 	}
 
 	@EventHandler
@@ -159,9 +136,8 @@ public class Misc implements Listener {
 		}
 	}
 
+	//SpongePatch
 	@EventHandler
-	// SpongePatch
-	// Also tracks blocks mined for stats
 	public void onBlockBreakEvent(BlockBreakEvent event) {
 		Player player = event.getPlayer();
 		int blocksmined = plugin.getConfig().getInt(player.getUniqueId() + ".BlocksMined");
@@ -178,6 +154,7 @@ public class Misc implements Listener {
 		}
 	}
 
+	//MOTD
 	@EventHandler
 	public void onServerListPing(ServerListPingEvent s) {
 		s.setMotd(
@@ -185,7 +162,7 @@ public class Misc implements Listener {
 		s.setMaxPlayers(0);
 	}
 
-	// Prevents hoppers picking up spawners
+	//Prevents hoppers picking up spawners
 	@EventHandler
 	public void onHopperPickupItemEvent(InventoryPickupItemEvent event) {
 		if ((event.getInventory().getType().equals(InventoryType.HOPPER))
@@ -194,7 +171,7 @@ public class Misc implements Listener {
 		}
 	}
 
-	// Prevents players brewing invisibility potions
+	//Prevents players brewing invisibility potions
 	@EventHandler
 	public void onBrewEvent(BrewEvent event) {
 		if (event.getContents().contains(Material.FERMENTED_SPIDER_EYE)) {
@@ -202,7 +179,7 @@ public class Misc implements Listener {
 		}
 	}
 
-	// Bedrock exploit patch
+	//Bedrock exploit patch
 	@EventHandler
 	public void onExtend(BlockPistonExtendEvent event) {
 		if (event.getBlock().getLocation().getBlockY() <= 12) {
@@ -216,7 +193,7 @@ public class Misc implements Listener {
 		}
 	}
 
-	// Prevents players crafting hoppers
+	//Prevents players crafting hoppers
 	@EventHandler
 	public void onCraftEvent(PrepareItemCraftEvent event) {
 		try {
@@ -228,7 +205,7 @@ public class Misc implements Listener {
 		}
 	}
 
-	// Sign exploit fix
+	//Sign exploit fix
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onSignChange(SignChangeEvent e) {
 		for (int i = 0; i < 4; i++) {
@@ -244,14 +221,14 @@ public class Misc implements Listener {
 		}
 	}
 
-	// prevents explosive block damage caused by fireballs
+	//Prevents explosive block damage caused by fireballs
 	@EventHandler
 	public void onFireball(EntityExplodeEvent event) {
 		if(event.getEntity() instanceof Fireball) {
 			event.blockList().clear();
 		}
 	}
-	// Keep XP on Death
+	//Keep XP on Death
 	@EventHandler
 	public void XPKeep(PlayerDeathEvent event) {
 		if (event.getEntity().getPlayer().hasPermission("server.keepxp")) {
