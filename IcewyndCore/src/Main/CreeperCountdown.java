@@ -10,7 +10,6 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 public class CreeperCountdown implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	// makes a timer appear above the creepers head when ignited with flint and steel
 	public void onCreeperIgniteEvent(PlayerInteractEntityEvent event) {
@@ -20,7 +19,7 @@ public class CreeperCountdown implements Listener {
 				String name = creeper.getName();
 				if (name.equals("Creeper")) {
 					event.setCancelled(true);
-					creeper.setCustomName("งaงl***งbงl3.0งaงl***");
+					creeper.setCustomName("ยงaยงl***ยงbยงl3.0ยงaยงl***");
 					final int task;
 					task = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 						double timer = 3.0;
@@ -30,14 +29,14 @@ public class CreeperCountdown implements Listener {
 							timer = timer - 0.1;
 							String timerString = Double.toString(timer).substring(0, 3);
 							if (timer >= 2.1) {
-								creeper.setCustomName("งaงl***งbงl " + timerString + " งaงl***");
+								creeper.setCustomName("ยงaยงl***ยงbยงl " + timerString + " ยงaยงl***");
 							} else if (timer >= 1.1) {
-								creeper.setCustomName("ง6งl***งbงl " + timerString + " ง6งl***");
+								creeper.setCustomName("ยง6ยงl***ยงbยงl " + timerString + " ยง6ยงl***");
 							} else if (timer >= 0.1) {
-								creeper.setCustomName("งcงl***งbงl " + timerString + " งcงl***");
+								creeper.setCustomName("ยงcยงl***ยงbยงl " + timerString + " ยงcยงl***");
 							} else {
 								if (!creeper.isDead()) {
-									creeper.setCustomName("ง4งl***งbงl 0.0 ง4งl***");
+									creeper.setCustomName("ยง4ยงl***ยงbยงl 0.0 ยง4ยงl***");
 									creeper.damage(1000);
 									creeper.getLocation().getWorld().createExplosion(creeper.getLocation(), 3F);
 								}
@@ -50,7 +49,17 @@ public class CreeperCountdown implements Listener {
 							Bukkit.getScheduler().cancelTask(task);
 						}
 					}, 58);
-				} else if (name.contains("งl***")) {
+				} else if (name.contains("ยงl***")) {
+					event.setCancelled(true);
+				}
+			}
+		}
+	}
+}
+
+						}
+					}, 58);
+				} else if (name.contains("ยงl***")) {
 					event.setCancelled(true);
 				}
 			}
