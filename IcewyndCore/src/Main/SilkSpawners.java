@@ -36,47 +36,127 @@ public class SilkSpawners implements Listener {
 								BlockState blockState = event.getBlock().getState();
 								if (blockState != null) {
 									CreatureSpawner spawner = (CreatureSpawner) blockState;
-									if (name.equalsIgnoreCase("§eCreeper §fSpawner")) {
+									if (name.equalsIgnoreCase("Â§eCreeper Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.CREEPER);
-									} else if (name.equalsIgnoreCase("§eZombie Pigman §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eZombie Pigman Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.PIG_ZOMBIE);
-									} else if (name.equalsIgnoreCase("§eWitch §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eWitch Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.WITCH);
-									} else if (name.equalsIgnoreCase("§eEnderman §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eEnderman Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.ENDERMAN);
-									} else if (name.equalsIgnoreCase("§eBlaze §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eBlaze Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.BLAZE);
-									} else if (name.equalsIgnoreCase("§eVillager §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eVillager Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.VILLAGER);
-									} else if (name.equalsIgnoreCase("§eSquid §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eSquid Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.SQUID);
-									} else if (name.equalsIgnoreCase("§eIron Golem §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eIron Golem Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.IRON_GOLEM);
-									} else if (name.equalsIgnoreCase("§ePig §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§ePig Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.PIG);
-									} else if (name.equalsIgnoreCase("§eCow §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eCow Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.COW);
-									} else if (name.equalsIgnoreCase("§eChicken §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eChicken Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.CHICKEN);
-									} else if (name.equalsIgnoreCase("§eCave Spider §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eCave Spider Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.CAVE_SPIDER);
-									} else if (name.equalsIgnoreCase("§eSpider §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eSpider Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.SPIDER);
-									} else if (name.equalsIgnoreCase("§eZombie §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eZombie Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.ZOMBIE);
-									} else if (name.equalsIgnoreCase("§eSkeleton §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eSkeleton Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.SKELETON);
-									} else if (name.equalsIgnoreCase("§eMagma Cube §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eMagma Cube Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.MAGMA_CUBE);
-									} else if (name.equalsIgnoreCase("§eSlime §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eSlime Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.SLIME);
-									} else if (name.equalsIgnoreCase("§eSheep §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eSheep Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.SHEEP);
-									} else if (name.equalsIgnoreCase("§eWolf §fSpawner")) {
+									} else if (name.equalsIgnoreCase("Â§eWolf Â§fSpawner")) {
 										spawner.setSpawnedType(EntityType.WOLF);
 									}
 									blockState.update();
-									event.getPlayer().sendMessage("§b§l(!)§7 You have placed a "
+									event.getPlayer().sendMessage("Â§bÂ§l(!)Â§7 You have placed a "
+											+ ChatColor.stripColor(name).toLowerCase() + "!");
+								}
+							}
+						}
+					}, 1L);
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void onBlockBreakEvent(BlockBreakEvent event) {
+		if (event.getBlock().getType().equals(Material.MOB_SPAWNER)) {
+			event.setExpToDrop(0);
+			Player player = event.getPlayer();
+			ItemStack item = player.getItemInHand();
+			if (item != null && item.getType().equals(Material.DIAMOND_PICKAXE)) {
+				item.setDurability((short) (item.getDurability() + 200));
+				CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
+				ItemStack spawnerItem = new ItemStack(Material.MOB_SPAWNER);
+				ItemMeta spawnerMeta = spawnerItem.getItemMeta();
+				spawnerMeta.setDisplayName(
+						"Â§e" + (spawner.getCreatureTypeName().replace("_", " ")).toUpperCase() + " Â§fSpawner");
+				spawnerItem.setItemMeta(spawnerMeta);
+				if (item.hasItemMeta() && item.getItemMeta().hasLore()) {
+					for (String s : item.getItemMeta().getLore()) {
+						if (s.equals("Â§eSilk Feet")) {
+							player.getWorld().dropItem(player.getLocation(), spawnerItem);
+							event.getPlayer()
+							.sendMessage("Â§bÂ§l(!)Â§7 You have destroyed a "
+									+ ChatColor.stripColor(
+											spawner.getCreatureTypeName().replace("_", " ").toLowerCase())
+									+ " spawner!");
+							return;
+						}
+					}
+				}
+				if (item.containsEnchantment(Enchantment.SILK_TOUCH)) {
+					player.getWorld().dropItem(event.getBlock().getLocation(), spawnerItem);
+					event.getPlayer()
+					.sendMessage("Â§bÂ§l(!)Â§7 You have destroyed a "
+							+ ChatColor
+							.stripColor(spawner.getCreatureTypeName().replace("_", " ").toLowerCase())
+							+ " spawner!");
+				}
+			}
+		}
+	}
+
+}
+
+									} else if (name.equalsIgnoreCase("Â§eSquid Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.SQUID);
+									} else if (name.equalsIgnoreCase("Â§eIron Golem Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.IRON_GOLEM);
+									} else if (name.equalsIgnoreCase("Â§ePig Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.PIG);
+									} else if (name.equalsIgnoreCase("Â§eCow Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.COW);
+									} else if (name.equalsIgnoreCase("Â§eChicken Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.CHICKEN);
+									} else if (name.equalsIgnoreCase("Â§eCave Spider Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.CAVE_SPIDER);
+									} else if (name.equalsIgnoreCase("Â§eSpider Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.SPIDER);
+									} else if (name.equalsIgnoreCase("Â§eZombie Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.ZOMBIE);
+									} else if (name.equalsIgnoreCase("Â§eSkeleton Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.SKELETON);
+									} else if (name.equalsIgnoreCase("Â§eMagma Cube Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.MAGMA_CUBE);
+									} else if (name.equalsIgnoreCase("Â§eSlime Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.SLIME);
+									} else if (name.equalsIgnoreCase("Â§eSheep Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.SHEEP);
+									} else if (name.equalsIgnoreCase("Â§eWolf Â§fSpawner")) {
+										spawner.setSpawnedType(EntityType.WOLF);
+									}
+									blockState.update();
+									event.getPlayer().sendMessage("Â§bÂ§l(!)Â§7 You have placed a "
 											+ ChatColor.stripColor(name).toLowerCase() + "!");
 								}
 							}
@@ -100,14 +180,14 @@ public class SilkSpawners implements Listener {
 				ItemStack spawnerItem = new ItemStack(Material.MOB_SPAWNER);
 				ItemMeta spawnerMeta = spawnerItem.getItemMeta();
 				spawnerMeta.setDisplayName(
-						"§e" + (spawner.getCreatureTypeName().replace("_", " ")).toUpperCase() + " §fSpawner");
+						"Â§e" + (spawner.getCreatureTypeName().replace("_", " ")).toUpperCase() + " Â§fSpawner");
 				spawnerItem.setItemMeta(spawnerMeta);
 				if (item.hasItemMeta() && item.getItemMeta().hasLore()) {
 					for (String s : item.getItemMeta().getLore()) {
-						if (s.equals("§eSilk Feet")) {
+						if (s.equals("Â§eSilk Feet")) {
 							player.getWorld().dropItem(player.getLocation(), spawnerItem);
 							event.getPlayer()
-							.sendMessage("§b§l(!)§7 You have destroyed a "
+							.sendMessage("Â§bÂ§l(!)Â§7 You have destroyed a "
 									+ ChatColor.stripColor(
 											spawner.getCreatureTypeName().replace("_", " ").toLowerCase())
 									+ " spawner!");
@@ -118,7 +198,7 @@ public class SilkSpawners implements Listener {
 				if (item.containsEnchantment(Enchantment.SILK_TOUCH)) {
 					player.getWorld().dropItem(event.getBlock().getLocation(), spawnerItem);
 					event.getPlayer()
-					.sendMessage("§b§l(!)§7 You have destroyed a "
+					.sendMessage("Â§bÂ§l(!)Â§7 You have destroyed a "
 							+ ChatColor
 							.stripColor(spawner.getCreatureTypeName().replace("_", " ").toLowerCase())
 							+ " spawner!");
