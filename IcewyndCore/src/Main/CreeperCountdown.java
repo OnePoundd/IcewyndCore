@@ -56,13 +56,3 @@ public class CreeperCountdown implements Listener {
 		}
 	}
 }
-
-						}
-					}, 58);
-				} else if (name.contains("§l***")) {
-					event.setCancelled(true);
-				}
-			}
-		}
-	}
-}

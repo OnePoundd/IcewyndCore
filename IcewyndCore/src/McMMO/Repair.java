@@ -64,20 +64,3 @@ public class Repair implements Listener {
 		}
 	}
 }
-
-										int repairCost = repairable.getRepairCost();
-										if (player.getLevel() >= repairCost) {
-											// ANVIL FIX EVENT...
-											int xp = anvil.getRepairCost() * 500;
-											ExperienceAPI.addRawXP(player, SkillType.REPAIR.getName(), xp);
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}

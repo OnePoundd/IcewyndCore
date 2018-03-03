@@ -61,18 +61,3 @@ public class Help implements CommandExecutor {
 		return false;
 	}
 }
-						player.sendMessage("   §b/kit §f- §7Select and spawn in kit crates.");
-						player.sendMessage("   §b/nv §f& §b/nightvision §f- §7Makes it easier to see.");
-						player.sendMessage("   §b/msgtoggle §f& §b/tptoggle §f- §7Toggles messages or teleporting.");
-						player.sendMessage("   §b/patchnotes §f- §7Catch up on the latest weekly update.");
-						player.sendMessage("   §b/rules §f- §7List of server rules");
-						player.sendMessage("   §b/sell §f& §b/sell all §f- §7Opens an inventory to deposit items.");
-						player.sendMessage("   §b/shop §f- §7Opens the server shop GUI.");
-						player.sendMessage("   §b/stats §f- §7Check your server stats, this works on other players.");
-					}
-				}
-			}
-		}
-		return false;
-	}
-}

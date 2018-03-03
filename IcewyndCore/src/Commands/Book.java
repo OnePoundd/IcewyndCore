@@ -55,15 +55,3 @@ public class Book implements CommandExecutor{
 		return false;
 	}
 }
-
-				pages.add(page2);
-
-				bookMeta.setTitle("§a§lNew Player Guide");
-				bookMeta.setAuthor("§fICEWYND §bNETWORK");
-				book.setItemMeta(bookMeta);
-				player.getInventory().addItem(book);
-			}
-		}
-		return false;
-	}
-}

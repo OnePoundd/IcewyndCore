@@ -60,16 +60,3 @@ public class Overwatch implements CommandExecutor{
 		return false;
 	}
 }
-								player.teleport(spawn);
-								player.sendMessage("§d§l(!) §c§lOverwatch Disabled!");
-
-
-							}
-						}
-					}
-				}
-			}
-		}
-		return false;
-	}
-}

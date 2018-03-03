@@ -63,18 +63,3 @@ public class Message implements CommandExecutor{
 		return false;
 	}
 }
-							player.sendMessage("§a§lMe" + " §7» " + "§b" + args[0] + "§7:§f " + messageContents);
-							r.sendMessage("§b" + player.getName() + " §7» " + "§a§lMe§f" + "§7:§f " + messageContents);
-							r.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
-						}
-					}else {
-						player.sendMessage("§c§l(!)§7 Usage: /msg <player> <message>!");
-					}
-				}else {
-					player.sendMessage("§c§l(!)§7 That player is not online!");
-				}
-			}
-		}
-		return false;
-	}
-}

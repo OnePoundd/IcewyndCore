@@ -42,6 +42,3 @@ public class Seen implements CommandExecutor, Listener{
 		return false;
 	}
 }
-		plugin.saveConfig();
-	}
-}
