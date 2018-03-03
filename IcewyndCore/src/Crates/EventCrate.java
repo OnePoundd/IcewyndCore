@@ -32,7 +32,7 @@ public class EventCrate {
 	public static void open(Player player) {
 		// CANCELS EVENT IF PLAYER DOES NOT HAVE 3 OPEN INVENTORY SLOTS
 		int count = 0;
-		for (ItemStack currentItem : player.getInventory().getStorageContents()) {
+		for (ItemStack currentItem : player.getInventory().getContents()) {
 			if (currentItem == null) {
 				count = count + 1;
 			}
