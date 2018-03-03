@@ -18,7 +18,6 @@ import Main.Main;
 public class CrateEventListener implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
 	// CRATE OPENING
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerClick(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
@@ -27,108 +26,108 @@ public class CrateEventListener implements Listener {
 			if (item != null && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
 				String name = item.getItemMeta().getDisplayName();
 				if (item.getType().equals(Material.CHEST)) {
-					if (name.equals("งeExotic Crate")) {
+					if (name.equals("ยงeExotic Crate")) {
 						event.setCancelled(true);
 						ExoticCrate.open(player);
-					} else if (name.equals("ง5Legendary Crate")) {
+					} else if (name.equals("ยง5Legendary Crate")) {
 						event.setCancelled(true);
 						LegendaryCrate.open(player);
-					} else if (name.equals("ง3Event Crate")) {
+					} else if (name.equals("ยง3Event Crate")) {
 						event.setCancelled(true);
 						EventCrate.open(player);
 					}
 				} else if (item.getType().equals(Material.PAPER)) {
-					if (name.equals("ง6$250,000 Cash")) {
+					if (name.equals("ยง6$250,000 Cash")) {
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
-						player.sendMessage("งbงl(!)ง7 $250,000 has been added to your account!");
+						player.sendMessage("ยงbยงl(!)ยง7 $250,000 has been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"ecoadmin give " + player.getName() + " 250000");
-					} else if (name.equals("ง6$150,000 Cash")) {
+					} else if (name.equals("ยง6$150,000 Cash")) {
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
-						player.sendMessage("งbงl(!)ง7 $150,000 has been added to your account!");
+						player.sendMessage("ยงbยงl(!)ยง7 $150,000 has been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"ecoadmin give " + player.getName() + " 150000");
-					} else if (name.equals("ง6$100,000 Cash")) {
+					} else if (name.equals("ยง6$100,000 Cash")) {
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
-						player.sendMessage("งbงl(!)ง7 $100,000 has been added to your account!");
+						player.sendMessage("ยงbยงl(!)ยง7 $100,000 has been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"ecoadmin give " + player.getName() + " 100000");
-					} else if (name.equals("ง6150 McMMO Credits")) {
+					} else if (name.equals("ยง6150 McMMO Credits")) {
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
-						player.sendMessage("งbงl(!)ง7 150 McMMO credits have been added to your account!");
+						player.sendMessage("ยงbยงl(!)ยง7 150 McMMO credits have been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"credits add " + player.getName() + " 150");
-					} else if (name.equals("ง6100 McMMO Credits")) {
+					} else if (name.equals("ยง6100 McMMO Credits")) {
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
-						player.sendMessage("งbงl(!)ง7 100 McMMO credits have been added to your account!");
+						player.sendMessage("ยงbยงl(!)ยง7 100 McMMO credits have been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"credits add " + player.getName() + " 100");
-					} else if (name.equals("ง675 McMMO Credits")) {
+					} else if (name.equals("ยง675 McMMO Credits")) {
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
-						player.sendMessage("งbงl(!)ง7 75 McMMO credits have been added to your account!");
+						player.sendMessage("ยงbยงl(!)ยง7 75 McMMO credits have been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"credits add " + player.getName() + " 75");
 					}
 				} else if (item.getType().equals(Material.MONSTER_EGG)) {
-					if (name.equals("ง6Villager Disguise")) {
+					if (name.equals("ยง6Villager Disguise")) {
 						event.setCancelled(true);
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
-						player.sendMessage("งbงl(!)ง7 You have been granted access to the villager disguise!");
+						player.sendMessage("ยงbยงl(!)ยง7 You have been granted access to the villager disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
 						+ " permission set libsdisguises.disguise.villager true global");
-					} else if (name.equals("ง6Creeper Disguise")) {
+					} else if (name.equals("ยง6Creeper Disguise")) {
 						event.setCancelled(true);
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
-						player.sendMessage("งbงl(!)ง7 You have been granted access to the creeper disguise!");
+						player.sendMessage("ยงbยงl(!)ยง7 You have been granted access to the creeper disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
 						+ " permission set libsdisguises.disguise.creeper true global");
-					} else if (name.equals("ง6Zombie Disguise")) {
+					} else if (name.equals("ยง6Zombie Disguise")) {
 						event.setCancelled(true);
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
-						player.sendMessage("งbงl(!)ง7 You have been granted access to the zombie disguise!");
+						player.sendMessage("ยงbยงl(!)ยง7 You have been granted access to the zombie disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
 						+ " permission set libsdisguises.disguise.zombie true global");
-					} else if (name.equals("ง6Skeleton Disguise")) {
+					} else if (name.equals("ยง6Skeleton Disguise")) {
 						event.setCancelled(true);
 						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
-						player.sendMessage("งbงl(!)ง7 You have been granted access to the skeleton disguise!");
+						player.sendMessage("ยงbยงl(!)ยง7 You have been granted access to the skeleton disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
 						+ " permission set libsdisguises.disguise.skeleton true global");
 					}
 				} else if (item.getType().equals(Material.EXP_BOTTLE)) {
 					Faction faction = MPlayer.get(player).getFaction();
-					if (name.equals("ง63 Hour Faction McMMO Booster (50%)")) {
+					if (name.equals("ยง63 Hour Faction McMMO Booster (50%)")) {
 						faction.setMcmmoBoost(0.5);
 						faction.setBoostEndMillis(System.currentTimeMillis() + (3 * 3600000));
-						faction.msg("งbงl(!)ง7 A 3 hour, 50% mcmmo booster has been applied to your faction!");
-					} else if (name.equals("ง63 Hour Faction McMMO Booster (100%)")) {
+						faction.msg("ยงbยงl(!)ยง7 A 3 hour, 50% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง63 Hour Faction McMMO Booster (100%)")) {
 						faction.setMcmmoBoost(1.0);
 						faction.setBoostEndMillis(System.currentTimeMillis() + (3 * 3600000));
-						faction.msg("งbงl(!)ง7 A 3 hour, 100% mcmmo booster has been applied to your faction!");
-					} else if (name.equals("ง66 Hour Faction McMMO Booster (50%)")) {
+						faction.msg("ยงbยงl(!)ยง7 A 3 hour, 100% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง66 Hour Faction McMMO Booster (50%)")) {
 						faction.setMcmmoBoost(0.5);
 						faction.setBoostEndMillis(System.currentTimeMillis() + (6 * 3600000));
-						faction.msg("งbงl(!)ง7 A 6 hour, 50% mcmmo booster has been applied to your faction!");
-					} else if (name.equals("ง66 Hour Faction McMMO Booster (100%)")) {
+						faction.msg("ยงbยงl(!)ยง7 A 6 hour, 50% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง66 Hour Faction McMMO Booster (100%)")) {
 						faction.setMcmmoBoost(1.0);
 						faction.setBoostEndMillis(System.currentTimeMillis() + (6 * 3600000));
-						faction.msg("งbงl(!)ง7 A 6 hour, 100% mcmmo booster has been applied to your faction!");
-					} else if (name.equals("ง612 Hour Faction McMMO Booster (50%)")) {
+						faction.msg("ยงbยงl(!)ยง7 A 6 hour, 100% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง612 Hour Faction McMMO Booster (50%)")) {
 						faction.setMcmmoBoost(0.5);
 						faction.setBoostEndMillis(System.currentTimeMillis() + (12 * 3600000));
-						faction.msg("งbงl(!)ง7 A 12 hour, 50% mcmmo booster has been applied to your faction!");
-					} else if (name.equals("ง612 Hour Faction McMMO Booster (100%)")) {
+						faction.msg("ยงbยงl(!)ยง7 A 12 hour, 50% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง612 Hour Faction McMMO Booster (100%)")) {
 						faction.setMcmmoBoost(1.0);
 						faction.setBoostEndMillis(System.currentTimeMillis() + (12 * 3600000));
-						faction.msg("งbงl(!)ง7 A 12 hour, 100% mcmmo booster has been applied to your faction!");
-					} else if (name.equals("ง624 Hour Faction McMMO Booster (50%)")) {
+						faction.msg("ยงbยงl(!)ยง7 A 12 hour, 100% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง624 Hour Faction McMMO Booster (50%)")) {
 						faction.setMcmmoBoost(0.5);
 						faction.setBoostEndMillis(System.currentTimeMillis() + (24 * 3600000));
-						faction.msg("งbงl(!)ง7 A 24 hour, 50% mcmmo booster has been applied to your faction!");
-					} else if (name.equals("ง624 Hour Faction McMMO Booster (100%)")) {
+						faction.msg("ยงbยงl(!)ยง7 A 24 hour, 50% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง624 Hour Faction McMMO Booster (100%)")) {
 						faction.setMcmmoBoost(1.0);
 						faction.setBoostEndMillis(System.currentTimeMillis() + (24 * 3600000));
-						faction.msg("งbงl(!)ง7 A 24 hour, 100% mcmmo booster has been applied to your faction!");
+						faction.msg("ยงbยงl(!)ยง7 A 24 hour, 100% mcmmo booster has been applied to your faction!");
 					}
 				}
 			}
@@ -140,7 +139,7 @@ public class CrateEventListener implements Listener {
 	public void onPlayerInventoryClick(InventoryClickEvent event) {
 		if (event.getClickedInventory() != null && event.getClickedInventory().getName() != null) {
 			String name = event.getClickedInventory().getName();
-			if (name.equals("งeChoose 3") || name.equals("ง5Choose 3") || name.equals("ง3Choose 3")) {
+			if (name.equals("ยงeChoose 3") || name.equals("ยง5Choose 3") || name.equals("ยง3Choose 3")) {
 				event.setCancelled(true);
 				ItemStack item = event.getCurrentItem();
 				if (item != null && item.getType().equals(Material.WOOL)) {
@@ -173,7 +172,7 @@ public class CrateEventListener implements Listener {
 	@EventHandler
 	public void onInventoryClose(InventoryCloseEvent event) {
 		String name = event.getInventory().getName();
-		if (name.equals("งeChoose 3")) {
+		if (name.equals("ยงeChoose 3")) {
 			int alreadyGot = 0;
 			for (ItemStack currentItem : event.getInventory().getContents()) {
 				if (!currentItem.getType().equals(Material.WOOL)) {
@@ -190,7 +189,7 @@ public class CrateEventListener implements Listener {
 			} else if (alreadyGot == 2) {
 				event.getPlayer().getInventory().addItem(ExoticCrate.getRandomItem());
 			}
-		} else if (name.equals("ง5Choose 3")) {
+		} else if (name.equals("ยง5Choose 3")) {
 			int alreadyGot = 0;
 			for (ItemStack currentItem : event.getInventory().getContents()) {
 				if (!currentItem.getType().equals(Material.WOOL)) {
@@ -207,7 +206,187 @@ public class CrateEventListener implements Listener {
 			} else if (alreadyGot == 2) {
 				event.getPlayer().getInventory().addItem(LegendaryCrate.getRandomItem());
 			}
-		} else if (name.equals("ง3Choose 3")) {
+		} else if (name.equals("ยง3Choose 3")) {
+			int alreadyGot = 0;
+			for (ItemStack currentItem : event.getInventory().getContents()) {
+				if (!currentItem.getType().equals(Material.WOOL)) {
+					alreadyGot = alreadyGot + 1;
+				}
+			}
+			if (alreadyGot == 0) {
+				event.getPlayer().getInventory().addItem(EventCrate.getRandomItem());
+				event.getPlayer().getInventory().addItem(EventCrate.getRandomItem());
+				event.getPlayer().getInventory().addItem(EventCrate.getRandomItem());
+			} else if (alreadyGot == 1) {
+				event.getPlayer().getInventory().addItem(EventCrate.getRandomItem());
+				event.getPlayer().getInventory().addItem(EventCrate.getRandomItem());
+			} else if (alreadyGot == 2) {
+				event.getPlayer().getInventory().addItem(EventCrate.getRandomItem());
+			}
+		}
+	}
+}
+
+					} else if (name.equals("ยง6$100,000 Cash")) {
+						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						player.sendMessage("ยงbยงl(!)ยง7 $100,000 has been added to your account!");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
+								"ecoadmin give " + player.getName() + " 100000");
+					} else if (name.equals("ยง6150 McMMO Credits")) {
+						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						player.sendMessage("ยงbยงl(!)ยง7 150 McMMO credits have been added to your account!");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
+								"credits add " + player.getName() + " 150");
+					} else if (name.equals("ยง6100 McMMO Credits")) {
+						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						player.sendMessage("ยงbยงl(!)ยง7 100 McMMO credits have been added to your account!");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
+								"credits add " + player.getName() + " 100");
+					} else if (name.equals("ยง675 McMMO Credits")) {
+						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						player.sendMessage("ยงbยงl(!)ยง7 75 McMMO credits have been added to your account!");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
+								"credits add " + player.getName() + " 75");
+					}
+				} else if (item.getType().equals(Material.MONSTER_EGG)) {
+					if (name.equals("ยง6Villager Disguise")) {
+						event.setCancelled(true);
+						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						player.sendMessage("ยงbยงl(!)ยง7 You have been granted access to the villager disguise!");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
+						+ " permission set libsdisguises.disguise.villager true global");
+					} else if (name.equals("ยง6Creeper Disguise")) {
+						event.setCancelled(true);
+						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						player.sendMessage("ยงbยงl(!)ยง7 You have been granted access to the creeper disguise!");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
+						+ " permission set libsdisguises.disguise.creeper true global");
+					} else if (name.equals("ยง6Zombie Disguise")) {
+						event.setCancelled(true);
+						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						player.sendMessage("ยงbยงl(!)ยง7 You have been granted access to the zombie disguise!");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
+						+ " permission set libsdisguises.disguise.zombie true global");
+					} else if (name.equals("ยง6Skeleton Disguise")) {
+						event.setCancelled(true);
+						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						player.sendMessage("ยงbยงl(!)ยง7 You have been granted access to the skeleton disguise!");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
+						+ " permission set libsdisguises.disguise.skeleton true global");
+					}
+				} else if (item.getType().equals(Material.EXP_BOTTLE)) {
+					Faction faction = MPlayer.get(player).getFaction();
+					if (name.equals("ยง63 Hour Faction McMMO Booster (50%)")) {
+						faction.setMcmmoBoost(0.5);
+						faction.setBoostEndMillis(System.currentTimeMillis() + (3 * 3600000));
+						faction.msg("ยงbยงl(!)ยง7 A 3 hour, 50% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง63 Hour Faction McMMO Booster (100%)")) {
+						faction.setMcmmoBoost(1.0);
+						faction.setBoostEndMillis(System.currentTimeMillis() + (3 * 3600000));
+						faction.msg("ยงbยงl(!)ยง7 A 3 hour, 100% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง66 Hour Faction McMMO Booster (50%)")) {
+						faction.setMcmmoBoost(0.5);
+						faction.setBoostEndMillis(System.currentTimeMillis() + (6 * 3600000));
+						faction.msg("ยงbยงl(!)ยง7 A 6 hour, 50% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง66 Hour Faction McMMO Booster (100%)")) {
+						faction.setMcmmoBoost(1.0);
+						faction.setBoostEndMillis(System.currentTimeMillis() + (6 * 3600000));
+						faction.msg("ยงbยงl(!)ยง7 A 6 hour, 100% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง612 Hour Faction McMMO Booster (50%)")) {
+						faction.setMcmmoBoost(0.5);
+						faction.setBoostEndMillis(System.currentTimeMillis() + (12 * 3600000));
+						faction.msg("ยงbยงl(!)ยง7 A 12 hour, 50% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง612 Hour Faction McMMO Booster (100%)")) {
+						faction.setMcmmoBoost(1.0);
+						faction.setBoostEndMillis(System.currentTimeMillis() + (12 * 3600000));
+						faction.msg("ยงbยงl(!)ยง7 A 12 hour, 100% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง624 Hour Faction McMMO Booster (50%)")) {
+						faction.setMcmmoBoost(0.5);
+						faction.setBoostEndMillis(System.currentTimeMillis() + (24 * 3600000));
+						faction.msg("ยงbยงl(!)ยง7 A 24 hour, 50% mcmmo booster has been applied to your faction!");
+					} else if (name.equals("ยง624 Hour Faction McMMO Booster (100%)")) {
+						faction.setMcmmoBoost(1.0);
+						faction.setBoostEndMillis(System.currentTimeMillis() + (24 * 3600000));
+						faction.msg("ยงbยงl(!)ยง7 A 24 hour, 100% mcmmo booster has been applied to your faction!");
+					}
+				}
+			}
+		}
+	}
+
+	// PREVENT STEALING ITEMS
+	@EventHandler
+	public void onPlayerInventoryClick(InventoryClickEvent event) {
+		if (event.getClickedInventory() != null && event.getClickedInventory().getName() != null) {
+			String name = event.getClickedInventory().getName();
+			if (name.equals("ยงeChoose 3") || name.equals("ยง5Choose 3") || name.equals("ยง3Choose 3")) {
+				event.setCancelled(true);
+				ItemStack item = event.getCurrentItem();
+				if (item != null && item.getType().equals(Material.WOOL)) {
+					int alreadyGot = 0;
+					for (ItemStack currentItem : event.getInventory().getContents()) {
+						if (!currentItem.getType().equals(Material.WOOL)) {
+							alreadyGot = alreadyGot + 1;
+						}
+					}
+					if (alreadyGot <= 1) {
+						ItemStack rewardedItem = ExoticCrate.getRandomItem();
+						event.getInventory().setItem(event.getSlot(), rewardedItem);
+						event.getWhoClicked().getInventory().addItem(rewardedItem);
+					}
+					if (alreadyGot == 2) {
+						ItemStack rewardedItem = ExoticCrate.getRandomItem();
+						event.getInventory().setItem(event.getSlot(), rewardedItem);
+						event.getWhoClicked().getInventory().addItem(rewardedItem);
+						Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+							public void run() {
+								event.getWhoClicked().closeInventory();
+							}
+						}, 20);
+					}
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void onInventoryClose(InventoryCloseEvent event) {
+		String name = event.getInventory().getName();
+		if (name.equals("ยงeChoose 3")) {
+			int alreadyGot = 0;
+			for (ItemStack currentItem : event.getInventory().getContents()) {
+				if (!currentItem.getType().equals(Material.WOOL)) {
+					alreadyGot = alreadyGot + 1;
+				}
+			}
+			if (alreadyGot == 0) {
+				event.getPlayer().getInventory().addItem(ExoticCrate.getRandomItem());
+				event.getPlayer().getInventory().addItem(ExoticCrate.getRandomItem());
+				event.getPlayer().getInventory().addItem(ExoticCrate.getRandomItem());
+			} else if (alreadyGot == 1) {
+				event.getPlayer().getInventory().addItem(ExoticCrate.getRandomItem());
+				event.getPlayer().getInventory().addItem(ExoticCrate.getRandomItem());
+			} else if (alreadyGot == 2) {
+				event.getPlayer().getInventory().addItem(ExoticCrate.getRandomItem());
+			}
+		} else if (name.equals("ยง5Choose 3")) {
+			int alreadyGot = 0;
+			for (ItemStack currentItem : event.getInventory().getContents()) {
+				if (!currentItem.getType().equals(Material.WOOL)) {
+					alreadyGot = alreadyGot + 1;
+				}
+			}
+			if (alreadyGot == 0) {
+				event.getPlayer().getInventory().addItem(LegendaryCrate.getRandomItem());
+				event.getPlayer().getInventory().addItem(LegendaryCrate.getRandomItem());
+				event.getPlayer().getInventory().addItem(LegendaryCrate.getRandomItem());
+			} else if (alreadyGot == 1) {
+				event.getPlayer().getInventory().addItem(LegendaryCrate.getRandomItem());
+				event.getPlayer().getInventory().addItem(LegendaryCrate.getRandomItem());
+			} else if (alreadyGot == 2) {
+				event.getPlayer().getInventory().addItem(LegendaryCrate.getRandomItem());
+			}
+		} else if (name.equals("ยง3Choose 3")) {
 			int alreadyGot = 0;
 			for (ItemStack currentItem : event.getInventory().getContents()) {
 				if (!currentItem.getType().equals(Material.WOOL)) {
