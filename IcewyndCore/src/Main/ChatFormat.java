@@ -1,14 +1,11 @@
 package Main;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.ItemStack;
 import com.massivecraft.factions.entity.MPlayer;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -81,7 +78,7 @@ public class ChatFormat implements Listener {
 		}
 	}
 
-	@EventHandler
+	/*@EventHandler
 	public void onPlayerDeathEvent(PlayerDeathEvent event) { //Player death messages with faction relation color formatting
 		event.setDeathMessage("");
 		if ((event.getEntity().getKiller() != null)
@@ -106,5 +103,5 @@ public class ChatFormat implements Listener {
 				}
 			}
 		}
-	}
+	}*/
 }

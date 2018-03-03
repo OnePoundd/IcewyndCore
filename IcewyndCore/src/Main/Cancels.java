@@ -37,7 +37,9 @@ public class Cancels implements Listener {
 
 	@EventHandler
 	public void onMobSpawn(CreatureSpawnEvent event) {
-		LivingEntity entity = event.getEntity();
-		noAI(entity);
+		if (!(event.getEntityType() == EntityType.WITHER)) {
+			LivingEntity entity = event.getEntity();
+			noAI(entity);
+		}
 	}
 }
