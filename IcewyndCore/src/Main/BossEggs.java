@@ -24,38 +24,14 @@ public class BossEggs implements Listener {
 			List<String> lore5 = new ArrayList<String>();
 			Item5Meta.addEnchant(Enchantment.DIG_SPEED, 1, true);
 			Item5Meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-			Item5Meta.setDisplayName("§c§lPlagued Skeleton");
-			lore5.add("§1");
-			lore5.add("§c§lRare §7§lboss egg that can be summoned in the Warzone.");
-			lore5.add("§7§lSlay this boss to be rewarded with a prize!");
-			lore5.add("§1");
-			lore5.add("§c§lDifficulty: §75 Players");
+			Item5Meta.setDisplayName("�c�lPlagued Skeleton");
+			lore5.add("�1");
+			lore5.add("�c�lRare �7�lboss egg that can be summoned in the Warzone.");
+			lore5.add("�7�lSlay this boss to be rewarded with a prize!");
+			lore5.add("�1");
+			lore5.add("�c�lDifficulty: �75 Players");
 			Item5Meta.setLore(lore5);
 			Item5.setItemMeta(Item5Meta);
-			event.getDrops().add(Item5);
-		}
-	}
-
-}
-
-	public void ondeath(EntityDeathEvent event) {
-		if (event.getEntityType() == EntityType.WITHER_SKELETON) {
-			//Witch Boss Egg Item
-			ItemStack Item5 = new ItemStack(Material.MONSTER_EGG, 1);
-			Item5.setDurability(EntityType.WITHER_SKELETON.getTypeId());
-			ItemMeta Item5Meta = Item5.getItemMeta();
-			List<String> lore5 = new ArrayList<String>();
-			Item5Meta.addEnchant(Enchantment.DIG_SPEED, 1, true);
-			Item5Meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-			Item5Meta.setDisplayName("§c§lPlagued Skeleton");
-			lore5.add("§1");
-			lore5.add("§c§lRare §7§lboss egg that can be summoned in the Warzone.");
-			lore5.add("§7§lSlay this boss to be rewarded with a prize!");
-			lore5.add("§1");
-			lore5.add("§c§lDifficulty: §75 Players");
-			Item5Meta.setLore(lore5);
-			Item5.setItemMeta(Item5Meta);
-
 			event.getDrops().add(Item5);
 		}
 	}

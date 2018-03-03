@@ -11,9 +11,9 @@ public class ClearChat implements CommandExecutor{
 		if (cmd.getName().equalsIgnoreCase("clearchat")) {
 			if (sender.hasPermission("server.admin")) {
 				for (int i = 0; i < 150; i++) {
-					Bukkit.broadcastMessage("Â§1");
+					Bukkit.broadcastMessage("§1");
 				}
-				Bukkit.broadcastMessage("Â§fÂ§l[Â§bÂ§lICEWYNDÂ§fÂ§l]Â§aÂ§l Chat has been cleared!");
+				Bukkit.broadcastMessage("§f§l[§b§lICEWYND§f§l]§a§l Chat has been cleared!");
 			}
 		}
 		return false;

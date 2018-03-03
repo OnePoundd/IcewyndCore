@@ -38,7 +38,7 @@ public class WitherSpawn implements CommandExecutor, Listener {
 
 		if (plugin.getConfig().getBoolean(".WitherInvin") == true) {
 			event.setCancelled(true);
-			if (e.getCustomName().equals("Â§4Â§lÂ§oWither King")) {
+			if (e.getCustomName().equals("§4§l§oWither King")) {
 				if (plugin.getConfig().getBoolean(".WitherInvin") == true) {
 					event.setCancelled(true);
 				} else if (((LivingEntity) e).getHealth() < 50) {
@@ -55,11 +55,11 @@ public class WitherSpawn implements CommandExecutor, Listener {
 								.spawnEntity(WitherSpawn.add(4, 0, 4), EntityType.WITHER_SKELETON);
 						WitherSkeleton mob3 = (WitherSkeleton) Bukkit.getWorld("world")
 								.spawnEntity(WitherSpawn.add(2, 0, -2), EntityType.WITHER_SKELETON);
-						mob.setCustomName("Â§cÂ§lWithered Minion");
+						mob.setCustomName("§c§lWithered Minion");
 						mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
-						mob2.setCustomName("Â§cÂ§lWithered Minion");
+						mob2.setCustomName("§c§lWithered Minion");
 						mob2.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
-						mob3.setCustomName("Â§cÂ§lWithered Minion");
+						mob3.setCustomName("§c§lWithered Minion");
 						mob3.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
 						WitherSpawn.add(-2, 0, -2);
 						plugin.saveConfig();
@@ -87,7 +87,7 @@ public class WitherSpawn implements CommandExecutor, Listener {
 		int totalKilled = plugin.getConfig().getInt(".WitherSkeletons");
 		if (event.getEntity() instanceof Wither) {
 			Bukkit.broadcastMessage("Wither");
-			if (event.getEntity().getCustomName().equals("Â§4Â§lÂ§oWither King")) {
+			if (event.getEntity().getCustomName().equals("§4§l§oWither King")) {
 				plugin.getConfig().set(".WitherPhase", 0);
 				plugin.saveConfig();
 				Bukkit.broadcastMessage("WITHER KING HAS BEEN SLAIN");
@@ -105,7 +105,7 @@ public class WitherSpawn implements CommandExecutor, Listener {
 					entity.remove();
 					Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
 					Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn, EntityType.WITHER);
-					mob.setCustomName("Â§4Â§lÂ§oWither King");
+					mob.setCustomName("§4§l§oWither King");
 					mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
 					mob.setMaxHealth(50);
 					mob.setHealth(50);

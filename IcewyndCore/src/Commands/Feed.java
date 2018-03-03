@@ -13,7 +13,7 @@ public class Feed implements CommandExecutor{
 				Player player = (Player) sender;
 				if (player.hasPermission("server.feed")) {
 					player.setFoodLevel(20);
-					player.sendMessage("ยง7Your hunger has been replenished.");
+					player.sendMessage("ง7Your hunger has been replenished.");
 				}
 			}
 		}

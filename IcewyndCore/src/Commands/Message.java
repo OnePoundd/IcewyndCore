@@ -31,12 +31,12 @@ public class Message implements CommandExecutor{
 									}
 									i++;
 								}
-								player.sendMessage("Â§aÂ§lMe" + " Â§7Â» " + "Â§b" + args[0] + "Â§7:Â§f " + messageContents);
-								r.sendMessage("Â§b" + player.getName() + " Â§7Â» " + "Â§aÂ§lMeÂ§f" + "Â§7:Â§f " + messageContents);
+								player.sendMessage("§a§lMe" + " §7» " + "§b" + args[0] + "§7:§f " + messageContents);
+								r.sendMessage("§b" + player.getName() + " §7» " + "§a§lMe§f" + "§7:§f " + messageContents);
 								r.playSound(player.getLocation(), Sound.ORB_PICKUP, 1f, 1f);
 							}else if(!MPlayer.get(r).getFaction().equals(MPlayer.get(sender).getFaction())) { // faction members should bypass msgtoggle
-								player.sendMessage("Â§aÂ§lMe" + " Â§7Â» " + "Â§b" + args[0] + "Â§7:Â§f " + args[1]);
-								r.sendMessage("Â§b" + player.getName() + " Â§7Â» " + "Â§aÂ§lMeÂ§f" + "Â§7:Â§f " + args[1]);
+								player.sendMessage("§a§lMe" + " §7» " + "§b" + args[0] + "§7:§f " + args[1]);
+								r.sendMessage("§b" + player.getName() + " §7» " + "§a§lMe§f" + "§7:§f " + args[1]);
 								r.playSound(player.getLocation(), Sound.ORB_PICKUP, 1f, 1f);
 							}
 						}else { // if the player is allowing messages to be received
@@ -48,15 +48,15 @@ public class Message implements CommandExecutor{
 								}
 								i++;
 							}
-							player.sendMessage("Â§aÂ§lMe" + " Â§7Â» " + "Â§b" + args[0] + "Â§7:Â§f " + messageContents);
-							r.sendMessage("Â§b" + player.getName() + " Â§7Â» " + "Â§aÂ§lMeÂ§f" + "Â§7:Â§f " + messageContents);
+							player.sendMessage("§a§lMe" + " §7» " + "§b" + args[0] + "§7:§f " + messageContents);
+							r.sendMessage("§b" + player.getName() + " §7» " + "§a§lMe§f" + "§7:§f " + messageContents);
 							r.playSound(player.getLocation(), Sound.ORB_PICKUP, 1f, 1f);
 						}
 					}else {
-						player.sendMessage("Â§cÂ§l(!)Â§7 Usage: /msg <player> <message>!");
+						player.sendMessage("§c§l(!)§7 Usage: /msg <player> <message>!");
 					}
 				}else {
-					player.sendMessage("Â§cÂ§l(!)Â§7 That player is not online!");
+					player.sendMessage("§c§l(!)§7 That player is not online!");
 				}
 			}
 		}

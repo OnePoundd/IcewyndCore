@@ -18,11 +18,11 @@ public class TwitchBroadcast implements CommandExecutor{
 			Player player = (Player) sender;
 			if (player.hasPermission("server.twitch")) {
 				if (args[0].contains("twitch.tv")) {
-					TextComponent message = new TextComponent( "Â§5Â§lTWITCHÂ§8Â§l Â» Â§bÂ§l" + player.getName() + " has started streaming! Click here Â§bÂ§lto check it out." );
+					TextComponent message = new TextComponent( "§5§lTWITCH§8§l » §b§l" + player.getName() + " has started streaming! Click here §b§lto check it out." );
 					message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, args[0]));
 					Bukkit.broadcast(message);
 				}else {
-					player.sendMessage("Â§cYour message must contain a Twitch link!");
+					player.sendMessage("§cYour message must contain a Twitch link!");
 				}
 			}
 		}

@@ -15,10 +15,10 @@ public class NightVision implements CommandExecutor{
 			if (sender instanceof Player) {
 				if (player.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
 					player.removePotionEffect(PotionEffectType.NIGHT_VISION);
-					player.sendMessage("Â§cNightVision Disabled!");
+					player.sendMessage("§cNightVision Disabled!");
 				}else {
 					player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 999999, 1));
-					player.sendMessage("Â§aNightVision Enabled!");
+					player.sendMessage("§aNightVision Enabled!");
 				}
 			}
 		}

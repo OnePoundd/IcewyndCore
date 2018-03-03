@@ -15,19 +15,19 @@ public class Ping implements CommandExecutor{
 			if (sender instanceof Player) {
 				if (args.length == 0) {
 					int ping = ((CraftPlayer) player).getHandle().ping;
-					player.sendMessage("Â§aPing Â§7Â»Â§f " + ping);
+					player.sendMessage("§aPing §7»§f " + ping);
 				}
 			} else if (args.length == 1) {
 				Player target = Bukkit.getPlayer(args[0]);
 				if(!(target == null)) {
 					if (target.isOnline()) {
 						int targetPing = ((CraftPlayer) target).getHandle().ping;
-						player.sendMessage("Â§a" + target.getName() + "'s Â§aPing Â§7Â»Â§f " + targetPing);
+						player.sendMessage("§a" + target.getName() + "'s §aPing §7»§f " + targetPing);
 					}else if (!target.isOnline()) {
-						player.sendMessage("Â§cThat player is not online!");
+						player.sendMessage("§cThat player is not online!");
 					}
 				}else {
-					player.sendMessage("Â§cThat player cannot be found or is offline.");
+					player.sendMessage("§cThat player cannot be found or is offline.");
 				}
 			}
 		}

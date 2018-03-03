@@ -23,7 +23,7 @@ import Main.Main;
 public class Librarian implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
 	public static void openInventory(Player player) {
-		Inventory anvil = Bukkit.createInventory(null, 27, "ยงcยงl>> ยง8Librarian ยงcยงl<<");
+		Inventory anvil = Bukkit.createInventory(null, 27, "งcงl>> ง8Librarian งcงl<<");
 
 		ItemStack empty = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 7);
 		ItemMeta emptyMeta = empty.getItemMeta();
@@ -33,36 +33,36 @@ public class Librarian implements Listener {
 
 		ItemStack repair = new ItemStack(Material.PAPER);
 		ItemMeta repairMeta = repair.getItemMeta();
-		repairMeta.setDisplayName("ยงcยงl>> ยงfItem One ยงcยงl<<");
+		repairMeta.setDisplayName("งcงl>> งfItem One งcงl<<");
 		ArrayList<String> repairLore = new ArrayList<String>();
-		repairLore.add("ยง7Place the item you would like to add");
-		repairLore.add("ยง7an enchantment to here! This must");
-		repairLore.add("ยง7be an item rather than a book!");
+		repairLore.add("ง7Place the item you would like to add");
+		repairLore.add("ง7an enchantment to here! This must");
+		repairLore.add("ง7be an item rather than a book!");
 		repairMeta.setLore(repairLore);
 		repair.setItemMeta(repairMeta);
 
 		ItemStack add = new ItemStack(Material.PAPER);
 		ItemMeta addMeta = add.getItemMeta();
-		addMeta.setDisplayName("ยงcยงl>> ยงfItem Two ยงcยงl<<");
+		addMeta.setDisplayName("งcงl>> งfItem Two งcงl<<");
 		ArrayList<String> addLore = new ArrayList<String>();
-		addLore.add("ยง7Place the item you would like to enchant");
-		addLore.add("ยง7or fix your first item with here!");
+		addLore.add("ง7Place the item you would like to enchant");
+		addLore.add("ง7or fix your first item with here!");
 		addMeta.setLore(addLore);
 		add.setItemMeta(addMeta);
 
 		ItemStack level = new ItemStack(Material.PAPER);
 		ItemMeta levelMeta = add.getItemMeta();
-		levelMeta.setDisplayName("ยงcยงl>> ยงfCost ยงcยงl<<");
+		levelMeta.setDisplayName("งcงl>> งfCost งcงl<<");
 		ArrayList<String> levelLore = new ArrayList<String>();
-		levelLore.add("ยง7This is how many levels it will cost to apply!");
+		levelLore.add("ง7This is how many levels it will cost to apply!");
 		levelMeta.setLore(levelLore);
 		level.setItemMeta(levelMeta);
 
 		ItemStack Return = new ItemStack(Material.PAPER);
 		ItemMeta ReturnMeta = add.getItemMeta();
-		ReturnMeta.setDisplayName("ยงcยงl>> ยงfItem Three ยงcยงl<<");
+		ReturnMeta.setDisplayName("งcงl>> งfItem Three งcงl<<");
 		ArrayList<String> ReturnLore = new ArrayList<String>();
-		ReturnLore.add("ยง7This is the item you will recieve!");
+		ReturnLore.add("ง7This is the item you will recieve!");
 		ReturnMeta.setLore(ReturnLore);
 		Return.setItemMeta(ReturnMeta);
 
@@ -77,7 +77,7 @@ public class Librarian implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
 		if (event.getClickedInventory() != null
-				&& event.getClickedInventory().getName().equals("ยงcยงl>> ยง8Librarian ยงcยงl<<")) {
+				&& event.getClickedInventory().getName().equals("งcงl>> ง8Librarian งcงl<<")) {
 			ItemStack item = event.getCurrentItem();
 			// Prevents stealing xp bottles and paper
 			if (item.getType().equals(Material.PAPER) || item.getType().equals(Material.EXP_BOTTLE)
@@ -93,17 +93,17 @@ public class Librarian implements Listener {
 						player.setLevel(player.getLevel() - 15);
 						player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_USE, 10, 1);
 						if (player.getInventory().firstEmpty() == -1) {
-							player.sendMessage("ยงbยงl(!)ยง7 Your inventory is full, dropping item at your feet!");
+							player.sendMessage("งbงl(!)ง7 Your inventory is full, dropping item at your feet!");
 							player.getWorld().dropItem(player.getLocation(), event.getClickedInventory().getItem(16));
 						} else {
-							player.sendMessage("ยงbยงl(!)ยง7 Your new item has been added to your inventory!");
+							player.sendMessage("งbงl(!)ง7 Your new item has been added to your inventory!");
 							player.getInventory().addItem(event.getClickedInventory().getItem(16));
 						}
 						event.getClickedInventory().setItem(10, new ItemStack(Material.AIR));
 						event.getClickedInventory().setItem(12, new ItemStack(Material.AIR));
 						player.closeInventory();
 					} else {
-						player.sendMessage("ยงcยงl(!)ยง7 You cannot afford to do that!");
+						player.sendMessage("งcงl(!)ง7 You cannot afford to do that!");
 						player.playSound(player.getLocation(), Sound.ENTITY_CREEPER_HURT, 10, 1);
 					}
 				}
@@ -165,9 +165,9 @@ public class Librarian implements Listener {
 									Iterator<String> iter = itemToAdd.getItemMeta().getLore().iterator();
 									while (iter.hasNext()) {
 										String currentLine = iter.next();
-										if (currentLine.startsWith("ยง7")) {
+										if (currentLine.startsWith("ง7")) {
 											iter.remove();
-										} else if (currentLine.startsWith("ยง3")) {
+										} else if (currentLine.startsWith("ง3")) {
 											if (currentLine.contains("Pickaxe")) {
 												Material m = itemToRepair.getType();
 												if (m.equals(Material.DIAMOND_PICKAXE)) {
@@ -240,7 +240,7 @@ public class Librarian implements Listener {
 													return;
 												}
 											}
-										} else if (currentLine.startsWith("ยงe") || currentLine.startsWith("ยง5")) {
+										} else if (currentLine.startsWith("งe") || currentLine.startsWith("ง5")) {
 											if (!lore.contains(currentLine)) {
 												lore.add(currentLine);
 											}
@@ -292,7 +292,7 @@ public class Librarian implements Listener {
 
 	@EventHandler
 	public void onInventoryClose(InventoryCloseEvent event) {
-		if (event.getInventory().getName().equals("              ยงcยงl>> ยง8Librarian ยงcยงl<<")) {
+		if (event.getInventory().getName().equals("              งcงl>> ง8Librarian งcงl<<")) {
 			if (event.getInventory().getItem(10) != null
 					&& !event.getInventory().getItem(10).getType().equals(Material.AIR)) {
 				event.getPlayer().getWorld().dropItem(event.getPlayer().getLocation(),

@@ -34,7 +34,7 @@ public class DisguiseBuffs implements Listener{
 		if(DisguiseAPI.isDisguised(player)){
 			if(event.getCause().equals(TeleportCause.ENDER_PEARL) && DisguiseAPI.getDisguise(player).getType().equals(DisguiseType.ENDERMAN)){
 				player.getInventory().addItem(new ItemStack(Material.ENDER_PEARL));
-				player.sendMessage("Â§3You are an Â§5endermanÂ§6 and regenerated the pearl!");
+				player.sendMessage("§3You are an §5enderman§6 and regenerated the pearl!");
 			}
 		}
 	}
@@ -48,8 +48,8 @@ public class DisguiseBuffs implements Listener{
 			if(DisguiseAPI.isDisguised(rightClickedPlayer)){
 				if(DisguiseAPI.getDisguise(rightClickedPlayer).getType().equals(DisguiseType.HORSE)){
 					rightClickedPlayer.addPassenger(player);
-					player.sendMessage("Â§6You just mounted, Â§b" + rightClickedPlayer.getName() + "Â§6!");
-					rightClickedPlayer.sendMessage("Â§b" + player.getName() + "Â§6, just mounted you! Type Â§b/und Â§6to kick them off!");
+					player.sendMessage("§6You just mounted, §b" + rightClickedPlayer.getName() + "§6!");
+					rightClickedPlayer.sendMessage("§b" + player.getName() + "§6, just mounted you! Type §b/und §6to kick them off!");
 				}
 			}
 		}
@@ -89,69 +89,7 @@ public class DisguiseBuffs implements Listener{
 		if(damaged.getType().equals(EntityType.PLAYER) && DisguiseAPI.isDisguised((Player) damaged) && event.getCause().equals(DamageCause.FALL)){
 			if(DisguiseAPI.getDisguise((Player) damaged).getType().equals(DisguiseType.CHICKEN)){
 				event.setCancelled(true);
-				((Player) damaged).sendMessage("Â§6Being a Â§fchickenÂ§6 allowed you to absorb the fall!");
-			}
-		}
-	}
-
-	//BLAZE
-	@SuppressWarnings("deprecation")
-	@EventHandler
-	public void onPlayerInterract(PlayerInteractEvent event) {
-		if(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-			if(DisguiseAPI.isDisguised(event.getPlayer()) && DisguiseAPI.getDisguise(event.getPlayer()).getType().equals(DisguiseType.BLAZE)) {
-				if(event.getPlayer().getItemInHand().getType().equals(Material.BLAZE_ROD)) {
-					event.getPlayer().launchProjectile(Fireball.class);
-					event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() -1);
-				}
-			}
-		}
-	}
-
-}
-
-					player.sendMessage("Â§6You just mounted, Â§b" + rightClickedPlayer.getName() + "Â§6!");
-					rightClickedPlayer.sendMessage("Â§b" + player.getName() + "Â§6, just mounted you! Type Â§b/und Â§6to kick them off!");
-				}
-			}
-		}
-	}
-
-	//HORSE
-	@EventHandler
-	public void onUndisguise(UndisguiseEvent event) {
-		if(event.getDisguise().getType().equals(DisguiseType.HORSE)) {
-			if(event.getEntity() instanceof Player) {
-				for(Entity entity : event.getEntity().getPassengers()) {
-					event.getEntity().removePassenger(entity);
-				}
-			}
-		}
-	}
-
-
-	//CHICKEN, COW, PIG
-	@EventHandler
-	public void onHungerChange(FoodLevelChangeEvent event){
-		if(event.getEntity().getType().equals(EntityType.PLAYER)){
-			Player player = (Player) event.getEntity();
-			if(DisguiseAPI.isDisguised(player)) {
-				DisguiseType type = DisguiseAPI.getDisguise(player).getType();
-				if(type.equals(DisguiseType.CHICKEN) || type.equals(DisguiseType.PIG) || type.equals(DisguiseType.COW)){
-					event.setCancelled(true);
-				}
-			}
-		}
-	}
-
-	//CHICKEN
-	@EventHandler
-	public void onEntityDamaged(EntityDamageEvent event){
-		Entity damaged = event.getEntity();
-		if(damaged.getType().equals(EntityType.PLAYER) && DisguiseAPI.isDisguised((Player) damaged) && event.getCause().equals(DamageCause.FALL)){
-			if(DisguiseAPI.getDisguise((Player) damaged).getType().equals(DisguiseType.CHICKEN)){
-				event.setCancelled(true);
-				((Player) damaged).sendMessage("Â§6Being a Â§fchickenÂ§6 allowed you to absorb the fall!");
+				((Player) damaged).sendMessage("§6Being a §fchicken§6 allowed you to absorb the fall!");
 			}
 		}
 	}

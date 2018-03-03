@@ -24,7 +24,7 @@ public class Shockwave {
 		if (BoardColl.get().getFactionAt(PS.valueOf(block.getLocation())).getName().equals("Castle")) {
 			player.getPlayer().getLocation().getWorld().playSound(player.getPlayer().getLocation(),
 					Sound.BLOCK_FIRE_EXTINGUISH, 10, 1);
-			player.sendMessage("ยงcยงl(!)ยง7 You cannot use the shockwave effect in castle territory!");
+			player.sendMessage("งcงl(!)ง7 You cannot use the shockwave effect in castle territory!");
 			return;
 		}
 

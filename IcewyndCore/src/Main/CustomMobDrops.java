@@ -72,18 +72,3 @@ public class CustomMobDrops implements Listener {
 		}
 	}
 }
-			}
-		}
-	}
-
-	@EventHandler
-	public void onCreatureSpawn(CreatureSpawnEvent event) {
-		if (event.getEntityType() == EntityType.ENDERMAN) {
-			event.getEntity().setHealth(10);
-		} else if (event.getEntityType() == EntityType.VILLAGER) {
-			event.getEntity().setHealth(20);
-		} else if (event.getEntityType() == EntityType.SQUID) {
-			event.getEntity().setHealth(10);
-		}
-	}
-}

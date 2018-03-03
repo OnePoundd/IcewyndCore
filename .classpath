@@ -2,14 +2,13 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="IcewyndCore/src"/>
-	<classpathentry kind="lib" path="C:/Jars/[Dependency] MassiveCore.jar"/>
-	<classpathentry kind="lib" path="C:/Jars/[Dependency] ProtocolLib.jar"/>
-	<classpathentry kind="lib" path="C:/Jars/[Dependency] Vault.jar"/>
-	<classpathentry kind="lib" path="C:/Jars/Factions.jar"/>
-	<classpathentry kind="lib" path="C:/Jars/LibsDisguises.jar"/>
-	<classpathentry kind="lib" path="C:/Jars/mcMMO.jar"/>
-	<classpathentry kind="lib" path="C:/Jars/ScoreboardLib.jar"/>
-	<classpathentry kind="lib" path="C:/Jars/Spigot.jar"/>
-	<classpathentry kind="lib" path="C:/Jars/XoreBoardUtil.jar"/>
+	<classpathentry kind="lib" path="IcewyndCore/lib/[Dependency] MassiveCore.jar"/>
+	<classpathentry kind="lib" path="IcewyndCore/lib/[Dependency] ProtocolLib.jar"/>
+	<classpathentry kind="lib" path="IcewyndCore/lib/Factions.jar"/>
+	<classpathentry kind="lib" path="IcewyndCore/lib/LibsDisguises.jar"/>
+	<classpathentry kind="lib" path="IcewyndCore/lib/mcMMO.jar"/>
+	<classpathentry kind="lib" path="IcewyndCore/lib/Spigot.jar"/>
+	<classpathentry kind="lib" path="IcewyndCore/lib/Vault.jar"/>
+	<classpathentry kind="lib" path="IcewyndCore/lib/XoreBoardUtil.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

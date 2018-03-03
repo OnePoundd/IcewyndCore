@@ -19,11 +19,11 @@ Main plugin = Main.getPlugin(Main.class);
 			Player player = (Player) sender;
 			if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Freecam") == false) {
 				plugin.getConfig().set(player.getUniqueId() + ".Freecam", true);
-				player.sendMessage("ยงeยงl(!)ยง7 Freecam has been enabled!");
+				player.sendMessage("งeงl(!)ง7 Freecam has been enabled!");
 				player.setGameMode(GameMode.SPECTATOR);
 			}else if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Freecam") == true) {
 				plugin.getConfig().set(player.getUniqueId() + ".Freecam", false);
-				player.sendMessage("ยงeยงl(!)ยง7 Freecam has been disabled!");
+				player.sendMessage("งeงl(!)ง7 Freecam has been disabled!");
 				player.setGameMode(GameMode.SURVIVAL);
 			}
 		}

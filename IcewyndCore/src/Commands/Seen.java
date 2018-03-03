@@ -31,10 +31,10 @@ public class Seen implements CommandExecutor, Listener{
 							int minutes = (int) (time - (days*1000*60*60*24) - (hours*1000*60*60)) / (1000*60);
 							int seconds = (int) (time - (days*1000*60*60*24) - (hours*1000*60*60) - (minutes*1000*60)) / 1000;
 
-							player.sendMessage("Â§b" + target.getName() + "Â§e has been offline for Â§b" + days + "Â§e days Â§b" + minutes + "Â§e minutes and Â§b" + seconds + "Â§e seconds");
+							player.sendMessage("§b" + target.getName() + "§e has been offline for §b" + days + "§e days §b" + minutes + "§e minutes and §b" + seconds + "§e seconds");
 						}
 					}else {
-						player.sendMessage("Â§cThat player cannot be found.");
+						player.sendMessage("§cThat player cannot be found.");
 					}
 				}
 			}

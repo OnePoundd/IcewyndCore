@@ -73,7 +73,7 @@ public class Enchantments implements Listener {
 				ItemMeta meta = player.getItemInHand().getItemMeta();
 				if (meta.hasLore()) {
 					for (String s : meta.getLore()) {
-						if (s.equals("Â§eShockwave")) {
+						if (s.equals("§eShockwave")) {
 							if (!player.isSneaking()) {
 								Material m = player.getItemInHand().getType();
 								if (m.equals(Material.DIAMOND_PICKAXE)) {
@@ -82,7 +82,7 @@ public class Enchantments implements Listener {
 									Shockwave.mineShovel(player, event.getBlock());
 								}
 							}
-						} else if (s.equals("Â§5Extractor")) {
+						} else if (s.equals("§5Extractor")) {
 							Material m = event.getBlock().getType();
 							if (m.equals(Material.COAL_ORE) || m.equals(Material.DIAMOND_ORE)
 									|| m.equals(Material.EMERALD_ORE) || m.equals(Material.GLOWING_REDSTONE_ORE)
@@ -95,7 +95,7 @@ public class Enchantments implements Listener {
 									block.breakNaturally();
 								}
 							}
-						} else if (s.equals("Â§5Chopper")) {
+						} else if (s.equals("§5Chopper")) {
 							Material m = event.getBlock().getType();
 							if (m.equals(Material.LOG) || m.equals(Material.LOG_2)) {
 								ArrayList<Block> ListOfBlocks = new ArrayList<Block>();
@@ -104,7 +104,7 @@ public class Enchantments implements Listener {
 									block.breakNaturally();
 								}
 							}
-						} else if (s.equals("Â§5Harvester")) {
+						} else if (s.equals("§5Harvester")) {
 							Material m = event.getBlock().getType();
 							if (m.equals(Material.SUGAR_CANE_BLOCK)) {
 								Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
@@ -143,7 +143,7 @@ public class Enchantments implements Listener {
 					if (chestplate.hasItemMeta() && chestplate.getItemMeta().hasLore()) {
 						List<String> lore = chestplate.getItemMeta().getLore();
 						for (String line : lore) {
-							if (line.equals("Â§5Fireborne")) {
+							if (line.equals("§5Fireborne")) {
 								Random rand = new Random();
 								int num = rand.nextInt(2) + 1;
 								if (num == 2) {
@@ -172,7 +172,7 @@ public class Enchantments implements Listener {
 				ItemMeta meta = damager.getItemInHand().getItemMeta();
 				List<String> lore = meta.getLore();
 				for (String line : lore) {
-					if (line.equals("Â§eOverride")) {
+					if (line.equals("§eOverride")) {
 						Random rand = new Random();
 						int index = rand.nextInt(20) + 1;
 						if (index == 20) {
@@ -181,7 +181,7 @@ public class Enchantments implements Listener {
 								damaged.removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
 							}
 						}
-					} else if (line.equals("Â§eShadowstep")) {
+					} else if (line.equals("§eShadowstep")) {
 						String factionName = BoardColl.get().getFactionAt(PS.valueOf(damager.getLocation())).getName();
 						if (factionName.equalsIgnoreCase("Warzone") || factionName.equalsIgnoreCase("Castle")) {
 							Random rand = new Random();
@@ -201,7 +201,7 @@ public class Enchantments implements Listener {
 								}, 1);
 							}
 						}
-					} else if (line.equals("Â§5Cannibal")) {
+					} else if (line.equals("§5Cannibal")) {
 						Random rand = new Random();
 						int index = rand.nextInt(15) + 1;
 						if (index == 15) {
@@ -218,14 +218,14 @@ public class Enchantments implements Listener {
 				ItemMeta meta = chestplate.getItemMeta();
 				List<String> lore = meta.getLore();
 				for (String line : lore) {
-					if (line.equals("Â§eReflection")) {
+					if (line.equals("§eReflection")) {
 						Random rand = new Random();
 						int num = rand.nextInt(25) + 1;
 						if (num == 25) {
 							damager.damage(event.getDamage());
 							event.setDamage(0);
 						}
-					} else if (line.equals("Â§5Regenerator")) {
+					} else if (line.equals("§5Regenerator")) {
 						Random rand = new Random();
 						int num = rand.nextInt(25) + 1;
 						if (num == 25) {
@@ -249,14 +249,14 @@ public class Enchantments implements Listener {
 					ItemMeta meta = damager.getItemInHand().getItemMeta();
 					List<String> lore = meta.getLore();
 					for (String line : lore) {
-						if (line.equals("Â§eFirefly")) {
+						if (line.equals("§eFirefly")) {
 							Random rand = new Random();
 							int index = rand.nextInt(5) + 1;
 							if (index == 5) {
 								Location loc = damaged.getLocation();
 								damaged.getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), 5, false, false);
 							}
-						} else if (line.equals("Â§5Medic")) {
+						} else if (line.equals("§5Medic")) {
 							if (damaged.getHealth() + event.getDamage() <= 20.0) {
 								damaged.setHealth(damaged.getHealth() + event.getDamage());
 								event.setDamage(0);
@@ -279,7 +279,7 @@ public class Enchantments implements Listener {
 				ItemMeta meta = killer.getItemInHand().getItemMeta();
 				List<String> lore = meta.getLore();
 				for (String line : lore) {
-					if (line.equals("Â§5Thor")) {
+					if (line.equals("§5Thor")) {
 						for (Entity entity : killer.getNearbyEntities(10, 20, 10)) {
 							if (entity instanceof Player) {
 								entity.setVelocity(entity.getLocation().getDirection().setY(1.333));
@@ -305,15 +305,15 @@ public class Enchantments implements Listener {
 		for (ItemStack item : player.getInventory().getArmorContents()) {
 			if (item != null && item.hasItemMeta() && item.getItemMeta().hasLore()) {
 				for (String line : item.getItemMeta().getLore()) {
-					if (line.equals("Â§eRunner")) {
+					if (line.equals("§eRunner")) {
 						player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 1));
-					} else if (line.equals("Â§5Jumper")) {
+					} else if (line.equals("§5Jumper")) {
 						player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 9999999, 0));
-					} else if (line.equals("Â§eInferno")) {
+					} else if (line.equals("§eInferno")) {
 						player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 9999999, 0));
-					} else if (line.equals("Â§5Vision")) {
+					} else if (line.equals("§5Vision")) {
 						player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 9999999, 0));
-					} else if (line.equals("Â§eInsight")) {
+					} else if (line.equals("§eInsight")) {
 						triggerInsightUpdate(player);
 					}
 				}

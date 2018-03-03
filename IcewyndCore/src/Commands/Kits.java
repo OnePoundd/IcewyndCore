@@ -38,7 +38,7 @@ public class Kits implements CommandExecutor, Listener{
 				}else if (args[0].equalsIgnoreCase("Icewynd")) {
 					giveKitIcewynd(player);
 				}else {
-					player.sendMessage("Â§cYou do not have permission to use that kit!");
+					player.sendMessage("§cYou do not have permission to use that kit!");
 				}
 			}
 		}
@@ -46,7 +46,7 @@ public class Kits implements CommandExecutor, Listener{
 	}
 
 	public void openKitInventory(Player player) {
-		Inventory kit = Bukkit.createInventory(null, InventoryType.HOPPER, "Â§5Â§lKits");
+		Inventory kit = Bukkit.createInventory(null, InventoryType.HOPPER, "§5§lKits");
 
 		//Rank 1 - Fighter
 		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Fighter");
@@ -64,15 +64,15 @@ public class Kits implements CommandExecutor, Listener{
 		ItemStack Item1 = new ItemStack(Material.CHEST, 1);
 		ItemMeta Item1Meta = Item1.getItemMeta();
 		List<String> lore1 = new ArrayList<String>();
-		Item1Meta.setDisplayName("Â§2Â§lÂ§nFighter Kit");
-		lore1.add("Â§eÂ§lInformation:");
-		lore1.add("Â§8Â§l Â» Â§eCooldown:  Â§7" + cooldown);
-		lore1.add("Â§7");
-		lore1.add("Â§eÂ§lContents:");
-		lore1.add("Â§8Â§l Â» Â§7Protection 2 Unbreaking 1 Armour Set");
-		lore1.add("Â§8Â§l Â» Â§7Sharpness 2 Sword");
-		lore1.add("Â§8Â§l Â» Â§7Power 2 Bow");
-		lore1.add("Â§8Â§l Â» Â§7128 Arrows");
+		Item1Meta.setDisplayName("§2§l§nFighter Kit");
+		lore1.add("§e§lInformation:");
+		lore1.add("§8§l » §eCooldown:  §7" + cooldown);
+		lore1.add("§7");
+		lore1.add("§e§lContents:");
+		lore1.add("§8§l » §7Protection 2 Unbreaking 1 Armour Set");
+		lore1.add("§8§l » §7Sharpness 2 Sword");
+		lore1.add("§8§l » §7Power 2 Bow");
+		lore1.add("§8§l » §7128 Arrows");
 		Item1Meta.setLore(lore1);
 		Item1.setItemMeta(Item1Meta);
 
@@ -91,15 +91,15 @@ public class Kits implements CommandExecutor, Listener{
 		ItemStack Item2 = new ItemStack(Material.CHEST, 1);
 		ItemMeta Item2Meta = Item2.getItemMeta();
 		List<String> lore2 = new ArrayList<String>();
-		Item2Meta.setDisplayName("Â§dÂ§lÂ§nWarlord Kit");
-		lore2.add("Â§eÂ§lInformation:");
-		lore2.add("Â§8Â§l Â» Â§eCooldown:  Â§7" + cooldown);
-		lore2.add("Â§7");
-		lore2.add("Â§eÂ§lContents:");
-		lore2.add("Â§8Â§l Â» Â§7Protection 3 Unbreaking 1 Armour Set");
-		lore2.add("Â§8Â§l Â» Â§7Sharpness 3 Sword");
-		lore2.add("Â§8Â§l Â» Â§7Power 3 Bow");
-		lore2.add("Â§8Â§l Â» Â§7128 Arrows");
+		Item2Meta.setDisplayName("§d§l§nWarlord Kit");
+		lore2.add("§e§lInformation:");
+		lore2.add("§8§l » §eCooldown:  §7" + cooldown);
+		lore2.add("§7");
+		lore2.add("§e§lContents:");
+		lore2.add("§8§l » §7Protection 3 Unbreaking 1 Armour Set");
+		lore2.add("§8§l » §7Sharpness 3 Sword");
+		lore2.add("§8§l » §7Power 3 Bow");
+		lore2.add("§8§l » §7128 Arrows");
 		Item2Meta.setLore(lore2);
 		Item2.setItemMeta(Item2Meta);		
 
@@ -118,16 +118,16 @@ public class Kits implements CommandExecutor, Listener{
 		ItemStack Item3 = new ItemStack(Material.CHEST, 1);
 		ItemMeta Item3Meta = Item3.getItemMeta();
 		List<String> lore3 = new ArrayList<String>();
-		Item3Meta.setDisplayName("Â§cÂ§lÂ§nEmporer Kit");
-		lore3.add("Â§eÂ§lInformation:");
-		lore3.add("Â§8Â§l Â» Â§eCooldown:  Â§7" + cooldown);
-		lore3.add("Â§7");
-		lore3.add("Â§eÂ§lContents:");
-		lore3.add("Â§8Â§l Â» Â§7Protection 4 Unbreaking 1 Armour Set");
-		lore3.add("Â§8Â§l Â» Â§7Sharpness 4 Sword");
-		lore3.add("Â§8Â§l Â» Â§7Power 4 Bow");
-		lore3.add("Â§8Â§l Â» Â§7128 Arrows");
-		lore3.add("Â§8Â§l Â» Â§71 Elixir of Fury");
+		Item3Meta.setDisplayName("§c§l§nEmporer Kit");
+		lore3.add("§e§lInformation:");
+		lore3.add("§8§l » §eCooldown:  §7" + cooldown);
+		lore3.add("§7");
+		lore3.add("§e§lContents:");
+		lore3.add("§8§l » §7Protection 4 Unbreaking 1 Armour Set");
+		lore3.add("§8§l » §7Sharpness 4 Sword");
+		lore3.add("§8§l » §7Power 4 Bow");
+		lore3.add("§8§l » §7128 Arrows");
+		lore3.add("§8§l » §71 Elixir of Fury");
 		Item3Meta.setLore(lore3);
 		Item3.setItemMeta(Item3Meta);
 
@@ -146,16 +146,16 @@ public class Kits implements CommandExecutor, Listener{
 		ItemStack Item4 = new ItemStack(Material.CHEST, 1);
 		ItemMeta Item4Meta = Item4.getItemMeta();
 		List<String> lore4 = new ArrayList<String>();
-		Item4Meta.setDisplayName("Â§9Â§lÂ§nGod Kit");
-		lore4.add("Â§eÂ§lInformation:");
-		lore4.add("Â§8Â§l Â» Â§eCooldown:  Â§7" + cooldown);
-		lore4.add("Â§7");
-		lore4.add("Â§eÂ§lContents:");
-		lore4.add("Â§8Â§l Â» Â§7Protection 4 Unbreaking 2 Armour Set");
-		lore4.add("Â§8Â§l Â» Â§7Sharpness 5 Fire 1 Sword");
-		lore4.add("Â§8Â§l Â» Â§7Power 5 Flame 1 Bow");
-		lore4.add("Â§8Â§l Â» Â§7128 Arrows");
-		lore4.add("Â§8Â§l Â» Â§72 Elixir of Fury");
+		Item4Meta.setDisplayName("§9§l§nGod Kit");
+		lore4.add("§e§lInformation:");
+		lore4.add("§8§l » §eCooldown:  §7" + cooldown);
+		lore4.add("§7");
+		lore4.add("§e§lContents:");
+		lore4.add("§8§l » §7Protection 4 Unbreaking 2 Armour Set");
+		lore4.add("§8§l » §7Sharpness 5 Fire 1 Sword");
+		lore4.add("§8§l » §7Power 5 Flame 1 Bow");
+		lore4.add("§8§l » §7128 Arrows");
+		lore4.add("§8§l » §72 Elixir of Fury");
 		Item4Meta.setLore(lore4);
 		Item4Meta.addEnchant(Enchantment.DIG_SPEED, 1, true);
 		Item4Meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -176,16 +176,16 @@ public class Kits implements CommandExecutor, Listener{
 		ItemStack Item5 = new ItemStack(Material.CHEST, 1);
 		ItemMeta Item5Meta = Item5.getItemMeta();
 		List<String> lore5 = new ArrayList<String>();
-		Item5Meta.setDisplayName("Â§bÂ§lÂ§nIcewynd Kit");
-		lore5.add("Â§eÂ§lInformation:");
-		lore5.add("Â§8Â§l Â» Â§eCooldown:  Â§7" + cooldown);
-		lore5.add("Â§7");
-		lore5.add("Â§eÂ§lContents:");
-		lore5.add("Â§8Â§l Â» Â§7Protection 4 Unbreaking 3 Armour Set");
-		lore5.add("Â§8Â§l Â» Â§7Sharpness 5 Fire 2 Unbreaking 3 Sword");
-		lore5.add("Â§8Â§l Â» Â§7Power 5 Infinity 1 Unbreaking 3 Flame 2 Bow");
-		lore5.add("Â§8Â§l Â» Â§71 Arrow");
-		lore5.add("Â§8Â§l Â» Â§73 Elixir of Fury");
+		Item5Meta.setDisplayName("§b§l§nIcewynd Kit");
+		lore5.add("§e§lInformation:");
+		lore5.add("§8§l » §eCooldown:  §7" + cooldown);
+		lore5.add("§7");
+		lore5.add("§e§lContents:");
+		lore5.add("§8§l » §7Protection 4 Unbreaking 3 Armour Set");
+		lore5.add("§8§l » §7Sharpness 5 Fire 2 Unbreaking 3 Sword");
+		lore5.add("§8§l » §7Power 5 Infinity 1 Unbreaking 3 Flame 2 Bow");
+		lore5.add("§8§l » §71 Arrow");
+		lore5.add("§8§l » §73 Elixir of Fury");
 		Item5Meta.setLore(lore5);
 		Item5Meta.addEnchant(Enchantment.DIG_SPEED, 1, true);
 		Item5Meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -205,7 +205,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Fighter Helmet
 			ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 			ItemMeta Item1Meta = Item1.getItemMeta();
-			Item1Meta.setDisplayName("Â§2Fighter Helmet");
+			Item1Meta.setDisplayName("§2Fighter Helmet");
 			Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
 			Item1Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item1.setItemMeta(Item1Meta);
@@ -213,7 +213,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Fighter Chestplate
 			ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 			ItemMeta Item2Meta = Item2.getItemMeta();
-			Item2Meta.setDisplayName("Â§2Fighter Chestplate");
+			Item2Meta.setDisplayName("§2Fighter Chestplate");
 			Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
 			Item2Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item2.setItemMeta(Item2Meta);
@@ -221,7 +221,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Fighter Leggings
 			ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 			ItemMeta Item3Meta = Item3.getItemMeta();
-			Item3Meta.setDisplayName("Â§2Fighter Leggings");
+			Item3Meta.setDisplayName("§2Fighter Leggings");
 			Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
 			Item3Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item3.setItemMeta(Item3Meta);
@@ -229,7 +229,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Fighter Boots
 			ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 			ItemMeta Item4Meta = Item4.getItemMeta();
-			Item4Meta.setDisplayName("Â§2Fighter Boots");
+			Item4Meta.setDisplayName("§2Fighter Boots");
 			Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
 			Item4Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item4.setItemMeta(Item4Meta);
@@ -237,14 +237,14 @@ public class Kits implements CommandExecutor, Listener{
 			//Fighter Sword
 			ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
 			ItemMeta Item5Meta = Item5.getItemMeta();
-			Item5Meta.setDisplayName("Â§2Fighter Sword");
+			Item5Meta.setDisplayName("§2Fighter Sword");
 			Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
 			Item5.setItemMeta(Item5Meta);
 
 			//Fighter Bow
 			ItemStack Item6 = new ItemStack(Material.BOW, 1);
 			ItemMeta Item6Meta = Item6.getItemMeta();
-			Item6Meta.setDisplayName("Â§2Fighter Bow");
+			Item6Meta.setDisplayName("§2Fighter Bow");
 			Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 2, true);
 			Item6.setItemMeta(Item6Meta);
 
@@ -268,7 +268,7 @@ public class Kits implements CommandExecutor, Listener{
 			long hoursTillKit = secondsTillKit / (60*60);
 			long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
 			secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
-			player.sendMessage("Â§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
+			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
 		}
 	}
 
@@ -278,7 +278,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Warlord Helmet
 			ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 			ItemMeta Item1Meta = Item1.getItemMeta();
-			Item1Meta.setDisplayName("Â§dWarlord Helmet");
+			Item1Meta.setDisplayName("§dWarlord Helmet");
 			Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
 			Item1Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item1.setItemMeta(Item1Meta);
@@ -286,7 +286,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Warlord Chestplate
 			ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 			ItemMeta Item2Meta = Item2.getItemMeta();
-			Item2Meta.setDisplayName("Â§dWarlord Chestplate");
+			Item2Meta.setDisplayName("§dWarlord Chestplate");
 			Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
 			Item2Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item2.setItemMeta(Item2Meta);
@@ -294,7 +294,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Warlord Leggings
 			ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 			ItemMeta Item3Meta = Item3.getItemMeta();
-			Item3Meta.setDisplayName("Â§dWarlord Leggings");
+			Item3Meta.setDisplayName("§dWarlord Leggings");
 			Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
 			Item3Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item3.setItemMeta(Item3Meta);
@@ -302,7 +302,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Warlord Boots
 			ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 			ItemMeta Item4Meta = Item4.getItemMeta();
-			Item4Meta.setDisplayName("Â§dWarlord Boots");
+			Item4Meta.setDisplayName("§dWarlord Boots");
 			Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
 			Item4Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item4.setItemMeta(Item4Meta);
@@ -310,14 +310,14 @@ public class Kits implements CommandExecutor, Listener{
 			//Warlord Sword
 			ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
 			ItemMeta Item5Meta = Item5.getItemMeta();
-			Item5Meta.setDisplayName("Â§dWarlord Sword");
+			Item5Meta.setDisplayName("§dWarlord Sword");
 			Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
 			Item5.setItemMeta(Item5Meta);
 
 			//Warlord Bow
 			ItemStack Item6 = new ItemStack(Material.BOW, 1);
 			ItemMeta Item6Meta = Item6.getItemMeta();
-			Item6Meta.setDisplayName("Â§dWarlord Bow");
+			Item6Meta.setDisplayName("§dWarlord Bow");
 			Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 3, true);
 			Item6.setItemMeta(Item6Meta);
 
@@ -341,7 +341,7 @@ public class Kits implements CommandExecutor, Listener{
 			long hoursTillKit = secondsTillKit / (60*60);
 			long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
 			secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
-			player.sendMessage("Â§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
+			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
 		}
 	}
 
@@ -351,7 +351,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Emporer Helmet
 			ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 			ItemMeta Item1Meta = Item1.getItemMeta();
-			Item1Meta.setDisplayName("Â§cEmporer Helmet");
+			Item1Meta.setDisplayName("§cEmporer Helmet");
 			Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item1Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item1.setItemMeta(Item1Meta);
@@ -359,7 +359,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Emporer Chestplate
 			ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 			ItemMeta Item2Meta = Item2.getItemMeta();
-			Item2Meta.setDisplayName("Â§cEmporer Chestplate");
+			Item2Meta.setDisplayName("§cEmporer Chestplate");
 			Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item2Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item2.setItemMeta(Item2Meta);
@@ -367,7 +367,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Emporer Leggings
 			ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 			ItemMeta Item3Meta = Item3.getItemMeta();
-			Item3Meta.setDisplayName("Â§cEmporer Leggings");
+			Item3Meta.setDisplayName("§cEmporer Leggings");
 			Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item3Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item3.setItemMeta(Item3Meta);
@@ -375,7 +375,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Emporer Boots
 			ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 			ItemMeta Item4Meta = Item4.getItemMeta();
-			Item4Meta.setDisplayName("Â§cEmporer Boots");
+			Item4Meta.setDisplayName("§cEmporer Boots");
 			Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item4Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item4.setItemMeta(Item4Meta);
@@ -383,14 +383,14 @@ public class Kits implements CommandExecutor, Listener{
 			//Emporer Sword
 			ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
 			ItemMeta Item5Meta = Item5.getItemMeta();
-			Item5Meta.setDisplayName("Â§cEmporer Sword");
+			Item5Meta.setDisplayName("§cEmporer Sword");
 			Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 4, true);
 			Item5.setItemMeta(Item5Meta);
 
 			//Emporer Bow
 			ItemStack Item6 = new ItemStack(Material.BOW, 1);
 			ItemMeta Item6Meta = Item6.getItemMeta();
-			Item6Meta.setDisplayName("Â§cEmporer Bow");
+			Item6Meta.setDisplayName("§cEmporer Bow");
 			Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 3, true);
 			Item6.setItemMeta(Item6Meta);
 
@@ -401,11 +401,11 @@ public class Kits implements CommandExecutor, Listener{
 			ItemStack Item8 = new ItemStack(Material.POTION, 1, (byte) 8266);
 			ItemMeta Item8Meta = Item6.getItemMeta();
 			List<String> lore8 = new ArrayList<String>();
-			Item8Meta.setDisplayName("Â§4Â§lÂ§nElixir of Fury");
+			Item8Meta.setDisplayName("§4§l§nElixir of Fury");
 			Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
-			lore8.add("Â§eSpeed II (1:30)");
-			lore8.add("Â§eStrength II (1:30)");
-			lore8.add("Â§eFire Resistence (8:00)");
+			lore8.add("§eSpeed II (1:30)");
+			lore8.add("§eStrength II (1:30)");
+			lore8.add("§eFire Resistence (8:00)");
 			Item8Meta.setLore(lore8);
 			Item8.setItemMeta(Item8Meta);
 
@@ -427,7 +427,7 @@ public class Kits implements CommandExecutor, Listener{
 			long hoursTillKit = secondsTillKit / (60*60);
 			long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
 			secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
-			player.sendMessage("Â§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
+			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
 		}
 	}
 
@@ -437,7 +437,7 @@ public class Kits implements CommandExecutor, Listener{
 			//God Helmet
 			ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 			ItemMeta Item1Meta = Item1.getItemMeta();
-			Item1Meta.setDisplayName("Â§9Â§lGod Helmet");
+			Item1Meta.setDisplayName("§9§lGod Helmet");
 			Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item1Meta.addEnchant(Enchantment.DURABILITY, 2, true);
 			Item1.setItemMeta(Item1Meta);
@@ -445,7 +445,7 @@ public class Kits implements CommandExecutor, Listener{
 			//God Chestplate
 			ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 			ItemMeta Item2Meta = Item2.getItemMeta();
-			Item2Meta.setDisplayName("Â§9Â§lGod Chestplate");
+			Item2Meta.setDisplayName("§9§lGod Chestplate");
 			Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item2Meta.addEnchant(Enchantment.DURABILITY, 2, true);
 			Item2.setItemMeta(Item2Meta);
@@ -453,7 +453,7 @@ public class Kits implements CommandExecutor, Listener{
 			//God Leggings
 			ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 			ItemMeta Item3Meta = Item3.getItemMeta();
-			Item3Meta.setDisplayName("Â§9Â§lGod Leggings");
+			Item3Meta.setDisplayName("§9§lGod Leggings");
 			Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item3Meta.addEnchant(Enchantment.DURABILITY, 2, true);
 			Item3.setItemMeta(Item3Meta);
@@ -461,7 +461,7 @@ public class Kits implements CommandExecutor, Listener{
 			//God Boots
 			ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 			ItemMeta Item4Meta = Item4.getItemMeta();
-			Item4Meta.setDisplayName("Â§9Â§lGod Boots");
+			Item4Meta.setDisplayName("§9§lGod Boots");
 			Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item4Meta.addEnchant(Enchantment.DURABILITY, 2, true);
 			Item4.setItemMeta(Item4Meta);
@@ -469,7 +469,7 @@ public class Kits implements CommandExecutor, Listener{
 			//God Sword
 			ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
 			ItemMeta Item5Meta = Item5.getItemMeta();
-			Item5Meta.setDisplayName("Â§9Â§lGod Sword");
+			Item5Meta.setDisplayName("§9§lGod Sword");
 			Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
 			Item5Meta.addEnchant(Enchantment.FIRE_ASPECT, 1, true);
 			Item5.setItemMeta(Item5Meta);
@@ -477,7 +477,7 @@ public class Kits implements CommandExecutor, Listener{
 			//God Bow
 			ItemStack Item6 = new ItemStack(Material.BOW, 1);
 			ItemMeta Item6Meta = Item6.getItemMeta();
-			Item6Meta.setDisplayName("Â§9Â§lGod Bow");
+			Item6Meta.setDisplayName("§9§lGod Bow");
 			Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 5, true);
 			Item6Meta.addEnchant(Enchantment.ARROW_FIRE, 1, true);
 			Item6.setItemMeta(Item6Meta);
@@ -489,11 +489,11 @@ public class Kits implements CommandExecutor, Listener{
 			ItemStack Item8 = new ItemStack(Material.POTION, 2, (byte) 8266);
 			ItemMeta Item8Meta = Item6.getItemMeta();
 			List<String> lore8 = new ArrayList<String>();
-			Item8Meta.setDisplayName("Â§4Â§lÂ§nElixir of Fury");
+			Item8Meta.setDisplayName("§4§l§nElixir of Fury");
 			Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
-			lore8.add("Â§eSpeed II (1:30)");
-			lore8.add("Â§eStrength II (1:30)");
-			lore8.add("Â§eFire Resistence (8:00)");
+			lore8.add("§eSpeed II (1:30)");
+			lore8.add("§eStrength II (1:30)");
+			lore8.add("§eFire Resistence (8:00)");
 			Item8Meta.setLore(lore8);
 			Item8.setItemMeta(Item8Meta);
 
@@ -515,7 +515,7 @@ public class Kits implements CommandExecutor, Listener{
 			long hoursTillKit = secondsTillKit / (60*60);
 			long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
 			secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
-			player.sendMessage("Â§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
+			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
 		}
 	}
 
@@ -525,7 +525,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Icewynd Helmet
 			ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 			ItemMeta Item1Meta = Item1.getItemMeta();
-			Item1Meta.setDisplayName("Â§bÂ§lIcewynd Helmet");
+			Item1Meta.setDisplayName("§b§lIcewynd Helmet");
 			Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item1Meta.addEnchant(Enchantment.DURABILITY, 3, true);
 			Item1.setItemMeta(Item1Meta);
@@ -533,7 +533,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Icewynd Chestplate
 			ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 			ItemMeta Item2Meta = Item2.getItemMeta();
-			Item2Meta.setDisplayName("Â§bÂ§lIcewynd Chestplate");
+			Item2Meta.setDisplayName("§b§lIcewynd Chestplate");
 			Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item2Meta.addEnchant(Enchantment.DURABILITY, 3, true);
 			Item2.setItemMeta(Item2Meta);
@@ -541,7 +541,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Icewynd Leggings
 			ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 			ItemMeta Item3Meta = Item3.getItemMeta();
-			Item3Meta.setDisplayName("Â§bÂ§lIcewynd Leggings");
+			Item3Meta.setDisplayName("§b§lIcewynd Leggings");
 			Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item3Meta.addEnchant(Enchantment.DURABILITY, 3, true);
 			Item3.setItemMeta(Item3Meta);
@@ -549,7 +549,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Icewynd Boots
 			ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 			ItemMeta Item4Meta = Item4.getItemMeta();
-			Item4Meta.setDisplayName("Â§bÂ§lIcewynd Boots");
+			Item4Meta.setDisplayName("§b§lIcewynd Boots");
 			Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item4Meta.addEnchant(Enchantment.DURABILITY, 3, true);
 			Item4.setItemMeta(Item4Meta);
@@ -557,7 +557,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Icewynd Sword
 			ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
 			ItemMeta Item5Meta = Item5.getItemMeta();
-			Item5Meta.setDisplayName("Â§bÂ§lIcewynd Sword");
+			Item5Meta.setDisplayName("§b§lIcewynd Sword");
 			Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
 			Item5Meta.addEnchant(Enchantment.FIRE_ASPECT, 2, true);
 			Item5Meta.addEnchant(Enchantment.DURABILITY, 3, true);
@@ -566,7 +566,7 @@ public class Kits implements CommandExecutor, Listener{
 			//Icewynd Bow
 			ItemStack Item6 = new ItemStack(Material.BOW, 1);
 			ItemMeta Item6Meta = Item6.getItemMeta();
-			Item6Meta.setDisplayName("Â§bÂ§lIcewynd Bow");
+			Item6Meta.setDisplayName("§b§lIcewynd Bow");
 			Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 5, true);
 			Item6Meta.addEnchant(Enchantment.ARROW_FIRE, 2, true);
 			Item6Meta.addEnchant(Enchantment.DURABILITY, 3, true);
@@ -580,11 +580,11 @@ public class Kits implements CommandExecutor, Listener{
 			ItemStack Item8 = new ItemStack(Material.POTION, 3, (byte) 8266);
 			ItemMeta Item8Meta = Item6.getItemMeta();
 			List<String> lore8 = new ArrayList<String>();
-			Item8Meta.setDisplayName("Â§4Â§lÂ§nElixir of Fury");
+			Item8Meta.setDisplayName("§4§l§nElixir of Fury");
 			Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
-			lore8.add("Â§eSpeed II (1:30)");
-			lore8.add("Â§eStrength II (1:30)");
-			lore8.add("Â§eFire Resistence (8:00)");
+			lore8.add("§eSpeed II (1:30)");
+			lore8.add("§eStrength II (1:30)");
+			lore8.add("§eFire Resistence (8:00)");
 			Item8Meta.setLore(lore8);
 			Item8.setItemMeta(Item8Meta);
 
@@ -608,7 +608,7 @@ public class Kits implements CommandExecutor, Listener{
 			long hoursTillKit = secondsTillKit / (60*60);
 			long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
 			secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
-			player.sendMessage("Â§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
+			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
 		}
 	}
 

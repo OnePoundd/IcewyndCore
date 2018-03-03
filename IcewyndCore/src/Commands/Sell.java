@@ -43,7 +43,7 @@ public class Sell implements CommandExecutor, Listener{
 						totalValue = totalValue * 1.1;
 					}
 					Main.econ.depositPlayer(player, totalValue);
-					player.sendMessage("ยงaยงl(!)ยง7 You sold all your sellable items for ยงa$" + totalValue);
+					player.sendMessage("งaงl(!)ง7 You sold all your sellable items for งa$" + totalValue);
 				}else if(args[0].equalsIgnoreCase("hand")) {
 					ItemStack item = player.getItemInHand();
 					double value = Main.pricesConfig.getDouble(String.valueOf(item.getTypeId())+ ".Sell") * item.getAmount();
@@ -54,26 +54,26 @@ public class Sell implements CommandExecutor, Listener{
 						value = value * 1.1;
 					}
 					Main.econ.depositPlayer(player, value);
-					player.sendMessage("ยงaยงl(!)ยง7 You sold the items in your hand for ยงa$" + value);
+					player.sendMessage("งaงl(!)ง7 You sold the items in your hand for งa$" + value);
 				}else {
-					player.sendMessage("ยงcยงl(!)ยง7 Usage: /sell, /sell all, or /sell hand");
+					player.sendMessage("งcงl(!)ง7 Usage: /sell, /sell all, or /sell hand");
 				}
 			}else {
-				player.sendMessage("ยงcยงl(!)ยง7 Usage: /sell, /sell all, or /sell hand");
+				player.sendMessage("งcงl(!)ง7 Usage: /sell, /sell all, or /sell hand");
 			}
 		}
 		return false;
 	}
 
 	public void openSellInventory(Player player) {
-		Inventory sellInv = Bukkit.createInventory(null, 54, "ยงcยงl>> ยง8Sell ยงcยงl<<");
+		Inventory sellInv = Bukkit.createInventory(null, 54, "งcงl>> ง8Sell งcงl<<");
 
 		ItemStack sell = new ItemStack(Material.EMERALD);
 		ItemMeta sellMeta = sell.getItemMeta();
-		sellMeta.setDisplayName("ยงfยงl>> ยงaSell Items ยงfยงl<<");
+		sellMeta.setDisplayName("งfงl>> งaSell Items งfงl<<");
 		ArrayList<String> sellLore = new ArrayList<String>();
-		sellLore.add("ยง7Click this to sell all the items that");
-		sellLore.add("ยง7you have added to this inventory!");
+		sellLore.add("ง7Click this to sell all the items that");
+		sellLore.add("ง7you have added to this inventory!");
 		sellMeta.setLore(sellLore);
 		sell.setItemMeta(sellMeta);
 
@@ -86,9 +86,9 @@ public class Sell implements CommandExecutor, Listener{
 	public void onInventoryClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
 		if(event.getClickedInventory() != null) {
-			if(event.getClickedInventory().getName().equals("ยงcยงl>> ยง8Sell ยงcยงl<<")) {
+			if(event.getClickedInventory().getName().equals("งcงl>> ง8Sell งcงl<<")) {
 				if(event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta() && 
-						event.getCurrentItem().getItemMeta().hasDisplayName() && event.getCurrentItem().getItemMeta().getDisplayName().equals("ยงfยงl>> ยงaSell Items ยงfยงl<<")) {
+						event.getCurrentItem().getItemMeta().hasDisplayName() && event.getCurrentItem().getItemMeta().getDisplayName().equals("งfงl>> งaSell Items งfงl<<")) {
 					event.setCancelled(true);
 					double totalValue = 0;
 					for(ItemStack item : event.getClickedInventory().getContents()) {
@@ -109,7 +109,7 @@ public class Sell implements CommandExecutor, Listener{
 						totalValue = totalValue * 1.1;
 					}
 					Main.econ.depositPlayer(player, totalValue);
-					player.sendMessage("ยงaยงl(!)ยง7 You sold all your sellable items for ยงa$" + totalValue);
+					player.sendMessage("งaงl(!)ง7 You sold all your sellable items for งa$" + totalValue);
 					player.closeInventory();
 				}
 			}
@@ -118,7 +118,7 @@ public class Sell implements CommandExecutor, Listener{
 
 	@EventHandler
 	public void onInventoryClose(InventoryCloseEvent event) {
-		if(event.getInventory().getName().equals("ยงcยงl>> ยง8Sell ยงcยงl<<")) {
+		if(event.getInventory().getName().equals("งcงl>> ง8Sell งcงl<<")) {
 			for(ItemStack item : event.getInventory().getContents()) {
 				if(item != null) {
 					if(!(item.getType().equals(Material.EMERALD) && item.hasItemMeta() && item.getItemMeta().hasDisplayName())) {

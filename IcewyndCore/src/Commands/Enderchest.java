@@ -11,7 +11,7 @@ public class Enderchest implements CommandExecutor{
 		if (cmd.getName().equalsIgnoreCase("enderchest")) {
 			Player player = (Player) sender;
 			player.openInventory(player.getEnderChest());
-			player.sendMessage("ยง7Opening Enderchest...");
+			player.sendMessage("ง7Opening Enderchest...");
 		}
 		return false;
 	}

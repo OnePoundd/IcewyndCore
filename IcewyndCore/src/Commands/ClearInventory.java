@@ -14,7 +14,7 @@ public class ClearInventory implements CommandExecutor{
 				player.getInventory().clear();
 				player.getInventory().setArmorContents(player.getInventory().getArmorContents().clone());
 				player.updateInventory();
-				player.sendMessage("Â§eYour inventory has been cleared");
+				player.sendMessage("§eYour inventory has been cleared");
 			}
 		}
 		return false;

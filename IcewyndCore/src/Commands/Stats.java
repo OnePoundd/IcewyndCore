@@ -21,7 +21,7 @@ public class Stats implements CommandExecutor{
 	//Genbucket Tracking
 	@EventHandler
 	public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event) {
-		if (event.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals("Â§cÂ§lGen Bucket")) {
+		if (event.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals("§c§lGen Bucket")) {
 			event.getPlayer().sendMessage("hi");	
 		}
 	}
@@ -56,8 +56,8 @@ public class Stats implements CommandExecutor{
 
 				MPlayer mplayer = MPlayer.get(target);
 				String faction = mplayer.getFactionName();
-				TextComponent text = new TextComponent("Â§aÂ§lHover here to see " + target.getName() + "'s stats");
-				text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Â§dUsername: Â§e" + target.getName() + "\nÂ§dFaction:Â§e " + faction + "\n" + "\nÂ§7             Â§aÂ§lGeneral          \n      Â§aÂ§lÂ§m------------Â§a   \nÂ§dÂ§lTime Played:Â§e " + timeplayed + "\nÂ§dÂ§lBlocks Broken:Â§e " + blocksmined + "\nÂ§dÂ§lSugarcane Farmed:Â§e " + sugarcanemined + "\nÂ§dÂ§lBlocks Placed:Â§e " + blocksplaced + "\nÂ§dÂ§lFish Caught:Â§e " + fishcaught + "\nÂ§dÂ§lPlayers Killed:Â§e " + playerskilled + "\nÂ§dÂ§lMonsters Killed:Â§e " + mobskilled + "\nÂ§7               Â§aÂ§lOther          \n      Â§aÂ§lÂ§m------------Â§a" + "\nÂ§dÂ§lMoney Made:Â§e " + moneymade + "\nÂ§dÂ§lGenbuckets Placed:Â§e " + genbuckets + "\nÂ§dÂ§lLucky Drops Found:Â§e " + luckydrops + "\nÂ§dÂ§lSupply Drops Captured:Â§e " + supplydropscaptured + "\nÂ§dÂ§lCastle Captures:Â§e " + castlecaptures + "\nÂ§dÂ§lBooks Enchanted:Â§e " + booksenchanted + "\nÂ§dÂ§lChallenges Completed:Â§e " + challengescompleted + "\nÂ§dÂ§lMCMMO Levels Gained:Â§e " + mcmmolevelsgained).create()));
+				TextComponent text = new TextComponent("§a§lHover here to see " + target.getName() + "'s stats");
+				text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§dUsername: §e" + target.getName() + "\n§dFaction:§e " + faction + "\n" + "\n§7             §a§lGeneral          \n      §a§l§m------------§a   \n§d§lTime Played:§e " + timeplayed + "\n§d§lBlocks Broken:§e " + blocksmined + "\n§d§lSugarcane Farmed:§e " + sugarcanemined + "\n§d§lBlocks Placed:§e " + blocksplaced + "\n§d§lFish Caught:§e " + fishcaught + "\n§d§lPlayers Killed:§e " + playerskilled + "\n§d§lMonsters Killed:§e " + mobskilled + "\n§7               §a§lOther          \n      §a§l§m------------§a" + "\n§d§lMoney Made:§e " + moneymade + "\n§d§lGenbuckets Placed:§e " + genbuckets + "\n§d§lLucky Drops Found:§e " + luckydrops + "\n§d§lSupply Drops Captured:§e " + supplydropscaptured + "\n§d§lCastle Captures:§e " + castlecaptures + "\n§d§lBooks Enchanted:§e " + booksenchanted + "\n§d§lChallenges Completed:§e " + challengescompleted + "\n§d§lMCMMO Levels Gained:§e " + mcmmolevelsgained).create()));
 				p.sendMessage(text);
 			}else if (args.length == 0){
 				int timeplayed = plugin.getConfig().getInt(p.getUniqueId() + ".TimePlayed");
@@ -78,8 +78,8 @@ public class Stats implements CommandExecutor{
 
 				MPlayer mplayer = MPlayer.get(p);
 				String faction = mplayer.getFactionName();
-				TextComponent text = new TextComponent("Â§aÂ§lHover here to see your stats!");
-				text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Â§dUsername: Â§e" + p.getName() + "\nÂ§dFaction:Â§e " + faction + "\n" + "\nÂ§7             Â§aÂ§lGeneral          \n      Â§aÂ§lÂ§m------------Â§a   \nÂ§dÂ§lTime Played:Â§e " + timeplayed + "\nÂ§dÂ§lBlocks Broken:Â§e " + blocksmined + "\nÂ§dÂ§lSugarcane Farmed:Â§e " + sugarcanemined + "\nÂ§dÂ§lBlocks Placed:Â§e " + blocksplaced + "\nÂ§dÂ§lFish Caught:Â§e " + fishcaught + "\nÂ§dÂ§lPlayers Killed:Â§e " + playerskilled + "\nÂ§dÂ§lMonsters Killed:Â§e " + mobskilled + "\nÂ§7               Â§aÂ§lOther          \n      Â§aÂ§lÂ§m------------Â§a" + "\nÂ§dÂ§lMoney Made:Â§e " + moneymade + "\nÂ§dÂ§lGenbuckets Placed:Â§e " + genbuckets + "\nÂ§dÂ§lLucky Drops Found:Â§e " + luckydrops + "\nÂ§dÂ§lSupply Drops Captured:Â§e " + supplydropscaptured + "\nÂ§dÂ§lCastle Captures:Â§e " + castlecaptures + "\nÂ§dÂ§lBooks Enchanted:Â§e " + booksenchanted + "\nÂ§dÂ§lChallenges Completed:Â§e " + challengescompleted + "\nÂ§dÂ§lMCMMO Levels Gained:Â§e " + mcmmolevelsgained).create()));
+				TextComponent text = new TextComponent("§a§lHover here to see your stats!");
+				text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§dUsername: §e" + p.getName() + "\n§dFaction:§e " + faction + "\n" + "\n§7             §a§lGeneral          \n      §a§l§m------------§a   \n§d§lTime Played:§e " + timeplayed + "\n§d§lBlocks Broken:§e " + blocksmined + "\n§d§lSugarcane Farmed:§e " + sugarcanemined + "\n§d§lBlocks Placed:§e " + blocksplaced + "\n§d§lFish Caught:§e " + fishcaught + "\n§d§lPlayers Killed:§e " + playerskilled + "\n§d§lMonsters Killed:§e " + mobskilled + "\n§7               §a§lOther          \n      §a§l§m------------§a" + "\n§d§lMoney Made:§e " + moneymade + "\n§d§lGenbuckets Placed:§e " + genbuckets + "\n§d§lLucky Drops Found:§e " + luckydrops + "\n§d§lSupply Drops Captured:§e " + supplydropscaptured + "\n§d§lCastle Captures:§e " + castlecaptures + "\n§d§lBooks Enchanted:§e " + booksenchanted + "\n§d§lChallenges Completed:§e " + challengescompleted + "\n§d§lMCMMO Levels Gained:§e " + mcmmolevelsgained).create()));
 				p.sendMessage(text);
 			}
 		}
