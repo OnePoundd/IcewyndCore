@@ -35,7 +35,6 @@
     fstats:
     freecam:
     kit:
-    event:
     sell:
     shop:
     feed:
@@ -43,6 +42,7 @@
     help:
     list:
     suicide:
+      aliases: [kill]
     seen:
     witherspawn:
     reset:
