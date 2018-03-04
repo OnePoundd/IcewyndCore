@@ -59,6 +59,8 @@ public class Misc implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) throws InvocationTargetException {
 		Player player = event.getPlayer();
+		int players = plugin.getConfig().getInt(".PlayersOnline");
+		plugin.getConfig().set(".PlayersOnline", players + 1);
 		//MOTD
 		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
 		player.sendMessage("        §f§lCONNECTED TO §b§lICEWYND §b§lFACTIONS");
