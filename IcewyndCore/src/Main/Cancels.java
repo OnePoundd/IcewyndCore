@@ -1,7 +1,6 @@
 package Main;
 
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Enderman;
@@ -12,7 +11,6 @@ import org.bukkit.entity.Wither;
 import org.bukkit.entity.WitherSkull;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.block.EntityBlockFormEvent;
@@ -21,7 +19,6 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
@@ -54,17 +51,6 @@ public class Cancels implements Listener {
 		else if (event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.BREEDING) {
 			event.setCancelled(true);
 		}
-	}
-	@EventHandler
-	public void onPlayerInteract(PlayerInteractEvent e)
-	{
-		if (e.getAction() != Action.RIGHT_CLICK_BLOCK && e.getAction() != Action.LEFT_CLICK_BLOCK)
-			return;
-
-		Block b = e.getClickedBlock();
-
-		if (b.getType() != Material.MOB_SPAWNER)
-			return;
 	}
 	@EventHandler
 	public void onWeatherChange(WeatherChangeEvent event) {
