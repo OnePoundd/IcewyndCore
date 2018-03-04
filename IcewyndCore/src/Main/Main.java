@@ -35,6 +35,7 @@ import Commands.Freecam;
 import Commands.Help;
 import Commands.Invsee;
 import Commands.Kits;
+import Commands.Lag;
 import Commands.List;
 import Commands.Message;
 import Commands.MsgToggle;
@@ -73,6 +74,7 @@ public class Main extends JavaPlugin implements Listener {
 		saveDefaultConfig();
 		PluginManager manager = Bukkit.getServer().getPluginManager();
 		Main.protocolManager = ProtocolLibrary.getProtocolManager();
+		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPS(), 100L, 1L);
 		manager.registerEvents(this, this);
 		manager.registerEvents(new CrateEventListener(), this);
 		manager.registerEvents(new Enchantments(), this);
@@ -139,6 +141,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("librarian").setExecutor(new Crates());
 		getCommand("crategive").setExecutor(new Crates());
 		getCommand("pvptimer").setExecutor(new PVPTimer());
+		getCommand("lag").setExecutor(new Lag());
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
@@ -241,8 +244,7 @@ public class Main extends JavaPlugin implements Listener {
 				Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn, EntityType.WITHER);
 				mob.setCustomName("§4§l§nWither King");
 				mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
-				mob.setMaxHealth(100);
-				mob.setHealth(100);
+				Bukkit.broadcastMessage(mob.getHealth() + "");
 			}
 		}, 0L, 3000L);
 
