@@ -2,10 +2,12 @@ package Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
+import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -13,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Wither;
 import org.bukkit.entity.Skeleton.SkeletonType;
+import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -48,16 +51,15 @@ public class WitherEvent implements CommandExecutor, Listener {
 		nmsEntity.f(tag);
 	}
 
-	/*@SuppressWarnings("deprecation")
+	/*if (plugin.getConfig().getBoolean(".WitherInvin") == true) {
+				event.setCancelled(true);
+				*/
 	@EventHandler
 	public void ondamage(EntityDamageEvent event) {
 		Entity e = event.getEntity();
-		if (plugin.getConfig().getBoolean(".WitherInvin") == true) {
-			event.setCancelled(true);
-			if (e.getCustomName().equals("§4§l§oWither King")) {
-				if (plugin.getConfig().getBoolean(".WitherInvin") == true) {
-					event.setCancelled(true);
-				} else if (((LivingEntity) e).getHealth() < 50) {
+		if (e.getType() == EntityType.WITHER) {
+			if (e instanceof LivingEntity) {
+			    if (((LivingEntity) e).getHealth() < 75) {
 					if (plugin.getConfig().getInt(".WitherPhase") == 0) {
 						plugin.getConfig().set(".WitherPhase", 1);
 						plugin.getConfig().set(".WitherInvin", true);
@@ -66,10 +68,9 @@ public class WitherEvent implements CommandExecutor, Listener {
 						e.teleport(WitherSpawn);
 						LivingEntity entity = (LivingEntity) event.getEntity();
 						noAI(entity);
-						@SuppressWarnings("deprecation")
-						WitherSkeleton mob = (EntityType.fromId(5)); Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(-4, 0, 0), EntityType.fromId(5));
-						WitherSkeleton mob2 = (EntityType.fromId(5)); Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(4, 0, 4), EntityType.fromId(5));
-						WitherSkeleton mob3 = (EntityType.fromId(5)); Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(2, 0, -2), EntityType.fromId(5));
+						Skeleton mob = (Skeleton) Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(-4, 0, 0), EntityType.fromId(5));
+						Skeleton mob2 = (Skeleton) Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(4, 0, 4), EntityType.fromId(5));
+						Skeleton mob3 = (Skeleton) Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(2, 0, -2), EntityType.fromId(5));
 						mob.setCustomName("§c§lWithered Minion");
 						mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
 						mob2.setCustomName("§c§lWithered Minion");
@@ -79,21 +80,22 @@ public class WitherEvent implements CommandExecutor, Listener {
 						WitherSpawn.add(-2, 0, -2);
 						plugin.saveConfig();
 					}
-				}
-			} else if (((LivingEntity) e).getHealth() < 25) {
-				if (plugin.getConfig().getInt(".WitherPhase") == 1) {
-					plugin.getConfig().set(".WitherPhase", 2);
-					plugin.saveConfig();
-					Bukkit.broadcastMessage("25% Health, summoning Blaze Guards");
-					Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
-					@SuppressWarnings("unused")
-					Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(+4, 0, +4),EntityType.BLAZE);
-					plugin.getConfig().set(".WitherSkeletons", 0);
-					plugin.saveConfig();
-				}
+			    } else if (((LivingEntity) e).getHealth() < 30) {
+					if (plugin.getConfig().getInt(".WitherPhase") == 1) {
+						plugin.getConfig().set(".WitherPhase", 2);
+						plugin.saveConfig();
+						Bukkit.broadcastMessage("25% Health, summoning Blaze Guards");
+						Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
+						Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(+4, 0, +4),EntityType.BLAZE);
+						plugin.getConfig().set(".WitherSkeletons", 0);
+						plugin.saveConfig();
+						}
+			    }
+			
 			}
 		}
-	}*/
+	}
+
 
 	@EventHandler
 	public void ondeath(EntityDeathEvent event) {
@@ -106,9 +108,10 @@ public class WitherEvent implements CommandExecutor, Listener {
 				Bukkit.broadcastMessage("WITHER KING HAS BEEN SLAIN");
 			}
 		}
-		Entity entity = event.getEntity();
-		Skeleton skeleton = (Skeleton) entity;
+
 		if (event.getEntity() instanceof Skeleton) {
+			Entity entity = event.getEntity();
+			Skeleton skeleton = (Skeleton) entity;
 			if (skeleton.getSkeletonType() == SkeletonType.WITHER) {
 				Bukkit.broadcastMessage("Skeleton");
 				plugin.getConfig().set(".WitherSkeletons", totalKilled + 1);

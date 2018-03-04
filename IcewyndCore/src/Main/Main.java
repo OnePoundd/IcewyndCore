@@ -240,7 +240,7 @@ public class Main extends JavaPlugin implements Listener {
 				Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn, EntityType.WITHER);
 				mob.setCustomName("§4§l§nWither King");
 				mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
-				
+				mob.setMaxHealth(100);
 				mob.setHealth(100);
 			}
 		}, 0L, 3000L);
