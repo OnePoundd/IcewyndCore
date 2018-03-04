@@ -59,6 +59,7 @@ import Crates.EventCrate;
 import Crates.ExoticCrate;
 import Crates.LegendaryCrate;
 import CustomEnchants.Enchanter;
+import CustomEnchants.Enchantments;
 import CustomEnchants.Librarian;
 import McMMO.Milestones;
 import net.milkbowl.vault.economy.Economy;
@@ -74,7 +75,7 @@ public class Main extends JavaPlugin implements Listener {
 		Main.protocolManager = ProtocolLibrary.getProtocolManager();
 		manager.registerEvents(this, this);
 		manager.registerEvents(new CrateEventListener(), this);
-		//manager.registerEvents(new Enchantments(), this);
+		manager.registerEvents(new Enchantments(), this);
 		manager.registerEvents(new Librarian(), this);
 		manager.registerEvents(new Enchanter(), this);
 		manager.registerEvents(new SilkSpawners(), this);
