@@ -17,6 +17,7 @@ public class Reset implements CommandExecutor{
 				plugin.getConfig().set(".WitherSkeletons", 0);
 				plugin.getConfig().set(".WitherInvin", false);
 				plugin.getConfig().set(".WitherPhase", 0);
+				plugin.saveConfig();
 				player.sendMessage("§eReset Successful");
 				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "lagg killmobs");
 				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "sm removeall");
