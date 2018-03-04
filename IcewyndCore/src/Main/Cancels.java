@@ -13,6 +13,7 @@ import org.bukkit.entity.WitherSkull;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.block.EntityBlockFormEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
@@ -26,7 +27,7 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 
 public class Cancels implements Listener {
-	
+
 	public void noAI(org.bukkit.entity.Entity bukkitEntity)
 	{
 		net.minecraft.server.v1_8_R3.Entity nmsEntity = ((CraftEntity)bukkitEntity).getHandle();
@@ -38,37 +39,33 @@ public class Cancels implements Listener {
 		tag.setInt("NoAI", 1);
 		nmsEntity.f(tag);
 	}
-
-	//@EventHandler
-	//public void onBreed(EntityBreedEvent e) {
-		//e.setCancelled(true);
-	//}
-	
 	@EventHandler
 	public void onspawn(EntitySpawnEvent e) {
 		if (e.getEntityType() == EntityType.ENDERMITE) {
 			e.setCancelled(true);
 		}
 	}
-
 	@EventHandler
 	public void onMobSpawn(CreatureSpawnEvent event) {
 		if (!(event.getEntityType() == EntityType.WITHER)) {
 			LivingEntity entity = event.getEntity();
 			noAI(entity);
 		}
+		else if (event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.BREEDING) {
+			event.setCancelled(true);
+		}
 	}
 	@EventHandler
-    public void onPlayerInteract(PlayerInteractEvent e)
-    {
-        if (e.getAction() != Action.RIGHT_CLICK_BLOCK && e.getAction() != Action.LEFT_CLICK_BLOCK)
-            return;
-       
-        Block b = e.getClickedBlock();
-       
-        if (b.getType() != Material.MOB_SPAWNER)
-            return;
-    }
+	public void onPlayerInteract(PlayerInteractEvent e)
+	{
+		if (e.getAction() != Action.RIGHT_CLICK_BLOCK && e.getAction() != Action.LEFT_CLICK_BLOCK)
+			return;
+
+		Block b = e.getClickedBlock();
+
+		if (b.getType() != Material.MOB_SPAWNER)
+			return;
+	}
 	@EventHandler
 	public void onWeatherChange(WeatherChangeEvent event) {
 		event.setCancelled(true);
@@ -88,12 +85,12 @@ public class Cancels implements Listener {
 		}
 	}
 	@EventHandler
-    public void snow(EntityBlockFormEvent event) {
-        if (event.getEntity() instanceof Snowman) {
-            if (event.getNewState().getType() == Material.SNOW) {
-                event.setCancelled(true);
-            }
-        }
+	public void snow(EntityBlockFormEvent event) {
+		if (event.getEntity() instanceof Snowman) {
+			if (event.getNewState().getType() == Material.SNOW) {
+				event.setCancelled(true);
+			}
+		}
 	}
 	@EventHandler
 	public void enderdragonDamage(EntityExplodeEvent event) {
@@ -106,5 +103,9 @@ public class Cancels implements Listener {
 		else if (event.getEntity() instanceof WitherSkull) {
 			event.blockList().clear();
 		}
+	}
+	@EventHandler
+	public void onMelt(BlockFadeEvent event) {
+		event.setCancelled(true);
 	}
 }
