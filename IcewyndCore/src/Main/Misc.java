@@ -35,25 +35,25 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 
 public class Misc implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
-	
+
 	//Scoreboard
 	@EventHandler
 	public void onScoreboardUpdate(ScoreboardEvent event){
-	  Player player = event.getPlayer();
-	  event.setScoreboardName("§b§lIcewynd.net");
-	  event.setHeader("§7§l§m------------");
-	  event.setFooter("§7§l§m------------");
-	  //MPlayer mplayer = MPlayer.get(player);
-      //String faction = mplayer.getFactionName();
-	  event.writeLine("§a§lFaction: ");
-	  event.writeLine("§7Chaos - 7 Online");
-	  event.writeLine("");
-	  int ping = ((CraftPlayer) player).getHandle().ping;
-	  event.writeLine("§d§lPing:");
-	  event.writeLine("§7" + ping);
-	  event.writeLine("");
-	  event.writeLine("§a§lBalance:");
-	  event.writeLine("§7" + Main.econ.getBalance(player));
+		Player player = event.getPlayer();
+		event.setScoreboardName("§b§lIcewynd.net");
+		event.setHeader("§7§l§m------------");
+		event.setFooter("§7§l§m------------");
+		//MPlayer mplayer = MPlayer.get(player);
+		//String faction = mplayer.getFactionName();
+		event.writeLine("§a§lFaction: ");
+		event.writeLine("§7Chaos - 7 Online");
+		event.writeLine("");
+		int ping = ((CraftPlayer) player).getHandle().ping;
+		event.writeLine("§d§lPing:");
+		event.writeLine("§7" + ping);
+		event.writeLine("");
+		event.writeLine("§a§lBalance:");
+		event.writeLine("§7" + Main.econ.getBalance(player));
 	}
 
 	@EventHandler
@@ -68,7 +68,7 @@ public class Misc implements Listener {
 		player.sendMessage("§b§lDISCORD: §fIcewynd.net/Discord");
 		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
 		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
-		
+
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
 			player.teleport(MConf.get().getWarp("jail"));
 		}
@@ -100,7 +100,7 @@ public class Misc implements Listener {
 			plugin.saveConfig();
 		}
 	}
-		
+
 	@EventHandler
 	//GenBucketPickup
 	public void onBucketFill(PlayerBucketFillEvent event) {
@@ -118,7 +118,7 @@ public class Misc implements Listener {
 	}
 
 	@EventHandler
-	// PlayerSkullDropOnDeath
+	//PlayerSkullDropOnDeath
 	public void ondeath(PlayerDeathEvent event) {
 		Player player = event.getEntity().getPlayer();
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
@@ -157,8 +157,7 @@ public class Misc implements Listener {
 	//MOTD
 	@EventHandler
 	public void onServerListPing(ServerListPingEvent s) {
-		s.setMotd(
-				"         §8§l§m-§7§l§m-§f§l[§f §lICEWYND §b§lNETWORK §f§l- §a1.7 - 1.12 §f§l]§7§l§m-§8§l§m-§r                      §c§lFACTIONS MAP 1 LIVE!§7 / §9§l25% OFF SALE");
+		s.setMotd("         §8§l§m-§7§l§m-§f§l[§f §lICEWYND §b§lNETWORK §f§l- §a1.7 - 1.12 §f§l]§7§l§m-§8§l§m-§r                      §c§lFACTIONS MAP 1 LIVE!§7 / §9§l25% OFF SALE");
 		s.setMaxPlayers(0);
 	}
 

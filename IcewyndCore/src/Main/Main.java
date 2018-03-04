@@ -98,6 +98,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Seen(), this);
 		manager.registerEvents(new WitherEvent(), this);
 		manager.registerEvents(new NoWaterRedstone(), this);
+		manager.registerEvents(new PVPTimer(), this);
 
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -136,13 +137,14 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("enchanter").setExecutor(new Crates());
 		getCommand("librarian").setExecutor(new Crates());
 		getCommand("crategive").setExecutor(new Crates());
+		getCommand("pvptimer").setExecutor(new PVPTimer());
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
 		EventCrate.load();
 
 		//Uploader.triggerDatabaseAutoUpdate(); //Triggers the auto-updater for the factions web-database. Every 5 mins player and faction data will be updated.
-		
+
 		//Creates default prices.yml file if one doesn't already exist
 		File customYml = new File(getDataFolder()+"/prices.yml");
 		pricesConfig = YamlConfiguration.loadConfiguration(customYml);	
