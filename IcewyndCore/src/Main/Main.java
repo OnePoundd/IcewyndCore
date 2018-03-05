@@ -292,7 +292,7 @@ public class Main extends JavaPlugin implements Listener {
 			public void run() {
 				Bukkit.broadcastMessage("§e§lClearLag§8 » §aClearing Entities in 1 minute!");
 			}
-		}, 0L, 5500L);
+		}, 0L, 4800L);
 
 		//Clear Lag
 		BukkitScheduler ClearLag = getServer().getScheduler();
