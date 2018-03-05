@@ -30,6 +30,8 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.massivecraft.factions.entity.MConf;
+import com.massivecraft.factions.entity.MPlayer;
+
 import me.bowser123467.hikariboard.ScoreboardEvent;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 
@@ -43,10 +45,10 @@ public class Misc implements Listener {
 		event.setScoreboardName("§b§lIcewynd.net");
 		event.setHeader("§7§l§m------------");
 		event.setFooter("§7§l§m------------");
-		//MPlayer mplayer = MPlayer.get(player);
-		//String faction = mplayer.getFactionName();
+		MPlayer mplayer = MPlayer.get(player);
+		String faction = mplayer.getFactionName();
 		event.writeLine("§a§lFaction: ");
-		event.writeLine("§7Chaos - 7 Online");
+		event.writeLine("§7" + faction);
 		event.writeLine("");
 		int ping = ((CraftPlayer) player).getHandle().ping;
 		event.writeLine("§d§lPing:");

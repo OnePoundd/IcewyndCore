@@ -2,13 +2,18 @@ package Main;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.entity.Wither;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
@@ -97,11 +102,12 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Sell(), this);
 		manager.registerEvents(new Shop(), this);
 		manager.registerEvents(new DisguiseBuffs(), this);
-		manager.registerEvents(new BossEggs(), this);
+		//manager.registerEvents(new BossEggs(), this);
 		manager.registerEvents(new Seen(), this);
 		manager.registerEvents(new WitherEvent(), this);
 		manager.registerEvents(new NoWaterRedstone(), this);
 		manager.registerEvents(new PVPTimer(), this);
+		manager.registerEvents(new Stats(), this);
 
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -239,12 +245,11 @@ public class Main extends JavaPlugin implements Listener {
 		WitherBossEvent.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
-				Bukkit.broadcastMessage("§7The §cWither King §7was spotted north of Safezone!");
+				Bukkit.broadcastMessage("§7§lThe §c§lWither King §7§lwas spotted north of Safezone!");
 				Location WitherSpawn = (Location)(getConfig()).get(".WitherSpawn");
 				Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn, EntityType.WITHER);
 				mob.setCustomName("§4§l§nWither King");
 				mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
-				Bukkit.broadcastMessage(mob.getHealth() + "");
 			}
 		}, 0L, 3000L);
 
@@ -255,8 +260,8 @@ public class Main extends JavaPlugin implements Listener {
 			public void run() {
 				for(Player player : Bukkit.getOnlinePlayers()){
 					PacketContainer packetContainer = Main.protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
-					packetContainer.getChatComponents().write(0, WrappedChatComponent.fromText(" §8§l§m-§7§l§m-§f§l[§f ICEWYND §bNETWORK§f§l ]§7§l§m-§8§l§m-§r "))
-					.write(1, WrappedChatComponent.fromText("§dStore, forums and more at Icewynd.net"));
+					packetContainer.getChatComponents().write(0, WrappedChatComponent.fromText(" §8§l§m-§7§l§m-§f§l[§f ICEWYND §bNETWORK§f§l ]§7§l§m-§8§l§m-§r ")) //Header
+					.write(1, WrappedChatComponent.fromText("§dStore, forums and more at Icewynd.net")); //Footer
 					try {
 						ProtocolLibrary.getProtocolManager().sendServerPacket(player, packetContainer);
 					} catch (InvocationTargetException e) {
@@ -266,6 +271,33 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		}, 0L, 300L);
+
+		//Clear Lag Announce
+		BukkitScheduler ClearLagAnnounce = getServer().getScheduler();
+		ClearLagAnnounce.scheduleSyncRepeatingTask(this, new Runnable() {
+			@Override
+			public void run() {
+				Bukkit.broadcastMessage("§e§lClearLag§8 » §aClearing Entities in 1 minute!");
+			}
+		}, 0L, 5500L);
+
+		//Clear Lag
+		BukkitScheduler ClearLag = getServer().getScheduler();
+		ClearLag.scheduleSyncRepeatingTask(this, new Runnable() {
+			@Override
+			public void run() {
+				ArrayList<Entity> Ent = new ArrayList<Entity>();
+				Bukkit.broadcastMessage("§e§lClearLag§8 » §aEntities have been cleared!");
+				Ent.add((Entity) Bukkit.getWorld("world").getEntities());
+				if (Ent instanceof TNTPrimed) {
+					return;
+				}else if (Ent instanceof ExperienceOrb) {
+					return;
+				}else if (Ent instanceof FallingBlock) {
+					return;
+				}
+			}
+		}, 0L, 6000L);
 	}
 }
 
