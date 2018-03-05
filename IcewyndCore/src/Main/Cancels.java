@@ -21,13 +21,14 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
+import net.minecraft.server.v1_8_R3.Entity;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 
 public class Cancels implements Listener {
 
 	public void noAI(org.bukkit.entity.Entity bukkitEntity)
 	{
-		net.minecraft.server.v1_8_R3.Entity nmsEntity = ((CraftEntity)bukkitEntity).getHandle();
+		Entity nmsEntity = ((CraftEntity)bukkitEntity).getHandle();
 		NBTTagCompound tag = nmsEntity.getNBTTag();
 		if (tag == null) {
 			tag = new NBTTagCompound();

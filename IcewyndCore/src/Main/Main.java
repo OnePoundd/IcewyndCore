@@ -1,6 +1,7 @@
 package Main;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -51,6 +52,7 @@ import Commands.PatchNotes;
 import Commands.Ping;
 import Commands.QuarterMaster;
 import Commands.Reset;
+import Commands.Reward;
 import Commands.Rules;
 import Commands.Seen;
 import Commands.Sell;
@@ -74,6 +76,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static ProtocolManager protocolManager;
 	public static FileConfiguration pricesConfig;
 	public static Economy econ;
+	public static File CommandStore;
 
 	public void onEnable() {
 		saveDefaultConfig();
@@ -108,6 +111,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new NoWaterRedstone(), this);
 		manager.registerEvents(new PVPTimer(), this);
 		manager.registerEvents(new Stats(), this);
+		manager.registerEvents(new Reward(), this);
 
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -148,6 +152,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("crategive").setExecutor(new Crates());
 		getCommand("pvptimer").setExecutor(new PVPTimer());
 		getCommand("lag").setExecutor(new Lag());
+		getCommand("reward").setExecutor(new Reward());
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
@@ -159,6 +164,14 @@ public class Main extends JavaPlugin implements Listener {
 		File customYml = new File(getDataFolder()+"/prices.yml");
 		pricesConfig = YamlConfiguration.loadConfiguration(customYml);	
 		saveResource("prices.yml", false);
+		
+		//Creates default commandstore file if it doesn't exist
+		try {
+			CommandStore = new File(getDataFolder() + "/CommandStore.txt");
+			CommandStore.createNewFile(); // if it doesn't exist
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 
 		//Gets the economy
 		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);

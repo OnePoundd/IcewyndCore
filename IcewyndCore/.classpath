@@ -9,6 +9,6 @@
 	<classpathentry kind="lib" path="lib/mcMMO.jar"/>
 	<classpathentry kind="lib" path="lib/Spigot.jar"/>
 	<classpathentry kind="lib" path="lib/Vault.jar"/>
-	<classpathentry kind="lib" path="lib/XoreBoardUtil.jar"/>
+	<classpathentry kind="lib" path="lib/hikariboard-1.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
