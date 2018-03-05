@@ -20,7 +20,7 @@ import Main.Main;
 public class Kits implements CommandExecutor, Listener{
 
 	Main plugin = Main.getPlugin(Main.class);
-
+//hi
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("kit")) {
 			Player player = (Player) sender;

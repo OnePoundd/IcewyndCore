@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class InventoryClick implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
-
+//hi
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {

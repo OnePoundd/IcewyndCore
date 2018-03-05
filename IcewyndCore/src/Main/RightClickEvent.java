@@ -27,7 +27,7 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 
 public class RightClickEvent implements Listener {
-
+//hi
 	/*
 	 * //Inventory space check if (player.getInventory().firstEmpty() == -1) {
 	 * player.sendMessage("§cYou do not have the required inventory space."); }else
