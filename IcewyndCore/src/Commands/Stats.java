@@ -4,18 +4,20 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
 import com.massivecraft.factions.entity.MPlayer;
-
 import Main.Main;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 
-public class Stats implements CommandExecutor{
+public class Stats implements Listener, CommandExecutor{
 	Main plugin = Main.getPlugin(Main.class);
 
 	//Genbucket Tracking
@@ -23,6 +25,16 @@ public class Stats implements CommandExecutor{
 	public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event) {
 		if (event.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals("§c§lGen Bucket")) {
 			event.getPlayer().sendMessage("hi");	
+		}
+	}
+	@EventHandler
+	public void onDeath(EntityDeathEvent event) {
+		Bukkit.broadcastMessage("1");
+		if (event.getEntity() instanceof LivingEntity) {
+			Bukkit.broadcastMessage("2");
+			if (((LivingEntity) event.getEntity()).getKiller() instanceof Player) {
+				Bukkit.broadcastMessage("3");
+			}
 		}
 	}
 	//MCMMO Level obtain tracking
