@@ -1,5 +1,6 @@
 package Commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,12 +15,12 @@ public class Lag implements CommandExecutor{
 		if (cmd.getName().equalsIgnoreCase("lag")) {
 			if (sender instanceof Player) {
 				double tps = TPS.getTPS();
-				sender.sendMessage("Well the tps is; " + Math.round(tps * 100.0D) / 100.0D);
-				sender.sendMessage("   §bTPS:§7 " + tps);
-				sender.sendMessage("   §bEntities:§7 ");
+				sender.sendMessage("§8§l§m----§r§8§l[ §f§lServer Info §r§8§l]§8§l§m----");
+				sender.sendMessage("   §bTPS:§7 " + Math.round(tps * 100.0D) / 100.0D);
+				sender.sendMessage("   §bEntities:§7 " + Bukkit.getWorld("world").getEntities().size());
 				sender.sendMessage("   §bPlayers:§7 " + plugin.getConfig().getInt(".PlayersOnline"));
-				sender.sendMessage(("   §bAllocated Memory:§7 " + (Runtime.getRuntime().totalMemory() / 1024 / 1024)));
-				sender.sendMessage(("   §bFree Memory:§7 " + (Runtime.getRuntime().freeMemory() / 1024 / 1024)));
+				sender.sendMessage("   §bAllocated Memory:§7 " + (Runtime.getRuntime().totalMemory() / 1024 / 1024));
+				sender.sendMessage("   §bFree Memory:§7 " + (Runtime.getRuntime().freeMemory() / 1024 / 1024));
 			}
 		}
 		return false;
