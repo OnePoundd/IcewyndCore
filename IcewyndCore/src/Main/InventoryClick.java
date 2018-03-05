@@ -33,9 +33,7 @@ public class InventoryClick implements Listener {
 			player.sendMessage("§cYou do not have the required inventory space.");
 			event.setCancelled(true);
 			player.closeInventory();
-		} else 
-
-			if (item.getType() == Material.TRAPPED_CHEST) {
+		} else if (item.getType() == Material.TRAPPED_CHEST) {
 				ItemStack Item1 = new ItemStack(Material.TRAPPED_CHEST, 1);
 				ItemMeta Item1Meta = Item1.getItemMeta();
 				List<String> lore1 = new ArrayList<String>();
@@ -112,3 +110,4 @@ public class InventoryClick implements Listener {
 		player.closeInventory();
 	}
 }
+			
