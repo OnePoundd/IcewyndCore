@@ -19,7 +19,7 @@ import Main.Main;
 
 public class Kits implements CommandExecutor, Listener{
 
-	Main plugin = Main.getPlugin(Main.class);
+	static Main plugin = Main.getPlugin(Main.class);
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("kit")) {
@@ -258,7 +258,7 @@ public class Kits implements CommandExecutor, Listener{
 			player.getInventory().addItem(Item7);
 	}
 
-	public void giveKitWarlord(Player player) {
+	public static void giveKitWarlord(Player player) {
 		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Warlord");
 		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
 			//Warlord Helmet
@@ -331,7 +331,7 @@ public class Kits implements CommandExecutor, Listener{
 		}
 	}
 
-	public void giveKitEmporer(Player player) {
+	public static void giveKitEmporer(Player player) {
 		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Emporer");
 		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
 			//Emporer Helmet
@@ -417,7 +417,7 @@ public class Kits implements CommandExecutor, Listener{
 		}
 	}
 
-	public void giveKitGod(Player player) {
+	public static void giveKitGod(Player player) {
 		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.God");
 		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
 			//God Helmet
@@ -505,7 +505,7 @@ public class Kits implements CommandExecutor, Listener{
 		}
 	}
 
-	public void giveKitIcewynd(Player player) {
+	public static void giveKitIcewynd(Player player) {
 		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Icewynd");
 		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
 			//Icewynd Helmet
