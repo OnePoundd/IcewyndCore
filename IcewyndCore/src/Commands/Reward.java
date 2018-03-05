@@ -37,11 +37,11 @@ public class Reward implements CommandExecutor, Listener{
 					if(player.isOnline()) {
 						if(reward.equals("discordlink")) {
 							player.getPlayer().sendMessage("§6§l(!)§7 You have been rewarded $10,000 for linking to discord!");
-							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ecoadmin give " + playerName + " 10000");
+							plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ecoadmin give " + playerName + " 10000");
 						}else if(reward.equals("refer")) {
 							String referred = args[2];
 							player.getPlayer().sendMessage("§6§l(!)§7 You have been rewarded $10,000 for referring " + referred + "!");
-							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ecoadmin give " + playerName + " 10000");
+							plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ecoadmin give " + playerName + " 10000");
 							OfflinePlayer referredPlayer = Bukkit.getOfflinePlayer(referred);
 							plugin.getConfig().set(referredPlayer.getUniqueId() + ".Referee", player.getUniqueId());
 						}
@@ -78,7 +78,7 @@ public class Reward implements CommandExecutor, Listener{
 		    	while (iter.hasNext()) {
 		    	    String str = iter.next();
 		    	    if (str.contains(event.getPlayer().getName())) {
-		    	    	Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), str);
+		    	    	plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), str);
 		    	        iter.remove();
 		    	    }
 		    	}
