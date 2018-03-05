@@ -199,9 +199,7 @@ public class Kits implements CommandExecutor, Listener{
 		player.openInventory(kit);
 	}
 
-	public void giveKitFighter(Player player) {
-		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Fighter");
-		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
+	public static void giveKitFighter(Player player) {
 			//Fighter Helmet
 			ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 			ItemMeta Item1Meta = Item1.getItemMeta();
@@ -258,18 +256,6 @@ public class Kits implements CommandExecutor, Listener{
 			player.getInventory().addItem(Item5);
 			player.getInventory().addItem(Item6);
 			player.getInventory().addItem(Item7);
-
-			// Cooldown
-			plugin.getConfig().set(player.getUniqueId() + ".KitCooldowns.Fighter", (System.currentTimeMillis() + 86400000));
-			plugin.saveConfig();
-		}else {
-			long millisTillKit = millisWhenKitIsAvailable - System.currentTimeMillis();
-			long secondsTillKit = millisTillKit / 1000;
-			long hoursTillKit = secondsTillKit / (60*60);
-			long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
-			secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
-			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
-		}
 	}
 
 	public void giveKitWarlord(Player player) {

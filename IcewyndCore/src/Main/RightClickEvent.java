@@ -113,8 +113,7 @@ public class RightClickEvent implements Listener {
 								player.teleport(randomPlayer.getLocation());
 							}
 						} else if (player.getItemInHand().getType().equals(Material.CHEST)) {
-							if (player.getItemInHand().getItemMeta().getDisplayName()
-									.equals("§2§l§nFighter Kit Crate")) {
+							if (player.getItemInHand().getItemMeta().getDisplayName() == ("§2§l§nFighter Kit Crate")) {
 								if (player.getInventory().firstEmpty() == -1) {
 									player.sendMessage("§cYou do not have the required inventory space.");
 									event.setCancelled(true);
@@ -179,8 +178,7 @@ public class RightClickEvent implements Listener {
 									player.getInventory().addItem(Item6);
 									player.getInventory().addItem(Item7);
 								}
-							} else if (player.getItemInHand().getItemMeta().getDisplayName()
-									.equals("§d§l§nWarlord Kit Crate")) {
+							} else if (player.getItemInHand().getItemMeta().getDisplayName() == ("§d§l§nWarlord Kit Crate")) {
 								if (player.getInventory().firstEmpty() == -1) {
 									player.sendMessage("§cYou do not have the required inventory space.");
 									event.setCancelled(true);
@@ -245,8 +243,7 @@ public class RightClickEvent implements Listener {
 									player.getInventory().addItem(Item6);
 									player.getInventory().addItem(Item7);
 								}
-							} else if (player.getItemInHand().getItemMeta().getDisplayName()
-									.equals("§c§l§nEmporer Kit Crate")) {
+							} else if (player.getItemInHand().getItemMeta().getDisplayName() == ("§c§l§nEmporer Kit Crate")) {
 								if (player.getInventory().firstEmpty() == -1) {
 									player.sendMessage("§cYou do not have the required inventory space.");
 									event.setCancelled(true);
@@ -326,8 +323,7 @@ public class RightClickEvent implements Listener {
 									player.getInventory().addItem(Item7);
 									player.getInventory().addItem(Item8);
 								}
-							} else if (player.getItemInHand().getItemMeta().getDisplayName()
-									.equals("§9§l§nGod Kit Crate")) {
+							} else if (player.getItemInHand().getItemMeta().getDisplayName() == ("§9§l§nGod Kit Crate")) {
 								if (player.getInventory().firstEmpty() == -1) {
 									player.sendMessage("§cYou do not have the required inventory space.");
 									event.setCancelled(true);

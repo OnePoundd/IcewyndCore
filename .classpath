@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry excluding="Commands/WitherSpawn.java" kind="src" path="IcewyndCore/src"/>
+	<classpathentry excluding="Commands/WitherSpawn.java|Commands/hh.java|Main/BossEggs.java" kind="src" path="IcewyndCore/src"/>
 	<classpathentry kind="lib" path="IcewyndCore/lib/[Dependency] MassiveCore.jar"/>
 	<classpathentry kind="lib" path="IcewyndCore/lib/[Dependency] ProtocolLib.jar"/>
 	<classpathentry kind="lib" path="IcewyndCore/lib/Factions.jar"/>
@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="IcewyndCore/lib/Vault.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mag/git/IcewyndCore/IcewyndCore/lib/hikariboard-1.0.0.jar"/>
 	<classpathentry kind="lib" path="IcewyndCore/lib/hikariboard-1.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads/SidebarAPI.jar"/>
+	<classpathentry kind="lib" path="D:/Downloads/Glaedr.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
