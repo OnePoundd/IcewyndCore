@@ -290,7 +290,7 @@ public class Main extends JavaPlugin implements Listener {
 		ClearLagAnnounce.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
-				Bukkit.broadcastMessage("§e§lClearLag§8 » §aClearing Entities in 1 minute!");
+				Bukkit.broadcastMessage("§e§lClearLag§8 » §aEntities will be cleared in 1 minute!");
 			}
 		}, 0L, 4800L);
 
