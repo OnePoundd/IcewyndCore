@@ -30,15 +30,11 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.massivecraft.factions.entity.MConf;
-import com.massivecraft.factions.entity.MPlayer;
-
-import me.bowser123467.hikariboard.ScoreboardEvent;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 
 public class Misc implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
 
-	//Scoreboard
+	/*//Scoreboard
 	@EventHandler
 	public void onScoreboardUpdate(ScoreboardEvent event){
 		Player player = event.getPlayer();
@@ -56,7 +52,7 @@ public class Misc implements Listener {
 		event.writeLine("");
 		event.writeLine("§a§lBalance:");
 		event.writeLine("§7" + Main.econ.getBalance(player));
-	}
+	}*/
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) throws InvocationTargetException {
