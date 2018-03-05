@@ -29,7 +29,7 @@ public class PVPTimer implements Listener, CommandExecutor {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
 				if (args.length == 1) {
-					if (args[1].equalsIgnoreCase("disable")) {
+					if (args[0].equalsIgnoreCase("disable")) {
 						PVPTimer.remove(player);
 					}
 				} else
