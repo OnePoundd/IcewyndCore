@@ -46,6 +46,7 @@ import Commands.Freecam;
 import Commands.Help;
 import Commands.Home;
 import Commands.Invsee;
+import Commands.Jackpot;
 import Commands.Kits;
 import Commands.Lag;
 import Commands.List;
@@ -88,6 +89,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static FileConfiguration pricesConfig;
 	public static Economy econ;
 	public static File CommandStore;
+	public static JackpotEntity jackpot;
 
 	public void onEnable() {
 		saveDefaultConfig();
@@ -176,11 +178,13 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("tptoggle").setExecutor(new TpToggle());
 		getCommand("toggletp").setExecutor(new TpToggle());
 		getCommand("back").setExecutor(new Back());
+		getCommand("jackpot").setExecutor(new Jackpot());
 		
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
 		EventCrate.load();
+		jackpot = new JackpotEntity();
 
 		//Uploader.triggerDatabaseAutoUpdate(); //Triggers the auto-updater for the factions web-database. Every 5 mins player and faction data will be updated.
 
@@ -336,5 +340,10 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}, 0L, 6000L);
 	}
+	
+	public void onDisable() {
+		jackpot.disable();
+	}
+	
 }
 

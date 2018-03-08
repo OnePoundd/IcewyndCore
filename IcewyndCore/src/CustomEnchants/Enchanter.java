@@ -33,7 +33,7 @@ public class Enchanter implements Listener {
 		ArrayList<String> legendaryLore = new ArrayList<String>();
 		legendaryLore.add("§7Left click to purchase a legendary book!");
 		legendaryLore.add("§7Right click to view all legendary enchantments!");
-		legendaryLore.add("§3Cost: §7800XP!");
+		legendaryLore.add("§3Cost: §71000XP!");
 		legendaryMeta.setLore(legendaryLore);
 		legendary.setItemMeta(legendaryMeta);
 
@@ -43,7 +43,7 @@ public class Enchanter implements Listener {
 		ArrayList<String> exoticLore = new ArrayList<String>();
 		exoticLore.add("§7Left click to purchase an exotic book!");
 		exoticLore.add("§7Right click to view all exotic enchantments!");
-		exoticLore.add("§3Cost: §71000XP!");
+		exoticLore.add("§3Cost: §71500XP!");
 		exoticMeta.setLore(exoticLore);
 		exotic.setItemMeta(exoticMeta);
 
@@ -67,8 +67,8 @@ public class Enchanter implements Listener {
 							openExoticInventory((Player) event.getWhoClicked());
 						} else {
 							Player player = (Player) event.getWhoClicked();
-							if (player.getExp() - 1000 >= 0) {
-								player.setExp(player.getExp() - 1000);
+							if (player.getExp() - 1500 >= 0) {
+								player.setExp(player.getExp() - 1500);
 								if (player.getInventory().firstEmpty() == -1) {
 									player.sendMessage("§b§l(!)§7 Your inventory is full, dropping item at your feet!");
 									player.getWorld().dropItem(player.getLocation(), ExoticBook());
@@ -85,8 +85,8 @@ public class Enchanter implements Listener {
 							openLegendaryInventory((Player) event.getWhoClicked());
 						} else {
 							Player player = (Player) event.getWhoClicked();
-							if (player.getExp() - 800 >= 0) {
-								player.setExp(player.getExp() - 800);
+							if (player.getExp() - 1000 >= 0) {
+								player.setExp(player.getExp() - 1000);
 								if (player.getInventory().firstEmpty() == -1) {
 									player.sendMessage("§b§l(!)§7 Your inventory is full, dropping item at your feet!");
 									player.getWorld().dropItem(player.getLocation(), LegendaryBook());
