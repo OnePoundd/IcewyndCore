@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -23,22 +24,27 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitScheduler;
+
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
+
 import BanSystem.BanCommand;
 import BanSystem.UnbanCommand;
+import Commands.Back;
 import Commands.Book;
 import Commands.ClearChat;
 import Commands.ClearInventory;
 import Commands.Crates;
+import Commands.DelHome;
 import Commands.Disposal;
 import Commands.Enderchest;
 import Commands.Feed;
 import Commands.Freecam;
 import Commands.Help;
+import Commands.Home;
 import Commands.Invsee;
 import Commands.Kits;
 import Commands.Lag;
@@ -56,9 +62,14 @@ import Commands.Reward;
 import Commands.Rules;
 import Commands.Seen;
 import Commands.Sell;
+import Commands.SetHome;
 import Commands.Shop;
 import Commands.Stats;
 import Commands.Suicide;
+import Commands.TpToggle;
+import Commands.Tpa;
+import Commands.Tpaccept;
+import Commands.Tpahere;
 import Commands.TwitchBroadcast;
 import Commands.WitherEvent;
 import Commands.YoutubeBroadcast;
@@ -112,6 +123,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new PVPTimer(), this);
 		manager.registerEvents(new Stats(), this);
 		manager.registerEvents(new Reward(), this);
+		manager.registerEvents(new Back(), this);
 
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -153,6 +165,18 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("pvptimer").setExecutor(new PVPTimer());
 		getCommand("lag").setExecutor(new Lag());
 		getCommand("reward").setExecutor(new Reward());
+		getCommand("delhome").setExecutor(new DelHome());
+		getCommand("deletehome").setExecutor(new DelHome());
+		getCommand("home").setExecutor(new Home());
+		getCommand("sethome").setExecutor(new SetHome());
+		getCommand("tpa").setExecutor(new Tpa());
+		getCommand("tpahere").setExecutor(new Tpahere());
+		getCommand("tpyes").setExecutor(new Tpaccept());
+		getCommand("tpaccept").setExecutor(new Tpaccept());
+		getCommand("tptoggle").setExecutor(new TpToggle());
+		getCommand("toggletp").setExecutor(new TpToggle());
+		getCommand("back").setExecutor(new Back());
+		
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
