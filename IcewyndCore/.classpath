@@ -2,13 +2,12 @@
 <classpath>
 	<classpathentry excluding="Main/Commands.java" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="lib/[Dependency] MassiveCore.jar"/>
-	<classpathentry kind="lib" path="lib/[Dependency] ProtocolLib.jar"/>
-	<classpathentry kind="lib" path="lib/Factions.jar"/>
-	<classpathentry kind="lib" path="lib/LibsDisguises.jar"/>
-	<classpathentry kind="lib" path="lib/mcMMO.jar"/>
-	<classpathentry kind="lib" path="lib/Spigot.jar"/>
-	<classpathentry kind="lib" path="lib/Vault.jar"/>
-	<classpathentry kind="lib" path="lib/hikariboard-1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Jars/[Dependency] MassiveCore.jar"/>
+	<classpathentry kind="lib" path="C:/Jars/[Dependency] ProtocolLib.jar"/>
+	<classpathentry kind="lib" path="C:/Jars/Factions.jar"/>
+	<classpathentry kind="lib" path="C:/Jars/LibsDisguises.jar"/>
+	<classpathentry kind="lib" path="C:/Jars/spigot.jar"/>
+	<classpathentry kind="lib" path="C:/Jars/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Jars/mcMMO.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
