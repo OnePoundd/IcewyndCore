@@ -27,6 +27,7 @@ public class Reward implements CommandExecutor, Listener{
 
 	Main plugin = Main.getPlugin(Main.class);
 	
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(sender instanceof ConsoleCommandSender) {
 			if (cmd.getName().equalsIgnoreCase("reward")) {

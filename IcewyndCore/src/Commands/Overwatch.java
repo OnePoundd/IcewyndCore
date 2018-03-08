@@ -8,6 +8,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -49,8 +51,6 @@ public class Overwatch implements CommandExecutor{
 								Location spawn = player.getWorld().getSpawnLocation();
 								player.teleport(spawn);
 								player.sendMessage("§d§l(!) §c§lOverwatch Disabled!");
-
-
 							}
 						}
 					}
@@ -58,5 +58,22 @@ public class Overwatch implements CommandExecutor{
 			}
 		}
 		return false;
+	}
+	@EventHandler
+	public void onClick(PlayerInteractEntityEvent event) {
+		// Overwatch Tools
+		String IPlayer = event.getRightClicked().getName();
+		Player player = event.getPlayer();
+		if (player.hasPermission("server.admin")) {
+			if (player.getItemInHand().getType().equals(Material.BLAZE_ROD)) {
+				if (player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasDisplayName()) {
+					event.getPlayer().chat("/invsee " + IPlayer);
+				}
+			} else if (event.getPlayer().getInventory().getItemInHand().getType() == Material.BOOK) {
+				if (player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasDisplayName()) {
+					event.getPlayer().chat("/pinfo " + IPlayer);
+				}
+			}
+		}
 	}
 }

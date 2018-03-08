@@ -10,10 +10,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class QuarterMaster implements CommandExecutor {
 
@@ -228,5 +232,19 @@ public class QuarterMaster implements CommandExecutor {
 		qKits.setItem(3, Item3);// Warrior Kit
 		qKits.setItem(8, Item8);// PageForward
 		player.openInventory(qKits);
+	}
+	//PVP Potion Quartermaster Item
+	@EventHandler
+	public void onDrink(PlayerItemConsumeEvent e) {
+		Player player = e.getPlayer();
+		if (player.getItemInHand().getType().equals(Material.POTION)) {
+			if (player.getItemInHand().getItemMeta().getDisplayName().equals("§4§l§nElixir of Fury")) {
+				;
+				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3600, 1));
+				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 3600, 1));
+				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 9570, 1));
+				player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+			}
+		}
 	}
 }
