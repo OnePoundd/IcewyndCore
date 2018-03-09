@@ -123,6 +123,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Stats(), this);
 		manager.registerEvents(new Reward(), this);
 		manager.registerEvents(new Back(), this);
+		manager.registerEvents(new TNTPatches(), this);
 
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
