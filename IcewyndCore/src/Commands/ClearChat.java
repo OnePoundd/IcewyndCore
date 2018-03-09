@@ -9,7 +9,7 @@ public class ClearChat implements CommandExecutor{
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("clearchat")) {
-			if (sender.hasPermission("server.admin")) {
+			if (sender.hasPermission("icewynd.admin")) {
 				for (int i = 0; i < 150; i++) {
 					Bukkit.broadcastMessage("§1");
 				}

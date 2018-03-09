@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -40,7 +41,8 @@ public class EventCrate {
 		if (count >= 3) {
 			// REMOVES ONE FROM THE ITEMSTACK
 			ItemStack clicked = player.getItemInHand();
-			clicked.setAmount(clicked.getAmount() - 1);
+			clicked.setAmount(clicked.getAmount()-1);
+			player.setItemInHand(clicked);
 			// OPENS AN INVENTORY SHOWING ALL POSSIBLE ITEMS
 			player.openInventory(newInventory(false));
 			// AFTER 3 SECONDS, THE INVENTORY WILL "SHUFFLE"
@@ -50,36 +52,42 @@ public class EventCrate {
 					for (int i = 0; i < 27; i++) {
 						EventCrateShuffle.setItem(i, getRandomGlass());
 					}
+					player.getWorld().playSound(player.getLocation(), Sound.ORB_PICKUP, 10, 100);
 					player.openInventory(EventCrateShuffle);
 					Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 						public void run() {
 							for (int i = 0; i < 27; i++) {
 								EventCrateShuffle.setItem(i, getRandomGlass());
 							}
+							player.getWorld().playSound(player.getLocation(), Sound.ORB_PICKUP, 10, 100);
 							player.openInventory(EventCrateShuffle);
 							Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 								public void run() {
 									for (int i = 0; i < 27; i++) {
 										EventCrateShuffle.setItem(i, getRandomGlass());
 									}
+									player.getWorld().playSound(player.getLocation(), Sound.ORB_PICKUP, 10, 100);
 									player.openInventory(EventCrateShuffle);
 									Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 										public void run() {
 											for (int i = 0; i < 27; i++) {
 												EventCrateShuffle.setItem(i, getRandomGlass());
 											}
+											player.getWorld().playSound(player.getLocation(), Sound.ORB_PICKUP, 10, 100);
 											player.openInventory(EventCrateShuffle);
 											Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 												public void run() {
 													for (int i = 0; i < 27; i++) {
 														EventCrateShuffle.setItem(i, getRandomGlass());
 													}
+													player.getWorld().playSound(player.getLocation(), Sound.ORB_PICKUP, 10, 100);
 													player.openInventory(EventCrateShuffle);
 													Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 														public void run() {
 															for (int i = 0; i < 27; i++) {
 																EventCrateShuffle.setItem(i, getRandomGlass());
 															}
+															player.getWorld().playSound(player.getLocation(), Sound.ORB_PICKUP, 10, 100);
 															player.openInventory(EventCrateShuffle);
 															Bukkit.getScheduler().runTaskLater(plugin,
 																	new Runnable() {
@@ -88,26 +96,26 @@ public class EventCrate {
 																		EventCrateShuffle.setItem(i,
 																				getRandomGlass());
 																	}
+																	player.getWorld().playSound(player.getLocation(), Sound.ORB_PICKUP, 10, 100);
 																	player.openInventory(EventCrateShuffle);
 																	Bukkit.getScheduler().runTaskLater(
-																			plugin, new Runnable() {
-																				public void run() {
-																					player.openInventory(
-																							newInventory(true));
-																				}
-																			}, 4);
+																	plugin, new Runnable() {
+																	public void run() {
+																		player.openInventory(newInventory(true));
+																		}
+																	}, 3);
 																}
-															}, 4);
+															}, 3);
 														}
-													}, 4);
+													}, 3);
 												}
-											}, 4);
+											}, 3);
 										}
-									}, 4);
+									}, 3);
 								}
-							}, 4);
+							}, 3);
 						}
-					}, 4);
+					}, 3);
 				}
 			}, 3 * 20);
 		} else {

@@ -16,7 +16,7 @@ public class YoutubeBroadcast implements CommandExecutor{
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("youtube")) {
 			Player player = (Player) sender;
-			if (player.hasPermission("server.youtube")) {
+			if (player.hasPermission("icewynd.youtube")) {
 				String link = args[0];
 				if (link.contains("youtube.com/")) {
 					TextComponent message = new TextComponent( "§f§lYOU§c§lTUBE§8§l » §b§l" + player.getName() + " has uploaded a new video! Click §b§lhere to check it out." );
@@ -25,6 +25,8 @@ public class YoutubeBroadcast implements CommandExecutor{
 				}else {
 					player.sendMessage("§cYour message must contain a Youtube link!");
 				}
+			}else {
+				player.sendMessage("§cYou must have the youtube rank to do that!");
 			}
 		}
 		return false;

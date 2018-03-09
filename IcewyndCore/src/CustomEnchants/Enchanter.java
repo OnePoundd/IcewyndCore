@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,8 +19,28 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Enchanter implements Listener {
+public class Enchanter implements Listener, CommandExecutor {
 
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if (label.equalsIgnoreCase("enchanter")) {
+			if (sender instanceof ConsoleCommandSender) {
+				if (args.length == 1) {
+					try {
+						Player player = Bukkit.getPlayer(args[0]);
+						openInventory(player);
+					} catch (Exception e) {
+						sender.sendMessage("§c§l(!)§7 That player cannot be found!");
+					}
+				} else {
+					sender.sendMessage("§c§l(!)§7 Usage: /enchanter <playername>!");
+				}
+			} else {
+				sender.sendMessage("§c§l(!)§7 You do not have permission to do that!");
+			}
+		}
+		return false;
+	}
+	
 	public static void openInventory(Player player) {
 		Inventory anvil = Bukkit.createInventory(null, 27, "§c§l>> §8Enchanter §c§l<<");
 

@@ -15,9 +15,11 @@ public class MsgToggle implements CommandExecutor{
 			Player player = (Player) sender;
 			if (plugin.getConfig().getBoolean(player.getUniqueId() + ".MsgToggle") == true) {
 				plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", false);
+				plugin.saveConfig();
 				player.sendMessage("§c§l(!)§7 You will now receive messages from other players!");
 			}else {
 				plugin.getConfig().set(player.getUniqueId() + ".MsgToggle", true);
+				plugin.saveConfig();
 				player.sendMessage("§c§l(!)§7 You will no longer receive messages from other players!");
 			}
 		}

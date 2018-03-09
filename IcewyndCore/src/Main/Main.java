@@ -32,15 +32,16 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 
 import BanSystem.BanCommand;
+import BanSystem.EscapeCommand;
 import BanSystem.UnbanCommand;
 import Commands.Back;
 import Commands.Book;
 import Commands.ClearChat;
 import Commands.ClearInventory;
-import Commands.Crates;
 import Commands.DelHome;
 import Commands.Disposal;
 import Commands.Enderchest;
+import Commands.Experience;
 import Commands.Feed;
 import Commands.Freecam;
 import Commands.Help;
@@ -61,10 +62,12 @@ import Commands.QuarterMaster;
 import Commands.Reset;
 import Commands.Reward;
 import Commands.Rules;
+import Commands.Sandstone;
 import Commands.Seen;
 import Commands.Sell;
 import Commands.SetHome;
 import Commands.Shop;
+import Commands.SpawnerGive;
 import Commands.Stats;
 import Commands.Suicide;
 import Commands.TpToggle;
@@ -75,6 +78,7 @@ import Commands.TwitchBroadcast;
 import Commands.WitherEvent;
 import Commands.YoutubeBroadcast;
 import Crates.CrateEventListener;
+import Crates.CrateGiveCommand;
 import Crates.EventCrate;
 import Crates.ExoticCrate;
 import Crates.LegendaryCrate;
@@ -118,7 +122,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Sell(), this);
 		manager.registerEvents(new Shop(), this);
 		manager.registerEvents(new DisguiseBuffs(), this);
-		//manager.registerEvents(new BossEggs(), this);
+		manager.registerEvents(new BossEggs(), this);
 		manager.registerEvents(new Seen(), this);
 		manager.registerEvents(new WitherEvent(), this);
 		manager.registerEvents(new NoWaterRedstone(), this);
@@ -126,6 +130,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Stats(), this);
 		manager.registerEvents(new Reward(), this);
 		manager.registerEvents(new Back(), this);
+		manager.registerEvents(new BanCommand(), this);
 
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -133,6 +138,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("pinfo").setExecutor(new PInfo());
 		getCommand("patchnotes").setExecutor(new PatchNotes());
 		getCommand("ow").setExecutor(new Overwatch());
+		getCommand("overwatch").setExecutor(new Overwatch());
 		getCommand("msg").setExecutor(new Message());
 		getCommand("ci").setExecutor(new ClearInventory());
 		getCommand("clearchat").setExecutor(new ClearChat());
@@ -158,12 +164,13 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("seen").setExecutor(new Seen());
 		getCommand("witherspawn").setExecutor(new WitherEvent());
 		getCommand("reset").setExecutor(new Reset());
-		getCommand("sandstone").setExecutor(new Crates());
-		getCommand("xpgive").setExecutor(new Crates());
-		getCommand("spawnergive").setExecutor(new Crates());
-		getCommand("enchanter").setExecutor(new Crates());
-		getCommand("librarian").setExecutor(new Crates());
-		getCommand("crategive").setExecutor(new Crates());
+		getCommand("sandstone").setExecutor(new Sandstone());
+		getCommand("xpgive").setExecutor(new Experience());
+		getCommand("xp").setExecutor(new Experience());
+		getCommand("spawnergive").setExecutor(new SpawnerGive());
+		getCommand("enchanter").setExecutor(new Enchanter());
+		getCommand("librarian").setExecutor(new Librarian());
+		getCommand("crategive").setExecutor(new CrateGiveCommand());
 		getCommand("pvptimer").setExecutor(new PVPTimer());
 		getCommand("lag").setExecutor(new Lag());
 		getCommand("reward").setExecutor(new Reward());
@@ -179,6 +186,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("toggletp").setExecutor(new TpToggle());
 		getCommand("back").setExecutor(new Back());
 		getCommand("jackpot").setExecutor(new Jackpot());
+		getCommand("escape").setExecutor(new EscapeCommand());
 		
 
 		ExoticCrate.load();
@@ -280,7 +288,10 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		}, 0L, 3000L);
-
+		
+		UnbanCommand.triggerUnbanScheduler();
+		Freecam.triggerFreecamCheck();
+		
 		//Wither Boss Event
 		BukkitScheduler WitherBossEvent = getServer().getScheduler();
 		WitherBossEvent.scheduleSyncRepeatingTask(this, new Runnable() {

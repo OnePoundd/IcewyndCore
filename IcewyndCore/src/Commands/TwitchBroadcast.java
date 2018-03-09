@@ -16,14 +16,16 @@ public class TwitchBroadcast implements CommandExecutor{
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("twitch")) {
 			Player player = (Player) sender;
-			if (player.hasPermission("server.twitch")) {
+			if (player.hasPermission("icewynd.twitch")) {
 				if (args[0].contains("twitch.tv")) {
-					TextComponent message = new TextComponent( "§5§lTWITCH§8§l » §b§l" + player.getName() + " has started streaming! Click here §b§lto check it out." );
+					TextComponent message = new TextComponent( "§5§lTWITCH§8§l » §b§l" + player.getName() + " has started streaming! Click here to check it out." );
 					message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, args[0]));
 					Bukkit.broadcast(message);
 				}else {
 					player.sendMessage("§cYour message must contain a Twitch link!");
 				}
+			}else {
+				player.sendMessage("§cYou must have the twitch rank to do that!");
 			}
 		}
 		return false;

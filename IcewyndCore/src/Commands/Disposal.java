@@ -13,7 +13,7 @@ public class Disposal implements CommandExecutor{
 		if (cmd.getName().equalsIgnoreCase("disposal")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
-				Inventory Disposal = Bukkit.createInventory(null, 27, "§cDeposit items here to be deleted..");
+				Inventory Disposal = Bukkit.createInventory(null, 27, "§cAdd items to be deleted!");
 				player.openInventory(Disposal);
 			}
 		}

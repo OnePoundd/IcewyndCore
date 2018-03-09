@@ -64,9 +64,9 @@ public class Misc implements Listener {
 		player.sendMessage("        §f§lCONNECTED TO §b§lICEWYND §b§lFACTIONS");
 		player.sendMessage("                         §f(§b1.7.10 §f- §b1.12§f)");
 		player.sendMessage("");
-		player.sendMessage("§b§lFORUMS: §fIcewynd.net");
-		player.sendMessage("§b§lDISCORD: §fIcewynd.net/Discord");
-		player.sendMessage("§b§lSTORE: §fIcewynd.net/Store");
+		player.sendMessage("§b§lFORUMS: §fforums.icewynd.net");
+		player.sendMessage("§b§lDISCORD: §fdiscord.icewynd.net");
+		player.sendMessage("§b§lSTORE: §fstore.icewynd.net");
 		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
 
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {

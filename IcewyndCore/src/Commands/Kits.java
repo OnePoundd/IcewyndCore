@@ -9,8 +9,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -24,23 +28,7 @@ public class Kits implements CommandExecutor, Listener{
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("kit")) {
 			Player player = (Player) sender;
-			if (args.length == 0) {
-				openKitInventory(player);
-			}else if (args.length == 1) {
-				if (args[0].equalsIgnoreCase("fighter") && player.hasPermission("kits.fighter")) {
-					giveKitFighter(player);
-				}else if (args[0].equalsIgnoreCase("warlord") && player.hasPermission("kits.warlord")) {
-					giveKitWarlord(player);
-				}else if (args[0].equalsIgnoreCase("emporer") && player.hasPermission("kits.emporer")) {
-					giveKitEmporer(player);
-				}else if (args[0].equalsIgnoreCase("god")) {
-					giveKitGod(player);
-				}else if (args[0].equalsIgnoreCase("Icewynd")) {
-					giveKitIcewynd(player);
-				}else {
-					player.sendMessage("§cYou do not have permission to use that kit!");
-				}
-			}
+			openKitInventory(player);
 		}
 		return false;
 	}
@@ -55,16 +43,20 @@ public class Kits implements CommandExecutor, Listener{
 			cooldown = "0hours, 0minutes, 0seconds.";
 		}else {
 			long millisTillKit = millisWhenKitIsAvailable - System.currentTimeMillis();
-			long secondsTillKit = millisTillKit / 1000;
-			long hoursTillKit = secondsTillKit / (60*60);
-			long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
-			secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
-			cooldown = hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.";
+			if(millisTillKit < 0) {
+				cooldown = "0hours, 0minutes, 0seconds.";
+			}else {
+				long secondsTillKit = millisTillKit / 1000;
+				long hoursTillKit = secondsTillKit / (60*60);
+				long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
+				secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
+				cooldown = hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.";
+			}
 		}
 		ItemStack Item1 = new ItemStack(Material.CHEST, 1);
 		ItemMeta Item1Meta = Item1.getItemMeta();
 		List<String> lore1 = new ArrayList<String>();
-		Item1Meta.setDisplayName("§2§l§nFighter Kit");
+		Item1Meta.setDisplayName("§2§lFighter Kit");
 		lore1.add("§e§lInformation:");
 		lore1.add("§8§l » §eCooldown:  §7" + cooldown);
 		lore1.add("§7");
@@ -91,7 +83,7 @@ public class Kits implements CommandExecutor, Listener{
 		ItemStack Item2 = new ItemStack(Material.CHEST, 1);
 		ItemMeta Item2Meta = Item2.getItemMeta();
 		List<String> lore2 = new ArrayList<String>();
-		Item2Meta.setDisplayName("§d§l§nWarlord Kit");
+		Item2Meta.setDisplayName("§d§lWarlord Kit");
 		lore2.add("§e§lInformation:");
 		lore2.add("§8§l » §eCooldown:  §7" + cooldown);
 		lore2.add("§7");
@@ -103,8 +95,8 @@ public class Kits implements CommandExecutor, Listener{
 		Item2Meta.setLore(lore2);
 		Item2.setItemMeta(Item2Meta);		
 
-		//Rank 3 - Emporer
-		millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Emporer");
+		//Rank 3 - Emperor
+		millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Emperor");
 		if (millisWhenKitIsAvailable == 0) {
 			cooldown = "0hours, 0minutes, 0seconds.";
 		}else {
@@ -118,7 +110,7 @@ public class Kits implements CommandExecutor, Listener{
 		ItemStack Item3 = new ItemStack(Material.CHEST, 1);
 		ItemMeta Item3Meta = Item3.getItemMeta();
 		List<String> lore3 = new ArrayList<String>();
-		Item3Meta.setDisplayName("§c§l§nEmporer Kit");
+		Item3Meta.setDisplayName("§c§lEmperor Kit");
 		lore3.add("§e§lInformation:");
 		lore3.add("§8§l » §eCooldown:  §7" + cooldown);
 		lore3.add("§7");
@@ -146,7 +138,7 @@ public class Kits implements CommandExecutor, Listener{
 		ItemStack Item4 = new ItemStack(Material.CHEST, 1);
 		ItemMeta Item4Meta = Item4.getItemMeta();
 		List<String> lore4 = new ArrayList<String>();
-		Item4Meta.setDisplayName("§9§l§nGod Kit");
+		Item4Meta.setDisplayName("§9§lGod Kit");
 		lore4.add("§e§lInformation:");
 		lore4.add("§8§l » §eCooldown:  §7" + cooldown);
 		lore4.add("§7");
@@ -176,7 +168,7 @@ public class Kits implements CommandExecutor, Listener{
 		ItemStack Item5 = new ItemStack(Material.CHEST, 1);
 		ItemMeta Item5Meta = Item5.getItemMeta();
 		List<String> lore5 = new ArrayList<String>();
-		Item5Meta.setDisplayName("§b§l§nIcewynd Kit");
+		Item5Meta.setDisplayName("§b§lIcewynd Kit");
 		lore5.add("§e§lInformation:");
 		lore5.add("§8§l » §eCooldown:  §7" + cooldown);
 		lore5.add("§7");
@@ -259,8 +251,6 @@ public class Kits implements CommandExecutor, Listener{
 	}
 
 	public static void giveKitWarlord(Player player) {
-		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Warlord");
-		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
 			//Warlord Helmet
 			ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 			ItemMeta Item1Meta = Item1.getItemMeta();
@@ -317,66 +307,52 @@ public class Kits implements CommandExecutor, Listener{
 			player.getInventory().addItem(Item5);
 			player.getInventory().addItem(Item6);
 			player.getInventory().addItem(Item7);
-
-			// Cooldown
-			plugin.getConfig().set(player.getUniqueId() + ".KitCooldowns.Warlord", (System.currentTimeMillis() + 86400000));
-			plugin.saveConfig();
-		}else {
-			long millisTillKit = millisWhenKitIsAvailable - System.currentTimeMillis();
-			long secondsTillKit = millisTillKit / 1000;
-			long hoursTillKit = secondsTillKit / (60*60);
-			long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
-			secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
-			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
-		}
 	}
 
-	public static void giveKitEmporer(Player player) {
-		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Emporer");
-		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
-			//Emporer Helmet
+	public static void giveKitEmperor(Player player) {
+			//Emperor Helmet
 			ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 			ItemMeta Item1Meta = Item1.getItemMeta();
-			Item1Meta.setDisplayName("§cEmporer Helmet");
+			Item1Meta.setDisplayName("§cEmperor Helmet");
 			Item1Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item1Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item1.setItemMeta(Item1Meta);
 
-			//Emporer Chestplate
+			//Emperor Chestplate
 			ItemStack Item2 = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 			ItemMeta Item2Meta = Item2.getItemMeta();
-			Item2Meta.setDisplayName("§cEmporer Chestplate");
+			Item2Meta.setDisplayName("§cEmperor Chestplate");
 			Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item2Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item2.setItemMeta(Item2Meta);
 
-			//Emporer Leggings
+			//Emperor Leggings
 			ItemStack Item3 = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
 			ItemMeta Item3Meta = Item3.getItemMeta();
-			Item3Meta.setDisplayName("§cEmporer Leggings");
+			Item3Meta.setDisplayName("§cEmperor Leggings");
 			Item3Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item3Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item3.setItemMeta(Item3Meta);
 
-			//Emporer Boots
+			//Emperor Boots
 			ItemStack Item4 = new ItemStack(Material.DIAMOND_BOOTS, 1);
 			ItemMeta Item4Meta = Item4.getItemMeta();
-			Item4Meta.setDisplayName("§cEmporer Boots");
+			Item4Meta.setDisplayName("§cEmperor Boots");
 			Item4Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
 			Item4Meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			Item4.setItemMeta(Item4Meta);
 
-			//Emporer Sword
+			//Emperor Sword
 			ItemStack Item5 = new ItemStack(Material.DIAMOND_SWORD, 1);
 			ItemMeta Item5Meta = Item5.getItemMeta();
-			Item5Meta.setDisplayName("§cEmporer Sword");
+			Item5Meta.setDisplayName("§cEmperor Sword");
 			Item5Meta.addEnchant(Enchantment.DAMAGE_ALL, 4, true);
 			Item5.setItemMeta(Item5Meta);
 
-			//Emporer Bow
+			//Emperor Bow
 			ItemStack Item6 = new ItemStack(Material.BOW, 1);
 			ItemMeta Item6Meta = Item6.getItemMeta();
-			Item6Meta.setDisplayName("§cEmporer Bow");
+			Item6Meta.setDisplayName("§cEmperor Bow");
 			Item6Meta.addEnchant(Enchantment.ARROW_DAMAGE, 3, true);
 			Item6.setItemMeta(Item6Meta);
 
@@ -387,7 +363,7 @@ public class Kits implements CommandExecutor, Listener{
 			ItemStack Item8 = new ItemStack(Material.POTION, 1, (byte) 8266);
 			ItemMeta Item8Meta = Item6.getItemMeta();
 			List<String> lore8 = new ArrayList<String>();
-			Item8Meta.setDisplayName("§4§l§nElixir of Fury");
+			Item8Meta.setDisplayName("§4§lElixir of Fury");
 			Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
 			lore8.add("§eSpeed II (1:30)");
 			lore8.add("§eStrength II (1:30)");
@@ -396,30 +372,16 @@ public class Kits implements CommandExecutor, Listener{
 			Item8.setItemMeta(Item8Meta);
 
 			player.getInventory().addItem(Item1);
-			player.getInventory().addItem(Item2);
-			player.getInventory().addItem(Item3);
-			player.getInventory().addItem(Item4);
-			player.getInventory().addItem(Item5);
-			player.getInventory().addItem(Item6);
-			player.getInventory().addItem(Item7);
-			player.getInventory().addItem(Item8);
-
-			// Cooldown
-			plugin.getConfig().set(player.getUniqueId() + ".KitCooldowns.Emporer", (System.currentTimeMillis() + 86400000));
-			plugin.saveConfig();
-		}else {
-			long millisTillKit = millisWhenKitIsAvailable - System.currentTimeMillis();
-			long secondsTillKit = millisTillKit / 1000;
-			long hoursTillKit = secondsTillKit / (60*60);
-			long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
-			secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
-			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
-		}
+		player.getInventory().addItem(Item2);
+		player.getInventory().addItem(Item3);
+		player.getInventory().addItem(Item4);
+		player.getInventory().addItem(Item5);
+		player.getInventory().addItem(Item6);
+		player.getInventory().addItem(Item7);
+		player.getInventory().addItem(Item8);
 	}
 
 	public static void giveKitGod(Player player) {
-		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.God");
-		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
 			//God Helmet
 			ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 			ItemMeta Item1Meta = Item1.getItemMeta();
@@ -475,7 +437,7 @@ public class Kits implements CommandExecutor, Listener{
 			ItemStack Item8 = new ItemStack(Material.POTION, 2, (byte) 8266);
 			ItemMeta Item8Meta = Item6.getItemMeta();
 			List<String> lore8 = new ArrayList<String>();
-			Item8Meta.setDisplayName("§4§l§nElixir of Fury");
+			Item8Meta.setDisplayName("§4§lElixir of Fury");
 			Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
 			lore8.add("§eSpeed II (1:30)");
 			lore8.add("§eStrength II (1:30)");
@@ -492,22 +454,9 @@ public class Kits implements CommandExecutor, Listener{
 			player.getInventory().addItem(Item7);
 			player.getInventory().addItem(Item8);
 			player.getInventory().addItem(Item8);
-			// Cooldown
-			plugin.getConfig().set(player.getUniqueId() + ".KitCooldowns.God", (System.currentTimeMillis() + 86400000));
-			plugin.saveConfig();
-		}else {
-			long millisTillKit = millisWhenKitIsAvailable - System.currentTimeMillis();
-			long secondsTillKit = millisTillKit / 1000;
-			long hoursTillKit = secondsTillKit / (60*60);
-			long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
-			secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
-			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
-		}
 	}
 
 	public static void giveKitIcewynd(Player player) {
-		long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Icewynd");
-		if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
 			//Icewynd Helmet
 			ItemStack Item1 = new ItemStack(Material.DIAMOND_HELMET, 1);
 			ItemMeta Item1Meta = Item1.getItemMeta();
@@ -566,7 +515,7 @@ public class Kits implements CommandExecutor, Listener{
 			ItemStack Item8 = new ItemStack(Material.POTION, 3, (byte) 8266);
 			ItemMeta Item8Meta = Item6.getItemMeta();
 			List<String> lore8 = new ArrayList<String>();
-			Item8Meta.setDisplayName("§4§l§nElixir of Fury");
+			Item8Meta.setDisplayName("§4§lElixir of Fury");
 			Item8Meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
 			lore8.add("§eSpeed II (1:30)");
 			lore8.add("§eStrength II (1:30)");
@@ -584,18 +533,183 @@ public class Kits implements CommandExecutor, Listener{
 			player.getInventory().addItem(Item8);
 			player.getInventory().addItem(Item8);
 			player.getInventory().addItem(Item8);
-
-			// Cooldown
-			plugin.getConfig().set(player.getUniqueId() + ".KitCooldowns.Icewynd", (System.currentTimeMillis() + 86400000));
-			plugin.saveConfig();
-		}else {
-			long millisTillKit = millisWhenKitIsAvailable - System.currentTimeMillis();
-			long secondsTillKit = millisTillKit / 1000;
-			long hoursTillKit = secondsTillKit / (60*60);
-			long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
-			secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
-			player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
-		}
 	}
 
+	@EventHandler
+	public void onInventoryClick(InventoryClickEvent event) {
+		Player player = (Player) event.getWhoClicked();
+		if(event.getClickedInventory() != null) {
+			if (event.getClickedInventory().getName().equals("§5§lKits")) {
+				if (event.getCurrentItem().getType().equals(Material.CHEST)) {
+					event.setCancelled(true);
+					if(getEmptySlots(player) >= 1) {
+						if (event.getCurrentItem().getItemMeta().getDisplayName() == "§2§lFighter Kit") {
+							long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Fighter");
+							if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
+								ItemStack Kit = new ItemStack(Material.CHEST, 1);
+								ItemMeta KitMeta = Kit.getItemMeta();
+								KitMeta.setDisplayName("§2§lFighter Kit");
+								Kit.setItemMeta(KitMeta);
+								player.getInventory().addItem(Kit);
+								plugin.getConfig().set(player.getUniqueId() + ".KitCooldowns.Fighter", (System.currentTimeMillis() + 86400000));
+								plugin.saveConfig();
+							}else {
+								long millisTillKit = millisWhenKitIsAvailable - System.currentTimeMillis();
+								long secondsTillKit = millisTillKit / 1000;
+								long hoursTillKit = secondsTillKit / (60*60);
+								long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
+								secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
+								player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
+							}
+						}else if (event.getCurrentItem().getItemMeta().getDisplayName() == "§d§lWarlord Kit") {
+							long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Warlord");
+							if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
+								ItemStack Kit = new ItemStack(Material.CHEST, 1);
+								ItemMeta KitMeta = Kit.getItemMeta();
+								KitMeta.setDisplayName("§d§lWarlord Kit");
+								Kit.setItemMeta(KitMeta);
+								player.getInventory().addItem(Kit);
+								plugin.getConfig().set(player.getUniqueId() + ".KitCooldowns.Warlord", (System.currentTimeMillis() + 86400000));
+								plugin.saveConfig();
+							}else {
+								long millisTillKit = millisWhenKitIsAvailable - System.currentTimeMillis();
+								long secondsTillKit = millisTillKit / 1000;
+								long hoursTillKit = secondsTillKit / (60*60);
+								long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
+								secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
+								player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
+							}
+						}else if (event.getCurrentItem().getItemMeta().getDisplayName() == "§c§lEmperor Kit") {
+							long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Emperor");
+							if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
+								ItemStack Kit = new ItemStack(Material.CHEST, 1);
+								ItemMeta KitMeta = Kit.getItemMeta();
+								KitMeta.setDisplayName("§c§lEmperor Kit");
+								Kit.setItemMeta(KitMeta);
+								player.getInventory().addItem(Kit);
+								plugin.getConfig().set(player.getUniqueId() + ".KitCooldowns.Emperor", (System.currentTimeMillis() + 86400000));
+								plugin.saveConfig();
+							}else {
+								long millisTillKit = millisWhenKitIsAvailable - System.currentTimeMillis();
+								long secondsTillKit = millisTillKit / 1000;
+								long hoursTillKit = secondsTillKit / (60*60);
+								long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
+								secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
+								player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
+							}
+						}else if (event.getCurrentItem().getItemMeta().getDisplayName() == "§9§lGod Kit") {
+							long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.God");
+							if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
+								ItemStack Kit = new ItemStack(Material.CHEST, 1);
+								ItemMeta KitMeta = Kit.getItemMeta();
+								KitMeta.setDisplayName("§9§lGod Kit");
+								Kit.setItemMeta(KitMeta);
+								player.getInventory().addItem(Kit);
+								plugin.getConfig().set(player.getUniqueId() + ".KitCooldowns.God", (System.currentTimeMillis() + 86400000));
+								plugin.saveConfig();
+							}else {
+								long millisTillKit = millisWhenKitIsAvailable - System.currentTimeMillis();
+								long secondsTillKit = millisTillKit / 1000;
+								long hoursTillKit = secondsTillKit / (60*60);
+								long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
+								secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
+								player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
+							}
+						}else if (event.getCurrentItem().getItemMeta().getDisplayName() == "§b§lIcewynd Kit") {
+							long millisWhenKitIsAvailable = plugin.getConfig().getLong(player.getUniqueId() + ".KitCooldowns.Icewynd");
+							if ((millisWhenKitIsAvailable <= System.currentTimeMillis()) || millisWhenKitIsAvailable == 0) {
+								ItemStack Kit = new ItemStack(Material.CHEST, 1);
+								ItemMeta KitMeta = Kit.getItemMeta();
+								KitMeta.setDisplayName("§b§lIcewynd Kit");
+								Kit.setItemMeta(KitMeta);
+								player.getInventory().addItem(Kit);
+								plugin.getConfig().set(player.getUniqueId() + ".KitCooldowns.Icewynd", (System.currentTimeMillis() + 86400000));
+								plugin.saveConfig();
+							}else {
+								long millisTillKit = millisWhenKitIsAvailable - System.currentTimeMillis();
+								long secondsTillKit = millisTillKit / 1000;
+								long hoursTillKit = secondsTillKit / (60*60);
+								long minutesTillKit = (secondsTillKit - (hoursTillKit*60*60)) / 60;
+								secondsTillKit = secondsTillKit - (hoursTillKit*60*60) - (minutesTillKit*60);
+								player.sendMessage("§cYou can use that again in " + hoursTillKit + "hours, " + minutesTillKit + "minutes, " + secondsTillKit + "seconds.");
+							}
+						}
+					}else {
+						player.sendMessage("§cYou do not have the required inventory space.");
+					}
+				}
+				openKitInventory(player);
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerInterract(PlayerInteractEvent event) {
+		Player player = event.getPlayer();
+		if(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+			if (player.getItemInHand().getType().equals(Material.CHEST)) {
+				if (player.getItemInHand().getItemMeta().getDisplayName() == ("§2§lFighter Kit")) {
+					if (getEmptySlots(player) < 7) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						player.closeInventory();
+					} else {
+						giveKitFighter(player);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
+					}
+				} else if (player.getItemInHand().getItemMeta().getDisplayName() == ("§d§lWarlord Kit")) {
+					if (getEmptySlots(player) < 7) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						player.closeInventory();
+					} else {
+						giveKitWarlord(player);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
+					}
+				} else if (player.getItemInHand().getItemMeta().getDisplayName() == ("§c§lEmperor Kit")) {
+					if (getEmptySlots(player) < 8) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						player.closeInventory();
+					} else {
+						giveKitEmperor(player);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
+					}
+				} else if (player.getItemInHand().getItemMeta().getDisplayName() == ("§9§lGod Kit")) {
+					if (getEmptySlots(player) < 8) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						player.closeInventory();
+					} else {
+						giveKitGod(player);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
+					}
+				} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§b§lIcewynd Kit")) {
+					if (getEmptySlots(player) < 8) {
+						player.sendMessage("§cYou do not have the required inventory space.");
+						player.closeInventory();
+					} else {
+						giveKitIcewynd(player);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
+					}
+				}
+			}
+		}
+	}
+	
+	public int getEmptySlots(Player player) {
+		int slots = 0;
+		for(ItemStack item : player.getInventory().getContents()) {
+			if(item == null || item.getType().equals(Material.AIR)) {
+				slots ++;
+			}
+		}
+		return slots;
+	}
 }

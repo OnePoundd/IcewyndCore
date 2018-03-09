@@ -10,8 +10,10 @@ public class Enderchest implements CommandExecutor{
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("enderchest")) {
 			Player player = (Player) sender;
-			player.openInventory(player.getEnderChest());
-			player.sendMessage("§7Opening Enderchest...");
+			if(player.hasPermission("icewynd.enderchestcommand")) {
+				player.openInventory(player.getEnderChest());
+				player.sendMessage("§7Opening Enderchest...");
+			}
 		}
 		return false;
 	}

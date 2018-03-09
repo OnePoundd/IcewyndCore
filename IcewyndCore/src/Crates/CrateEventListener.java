@@ -2,6 +2,7 @@ package Crates;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,6 +10,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.MPlayer;
@@ -38,32 +40,44 @@ public class CrateEventListener implements Listener {
 					}
 				} else if (item.getType().equals(Material.PAPER)) {
 					if (name.equals("§6$250,000 Cash")) {
-						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						player.sendMessage("§b§l(!)§7 $250,000 has been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"ecoadmin give " + player.getName() + " 250000");
 					} else if (name.equals("§6$150,000 Cash")) {
-						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						player.sendMessage("§b§l(!)§7 $150,000 has been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"ecoadmin give " + player.getName() + " 150000");
 					} else if (name.equals("§6$100,000 Cash")) {
-						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						player.sendMessage("§b§l(!)§7 $100,000 has been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"ecoadmin give " + player.getName() + " 100000");
 					} else if (name.equals("§6150 McMMO Credits")) {
-						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						player.sendMessage("§b§l(!)§7 150 McMMO credits have been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"credits add " + player.getName() + " 150");
 					} else if (name.equals("§6100 McMMO Credits")) {
-						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						player.sendMessage("§b§l(!)§7 100 McMMO credits have been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"credits add " + player.getName() + " 100");
 					} else if (name.equals("§675 McMMO Credits")) {
-						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						player.sendMessage("§b§l(!)§7 75 McMMO credits have been added to your account!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
 								"credits add " + player.getName() + " 75");
@@ -71,25 +85,33 @@ public class CrateEventListener implements Listener {
 				} else if (item.getType().equals(Material.MONSTER_EGG)) {
 					if (name.equals("§6Villager Disguise")) {
 						event.setCancelled(true);
-						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						player.sendMessage("§b§l(!)§7 You have been granted access to the villager disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
 						+ " permission set libsdisguises.disguise.villager true global");
 					} else if (name.equals("§6Creeper Disguise")) {
 						event.setCancelled(true);
-						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						player.sendMessage("§b§l(!)§7 You have been granted access to the creeper disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
 						+ " permission set libsdisguises.disguise.creeper true global");
 					} else if (name.equals("§6Zombie Disguise")) {
 						event.setCancelled(true);
-						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						player.sendMessage("§b§l(!)§7 You have been granted access to the zombie disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
 						+ " permission set libsdisguises.disguise.zombie true global");
 					} else if (name.equals("§6Skeleton Disguise")) {
 						event.setCancelled(true);
-						player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						player.sendMessage("§b§l(!)§7 You have been granted access to the skeleton disguise!");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName()
 						+ " permission set libsdisguises.disguise.skeleton true global");
@@ -128,7 +150,12 @@ public class CrateEventListener implements Listener {
 						faction.setMcmmoBoost(1.0);
 						faction.setBoostEndMillis(System.currentTimeMillis() + (24 * 3600000));
 						faction.msg("§b§l(!)§7 A 24 hour, 100% mcmmo booster has been applied to your faction!");
+					}else {
+						return;
 					}
+					ItemStack clicked = player.getItemInHand();
+					clicked.setAmount(clicked.getAmount()-1);
+					player.setItemInHand(clicked);
 				}
 			}
 		}
@@ -153,13 +180,37 @@ public class CrateEventListener implements Listener {
 						ItemStack rewardedItem = ExoticCrate.getRandomItem();
 						event.getInventory().setItem(event.getSlot(), rewardedItem);
 						event.getWhoClicked().getInventory().addItem(rewardedItem);
+						playSelectSound((Player) event.getWhoClicked());
 					}
 					if (alreadyGot == 2) {
 						ItemStack rewardedItem = ExoticCrate.getRandomItem();
 						event.getInventory().setItem(event.getSlot(), rewardedItem);
 						event.getWhoClicked().getInventory().addItem(rewardedItem);
+						playCompleteSound((Player) event.getWhoClicked());
 						Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 							public void run() {
+								Inventory finalInv = event.getInventory();
+								String rewards = "§f[§bIcewyndCrates§f] §b§l" + event.getWhoClicked().getName() + " §fjust opened ";
+								if(name.startsWith("§e")) {
+									rewards = rewards + "an §eexotic§f crate and got ";
+								}else if(name.startsWith("§5")) {
+									rewards = rewards + "a §5legendary§f crate and got ";
+								}else if(name.startsWith("§3")) {
+									rewards = rewards + "an §3event§f crate and got ";
+								}
+								int count = 0;
+								for(ItemStack item : finalInv) {
+									if(!item.getType().equals(Material.WOOL)) {
+										count ++;
+										if(count == 3) {
+											rewards = rewards + "§fand " + item.getItemMeta().getDisplayName() + "§f.";
+											break;
+										}else{
+											rewards = rewards + item.getItemMeta().getDisplayName() + "§f, ";
+										}
+									}
+								}
+								Bukkit.broadcastMessage(rewards);
 								event.getWhoClicked().closeInventory();
 							}
 						}, 20);
@@ -169,6 +220,29 @@ public class CrateEventListener implements Listener {
 		}
 	}
 
+	public void playSelectSound(Player player){
+		player.getWorld().playSound(player.getLocation(), Sound.FIREWORK_BLAST, 100, 10);
+		player.getWorld().playSound(player.getLocation(), Sound.ORB_PICKUP, 100, 10);
+	}
+	
+	public void playCompleteSound(Player player) {
+		player.getWorld().playSound(player.getLocation(), Sound.FIREWORK_LAUNCH, 10, 10);
+		player.getWorld().playSound(player.getLocation(), Sound.LEVEL_UP, 5, 10);
+		Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+			public void run() {
+				player.getWorld().playSound(player.getLocation(), Sound.FIREWORK_LAUNCH, 10, 10);
+				player.getWorld().playSound(player.getLocation(), Sound.LEVEL_UP, 5, 10);
+				Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+					public void run() {
+						player.getWorld().playSound(player.getLocation(), Sound.FIREWORK_LAUNCH, 10, 10);
+						player.getWorld().playSound(player.getLocation(), Sound.LEVEL_UP, 5, 10);
+					}
+				}, 2);
+			}
+		}, 2);
+	}
+	
+	
 	@EventHandler
 	public void onInventoryClose(InventoryCloseEvent event) {
 		String name = event.getInventory().getName();

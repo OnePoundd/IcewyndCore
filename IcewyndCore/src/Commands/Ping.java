@@ -12,23 +12,19 @@ public class Ping implements CommandExecutor{
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("ping")) {
 			Player player = (Player) sender;
-			if (sender instanceof Player) {
-				if (args.length == 0) {
-					int ping = ((CraftPlayer) player).getHandle().ping;
-					player.sendMessage("§aPing §7»§f " + ping);
+			if (args.length == 0) {
+				int ping = ((CraftPlayer) player).getHandle().ping;
+				player.sendMessage("§e§l(!)§7 " + player.getName() + "'s §aPing §7»§f " + ping);
+			}else if (args.length == 1) {
+				try {
+					Player target = Bukkit.getPlayer(args[0]);
+					int targetPing = ((CraftPlayer) target).getHandle().ping;
+					player.sendMessage("§e§l(!)§7 " + target.getName() + "'s §aPing §7»§f " + targetPing);
+				}catch(Exception e) {
+					player.sendMessage("§c§l(!)§7 That player cannot be found!");
 				}
-			} else if (args.length == 1) {
-				Player target = Bukkit.getPlayer(args[0]);
-				if(!(target == null)) {
-					if (target.isOnline()) {
-						int targetPing = ((CraftPlayer) target).getHandle().ping;
-						player.sendMessage("§a" + target.getName() + "'s §aPing §7»§f " + targetPing);
-					}else if (!target.isOnline()) {
-						player.sendMessage("§cThat player is not online!");
-					}
-				}else {
-					player.sendMessage("§cThat player cannot be found or is offline.");
-				}
+			}else {
+				player.sendMessage("§c§l(!)§7 Usage: /ping or /ping <player>!");
 			}
 		}
 		return false;

@@ -11,7 +11,7 @@ public class Invsee implements CommandExecutor{
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("invsee")) {
 			Player player = (Player) sender;
-			if (sender instanceof Player) {
+			if(player.hasPermission("icewynd.admin")) {
 				if (args.length == 1) {
 					Player tplayer = player.getServer().getPlayer(args[0]);
 					Inventory tinv = tplayer.getInventory();

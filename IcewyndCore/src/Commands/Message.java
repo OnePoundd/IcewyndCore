@@ -22,7 +22,7 @@ public class Message implements CommandExecutor{
 				if(r != null) {
 					if (args.length >= 2) {
 						if (plugin.getConfig().getBoolean(r.getUniqueId() + ".MsgToggle") == true) { // if the player has messages turned off
-							if(sender.hasPermission("server.admin")) { // admins should bypass msgtoggle
+							if(sender.hasPermission("icewynd.admin")) { // admins should bypass msgtoggle
 								String messageContents = "";
 								int i = 1;
 								for(String s : args) {

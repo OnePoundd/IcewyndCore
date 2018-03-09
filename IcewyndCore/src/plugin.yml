@@ -16,6 +16,7 @@
     rules:
     patchnotes:
     ow:
+    overwatch:
     clearchat:
     ping:
     q:
@@ -61,3 +62,4 @@
     toggletp:
     back:
     jackpot:
+    escape:

@@ -11,7 +11,7 @@ public class Feed implements CommandExecutor{
 		if (cmd.getName().equalsIgnoreCase("feed")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
-				if (player.hasPermission("server.feed")) {
+				if (player.hasPermission("icewynd.feed")) {
 					player.setFoodLevel(20);
 					player.sendMessage("§7Your hunger has been replenished.");
 				}
