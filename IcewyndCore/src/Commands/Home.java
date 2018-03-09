@@ -1,9 +1,6 @@
 package Commands;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,20 +11,19 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
-
 import com.massivecraft.factions.Factions;
 import com.massivecraft.factions.Rel;
 import com.massivecraft.factions.entity.BoardColl;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.ps.PS;
-
 import Main.Main;
 
 public class Home implements CommandExecutor{
 	
 	static Main plugin = Main.getPlugin(Main.class);
 	
+	@SuppressWarnings("unchecked")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getLabel().equalsIgnoreCase("home")) {
 			Player player = (Player) sender;

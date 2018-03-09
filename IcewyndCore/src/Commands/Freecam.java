@@ -76,8 +76,6 @@ public class Freecam implements CommandExecutor, Listener{
 			plugin.getConfig().set(player.getUniqueId() + ".Freecam", false);
 			playersInFreecam.remove(player);
 			plugin.getConfig().set(player.getUniqueId() + ".Seen", System.currentTimeMillis());
-			int playersonline = plugin.getConfig().getInt(".PlayersOnline");
-			plugin.getConfig().set(".PlayersOnline", playersonline - 1);
 			plugin.saveConfig();
 		}
 	}

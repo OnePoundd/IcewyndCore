@@ -1,23 +1,20 @@
 package Commands;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
 import Main.Main;
 
 public class SetHome implements CommandExecutor{
 	
 	Main plugin = Main.getPlugin(Main.class);
 	
+	@SuppressWarnings("unchecked")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("sethome")) {
 			if(args.length == 1) {

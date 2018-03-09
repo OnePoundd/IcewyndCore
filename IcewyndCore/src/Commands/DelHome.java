@@ -1,8 +1,6 @@
 package Commands;
 
-
 import java.util.List;
-
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,6 +13,7 @@ public class DelHome implements CommandExecutor{
 
 	Main plugin = Main.getPlugin(Main.class);
 	
+	@SuppressWarnings("unchecked")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("delhome") || cmd.getName().equalsIgnoreCase("deletehome")) {
 			if(args.length == 1) {
