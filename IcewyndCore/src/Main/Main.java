@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -24,13 +23,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitScheduler;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
-
 import BanSystem.BanCommand;
 import BanSystem.UnbanCommand;
 import Commands.Back;
@@ -179,7 +176,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("toggletp").setExecutor(new TpToggle());
 		getCommand("back").setExecutor(new Back());
 		getCommand("jackpot").setExecutor(new Jackpot());
-		
+
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
@@ -192,7 +189,7 @@ public class Main extends JavaPlugin implements Listener {
 		File customYml = new File(getDataFolder()+"/prices.yml");
 		pricesConfig = YamlConfiguration.loadConfiguration(customYml);	
 		saveResource("prices.yml", false);
-		
+
 		//Creates default commandstore file if it doesn't exist
 		try {
 			CommandStore = new File(getDataFolder() + "/CommandStore.txt");
@@ -340,10 +337,8 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}, 0L, 6000L);
 	}
-	
+
 	public void onDisable() {
 		jackpot.disable();
 	}
-	
 }
-
