@@ -20,10 +20,6 @@ import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import Crates.EventCrate;
-import Crates.ExoticCrate;
-import Crates.LegendaryCrate;
 import Main.Main;
 
 public class Librarian implements CommandExecutor, Listener {
