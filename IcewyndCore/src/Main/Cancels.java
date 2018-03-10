@@ -70,6 +70,9 @@ public class Cancels implements Listener {
 		if (event.getEntity() instanceof Enderman) {
 			event.setCancelled(true);
 		}
+		if (event.getEntityType() == EntityType.WITHER) {
+			event.setCancelled(true);
+		}
 	}
 	@EventHandler
 	public void snow(EntityBlockFormEvent event) {

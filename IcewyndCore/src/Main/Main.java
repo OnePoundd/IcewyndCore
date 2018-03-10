@@ -114,7 +114,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Sell(), this);
 		manager.registerEvents(new Shop(), this);
 		manager.registerEvents(new DisguiseBuffs(), this);
-		manager.registerEvents(new BossEggs(), this);
+		//manager.registerEvents(new BossEggs(), this);
 		manager.registerEvents(new Seen(), this);
 		manager.registerEvents(new WitherEvent(), this);
 		manager.registerEvents(new NoWaterRedstone(), this);

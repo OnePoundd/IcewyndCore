@@ -25,7 +25,6 @@ import com.massivecraft.massivecore.ps.PS;
 
 public class RightClickEvent implements Listener {
 
-	@SuppressWarnings("deprecation")
 	// Quartermaster Items
 	@EventHandler
 	public void onPlayerUse(PlayerInteractEvent event) {
