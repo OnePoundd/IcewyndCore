@@ -5,6 +5,7 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Snowman;
 import org.bukkit.entity.Wither;
@@ -37,12 +38,14 @@ public class Cancels implements Listener {
 		tag.setInt("NoAI", 1);
 		nmsEntity.f(tag);
 	}
+	//Disables endermites from spawning from enderpearls
 	@EventHandler
 	public void onspawn(EntitySpawnEvent e) {
 		if (e.getEntityType() == EntityType.ENDERMITE) {
 			e.setCancelled(true);
 		}
 	}
+	//Disables mob breeding and mob AI
 	@EventHandler
 	public void onMobSpawn(CreatureSpawnEvent event) {
 		if (!(event.getEntityType() == EntityType.WITHER)) {
@@ -53,18 +56,22 @@ public class Cancels implements Listener {
 			event.setCancelled(true);
 		}
 	}
+	//Disables weather
 	@EventHandler
 	public void onWeatherChange(WeatherChangeEvent event) {
 		event.setCancelled(true);
 	}
+	//Disables mushroom growth, vine growth etc
 	@EventHandler
 	public void onSpread(BlockSpreadEvent event) {
 		event.setCancelled(true);
 	}
+	//Disables leaf decay
 	@EventHandler
 	public void onLeavesDecay(LeavesDecayEvent event) {
 		event.setCancelled(true);
 	}
+	//Disables enderman and wither block changes
 	@EventHandler
 	public void onEntityChangeBlock(EntityChangeBlockEvent event) {
 		if (event.getEntity() instanceof Enderman) {
@@ -97,5 +104,12 @@ public class Cancels implements Listener {
 	@EventHandler
 	public void onMelt(BlockFadeEvent event) {
 		event.setCancelled(true);
+	}
+	//Prevents explosive block damage caused by fireballs
+	@EventHandler
+	public void onFireball(EntityExplodeEvent event) {
+		if(event.getEntity() instanceof Fireball) {
+			event.blockList().clear();
+		}
 	}
 }

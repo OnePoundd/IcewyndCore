@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -13,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.SignChangeEvent;
-import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
@@ -217,14 +215,6 @@ public class Misc implements Listener {
 				e.setCancelled(true);
 				e.getPlayer().sendMessage("Invalid amount of characters");
 			}
-		}
-	}
-
-	//Prevents explosive block damage caused by fireballs
-	@EventHandler
-	public void onFireball(EntityExplodeEvent event) {
-		if(event.getEntity() instanceof Fireball) {
-			event.blockList().clear();
 		}
 	}
 	//Keep XP on Death
