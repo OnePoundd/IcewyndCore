@@ -102,6 +102,7 @@ public class InventoryClick implements Listener {
 				player.getInventory().addItem(new ItemStack(Item6));
 			}
 		}
+		
 	}
 }
 

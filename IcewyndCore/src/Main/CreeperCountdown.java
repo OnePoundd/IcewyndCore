@@ -11,7 +11,7 @@ public class CreeperCountdown implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
 
 	@EventHandler
-	// makes a timer appear above the creepers head when ignited with flint and steel
+	//Makes a timer appear above the creepers head when ignited with flint and steel
 	public void onCreeperIgniteEvent(PlayerInteractEntityEvent event) {
 		if (event.getRightClicked() instanceof Creeper) {
 			Creeper creeper = (Creeper) event.getRightClicked();

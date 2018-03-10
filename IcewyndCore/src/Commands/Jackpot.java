@@ -17,7 +17,7 @@ public class Jackpot implements CommandExecutor{
 				try {
 					if(!Main.jackpot.getPlayers().contains(sender.getName())) {
 						int amount = Integer.parseInt(args[0]);
-						if(amount > 5000 && amount < 1000001) {
+						if(amount > 4999 && amount < 1000001) {
 							Main.jackpot.addEntry((Player) sender, amount);
 						}else {
 							sender.sendMessage("§f[§bJackpot§f] §cEnter a number between 5000 and 1000000!");

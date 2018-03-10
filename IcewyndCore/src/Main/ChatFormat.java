@@ -72,8 +72,6 @@ public class ChatFormat implements Listener {
 	@EventHandler
 	public void onQuitEvent(PlayerQuitEvent event) { //Changes the message when a player logs out and only shows to faction members
 		event.setQuitMessage("");
-		int players = plugin.getConfig().getInt(".PlayersOnline");
-		plugin.getConfig().set(".PlayersOnline", players - 1);
 		MPlayer player = MPlayer.get(event.getPlayer());
 		if (!player.getFaction().getName().equals("Wilderness")) {
 			player.getFaction().msg("§c§l(!)§7 " + player.getName() + " is now offline!");

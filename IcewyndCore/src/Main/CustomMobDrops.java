@@ -90,6 +90,7 @@ public class CustomMobDrops implements Listener {
 		}
 	}
 
+	//Changes mob health for some mobs
 	@EventHandler
 	public void onCreatureSpawn(CreatureSpawnEvent event) {
 		if (event.getEntityType() == EntityType.ENDERMAN) {
