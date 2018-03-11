@@ -52,7 +52,6 @@ import Commands.Overwatch;
 import Commands.PInfo;
 import Commands.PatchNotes;
 import Commands.Ping;
-import Commands.QuarterMaster;
 import Commands.Reset;
 import Commands.Reward;
 import Commands.Rules;
@@ -69,7 +68,6 @@ import Commands.Tpa;
 import Commands.Tpaccept;
 import Commands.Tpahere;
 import Commands.TwitchBroadcast;
-import Commands.WitherEvent;
 import Commands.YoutubeBroadcast;
 import Crates.CrateEventListener;
 import Crates.CrateGiveCommand;
@@ -126,6 +124,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Back(), this);
 		manager.registerEvents(new BanCommand(), this);
 		manager.registerEvents(new TNTPatches(), this);
+		manager.registerEvents(new QuarterMaster(), this);
 
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -323,8 +322,8 @@ public class Main extends JavaPlugin implements Listener {
 		ClearLag.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
+				Bukkit.broadcastMessage("§e§lClearLag§8 » §aEntities have been cleared!");
 				for (Entity entity : Bukkit.getWorld("world").getEntities()){
-					Bukkit.broadcastMessage("§e§lClearLag§8 » §aEntities have been cleared!");
 					if (entity instanceof FallingBlock || entity instanceof TNTPrimed || entity instanceof ExperienceOrb || entity instanceof Player || entity instanceof Beacon ||  entity instanceof Hopper)  {
 					}else {
 						entity.remove();

@@ -1,4 +1,4 @@
-package Commands;
+package Main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -19,7 +20,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class QuarterMaster implements CommandExecutor {
+public class QuarterMaster implements CommandExecutor, Listener {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getLabel().equals("q"))
@@ -234,6 +235,7 @@ public class QuarterMaster implements CommandExecutor {
 		player.openInventory(qKits);
 	}
 	//PVP Potion Quartermaster Item
+	
 	@EventHandler
 	public void onDrink(PlayerItemConsumeEvent e) {
 		Player player = e.getPlayer();

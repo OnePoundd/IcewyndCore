@@ -1,4 +1,4 @@
-package Commands;
+package Main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -26,7 +26,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import Main.Main;
+
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 
 public class WitherEvent implements CommandExecutor, Listener {
