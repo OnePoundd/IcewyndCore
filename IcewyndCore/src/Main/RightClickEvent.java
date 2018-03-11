@@ -18,51 +18,47 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
 import com.massivecraft.factions.entity.BoardColl;
 import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.ps.PS;
 
 public class RightClickEvent implements Listener {
 
-	// Quartermaster Items
 	@EventHandler
 	public void onPlayerUse(PlayerInteractEvent event) {
 		if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			Player player = event.getPlayer();
 			if (player.getItemInHand().getType().equals(Material.MONSTER_EGG)) {
-				if(player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasDisplayName()) {
-					if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§lPlagued Skeleton")) {
-						if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-							event.setCancelled(true); // disables the creeper spawning
-							if(BoardColl.get().getFactionAt(PS.valueOf(event.getClickedBlock())).getName().equalsIgnoreCase("Warzone")) {
-								player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
-								Skeleton skeleton = (Skeleton) player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0,1,0), EntityType.SKELETON);
-								skeleton.setSkeletonType(SkeletonType.WITHER);
-								skeleton.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 3)); //strength 4
-								skeleton.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 2)); //speed 3
-								skeleton.setHealth(300.0);
-								skeleton.setCustomName("§c§lPlagued Skeleton");
-								Block block = event.getClickedBlock();
-								Location locB = block.getLocation().getBlock().getLocation();
-								MPlayer mplayer = MPlayer.get(player);
-								String faction = mplayer.getFactionName();
-
-								String nut = "§d§lBOSS EGGS§8§l » §7A §cPlagued Skeleton §7has been summoned in Warzone by the faction §e" + StringUtils.capitalize(faction) + "§7! Coords: [" + locB.getBlockX() + ", " + locB.getBlockY() + ", " + locB.getBlockZ() + "]";
-								Bukkit.broadcastMessage(nut);
-							}else {
-								event.getPlayer().sendMessage("§cBoss eggs can only be used in WarZone!");
-							}
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§lPlagued Skeleton")) {
+					if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+						event.setCancelled(true);
+						if(BoardColl.get().getFactionAt(PS.valueOf(event.getClickedBlock())).getName().equalsIgnoreCase("Warzone")) {
+							player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+							Skeleton skeleton = (Skeleton) player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0,1,0), EntityType.SKELETON);
+							skeleton.setSkeletonType(SkeletonType.WITHER);
+							skeleton.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 3)); //strength 4
+							skeleton.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 2)); //speed 3
+							skeleton.setHealth(300.0);
+							skeleton.setCustomName("§c§lPlagued Skeleton");
+							Block block = event.getClickedBlock();
+							Location locB = block.getLocation().getBlock().getLocation();
+							MPlayer mplayer = MPlayer.get(player);
+							String faction = mplayer.getFactionName();
+							String nut = "§d§lBOSS EGGS§8§l » §7A §cPlagued Skeleton §7has been summoned in Warzone by the faction §e" + StringUtils.capitalize(faction) + "§7! Coords: [" + locB.getBlockX() + ", " + locB.getBlockY() + ", " + locB.getBlockZ() + "]";
+							Bukkit.broadcastMessage(nut);
+						}else {
+							event.getPlayer().sendMessage("§cBoss eggs can only be used in WarZone!");
 						}
-					// Charged Creeper
-					}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§a§l§nCharged Creeper Egg")) {
-						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
-						player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0),EntityType.CREEPER);
-						Block block = event.getClickedBlock();
-						Location locB = block.getLocation().getBlock().getLocation();
-						block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
 					}
+				//Charged Creeper Item
+				}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§a§l§nCharged Creeper Egg")) {
+					player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+					player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0),EntityType.CREEPER);
+					Block block = event.getClickedBlock();
+					Location locB = block.getLocation().getBlock().getLocation();
+					block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
 				}
+			//TNT Crate Item
 			} else if (player.getItemInHand().getType().equals(Material.TRAPPED_CHEST)) {
 				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nCrate of TNT")) {
 					if (player.getInventory().firstEmpty() == -1) {
@@ -75,8 +71,7 @@ public class RightClickEvent implements Listener {
 						event.setCancelled(true);
 					}
 				}
-
-				// Mystery Spawner
+			//Mystery Spawner Item
 			} else if (player.getItemInHand().getType().equals(Material.MOB_SPAWNER)) {
 				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§l§nMystery Spawner")) {
 					if (player.getInventory().firstEmpty() == -1) {
@@ -102,6 +97,7 @@ public class RightClickEvent implements Listener {
 						.setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 					}
 				}
+			//Overwatch Random Teleport Item
 			} else if (player.getItemInHand().getType().equals(Material.EYE_OF_ENDER)) {
 				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§lRandom TP")) {
 					event.setCancelled(true);

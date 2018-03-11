@@ -2,16 +2,18 @@ package Main;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.block.Beacon;
+import org.bukkit.block.Hopper;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.FallingBlock;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.entity.Wither;
 import org.bukkit.event.Listener;
@@ -114,7 +116,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new Sell(), this);
 		manager.registerEvents(new Shop(), this);
 		manager.registerEvents(new DisguiseBuffs(), this);
-		//manager.registerEvents(new BossEggs(), this);
+		manager.registerEvents(new BossEggs(), this);
 		manager.registerEvents(new Seen(), this);
 		manager.registerEvents(new WitherEvent(), this);
 		manager.registerEvents(new NoWaterRedstone(), this);
@@ -280,10 +282,10 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		}, 0L, 3000L);
-		
+
 		UnbanCommand.triggerUnbanScheduler();
 		Freecam.triggerFreecamCheck();
-		
+
 		//Wither Boss Event
 		BukkitScheduler WitherBossEvent = getServer().getScheduler();
 		WitherBossEvent.scheduleSyncRepeatingTask(this, new Runnable() {
@@ -321,15 +323,12 @@ public class Main extends JavaPlugin implements Listener {
 		ClearLag.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
-				ArrayList<Entity> Ent = new ArrayList<Entity>();
-				Bukkit.broadcastMessage("§e§lClearLag§8 » §aEntities have been cleared!");
-				Ent.add((Entity) Bukkit.getWorld("world").getEntities());
-				if (Ent instanceof TNTPrimed) {
-					return;
-				}else if (Ent instanceof ExperienceOrb) {
-					return;
-				}else if (Ent instanceof FallingBlock) {
-					return;
+				for (Entity entity : Bukkit.getWorld("world").getEntities()){
+					Bukkit.broadcastMessage("§e§lClearLag§8 » §aEntities have been cleared!");
+					if (entity instanceof FallingBlock || entity instanceof TNTPrimed || entity instanceof ExperienceOrb || entity instanceof Player || entity instanceof Beacon ||  entity instanceof Hopper)  {
+					}else {
+						entity.remove();
+					}
 				}
 			}
 		}, 0L, 6000L);
