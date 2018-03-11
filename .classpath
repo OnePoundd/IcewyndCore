@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry excluding="Commands/WitherSpawn.java|Commands/hh.java|Main/BossEggs.java" kind="src" path="IcewyndCore/src"/>
+	<classpathentry excluding="Commands/WitherSpawn.java|Commands/hh.java" kind="src" path="IcewyndCore/src"/>
 	<classpathentry kind="lib" path="C:/Jars/[Dependency] MassiveCore.jar"/>
 	<classpathentry kind="lib" path="C:/Jars/[Dependency] ProtocolLib.jar"/>
 	<classpathentry kind="lib" path="C:/Jars/Factions.jar"/>

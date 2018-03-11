@@ -2,19 +2,11 @@ package Main;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Blaze;
-import org.bukkit.entity.Creeper;
-import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.Villager;
 import org.bukkit.entity.Witch;
-import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;

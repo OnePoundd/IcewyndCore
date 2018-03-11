@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -17,17 +15,15 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class InventoryClick implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
-		Inventory inv = event.getInventory();
 		if (!(event.getWhoClicked() instanceof Player))
 			return;
 
 		Player player = (Player) event.getWhoClicked();
 		ItemStack item = event.getCurrentItem();
 
-		if (inv.getName() == "§8» §9§lItems QuarterMaster") {
+		if (event.getInventory().getName() == "§8» §9§lItems QuarterMaster") {
 			if (item.getType() == Material.TRAPPED_CHEST) {
 				ItemStack Item1 = new ItemStack(Material.TRAPPED_CHEST, 1);
 				ItemMeta Item1Meta = Item1.getItemMeta();
@@ -64,8 +60,7 @@ public class InventoryClick implements Listener {
 				player.sendMessage("§aPurchased 8 Bedrock!");
 				player.getInventory().addItem(new ItemStack(Item3));
 			} else if (item.getType() == Material.MONSTER_EGG) {
-				ItemStack Item4 = new ItemStack(Material.MONSTER_EGG, 1);
-				Item4.setDurability(EntityType.CREEPER.getTypeId());
+				ItemStack Item4 = new ItemStack(Material.MONSTER_EGG, 1, (short)50);
 				ItemMeta Item4Meta = Item4.getItemMeta();
 				List<String> lore4 = new ArrayList<String>();
 				Item4Meta.setDisplayName("§a§l§nCharged Creeper Egg");
@@ -105,5 +100,3 @@ public class InventoryClick implements Listener {
 		
 	}
 }
-
-

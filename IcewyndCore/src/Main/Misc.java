@@ -100,7 +100,7 @@ public class Misc implements Listener {
 	}
 
 	@EventHandler
-	//GenBucketPickup
+	//GenBucket Pickup
 	public void onBucketFill(PlayerBucketFillEvent event) {
 		if (event.getPlayer().getWorld().getName().equals("world")) {
 			ItemStack GenBucket = new ItemStack(Material.LAVA_BUCKET, 1);
@@ -116,7 +116,7 @@ public class Misc implements Listener {
 	}
 
 	@EventHandler
-	//PlayerSkullDropOnDeath
+	//Player Skull Drop On Death
 	public void ondeath(PlayerDeathEvent event) {
 		Player player = event.getEntity().getPlayer();
 		if (plugin.getConfig().getBoolean(player.getUniqueId() + ".Banned") == true) {
@@ -134,7 +134,7 @@ public class Misc implements Listener {
 		}
 	}
 
-	//SpongePatch
+	//Sponge Patch
 	@EventHandler
 	public void onBlockBreakEvent(BlockBreakEvent event) {
 		Player player = event.getPlayer();
