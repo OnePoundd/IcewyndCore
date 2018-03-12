@@ -41,10 +41,54 @@ public class Reward implements CommandExecutor, Listener{
 							plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ecoadmin give " + playerName + " 10000");
 						}else if(reward.equals("refer")) {
 							String referred = args[2];
-							player.getPlayer().sendMessage("§6§l(!)§7 You have been rewarded $10,000 for referring " + referred + "!");
-							plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ecoadmin give " + playerName + " 10000");
+							player.getPlayer().sendMessage("§6§l(!)§7 You have been rewarded $15,000 for referring " + referred + "!");
+							plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ecoadmin give " + playerName + " 15000");
 							OfflinePlayer referredPlayer = Bukkit.getOfflinePlayer(referred);
 							plugin.getConfig().set(referredPlayer.getUniqueId() + ".Referee", player.getUniqueId());
+						}else if(reward.equals("level3")) {
+							if(plugin.getConfig().getString(player.getUniqueId() + ".Referee") != null) {
+								OfflinePlayer referee = Bukkit.getOfflinePlayer(plugin.getConfig().getString(player.getUniqueId() + ".Referee"));
+								if(referee.isOnline()) {
+									referee.getPlayer().sendMessage("§6§l(!)§7 You have been rewarded $20,000 because " + player.getName() + " reached level 3!");
+									plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ecoadmin give " + referee.getName() + " 20000");
+								}else {
+									try {
+										File newFile = Main.CommandStore;
+										Writer output = new BufferedWriter(new FileWriter(newFile, true));
+										String command = cmd.getName();
+										for(String s : args) {
+											command = command + " " + s;
+										}							
+										output.append(command + ":");
+										output.close();
+										System.out.println("[IcewyndHub] Failed to reward player (not online) so added a command to the store!");
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								}
+							}
+						}else if(reward.equals("level5")) {
+							if(plugin.getConfig().getString(player.getUniqueId() + ".Referee") != null) {
+								OfflinePlayer referee = Bukkit.getOfflinePlayer(plugin.getConfig().getString(player.getUniqueId() + ".Referee"));
+								if(referee.isOnline()) {
+									referee.getPlayer().sendMessage("§6§l(!)§7 You have been rewarded a referral crate because " + player.getName() + " reached level 5!");
+									plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), "crategive " + referee.getName() + " referral");
+								}else {
+									try {
+										File newFile = Main.CommandStore;
+										Writer output = new BufferedWriter(new FileWriter(newFile, true));
+										String command = cmd.getName();
+										for(String s : args) {
+											command = command + " " + s;
+										}							
+										output.append(command + ":");
+										output.close();
+										System.out.println("[IcewyndHub] Failed to reward player (not online) so added a command to the store!");
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								}
+							}
 						}
 					}else {
 						try {
