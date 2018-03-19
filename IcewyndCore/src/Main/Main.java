@@ -331,15 +331,15 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}, 0L, 6000L);
 		//Clear Lag
-		BukkitScheduler Crate = getServer().getScheduler();
-		Crate.scheduleSyncRepeatingTask(this, new Runnable() {
-			@Override
-			public void run() {
-				Location WitherSpawn = (Location) (getConfig()).get(".WitherSpawn");
-				Bukkit.getWorld("world").playEffect(WitherSpawn, Effect.PORTAL, 1);
-				Bukkit.getWorld("world").playEffect(WitherSpawn, Effect.FLYING_GLYPH, 1);
-			}
-		}, 0L, 1L);
+//		BukkitScheduler Crate = getServer().getScheduler();
+//		Crate.scheduleSyncRepeatingTask(this, new Runnable() {
+//			@Override
+//			public void run() {
+//				Location WitherSpawn = (Location) (getConfig()).get(".WitherSpawn");
+//				Bukkit.getWorld("world").playEffect(WitherSpawn, Effect.PORTAL, 1);
+//				Bukkit.getWorld("world").playEffect(WitherSpawn, Effect.FLYING_GLYPH, 1);
+//			}
+//		}, 0L, 1L);
 		//TrenchTNT
 		BukkitScheduler TrenchTNT = getServer().getScheduler();
 		TrenchTNT.scheduleSyncRepeatingTask(this, new Runnable() {
