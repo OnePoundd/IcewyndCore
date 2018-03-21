@@ -63,11 +63,11 @@ public class WitherEvent implements CommandExecutor, Listener {
 				if (plugin.getConfig().getBoolean(".WitherInvin") == true) {
 					event.setCancelled(true);
 				}else if (plugin.getConfig().getBoolean(".WitherInvin") == false) {
-					if (((LivingEntity) e).getHealth() < 150) {
+					if (((LivingEntity) e).getHealth() < 280) {
 						if (plugin.getConfig().getInt(".WitherPhase") == 0) {
 							plugin.getConfig().set(".WitherPhase", 1);
 							plugin.getConfig().set(".WitherInvin", true);
-							Bukkit.broadcastMessage("50% Health, summoning Wither Guards");
+							Bukkit.broadcastMessage("§eThe Wither King is below 50% health! Summoning Wither Guards!");
 							Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
 							e.teleport(WitherSpawn);
 							LivingEntity entity = (LivingEntity) event.getEntity();
@@ -87,7 +87,7 @@ public class WitherEvent implements CommandExecutor, Listener {
 							Item1Meta.setColor(Color.BLACK);
 							Item1.setItemMeta(Item1Meta);
 							
-							//Chesplate
+							//Chestplate
 							ItemStack Item2 = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
 							LeatherArmorMeta Item2Meta = (LeatherArmorMeta) Item2.getItemMeta();
 							Item2Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1000, true);
@@ -145,23 +145,20 @@ public class WitherEvent implements CommandExecutor, Listener {
 							mob3.getEquipment().setItemInHand(Item5);
 
 							WitherSpawn.add(-2, 0, -2);
-							plugin.saveConfig();
-						}
+							final int task;
+							task = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+								double timer = 3.0;
 
-					if (((LivingEntity) e).getHealth() < 100) {
-						if (plugin.getConfig().getInt(".WitherPhase") == 1) {
-							Bukkit.broadcastMessage("2");
-							plugin.getConfig().set(".WitherPhase", 2);
-							plugin.saveConfig();
-							Bukkit.broadcastMessage("25% Health");
-							Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
-							e.teleport(WitherSpawn);
-							LivingEntity entity = (LivingEntity) event.getEntity();
-							noAI(entity);
-							plugin.getConfig().set(".WitherSkeletons", 0);
+								@Override
+								public void run() {
+									timer = timer - 0.1;
+									Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
+									Bukkit.getWorld("world").playEffect(WitherSpawn, Effect.STEP_SOUND, Material.PORTAL, 150);
+									
+								}
+							}, 0L, 0);
 							plugin.saveConfig();
 						}
-					}
 					}
 				}
 			}
@@ -185,6 +182,7 @@ public class WitherEvent implements CommandExecutor, Listener {
 				plugin.getConfig().set(".WitherSkeletons", totalKilled + 1);
 				plugin.saveConfig();
 				if (plugin.getConfig().getInt(".WitherSkeletons") == 3) {
+					Bukkit.getScheduler().cancelTask(task);
 					plugin.getConfig().set(".WitherInvin", false);
 					plugin.saveConfig();
 					for (Entity entity1 : Bukkit.getWorld("World").getEntities())
@@ -194,8 +192,9 @@ public class WitherEvent implements CommandExecutor, Listener {
 							Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn, EntityType.WITHER);
 							mob.setCustomName("§4§l§oWither King");
 							mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
-							mob.setMaxHealth(150);
-							mob.setHealth(150);
+							mob.setMaxHealth(250);
+							mob.setHealth(250);
+							mob.damage(125);
 						}
 				}
 			}

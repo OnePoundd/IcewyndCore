@@ -4,21 +4,24 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import org.bukkit.Bukkit;
-import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.block.Beacon;
 import org.bukkit.block.Hopper;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
+import org.bukkit.entity.Wither;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitScheduler;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -284,7 +287,7 @@ public class Main extends JavaPlugin implements Listener {
 		UnbanCommand.triggerUnbanScheduler();
 		Freecam.triggerFreecamCheck();
 
-		/*//Wither Boss Event
+		//Wither Boss Event
 		BukkitScheduler WitherBossEvent = getServer().getScheduler();
 		WitherBossEvent.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
@@ -293,9 +296,11 @@ public class Main extends JavaPlugin implements Listener {
 				Location WitherSpawn = (Location)(getConfig()).get(".WitherSpawn");
 				Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn, EntityType.WITHER);
 				mob.setCustomName("§4§l§nWither King");
+				mob.setMaxHealth(500);
+				mob.setHealth(500);
 				mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
 			}
-		}, 0L, 3000L);*/
+		}, 0L, 3000L);
 
 		//Player Count
 		BukkitScheduler PlayerCount = getServer().getScheduler();
@@ -330,7 +335,7 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		}, 0L, 6000L);
-		//Clear Lag
+//		Clear Lag
 //		BukkitScheduler Crate = getServer().getScheduler();
 //		Crate.scheduleSyncRepeatingTask(this, new Runnable() {
 //			@Override
@@ -340,15 +345,15 @@ public class Main extends JavaPlugin implements Listener {
 //				Bukkit.getWorld("world").playEffect(WitherSpawn, Effect.FLYING_GLYPH, 1);
 //			}
 //		}, 0L, 1L);
-		//TrenchTNT
-		BukkitScheduler TrenchTNT = getServer().getScheduler();
-		TrenchTNT.scheduleSyncRepeatingTask(this, new Runnable() {
-			@Override
-			public void run() {
-				//Location WitherSpawn = (Location) (getConfig()).get(".WitherSpawn");
-				//Bukkit.getWorld("world").spawnEntity(TrenchTNT, EntityType.PRIMED_TNT);
-			}
-		}, 0L, 140L);
+//		TrenchTNT
+//		BukkitScheduler TrenchTNT = getServer().getScheduler();
+//		TrenchTNT.scheduleSyncRepeatingTask(this, new Runnable() {
+//			@Override
+//			public void run() {
+//				Location WitherSpawn = (Location) (getConfig()).get(".WitherSpawn");
+//				Bukkit.getWorld("world").spawnEntity(TrenchTNT, EntityType.PRIMED_TNT);
+//			}
+//		}, 0L, 140L);
 	}
 
 	public void onDisable() {
