@@ -31,6 +31,7 @@ import net.minecraft.server.v1_8_R3.NBTTagCompound;
 
 public class WitherEvent implements CommandExecutor, Listener {
 	Main plugin = Main.getPlugin(Main.class);
+	int task;
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("witherspawn")) {
@@ -145,7 +146,6 @@ public class WitherEvent implements CommandExecutor, Listener {
 							mob3.getEquipment().setItemInHand(Item5);
 
 							WitherSpawn.add(-2, 0, -2);
-							final int task;
 							task = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 								double timer = 3.0;
 
@@ -154,7 +154,6 @@ public class WitherEvent implements CommandExecutor, Listener {
 									timer = timer - 0.1;
 									Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
 									Bukkit.getWorld("world").playEffect(WitherSpawn, Effect.STEP_SOUND, Material.PORTAL, 150);
-									
 								}
 							}, 0L, 0);
 							plugin.saveConfig();
