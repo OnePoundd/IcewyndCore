@@ -29,78 +29,80 @@ public class RightClickEvent implements Listener {
 		if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			Player player = event.getPlayer();
 			//Skeleton Boss Egg
-			if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßcßlPlagued Skeleton")) {
-				if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-					event.setCancelled(true);
-					if(BoardColl.get().getFactionAt(PS.valueOf(event.getClickedBlock())).getName().equalsIgnoreCase("Warzone")) {
+			if(player.getItemInHand() != null && player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasDisplayName()) {
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßcßlPlagued Skeleton")) {
+					if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+						event.setCancelled(true);
+						if(BoardColl.get().getFactionAt(PS.valueOf(event.getClickedBlock())).getName().equalsIgnoreCase("Warzone")) {
+							player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+							Skeleton skeleton = (Skeleton) player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0,1,0), EntityType.SKELETON);
+							skeleton.setSkeletonType(SkeletonType.WITHER);
+							skeleton.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 3)); //strength 4
+							skeleton.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 2)); //speed 3
+							skeleton.setHealth(300.0);
+							skeleton.setCustomName("ßcßlPlagued Skeleton");
+							Block block = event.getClickedBlock();
+							Location locB = block.getLocation().getBlock().getLocation();
+							MPlayer mplayer = MPlayer.get(player);
+							String faction = mplayer.getFactionName();
+							String nut = "ßdßlBOSS EGGSß8ßl ª ß7A ßcPlagued Skeleton ß7has been summoned in Warzone by the faction ße" + StringUtils.capitalize(faction) + "ß7! Coords: [" + locB.getBlockX() + ", " + locB.getBlockY() + ", " + locB.getBlockZ() + "]";
+							Bukkit.broadcastMessage(nut);
+						}else {
+							player.sendMessage("ßcBoss eggs can only be used in WarZone!");
+						}
+					}
+				//Charged Creeper Item
+				}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßaßlßnCharged Creeper Egg")) {
+					player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+					player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0),EntityType.CREEPER);
+					Block block = event.getClickedBlock();
+					Location locB = block.getLocation().getBlock().getLocation();
+					block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
+				//TNT Crate Item
+				} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßcßlßnCrate of TNT")) {
+					if (player.getInventory().firstEmpty() == -1) {
+						player.sendMessage("ßcYou do not have the required inventory space.");
+						event.setCancelled(true);
+						player.closeInventory();
+					} else {
 						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
-						Skeleton skeleton = (Skeleton) player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0,1,0), EntityType.SKELETON);
-						skeleton.setSkeletonType(SkeletonType.WITHER);
-						skeleton.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 3)); //strength 4
-						skeleton.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 2)); //speed 3
-						skeleton.setHealth(300.0);
-						skeleton.setCustomName("ßcßlPlagued Skeleton");
-						Block block = event.getClickedBlock();
-						Location locB = block.getLocation().getBlock().getLocation();
-						MPlayer mplayer = MPlayer.get(player);
-						String faction = mplayer.getFactionName();
-						String nut = "ßdßlBOSS EGGSß8ßl ª ß7A ßcPlagued Skeleton ß7has been summoned in Warzone by the faction ße" + StringUtils.capitalize(faction) + "ß7! Coords: [" + locB.getBlockX() + ", " + locB.getBlockY() + ", " + locB.getBlockZ() + "]";
-						Bukkit.broadcastMessage(nut);
-					}else {
-						player.sendMessage("ßcBoss eggs can only be used in WarZone!");
+						player.getInventory().addItem(new ItemStack(Material.TNT, 2304));
+						event.setCancelled(true);
 					}
-			//Charged Creeper Item
-			}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßaßlßnCharged Creeper Egg")) {
-				player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
-				player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0),EntityType.CREEPER);
-				Block block = event.getClickedBlock();
-				Location locB = block.getLocation().getBlock().getLocation();
-				block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
-				}
-			//TNT Crate Item
-			} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßcßlßnCrate of TNT")) {
-				if (player.getInventory().firstEmpty() == -1) {
-					player.sendMessage("ßcYou do not have the required inventory space.");
-					event.setCancelled(true);
-					player.closeInventory();
-				} else {
-					player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
-					player.getInventory().addItem(new ItemStack(Material.TNT, 2304));
-					event.setCancelled(true);
-				}
 
-			//Mystery Spawner Item
-			} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßdßlßnMystery Spawner")) {
-				if (player.getInventory().firstEmpty() == -1) {
-					player.sendMessage("ßcYou do not have the required inventory space.");
-					event.setCancelled(true);
-					player.closeInventory();
-				} else {
-					Random rand = new Random();
-					int index5 = rand.nextInt(5) + 1;
-					if (index5 == 1) {
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spawnergive " + player.getName() + " villager");
-						Bukkit.broadcastMessage(" " + player.getName() + " was lucky and recieved a ßdßlVillager spawnerßbßl from a Mystery Spawner!" + " ßdßl≈ì¶");
-					} else if (index5 == 2) {
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " creeper");
-					} else if (index5 == 3) {
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " enderman");
-					} else if (index5 == 4) {
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " blaze");
-					} else if (index5 == 5) {
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " witch");
+				//Mystery Spawner Item
+				} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßdßlßnMystery Spawner")) {
+					if (player.getInventory().firstEmpty() == -1) {
+						player.sendMessage("ßcYou do not have the required inventory space.");
+						event.setCancelled(true);
+						player.closeInventory();
+					} else {
+						Random rand = new Random();
+						int index5 = rand.nextInt(5) + 1;
+						if (index5 == 1) {
+							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spawnergive " + player.getName() + " villager");
+							Bukkit.broadcastMessage(" " + player.getName() + " was lucky and recieved a ßdßlVillager spawnerßbßl from a Mystery Spawner!" + " ßdßl≈ì¶");
+						} else if (index5 == 2) {
+							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " creeper");
+						} else if (index5 == 3) {
+							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " enderman");
+						} else if (index5 == 4) {
+							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " blaze");
+						} else if (index5 == 5) {
+							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " witch");
+						}
+						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 					}
-					player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
-				}
 
-			//Overwatch Random Teleport Item
-			} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßdßlRandom TP")) {
-				event.setCancelled(true);
-				ArrayList<Player> players = new ArrayList<Player>();
-				for (Player e : Bukkit.getOnlinePlayers())
-					players.add(e);
-				Player randomPlayer = players.get(new Random().nextInt(players.size()));
-				player.teleport(randomPlayer.getLocation());
+				//Overwatch Random Teleport Item
+				} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("ßdßlRandom TP")) {
+					event.setCancelled(true);
+					ArrayList<Player> players = new ArrayList<Player>();
+					for (Player e : Bukkit.getOnlinePlayers())
+						players.add(e);
+					Player randomPlayer = players.get(new Random().nextInt(players.size()));
+					player.teleport(randomPlayer.getLocation());
+				}
 			}
 		}
 	}
