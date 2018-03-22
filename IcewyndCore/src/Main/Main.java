@@ -387,6 +387,7 @@ public class Main extends JavaPlugin implements Listener {
 					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
 					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
 					SupplyDrop1.add(0,1,0).getBlock().setType(Material.OBSIDIAN);
+					SupplyDrop1.add(0,-1,0);
 					Bukkit.getScheduler().cancelTask(spawntask);
 				}
 			}
