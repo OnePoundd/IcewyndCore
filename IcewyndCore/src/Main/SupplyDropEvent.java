@@ -92,7 +92,7 @@ public class SupplyDropEvent implements CommandExecutor, Listener{
 				}
 			} else if (event.getBlock().getType() == Material.OBSIDIAN){
 				Bukkit.broadcastMessage("§a§lSUPPLYDROP§7 » §bThe Supply Drop was claimed by " + event.getPlayer().getName() + "!");
-				
+				Bukkit.getScheduler().cancelTask(Main.SupplyDropTask);
 			}
 		}
 	}

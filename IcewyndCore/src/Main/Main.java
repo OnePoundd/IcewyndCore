@@ -93,6 +93,9 @@ public class Main extends JavaPlugin implements Listener {
 	public static File CommandStore;
 	public static JackpotEntity jackpot;
 
+	public static int SupplyDropTask;
+	
+	
 	public void onEnable() {
 		saveDefaultConfig();
 		PluginManager manager = Bukkit.getServer().getPluginManager();
@@ -363,9 +366,8 @@ public class Main extends JavaPlugin implements Listener {
 
 			}
 		}, 0L, 108000L);
-		@SuppressWarnings("unused")
-		int task2;
-		task2 = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+		
+		SupplyDropTask = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
 				Location SupplyDrop1 = (Location)(getConfig()).get(".SupplyDrop");
