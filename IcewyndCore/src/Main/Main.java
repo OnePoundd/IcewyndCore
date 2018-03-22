@@ -367,13 +367,16 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public void spawnSupplyDrop(Location SupplyDrop1) {
-		SupplyDrop1.add(0,50,0);
+		SupplyDrop1.add(0,75,0);
 		spawntask = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-			int currentBlocksAbove = 50;
+			int currentBlocksAbove = 75;
 			public void run() {
 				SupplyDrop1.add(0,-1,0);
 				System.out.println("Current Y: " + SupplyDrop1.getBlockY());
 				SupplyDrop1.getBlock().setType(Material.CHEST);
+				Location blockAbove = SupplyDrop1;
+				blockAbove.add(0,1,0).getBlock().setType(Material.AIR);
+				currentBlocksAbove = currentBlocksAbove - 1;
 				if(currentBlocksAbove == 0) {
 					System.out.println("Spawning Supply Drops (falling phase finished)");
 					SupplyDrop1.getBlock().setType(Material.CHEST);
@@ -387,9 +390,8 @@ public class Main extends JavaPlugin implements Listener {
 					SupplyDrop1.add(0,1,0).getBlock().setType(Material.OBSIDIAN);
 					Bukkit.getScheduler().cancelTask(spawntask);
 				}
-				currentBlocksAbove = currentBlocksAbove - 1;
 			}
-		}, 0L, 10L);
+		}, 0L, 4L);
 	}
 	
 	public void onDisable() {
