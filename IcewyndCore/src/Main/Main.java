@@ -379,15 +379,15 @@ public class Main extends JavaPlugin implements Listener {
 				movingBlock.add(0,currentBlocksAbove,0).getBlock().setType(Material.TRAPPED_CHEST);
 				currentBlocksAbove = currentBlocksAbove - 1;
 				if(currentBlocksAbove == 0) {
-					movingBlock.getBlock().setType(Material.TRAPPED_CHEST);
-					Chest chest = (Chest)movingBlock.getBlock().getState();
+					SupplyDrop1.getBlock().setType(Material.TRAPPED_CHEST);
+					Chest chest = (Chest)SupplyDrop1.getBlock().getState();
 					Inventory inv = chest.getInventory();
 					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
 					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
 					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
 					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
 					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
-					movingBlock.add(0,1,0).getBlock().setType(Material.OBSIDIAN);
+					SupplyDrop1.add(0,1,0).getBlock().setType(Material.OBSIDIAN);
 					Bukkit.getScheduler().cancelTask(spawntask);
 				}
 			}
