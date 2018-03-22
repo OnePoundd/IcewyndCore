@@ -372,7 +372,7 @@ public class Main extends JavaPlugin implements Listener {
 			int currentBlocksAbove = 75;
 			public void run() {
 				SupplyDrop1.add(0,1,0).getBlock().setType(Material.AIR);
-				SupplyDrop1.add(0,-2,0).getBlock().setType(Material.CHEST);
+				SupplyDrop1.add(0,-1,0).getBlock().setType(Material.CHEST);
 				System.out.println("Current Y: " + SupplyDrop1.getBlockY());
 				currentBlocksAbove = currentBlocksAbove - 1;
 				if(currentBlocksAbove == 0) {
