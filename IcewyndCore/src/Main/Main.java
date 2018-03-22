@@ -354,10 +354,6 @@ public class Main extends JavaPlugin implements Listener {
 				Location SupplyDrop1 = (Location)(getConfig()).get(".SupplyDrop");
 				Bukkit.broadcastMessage("§a§lSUPPLYDROP§7 » §eA Supply Drop is falling near X:" + SupplyDrop1.getBlockX() + " Z:" + SupplyDrop1.getBlockZ());
 				spawnSupplyDrop(SupplyDrop1);
-				
-
-				
-
 			}
 		}, 0L, 108000L);
 		
@@ -376,8 +372,7 @@ public class Main extends JavaPlugin implements Listener {
 			public void run() {
 				Location movingBlock = SupplyDrop1;
 				System.out.println("Current Y: " + currentBlocksAbove);
-				movingBlock.add(0,currentBlocksAbove + 1, 0).getBlock().setType(Material.AIR);
-				movingBlock.add(0,-1,0).getBlock().setType(Material.CHEST);
+				movingBlock.add(0,currentBlocksAbove,0).getBlock().setType(Material.CHEST);
 				if(currentBlocksAbove == 0) {
 					System.out.println("Spawning Supply Drops (falling phase finished)");
 					SupplyDrop1.getBlock().setType(Material.CHEST);
