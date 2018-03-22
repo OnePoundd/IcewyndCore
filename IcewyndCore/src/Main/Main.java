@@ -376,7 +376,7 @@ public class Main extends JavaPlugin implements Listener {
 			public void run() {
 				Location movingBlock = SupplyDrop1;
 				movingBlock.add(0,currentBlocksAbove + 1, 0).getBlock().setType(Material.AIR);
-				movingBlock.add(0,currentBlocksAbove,0).getBlock().setType(Material.CHEST);
+				movingBlock.add(0,-1,0).getBlock().setType(Material.CHEST);
 				if(currentBlocksAbove == 0) {
 					SupplyDrop1.getBlock().setType(Material.CHEST);
 					Chest chest = (Chest)SupplyDrop1.getBlock().getState();
