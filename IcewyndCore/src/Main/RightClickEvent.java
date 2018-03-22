@@ -30,58 +30,67 @@ public class RightClickEvent implements Listener {
 			Player player = event.getPlayer();
 			//Skeleton Boss Egg
 			if(player.getItemInHand() != null && player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasDisplayName()) {
-				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§lPlagued Skeleton")) {
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§cÂ§lPlagued Skeleton")) {
 					if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 						event.setCancelled(true);
 						if(BoardColl.get().getFactionAt(PS.valueOf(event.getClickedBlock())).getName().equalsIgnoreCase("Warzone")) {
-							player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+							ItemStack clicked = player.getItemInHand();
+							clicked.setAmount(clicked.getAmount()-1);
+							player.setItemInHand(clicked);
 							Skeleton skeleton = (Skeleton) player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0,1,0), EntityType.SKELETON);
 							skeleton.setSkeletonType(SkeletonType.WITHER);
 							skeleton.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 3)); //strength 4
 							skeleton.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 2)); //speed 3
 							skeleton.setHealth(300.0);
-							skeleton.setCustomName("§c§lPlagued Skeleton");
+							skeleton.setCustomName("Â§cÂ§lPlagued Skeleton");
 							Block block = event.getClickedBlock();
 							Location locB = block.getLocation().getBlock().getLocation();
 							MPlayer mplayer = MPlayer.get(player);
 							String faction = mplayer.getFactionName();
-							String nut = "§d§lBOSS EGGS§8§l » §7A §cPlagued Skeleton §7has been summoned in Warzone by the faction §e" + StringUtils.capitalize(faction) + "§7! Coords: [" + locB.getBlockX() + ", " + locB.getBlockY() + ", " + locB.getBlockZ() + "]";
+							String nut = "Â§dÂ§lBOSS EGGSÂ§8Â§l Â» Â§7A Â§cPlagued Skeleton Â§7has been summoned in Warzone by the faction Â§e" + StringUtils.capitalize(faction) + "Â§7! Coords: [" + locB.getBlockX() + ", " + locB.getBlockY() + ", " + locB.getBlockZ() + "]";
 							Bukkit.broadcastMessage(nut);
 						}else {
-							player.sendMessage("§cBoss eggs can only be used in WarZone!");
+							player.sendMessage("Â§cBoss eggs can only be used in WarZone!");
 						}
 					}
 				//Charged Creeper Item
-				}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§a§l§nCharged Creeper Egg")) {
-					player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+				}else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§aÂ§lÂ§nCharged Creeper Egg")) {
+					ItemStack clicked = player.getItemInHand();
+					clicked.setAmount(clicked.getAmount()-1);
+					player.setItemInHand(clicked);
 					player.getWorld().spawnEntity(event.getClickedBlock().getLocation().add(0, 1, 0),EntityType.CREEPER);
 					Block block = event.getClickedBlock();
 					Location locB = block.getLocation().getBlock().getLocation();
 					block.getWorld().spawnEntity(locB, EntityType.LIGHTNING);
 				//TNT Crate Item
-				} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§c§l§nCrate of TNT")) {
+				} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§cÂ§lÂ§nCrate of TNT")) {
 					if (player.getInventory().firstEmpty() == -1) {
-						player.sendMessage("§cYou do not have the required inventory space.");
+						player.sendMessage("Â§cYou do not have the required inventory space.");
 						event.setCancelled(true);
 						player.closeInventory();
 					} else {
-						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						player.getInventory().addItem(new ItemStack(Material.TNT, 2304));
 						event.setCancelled(true);
 					}
 
 				//Mystery Spawner Item
-				} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§l§nMystery Spawner")) {
+				} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§dÂ§lÂ§nMystery Spawner")) {
 					if (player.getInventory().firstEmpty() == -1) {
-						player.sendMessage("§cYou do not have the required inventory space.");
+						player.sendMessage("Â§cYou do not have the required inventory space.");
 						event.setCancelled(true);
 						player.closeInventory();
 					} else {
+						ItemStack clicked = player.getItemInHand();
+						clicked.setAmount(clicked.getAmount()-1);
+						player.setItemInHand(clicked);
 						Random rand = new Random();
 						int index5 = rand.nextInt(5) + 1;
 						if (index5 == 1) {
 							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "spawnergive " + player.getName() + " villager");
-							Bukkit.broadcastMessage(" " + player.getName() + " was lucky and recieved a §d§lVillager spawner§b§l from a Mystery Spawner!" + " §d§lÅ“¦");
+							Bukkit.broadcastMessage("Â§dâœ¦Â§a " + player.getName() + "Â§b was lucky and recieved a Â§6Villager SpawnerÂ§b from a Mystery Spawner! Â§dâœ¦");
 						} else if (index5 == 2) {
 							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " creeper");
 						} else if (index5 == 3) {
@@ -91,11 +100,10 @@ public class RightClickEvent implements Listener {
 						} else if (index5 == 5) {
 							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"spawnergive " + player.getName() + " witch");
 						}
-						player.getInventory().getItemInHand().setAmount(player.getInventory().getItemInHand().getAmount() - 1);
 					}
 
 				//Overwatch Random Teleport Item
-				} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("§d§lRandom TP")) {
+				} else if (player.getItemInHand().getItemMeta().getDisplayName().equals("Â§dÂ§lRandom TP")) {
 					event.setCancelled(true);
 					ArrayList<Player> players = new ArrayList<Player>();
 					for (Player e : Bukkit.getOnlinePlayers())

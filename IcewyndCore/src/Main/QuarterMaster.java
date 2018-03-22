@@ -73,7 +73,7 @@ public class QuarterMaster implements CommandExecutor, Listener {
 		ItemStack Item3 = new ItemStack(Material.BEDROCK, 8);
 		ItemMeta Item3Meta = Item3.getItemMeta();
 		List<String> lore3 = new ArrayList<String>();
-		Item3Meta.setDisplayName("§8§l§nHardened Bedrock");
+		Item3Meta.setDisplayName("§8§lHardened Bedrock");
 		lore3.add("§7Destructible block with 100 block durability!");
 		lore3.add("§1");
 		lore3.add("§cPrice: §f5 Coins");

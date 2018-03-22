@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Beacon;
+import org.bukkit.block.Chest;
 import org.bukkit.block.Hopper;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -17,6 +20,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.entity.Wither;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -127,6 +132,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new TNTPatches(), this);
 		manager.registerEvents(new QuarterMaster(), this);
 		manager.registerEvents(new CrateTest(), this);
+		manager.registerEvents(new SupplyDropEvent(), this);
 
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -183,6 +189,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("back").setExecutor(new Back());
 		getCommand("jackpot").setExecutor(new Jackpot());
 		getCommand("escape").setExecutor(new EscapeCommand());
+		getCommand("supplydrop").setExecutor(new SupplyDropEvent());
 
 		ExoticCrate.load();
 		LegendaryCrate.load();
@@ -196,7 +203,7 @@ public class Main extends JavaPlugin implements Listener {
 		pricesConfig = YamlConfiguration.loadConfiguration(customYml);	
 		saveResource("prices.yml", false);
 
-		//Creates default commandstore file if it doesn't exist
+		//		Creates default commandstore file if it doesn't exist
 		try {
 			CommandStore = new File(getDataFolder() + "/CommandStore.txt");
 			CommandStore.createNewFile(); // if it doesn't exist
@@ -204,7 +211,7 @@ public class Main extends JavaPlugin implements Listener {
 			e1.printStackTrace();
 		}
 
-		//Gets the economy
+		//		Gets the economy
 		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
 		if (rsp != null) {
 			econ = rsp.getProvider();
@@ -287,7 +294,7 @@ public class Main extends JavaPlugin implements Listener {
 		UnbanCommand.triggerUnbanScheduler();
 		Freecam.triggerFreecamCheck();
 
-		//Wither Boss Event
+		//		Wither Boss Event
 		BukkitScheduler WitherBossEvent = getServer().getScheduler();
 		WitherBossEvent.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
@@ -302,7 +309,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}, 0L, 3000L);
 
-		//Player Count
+		//		Player Count
 		BukkitScheduler PlayerCount = getServer().getScheduler();
 		PlayerCount.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
@@ -312,21 +319,21 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}, 0L, 300L);
 
-		//Clear Lag Announce
+		//		Clear Lag Announce
 		BukkitScheduler ClearLagAnnounce = getServer().getScheduler();
 		ClearLagAnnounce.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
-				Bukkit.broadcastMessage("§e§lClearLag§8 » §aEntities will be cleared in 1 minute!");
+				Bukkit.broadcastMessage("§e§lClearLag§7 » §aEntities will be cleared in 1 minute!");
 			}
 		}, 0L, 4800L);
 
-		//Clear Lag
+		//		Clear Lag
 		BukkitScheduler ClearLag = getServer().getScheduler();
 		ClearLag.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
-				Bukkit.broadcastMessage("§e§lClearLag§8 » §aEntities have been cleared!");
+				Bukkit.broadcastMessage("§e§lClearLag§7 » §aEntities have been cleared!");
 				for (Entity entity : Bukkit.getWorld("world").getEntities()){
 					if (entity instanceof FallingBlock || entity instanceof TNTPrimed || entity instanceof ExperienceOrb || entity instanceof Player || entity instanceof Beacon ||  entity instanceof Hopper)  {
 					}else {
@@ -335,25 +342,36 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		}, 0L, 6000L);
-//		Clear Lag
-//		BukkitScheduler Crate = getServer().getScheduler();
-//		Crate.scheduleSyncRepeatingTask(this, new Runnable() {
-//			@Override
-//			public void run() {
-//				Location WitherSpawn = (Location) (getConfig()).get(".WitherSpawn");
-//				Bukkit.getWorld("world").playEffect(WitherSpawn, Effect.PORTAL, 1);
-//				Bukkit.getWorld("world").playEffect(WitherSpawn, Effect.FLYING_GLYPH, 1);
-//			}
-//		}, 0L, 1L);
-//		TrenchTNT
-//		BukkitScheduler TrenchTNT = getServer().getScheduler();
-//		TrenchTNT.scheduleSyncRepeatingTask(this, new Runnable() {
-//			@Override
-//			public void run() {
-//				Location WitherSpawn = (Location) (getConfig()).get(".WitherSpawn");
-//				Bukkit.getWorld("world").spawnEntity(TrenchTNT, EntityType.PRIMED_TNT);
-//			}
-//		}, 0L, 140L);
+
+		//		Supply Drop Event
+		BukkitScheduler SupplyDrop = getServer().getScheduler();
+		SupplyDrop.scheduleSyncRepeatingTask(this, new Runnable() {
+			@Override
+			public void run() {
+				Location SupplyDrop1 = (Location)(getConfig()).get(".SupplyDrop");
+				Bukkit.broadcastMessage("§a§lSUPPLYDROP§7 » §eA Supply Drop was seen landing near X:" + SupplyDrop1.getBlockX() + " Z:" + SupplyDrop1.getBlockZ());
+				SupplyDrop1.getBlock().setType(Material.TRAPPED_CHEST);
+				Chest chest = (Chest)SupplyDrop1.getBlock().getState();
+				Inventory inv = chest.getInventory();
+				inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
+				inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
+				inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
+				inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
+				inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
+				SupplyDrop1.add(0,1,0).getBlock().setType(Material.OBSIDIAN);
+				SupplyDrop1.add(0,-1,0);
+
+			}
+		}, 0L, 108000L);
+		@SuppressWarnings("unused")
+		int task2;
+		task2 = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+			@Override
+			public void run() {
+				Location SupplyDrop1 = (Location)(getConfig()).get(".SupplyDrop");
+				Bukkit.getWorld("world").playEffect(SupplyDrop1, Effect.PORTAL, 5);
+			}
+		}, 0L, 1L);
 	}
 
 	public void onDisable() {

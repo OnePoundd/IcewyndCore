@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -12,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
@@ -32,32 +34,25 @@ import com.massivecraft.factions.entity.MConf;
 public class Misc implements Listener {
 	Main plugin = Main.getPlugin(Main.class);
 
-	/*//Scoreboard
-	@EventHandler
-	public void onScoreboardUpdate(ScoreboardEvent event){
-		Player player = event.getPlayer();
-		event.setScoreboardName("§b§lIcewynd.net");
-		event.setHeader("§7§l§m------------");
-		event.setFooter("§7§l§m------------");
-		MPlayer mplayer = MPlayer.get(player);
-		String faction = mplayer.getFactionName();
-		event.writeLine("§a§lFaction: ");
-		event.writeLine("§7" + faction);
-		event.writeLine("");
-		int ping = ((CraftPlayer) player).getHandle().ping;
-		event.writeLine("§d§lPing:");
-		event.writeLine("§7" + ping);
-		event.writeLine("");
-		event.writeLine("§a§lBalance:");
-		event.writeLine("§7" + Main.econ.getBalance(player));
-	}*/
+	/*
+	 * //Scoreboard
+	 * 
+	 * @EventHandler public void onScoreboardUpdate(ScoreboardEvent event){ Player
+	 * player = event.getPlayer(); event.setScoreboardName("§b§lIcewynd.net");
+	 * event.setHeader("§7§l§m------------"); event.setFooter("§7§l§m------------");
+	 * MPlayer mplayer = MPlayer.get(player); String faction =
+	 * mplayer.getFactionName(); event.writeLine("§a§lFaction: ");
+	 * event.writeLine("§7" + faction); event.writeLine(""); int ping =
+	 * ((CraftPlayer) player).getHandle().ping; event.writeLine("§d§lPing:");
+	 * event.writeLine("§7" + ping); event.writeLine("");
+	 * event.writeLine("§a§lBalance:"); event.writeLine("§7" +
+	 * Main.econ.getBalance(player)); }
+	 */
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) throws InvocationTargetException {
 		Player player = event.getPlayer();
-		int players = plugin.getConfig().getInt(".PlayersOnline");
-		plugin.getConfig().set(".PlayersOnline", players + 1);
-		//MOTD
+		// MOTD
 		player.sendMessage("§f§l§m-----------§b§l§m-----------§f§l§m-----------");
 		player.sendMessage("        §f§lCONNECTED TO §b§lICEWYND §b§lFACTIONS");
 		player.sendMessage("                         §f(§b1.7.10 §f- §b1.12§f)");
@@ -71,11 +66,15 @@ public class Misc implements Listener {
 			player.teleport(MConf.get().getWarp("jail"));
 		}
 		//TabList foot/header
-		PacketContainer packetContainer = Main.protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
-		packetContainer.getChatComponents().write(0, WrappedChatComponent.fromText(" §8§l§m-§7§l§m-§f§l[§f ICEWYND §bNETWORK§f§l ]§7§l§m-§8§l§m-§r "))
-		.write(1, WrappedChatComponent.fromText("§dStore, forums and more at Icewynd.net"));
+		PacketContainer packetContainer = Main.protocolManager
+				.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
+		packetContainer.getChatComponents()
+				.write(0,
+						WrappedChatComponent
+								.fromText(" §8§l§m-§7§l§m-§f§l[§f ICEWYND §bNETWORK§f§l ]§7§l§m-§8§l§m-§r "))
+				.write(1, WrappedChatComponent.fromText("§dStore, forums and more at Icewynd.net"));
 		ProtocolLibrary.getProtocolManager().sendServerPacket(player, packetContainer);
-		// New Player Announce
+		//New Player Announce
 		if (!player.hasPlayedBefore()) {
 			Bukkit.broadcastMessage("§b§lWelcome to Icewynd, §f§l" + player.getName() + "§b§l!");
 			plugin.getConfig().set(player.getUniqueId() + ".Name", player.getName());
@@ -109,7 +108,7 @@ public class Misc implements Listener {
 			meta.setLore(Arrays.asList("§7Automatically generates cobblestone walls."));
 			GenBucket.setItemMeta(meta);
 			event.getPlayer().getInventory().getItemInHand()
-			.setAmount(event.getPlayer().getInventory().getItemInHand().getAmount() - 1);
+					.setAmount(event.getPlayer().getInventory().getItemInHand().getAmount() - 1);
 			event.getPlayer().getInventory().addItem(GenBucket);
 		}
 		event.setCancelled(true);
@@ -155,7 +154,8 @@ public class Misc implements Listener {
 	//MOTD
 	@EventHandler
 	public void onServerListPing(ServerListPingEvent s) {
-		s.setMotd("         §8§l§m-§7§l§m-§f§l[§f §lICEWYND §b§lNETWORK §f§l- §a1.7 - 1.12 §f§l]§7§l§m-§8§l§m-§r                      §c§lFACTIONS MAP 1 LIVE!§7 / §9§l25% OFF SALE");
+		s.setMotd(
+				"         §8§l§m-§7§l§m-§f§l[§f §lICEWYND §b§lNETWORK §f§l- §a1.7 - 1.12 §f§l]§7§l§m-§8§l§m-§r                      §c§lFACTIONS MAP 1 LIVE!§7 / §9§l25% OFF SALE");
 		s.setMaxPlayers(0);
 	}
 
@@ -217,6 +217,7 @@ public class Misc implements Listener {
 			}
 		}
 	}
+
 	//Keep XP on Death
 	@EventHandler
 	public void XPKeep(PlayerDeathEvent event) {
@@ -225,4 +226,12 @@ public class Misc implements Listener {
 		}
 	}
 
+	//Doubles arrow damage
+	@EventHandler
+	public void onDamage(EntityDamageByEntityEvent event) {
+		if (event.getDamager() instanceof Arrow) {
+			double damage = event.getDamage() * 2;
+			event.setDamage(damage);
+		}
+	}
 }

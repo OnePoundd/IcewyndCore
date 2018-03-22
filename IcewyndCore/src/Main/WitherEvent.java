@@ -27,6 +27,8 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import com.massivecraft.factions.entity.MPlayer;
+
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 
 public class WitherEvent implements CommandExecutor, Listener {
@@ -68,13 +70,13 @@ public class WitherEvent implements CommandExecutor, Listener {
 						if (plugin.getConfig().getInt(".WitherPhase") == 0) {
 							plugin.getConfig().set(".WitherPhase", 1);
 							plugin.getConfig().set(".WitherInvin", true);
-							Bukkit.broadcastMessage("§eThe Wither King is below 50% health! Summoning Wither Guards!");
 							Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
+							Bukkit.getWorld("world").playEffect(WitherSpawn.add(0,2,0), Effect.EXPLOSION_LARGE, 10);
+							WitherSpawn.add(0,-2,0);
+							Bukkit.broadcastMessage("§eThe Wither King is below 50% health! Summoning Wither Guards!");
 							e.teleport(WitherSpawn);
 							LivingEntity entity = (LivingEntity) event.getEntity();
 							noAI(entity);
-							
-							Bukkit.getWorld("world").playEffect(WitherSpawn, Effect.PORTAL, 50);
 
 							Skeleton mob = (Skeleton) Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(-4, 0, 0), EntityType.SKELETON);
 							Skeleton mob2 = (Skeleton) Bukkit.getWorld("world").spawnEntity(WitherSpawn.add(4, 0, 4), EntityType.SKELETON);
@@ -147,15 +149,13 @@ public class WitherEvent implements CommandExecutor, Listener {
 
 							WitherSpawn.add(-2, 0, -2);
 							task = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-								double timer = 3.0;
-
 								@Override
 								public void run() {
-									timer = timer - 0.1;
 									Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
-									Bukkit.getWorld("world").playEffect(WitherSpawn, Effect.STEP_SOUND, Material.PORTAL, 150);
+									Bukkit.getWorld("world").playEffect(WitherSpawn.add(0,1,0), Effect.MOBSPAWNER_FLAMES, 1);
+									WitherSpawn.add(0,-1,0);
 								}
-							}, 0L, 0);
+							}, 0L, 5L);
 							plugin.saveConfig();
 						}
 					}
@@ -168,10 +168,12 @@ public class WitherEvent implements CommandExecutor, Listener {
 	public void ondeath(EntityDeathEvent event) {
 		int totalKilled = plugin.getConfig().getInt(".WitherSkeletons");
 		if (event.getEntity() instanceof Wither) {
-			if (event.getEntity().getCustomName().equals("§4§l§oWither King")) {
+			if (event.getEntity().getCustomName().equals("§4§l§nWither King")) {
 				plugin.getConfig().set(".WitherPhase", 0);
 				plugin.saveConfig();
-				Bukkit.broadcastMessage("WITHER KING HAS BEEN SLAIN");
+				MPlayer mplayer = MPlayer.get(event.getEntity().getKiller());
+				String faction = mplayer.getFactionName();
+				Bukkit.broadcastMessage("[" + faction.toUpperCase() + "]" + event.getEntity().getKiller().getName() + " §c§lhas slain the Wither King and recieved a prize!");
 			}
 		}
 		if (event.getEntity() instanceof Skeleton) {
@@ -179,17 +181,18 @@ public class WitherEvent implements CommandExecutor, Listener {
 			Skeleton skeleton = (Skeleton) entity;
 			if (skeleton.getSkeletonType() == SkeletonType.WITHER) {
 				plugin.getConfig().set(".WitherSkeletons", totalKilled + 1);
+				event.getDrops().clear();
 				plugin.saveConfig();
 				if (plugin.getConfig().getInt(".WitherSkeletons") == 3) {
 					Bukkit.getScheduler().cancelTask(task);
+					Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
 					plugin.getConfig().set(".WitherInvin", false);
 					plugin.saveConfig();
 					for (Entity entity1 : Bukkit.getWorld("World").getEntities())
 						if (entity1.getType() == EntityType.WITHER) {
 							entity1.remove();
-							Location WitherSpawn = (Location) (plugin.getConfig()).get(".WitherSpawn");
 							Wither mob = (Wither) Bukkit.getWorld("world").spawnEntity(WitherSpawn, EntityType.WITHER);
-							mob.setCustomName("§4§l§oWither King");
+							mob.setCustomName("§4§l§nWither King");
 							mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 1));
 							mob.setMaxHealth(250);
 							mob.setHealth(250);
