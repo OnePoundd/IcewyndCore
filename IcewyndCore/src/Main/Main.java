@@ -376,10 +376,9 @@ public class Main extends JavaPlugin implements Listener {
 			public void run() {
 				Location movingBlock = SupplyDrop1;
 				movingBlock.add(0,currentBlocksAbove + 1, 0).getBlock().setType(Material.AIR);
-				movingBlock.add(0,currentBlocksAbove,0).getBlock().setType(Material.TRAPPED_CHEST);
-				currentBlocksAbove = currentBlocksAbove - 1;
+				movingBlock.add(0,currentBlocksAbove,0).getBlock().setType(Material.CHEST);
 				if(currentBlocksAbove == 0) {
-					SupplyDrop1.getBlock().setType(Material.TRAPPED_CHEST);
+					SupplyDrop1.getBlock().setType(Material.CHEST);
 					Chest chest = (Chest)SupplyDrop1.getBlock().getState();
 					Inventory inv = chest.getInventory();
 					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
@@ -390,8 +389,9 @@ public class Main extends JavaPlugin implements Listener {
 					SupplyDrop1.add(0,1,0).getBlock().setType(Material.OBSIDIAN);
 					Bukkit.getScheduler().cancelTask(spawntask);
 				}
+				currentBlocksAbove = currentBlocksAbove - 1;
 			}
-		}, 0L, 1L);
+		}, 0L, 10L);
 	}
 	
 	public void onDisable() {
