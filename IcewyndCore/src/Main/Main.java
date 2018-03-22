@@ -367,12 +367,13 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public void spawnSupplyDrop(Location SupplyDrop1) {
+		SupplyDrop1.add(0,50,0);
 		spawntask = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 			int currentBlocksAbove = 50;
 			public void run() {
-				Location movingBlock = SupplyDrop1;
-				System.out.println("Current Y: " + currentBlocksAbove);
-				movingBlock.add(0,currentBlocksAbove,0).getBlock().setType(Material.CHEST);
+				SupplyDrop1.add(0,-1,0);
+				System.out.println("Current Y: " + SupplyDrop1.getBlockY());
+				SupplyDrop1.getBlock().setType(Material.CHEST);
 				if(currentBlocksAbove == 0) {
 					System.out.println("Spawning Supply Drops (falling phase finished)");
 					SupplyDrop1.getBlock().setType(Material.CHEST);
