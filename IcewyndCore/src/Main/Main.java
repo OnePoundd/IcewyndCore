@@ -375,9 +375,11 @@ public class Main extends JavaPlugin implements Listener {
 			int currentBlocksAbove = 50;
 			public void run() {
 				Location movingBlock = SupplyDrop1;
+				System.out.println("Current Y: " + currentBlocksAbove);
 				movingBlock.add(0,currentBlocksAbove + 1, 0).getBlock().setType(Material.AIR);
 				movingBlock.add(0,-1,0).getBlock().setType(Material.CHEST);
 				if(currentBlocksAbove == 0) {
+					System.out.println("Spawning Supply Drops (falling phase finished)");
 					SupplyDrop1.getBlock().setType(Material.CHEST);
 					Chest chest = (Chest)SupplyDrop1.getBlock().getState();
 					Inventory inv = chest.getInventory();
