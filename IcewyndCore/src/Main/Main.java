@@ -94,7 +94,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static JackpotEntity jackpot;
 
 	public static int SupplyDropTask;
-	
+	public static int spawntask;
 	
 	public void onEnable() {
 		saveDefaultConfig();
@@ -352,19 +352,11 @@ public class Main extends JavaPlugin implements Listener {
 			@Override
 			public void run() {
 				Location SupplyDrop1 = (Location)(getConfig()).get(".SupplyDrop");
-				Bukkit.broadcastMessage("§a§lSUPPLYDROP§7 » §eA Supply Drop was seen landing near X:" + SupplyDrop1.getBlockX() + " Z:" + SupplyDrop1.getBlockZ());
-				SupplyDrop1.getBlock().setType(Material.TRAPPED_CHEST);
-				Chest chest = (Chest)SupplyDrop1.getBlock().getState();
-				Inventory inv = chest.getInventory();
-				inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
-				inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
-				inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
-				inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
-				inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
-				SupplyDrop1.add(0,1,0).getBlock().setType(Material.OBSIDIAN);
-				SupplyDrop1.add(0,-1,0);
-				SupplyDrop1.getWorld().spawnFallingBlock(SupplyDrop1.add(0,50,0), Material.CHEST, (byte) 0);
-				SupplyDrop1.add(0,-50,0);
+				Bukkit.broadcastMessage("§a§lSUPPLYDROP§7 » §eA Supply Drop is falling near X:" + SupplyDrop1.getBlockX() + " Z:" + SupplyDrop1.getBlockZ());
+				spawnSupplyDrop(SupplyDrop1);
+				
+
+				
 
 			}
 		}, 0L, 108000L);
@@ -378,6 +370,30 @@ public class Main extends JavaPlugin implements Listener {
 		}, 0L, 1L);
 	}
 
+	public void spawnSupplyDrop(Location SupplyDrop1) {
+		spawntask = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+			int currentBlocksAbove = 50;
+			public void run() {
+				Location movingBlock = SupplyDrop1;
+				movingBlock.add(0,currentBlocksAbove + 1, 0).getBlock().setType(Material.AIR);
+				movingBlock.add(0,currentBlocksAbove,0).getBlock().setType(Material.TRAPPED_CHEST);
+				currentBlocksAbove = currentBlocksAbove - 1;
+				if(currentBlocksAbove == 0) {
+					movingBlock.getBlock().setType(Material.TRAPPED_CHEST);
+					Chest chest = (Chest)movingBlock.getBlock().getState();
+					Inventory inv = chest.getInventory();
+					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
+					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
+					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
+					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
+					inv.addItem(new ItemStack(SupplyDropEvent.SupplyDropItems()));
+					movingBlock.add(0,1,0).getBlock().setType(Material.OBSIDIAN);
+					Bukkit.getScheduler().cancelTask(spawntask);
+				}
+			}
+		}, 0L, 1L);
+	}
+	
 	public void onDisable() {
 		jackpot.disable();
 	}
