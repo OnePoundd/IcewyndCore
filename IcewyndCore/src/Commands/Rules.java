@@ -17,7 +17,7 @@ public class Rules implements CommandExecutor{
 				Player player = (Player) sender;
 				player.sendMessage("§8§l§m--------§8§l[§a§l Rules §8§l]§8§l§m--------");
 				TextComponent text = new TextComponent("§eClick here for more indepth rules.");
-				text.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://Icewynd.net/community/"));
+				text.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://Icewynd.net/"));
 				player.sendMessage(text);
 				player.sendMessage("§a[1]§f Do not spam chat excessively.");
 				player.sendMessage("§a[2]§f Do not be excessively racist in chat.");

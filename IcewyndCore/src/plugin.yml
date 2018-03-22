@@ -13,6 +13,7 @@
     xp:
     xpgive:
     ci:
+      aliases: [clearinventory]
     rules:
     patchnotes:
     ow:
@@ -21,8 +22,10 @@
     ping:
     q:
     msg:
+      aliases: [message, pm, m]
     pinfo:
     msgtoggle:
+      aliases: [messagetoggle]
     nightvision:
       aliases: [nv]
     invsee:

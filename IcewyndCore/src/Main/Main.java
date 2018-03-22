@@ -95,7 +95,7 @@ public class Main extends JavaPlugin implements Listener {
 
 	public static int SupplyDropTask;
 	public static int spawntask;
-	
+
 	public void onEnable() {
 		saveDefaultConfig();
 		PluginManager manager = Bukkit.getServer().getPluginManager();
@@ -136,6 +136,7 @@ public class Main extends JavaPlugin implements Listener {
 		manager.registerEvents(new QuarterMaster(), this);
 		manager.registerEvents(new CrateTest(), this);
 		manager.registerEvents(new SupplyDropEvent(), this);
+		manager.registerEvents(new Overwatch(), this);
 
 		getCommand("rules").setExecutor(new Rules());
 		getCommand("q").setExecutor(new QuarterMaster());
@@ -206,7 +207,7 @@ public class Main extends JavaPlugin implements Listener {
 		pricesConfig = YamlConfiguration.loadConfiguration(customYml);	
 		saveResource("prices.yml", false);
 
-		//		Creates default commandstore file if it doesn't exist
+		//Creates default commandstore file if it doesn't exist
 		try {
 			CommandStore = new File(getDataFolder() + "/CommandStore.txt");
 			CommandStore.createNewFile(); // if it doesn't exist
@@ -214,7 +215,7 @@ public class Main extends JavaPlugin implements Listener {
 			e1.printStackTrace();
 		}
 
-		//		Gets the economy
+		//Gets the economy
 		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
 		if (rsp != null) {
 			econ = rsp.getProvider();
@@ -297,7 +298,7 @@ public class Main extends JavaPlugin implements Listener {
 		UnbanCommand.triggerUnbanScheduler();
 		Freecam.triggerFreecamCheck();
 
-		//		Wither Boss Event
+		//Wither Boss Event
 		BukkitScheduler WitherBossEvent = getServer().getScheduler();
 		WitherBossEvent.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
@@ -312,7 +313,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}, 0L, 3000L);
 
-		//		Player Count
+		//Player Count
 		BukkitScheduler PlayerCount = getServer().getScheduler();
 		PlayerCount.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
@@ -322,21 +323,21 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}, 0L, 300L);
 
-		//		Clear Lag Announce
+		//Clear Lag Announce
 		BukkitScheduler ClearLagAnnounce = getServer().getScheduler();
 		ClearLagAnnounce.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
-				Bukkit.broadcastMessage("§e§lClearLag§7 » §aEntities will be cleared in 1 minute!");
+				Bukkit.broadcastMessage("§e§lCLEARLAG§7 » §aEntities will be cleared in 1 minute!");
 			}
 		}, 0L, 4800L);
 
-		//		Clear Lag
+		//Clear Lag
 		BukkitScheduler ClearLag = getServer().getScheduler();
 		ClearLag.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
-				Bukkit.broadcastMessage("§e§lClearLag§7 » §aEntities have been cleared!");
+				Bukkit.broadcastMessage("§e§lCLEARLAG§7 » §aEntities have been cleared!");
 				for (Entity entity : Bukkit.getWorld("world").getEntities()){
 					if (entity instanceof FallingBlock || entity instanceof TNTPrimed || entity instanceof ExperienceOrb || entity instanceof Player || entity instanceof Beacon ||  entity instanceof Hopper)  {
 					}else {
@@ -346,7 +347,7 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}, 0L, 6000L);
 
-		//		Supply Drop Event
+		//Supply Drop Event
 		BukkitScheduler SupplyDrop = getServer().getScheduler();
 		SupplyDrop.scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
@@ -356,7 +357,7 @@ public class Main extends JavaPlugin implements Listener {
 				spawnSupplyDrop(SupplyDrop1);
 			}
 		}, 0L, 108000L);
-		
+
 		SupplyDropTask = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
@@ -374,10 +375,8 @@ public class Main extends JavaPlugin implements Listener {
 				SupplyDrop1.getBlock().setType(Material.CHEST);
 				SupplyDrop1.add(0,1,0).getBlock().setType(Material.AIR);
 				SupplyDrop1.add(0,-2,0);
-				System.out.println("Current Y: " + SupplyDrop1.getBlockY());
 				currentBlocksAbove = currentBlocksAbove - 1;
 				if(currentBlocksAbove == 0) {
-					System.out.println("Spawning Supply Drops (falling phase finished)");
 					SupplyDrop1.getBlock().setType(Material.CHEST);
 					Chest chest = (Chest)SupplyDrop1.getBlock().getState();
 					Inventory inv = chest.getInventory();
@@ -391,9 +390,9 @@ public class Main extends JavaPlugin implements Listener {
 					Bukkit.getScheduler().cancelTask(spawntask);
 				}
 			}
-		}, 0L, 4L);
+		}, 0L, 1L);
 	}
-	
+
 	public void onDisable() {
 		jackpot.disable();
 	}

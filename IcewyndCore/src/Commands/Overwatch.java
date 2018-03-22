@@ -1,7 +1,6 @@
 package Commands;
 
 import java.util.Arrays;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -9,6 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import Main.Main;
 
 
-public class Overwatch implements CommandExecutor{
+public class Overwatch implements CommandExecutor, Listener{
 
 	static Main plugin = Main.getPlugin(Main.class);
 
@@ -73,11 +73,11 @@ public class Overwatch implements CommandExecutor{
 		Player player = event.getPlayer();
 		if (player.hasPermission("icewynd.admin")) {
 			if (player.getItemInHand().getType().equals(Material.BLAZE_ROD)) {
-				if (player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasDisplayName()) {
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§9§lOpen Inventory")) {
 					event.getPlayer().chat("/invsee " + IPlayer);
 				}
 			} else if (event.getPlayer().getInventory().getItemInHand().getType() == Material.BOOK) {
-				if (player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().hasDisplayName()) {
+				if (player.getItemInHand().getItemMeta().getDisplayName().equals("§b§lPlayer Info")) {
 					event.getPlayer().chat("/pinfo " + IPlayer);
 				}
 			}
